@@ -1,0 +1,5258 @@
+openapi: 3.0.4
+info:
+  title: DealsService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.1.2.5532
+paths:
+  /api/v2/AiService/Completions/Complete:
+    get:
+      tags:
+        - Completions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: query
+          schema:
+            type: string
+        - name: message
+          in: query
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/DealsService/DealUnitFlows:
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get deal unit flows
+      description: Retrieves a list of deal unit flows for the specified tenant with OData query support.
+      operationId: GetDealUnitFlowsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowDtoListEnvelope'
+    post:
+      tags:
+        - DealUnitFlows
+      summary: Create a deal unit flow
+      description: Creates a new deal unit flow for the specified tenant.
+      operationId: CreateDealUnitFlowAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowCreateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/DealsService/DealUnitFlows/Count:
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get deal unit flows count
+      description: Returns the total count of deal unit flows for the specified tenant with OData filter support.
+      operationId: GetDealUnitFlowsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}':
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get deal unit flow by ID
+      description: Retrieves a single deal unit flow by its unique identifier.
+      operationId: GetDealUnitFlowAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowDtoEnvelope'
+    put:
+      tags:
+        - DealUnitFlows
+      summary: Update a deal unit flow
+      description: Updates an existing deal unit flow by its unique identifier.
+      operationId: UpdateDealUnitFlowAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowUpdateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - DealUnitFlows
+      summary: Patch a deal unit flow
+      description: Partially updates an existing deal unit flow by its unique identifier using a JSON Patch document.
+      operationId: PatchDealUnitFlowAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - DealUnitFlows
+      summary: Delete a deal unit flow
+      description: Deletes an existing deal unit flow by its unique identifier.
+      operationId: DeleteDealUnitFlowAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages':
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get stages for a deal unit flow
+      description: Retrieves a list of stages for a specific deal unit flow with OData query support.
+      operationId: GetDealUnitFlowStagesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowStageDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowStageDtoListEnvelope'
+    post:
+      tags:
+        - DealUnitFlows
+      summary: Create a deal unit flow stage
+      description: Creates a new stage within a specific deal unit flow.
+      operationId: CreateDealUnitFlowStageAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageCreateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/Count':
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get stages count for a deal unit flow
+      description: Returns the total count of stages for a specific deal unit flow with OData filter support.
+      operationId: GetDealUnitFlowStagesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}':
+    get:
+      tags:
+        - DealUnitFlows
+      summary: Get a deal unit flow stage by ID
+      description: Retrieves a single stage for a specific deal unit flow by its unique identifier.
+      operationId: GetDealUnitFlowStageAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowStageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowStageDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitFlowStageDtoEnvelope'
+    put:
+      tags:
+        - DealUnitFlows
+      summary: Update a deal unit flow stage
+      description: Updates an existing stage within a specific deal unit flow.
+      operationId: UpdateDealUnitFlowStageAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowStageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageUpdateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - DealUnitFlows
+      summary: Patch a deal unit flow stage
+      description: Partially updates an existing stage within a specific deal unit flow using a JSON Patch document.
+      operationId: PatchDealUnitFlowStageAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowStageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - DealUnitFlows
+      summary: Delete a deal unit flow stage
+      description: Deletes an existing stage from a specific deal unit flow.
+      operationId: DeleteDealUnitFlowStageAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitFlowStageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/DealsService/DealUnits:
+    get:
+      tags:
+        - DealUnits
+      summary: Get deal units
+      description: Retrieves a list of deal units for the specified tenant with OData query support.
+      operationId: GetDealUnitsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitDtoListEnvelope'
+    post:
+      tags:
+        - DealUnits
+      summary: Create a deal unit
+      description: Creates a new deal unit for the specified tenant.
+      operationId: CreateDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitCreateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/DealsService/DealUnits/Count:
+    get:
+      tags:
+        - DealUnits
+      summary: Get deal units count
+      description: Returns the total count of deal units for the specified tenant with OData filter support.
+      operationId: GetDealUnitsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/DealsService/DealUnits/Extended:
+    get:
+      tags:
+        - DealUnits
+      summary: Get extended deal units
+      description: Retrieves a list of deal units with extended details for the specified tenant with OData query support.
+      operationId: GetExtendedDealUnitsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedDealUnitDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedDealUnitDtoListEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}':
+    get:
+      tags:
+        - DealUnits
+      summary: Get deal unit by ID
+      description: Retrieves a single deal unit by its unique identifier.
+      operationId: GetDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitDtoEnvelope'
+    put:
+      tags:
+        - DealUnits
+      summary: Update a deal unit
+      description: Updates an existing deal unit by its unique identifier.
+      operationId: UpdateDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitUpdateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - DealUnits
+      summary: Patch a deal unit
+      description: Partially updates an existing deal unit by its unique identifier using a JSON Patch document.
+      operationId: PatchDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - DealUnits
+      summary: Delete a deal unit
+      description: Deletes an existing deal unit by its unique identifier.
+      operationId: DeleteDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Extended':
+    get:
+      tags:
+        - DealUnits
+      summary: Get extended deal unit by ID
+      description: Retrieves a single deal unit with extended details by its unique identifier.
+      operationId: GetExtendedDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedDealUnitDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedDealUnitDtoEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Calculate':
+    put:
+      tags:
+        - DealUnits
+      summary: Calculate a deal unit
+      description: Triggers recalculation of totals and derived values for a specific deal unit.
+      operationId: CalculateDealUnitAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines':
+    get:
+      tags:
+        - DealUnits
+      summary: Get deal unit lines
+      description: Retrieves a list of lines for a specific deal unit with OData query support.
+      operationId: GetDealUnitLinesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: itemId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitLineDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitLineDtoListEnvelope'
+    post:
+      tags:
+        - DealUnits
+      summary: Create a deal unit line
+      description: Creates a new line within a specific deal unit.
+      operationId: CreateGetDealUnitLinesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineCreateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/Count':
+    get:
+      tags:
+        - DealUnits
+      summary: Get deal unit lines count
+      description: Returns the total count of lines for a specific deal unit with OData filter support.
+      operationId: GetDealUnitLinesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}':
+    get:
+      tags:
+        - DealUnits
+      summary: Get a deal unit line by ID
+      description: Retrieves a single deal unit line by its unique identifier.
+      operationId: GetDealUnitPriceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealUnitLineDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DealUnitLineDtoEnvelope'
+    put:
+      tags:
+        - DealUnits
+      summary: Update a deal unit line
+      description: Updates an existing line within a specific deal unit.
+      operationId: UpdateDealUnitPriceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineUpdateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - DealUnits
+      summary: Patch a deal unit line
+      description: Partially updates an existing line within a specific deal unit using a JSON Patch document.
+      operationId: PatchDealUnitLineAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - DealUnits
+      summary: Delete a deal unit line
+      description: Deletes an existing line from a specific deal unit.
+      operationId: DeleteDealUnitPriceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}/Calculate':
+    put:
+      tags:
+        - DealUnits
+      summary: Calculate a deal unit line
+      description: Triggers recalculation of totals and derived values for a specific deal unit line.
+      operationId: CalculateDealUnitLineAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: dealUnitLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /version:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        tenantId:
+          type: string
+          nullable: true
+        type:
+          enum:
+            - Individual
+            - Organization
+          type: string
+        email:
+          type: string
+          format: email
+          nullable: true
+        phone:
+          type: string
+          format: tel
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          format: uri
+          nullable: true
+        gitHubUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitchUrl:
+          type: string
+          format: uri
+          nullable: true
+        redditUrl:
+          type: string
+          format: uri
+          nullable: true
+        tikTokUrl:
+          type: string
+          format: uri
+          nullable: true
+        websiteUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitterUrl:
+          type: string
+          format: uri
+          nullable: true
+        facebookUrl:
+          type: string
+          format: uri
+          nullable: true
+        youTubeUrl:
+          type: string
+          format: uri
+          nullable: true
+        linkedInUrl:
+          type: string
+          format: uri
+          nullable: true
+        instagramUrl:
+          type: string
+          format: uri
+          nullable: true
+        githubUsername:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        street:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        zipCode:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        faxNumber:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        streetLine1:
+          type: string
+          nullable: true
+        streetLine2:
+          type: string
+          nullable: true
+        territoryId:
+          type: string
+          nullable: true
+        mobilePhone:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        annualRevenue:
+          type: string
+          nullable: true
+        relatedUserId:
+          type: string
+          nullable: true
+        businessPhone:
+          type: string
+          nullable: true
+        ownerContactId:
+          type: string
+          nullable: true
+        relatedTenantId:
+          type: string
+          nullable: true
+        activityFeedId:
+          type: string
+          nullable: true
+        parentContactId:
+          type: string
+          nullable: true
+        identityProvider:
+          type: string
+          nullable: true
+        partnerProfileId:
+          type: string
+          nullable: true
+        primaryContactId:
+          type: string
+          nullable: true
+        activeDirectoryId:
+          type: string
+          nullable: true
+        identityProviderAccessToken:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    DealUnitCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        dealUnitFlowStageId:
+          type: string
+          nullable: true
+        partnerCreated:
+          type: boolean
+        partnerCollaboration:
+          type: boolean
+        proposedSolution:
+          type: string
+          nullable: true
+        currentSituation:
+          type: string
+          nullable: true
+        customerNeed:
+          type: string
+          nullable: true
+        wonDate:
+          type: string
+          format: date-time
+        lostDate:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        deliveredDate:
+          type: string
+          format: date-time
+        closedTimestamp:
+          type: string
+          format: date-time
+        expectedCloseDate:
+          type: string
+          format: date-time
+        dealUnitStatus:
+          enum:
+            - Open
+            - Won
+            - Lost
+            - Frozen
+          type: string
+        dealUnitPurchaseProcess:
+          enum:
+            - None
+            - Individual
+            - Commitee
+            - Unknown
+          type: string
+        dealUnitForecastCategory:
+          enum:
+            - None
+            - Pipeline
+            - BestCase
+            - Commited
+            - Ommited
+            - Won
+            - Lost
+          type: string
+        dealUnitAmountsCalculation:
+          enum:
+            - UserProvided
+            - SystemCalculated
+          type: string
+        dealUnitLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealUnitLineCreateDto'
+          nullable: true
+      additionalProperties: false
+    DealUnitDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        ordered:
+          type: boolean
+        dealUnitFeedId:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        dealUnitFlowStageId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        partnerCreated:
+          type: boolean
+        partnerCollaboration:
+          type: boolean
+        proposedSolution:
+          type: string
+          nullable: true
+        currentSituation:
+          type: string
+          nullable: true
+        customerNeed:
+          type: string
+          nullable: true
+        wonDate:
+          type: string
+          format: date-time
+        lostDate:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        deliveredDate:
+          type: string
+          format: date-time
+        closedTimestamp:
+          type: string
+          format: date-time
+        expectedCloseDate:
+          type: string
+          format: date-time
+        dealUnitStatus:
+          enum:
+            - Open
+            - Won
+            - Lost
+            - Frozen
+          type: string
+        dealUnitPurchaseProcess:
+          enum:
+            - None
+            - Individual
+            - Commitee
+            - Unknown
+          type: string
+        dealUnitForecastCategory:
+          enum:
+            - None
+            - Pipeline
+            - BestCase
+            - Commited
+            - Ommited
+            - Won
+            - Lost
+          type: string
+        dealUnitAmountsCalculation:
+          enum:
+            - UserProvided
+            - SystemCalculated
+          type: string
+        linesCount:
+          type: integer
+          format: int32
+        customTotalAmount:
+          type: number
+          format: double
+        customDetailAmount:
+          type: number
+          format: double
+        customProfitAmount:
+          type: number
+          format: double
+        customShippingCostAmount:
+          type: number
+          format: double
+        customWithholdingTaxAmount:
+          type: number
+          format: double
+        customSurchargesAmount:
+          type: number
+          format: double
+        customDiscountsAmount:
+          type: number
+          format: double
+        customShippingTaxAmount:
+          type: number
+          format: double
+      additionalProperties: false
+    DealUnitDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DealUnitDto'
+      additionalProperties: false
+    DealUnitDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealUnitDto'
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        parentBusinessProcessId:
+          maxLength: 36
+          minLength: 36
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        parentBusinessProcessId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DealUnitFlowDto'
+      additionalProperties: false
+    DealUnitFlowDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealUnitFlowDto'
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowStageCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        order:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        parentBusinessProcessStageId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowStageDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        order:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        parentBusinessProcessStageId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowStageDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DealUnitFlowStageDto'
+      additionalProperties: false
+    DealUnitFlowStageDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealUnitFlowStageDto'
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowStageUpdateDto:
+      type: object
+      properties:
+        order:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        parentBusinessProcessStageId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitFlowUpdateDto:
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        parentBusinessProcessId:
+          maxLength: 36
+          minLength: 36
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitLineCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        itemId:
+          type: string
+          nullable: true
+        itemTitle:
+          type: string
+          nullable: true
+        itemShortDescription:
+          type: string
+          nullable: true
+        itemPrimaryImageUrl:
+          type: string
+          nullable: true
+        shippingPolicyId:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+        free:
+          type: boolean
+        freeReason:
+          type: string
+          nullable: true
+        freeReasonCode:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        priceListItemId:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        totalBaseAmountInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDetailAmountInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalWarrantyCostInUsd:
+          type: number
+          format: double
+        totalReturnCostInUsd:
+          type: number
+          format: double
+        totalRefundCostInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalAmountInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        customGlobalSurchargesAmount:
+          type: number
+          format: double
+        customGlobalSurchargesAmountCurrencyId:
+          type: string
+          nullable: true
+        customGlobalDiscountsAmount:
+          type: number
+          format: double
+        customGlobalDiscountsAmountCurrencyId:
+          type: string
+          nullable: true
+        returnPolicyId:
+          type: string
+          nullable: true
+        refundPolicyId:
+          type: string
+          nullable: true
+        warrantyPolicyId:
+          type: string
+          nullable: true
+        shipmentPolicyId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        quoteItemRecordId:
+          type: string
+          nullable: true
+        parentBillingItemRecordId:
+          type: string
+          nullable: true
+        dealUnitId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitLineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        itemId:
+          type: string
+          nullable: true
+        itemTitle:
+          type: string
+          nullable: true
+        itemShortDescription:
+          type: string
+          nullable: true
+        itemPrimaryImageUrl:
+          type: string
+          nullable: true
+        shippingPolicyId:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+        free:
+          type: boolean
+        freeReason:
+          type: string
+          nullable: true
+        freeReasonCode:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        priceListItemId:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        totalWarrantyCostInUsd:
+          type: number
+          format: double
+        totalReturnCostInUsd:
+          type: number
+          format: double
+        totalRefundCostInUsd:
+          type: number
+          format: double
+        customGlobalSurchargesAmount:
+          type: number
+          format: double
+        customGlobalDiscountsAmount:
+          type: number
+          format: double
+        returnPolicyId:
+          type: string
+          nullable: true
+        refundPolicyId:
+          type: string
+          nullable: true
+        warrantyPolicyId:
+          type: string
+          nullable: true
+        shipmentPolicyId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        quoteItemRecordId:
+          type: string
+          nullable: true
+        businessProfileRecordId:
+          type: string
+          nullable: true
+        parentBillingItemRecordId:
+          type: string
+          nullable: true
+        dealUnitId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitLineDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DealUnitLineDto'
+      additionalProperties: false
+    DealUnitLineDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealUnitLineDto'
+          nullable: true
+      additionalProperties: false
+    DealUnitLineUpdateDto:
+      type: object
+      properties:
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        shippingMethodId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        itemId:
+          type: string
+          nullable: true
+        itemTitle:
+          type: string
+          nullable: true
+        itemShortDescription:
+          type: string
+          nullable: true
+        itemPrimaryImageUrl:
+          type: string
+          nullable: true
+        shippingPolicyId:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+        free:
+          type: boolean
+        freeReason:
+          type: string
+          nullable: true
+        freeReasonCode:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        priceListItemId:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        totalBaseAmountInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDetailAmountInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalWarrantyCostInUsd:
+          type: number
+          format: double
+        totalReturnCostInUsd:
+          type: number
+          format: double
+        totalRefundCostInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalAmountInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        customGlobalSurchargesAmount:
+          type: number
+          format: double
+        customGlobalSurchargesAmountCurrencyId:
+          type: string
+          nullable: true
+        customGlobalDiscountsAmount:
+          type: number
+          format: double
+        customGlobalDiscountsAmountCurrencyId:
+          type: string
+          nullable: true
+        returnPolicyId:
+          type: string
+          nullable: true
+        refundPolicyId:
+          type: string
+          nullable: true
+        warrantyPolicyId:
+          type: string
+          nullable: true
+        shipmentPolicyId:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        quoteItemRecordId:
+          type: string
+          nullable: true
+        parentBillingItemRecordId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DealUnitUpdateDto:
+      type: object
+      properties:
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        shippingMethodId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        ordered:
+          type: boolean
+        cartId:
+          type: string
+          nullable: true
+        dealUnitFeedId:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        dealUnitFlowStageId:
+          type: string
+          nullable: true
+        partnerCreated:
+          type: boolean
+        partnerCollaboration:
+          type: boolean
+        proposedSolution:
+          type: string
+          nullable: true
+        currentSituation:
+          type: string
+          nullable: true
+        customerNeed:
+          type: string
+          nullable: true
+        wonDate:
+          type: string
+          format: date-time
+        lostDate:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        deliveredDate:
+          type: string
+          format: date-time
+        closedTimestamp:
+          type: string
+          format: date-time
+        expectedCloseDate:
+          type: string
+          format: date-time
+        dealUnitStatus:
+          enum:
+            - Open
+            - Won
+            - Lost
+            - Frozen
+          type: string
+        dealUnitPurchaseProcess:
+          enum:
+            - None
+            - Individual
+            - Commitee
+            - Unknown
+          type: string
+        dealUnitForecastCategory:
+          enum:
+            - None
+            - Pipeline
+            - BestCase
+            - Commited
+            - Ommited
+            - Won
+            - Lost
+          type: string
+        dealUnitAmountsCalculation:
+          enum:
+            - UserProvided
+            - SystemCalculated
+          type: string
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ExtendedDealUnitDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        ordered:
+          type: boolean
+        dealUnitFeedId:
+          type: string
+          nullable: true
+        dealUnitFlowId:
+          type: string
+          nullable: true
+        dealUnitFlowStageId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        partnerCreated:
+          type: boolean
+        partnerCollaboration:
+          type: boolean
+        proposedSolution:
+          type: string
+          nullable: true
+        currentSituation:
+          type: string
+          nullable: true
+        customerNeed:
+          type: string
+          nullable: true
+        wonDate:
+          type: string
+          format: date-time
+        lostDate:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        deliveredDate:
+          type: string
+          format: date-time
+        closedTimestamp:
+          type: string
+          format: date-time
+        expectedCloseDate:
+          type: string
+          format: date-time
+        dealUnitStatus:
+          enum:
+            - Open
+            - Won
+            - Lost
+            - Frozen
+          type: string
+        dealUnitPurchaseProcess:
+          enum:
+            - None
+            - Individual
+            - Commitee
+            - Unknown
+          type: string
+        dealUnitForecastCategory:
+          enum:
+            - None
+            - Pipeline
+            - BestCase
+            - Commited
+            - Ommited
+            - Won
+            - Lost
+          type: string
+        dealUnitAmountsCalculation:
+          enum:
+            - UserProvided
+            - SystemCalculated
+          type: string
+        linesCount:
+          type: integer
+          format: int32
+        customTotalAmount:
+          type: number
+          format: double
+        customDetailAmount:
+          type: number
+          format: double
+        customProfitAmount:
+          type: number
+          format: double
+        customShippingCostAmount:
+          type: number
+          format: double
+        customWithholdingTaxAmount:
+          type: number
+          format: double
+        customSurchargesAmount:
+          type: number
+          format: double
+        customDiscountsAmount:
+          type: number
+          format: double
+        customShippingTaxAmount:
+          type: number
+          format: double
+        user:
+          $ref: '#/components/schemas/UserDto'
+        tenant:
+          $ref: '#/components/schemas/TenantDto'
+        individual:
+          $ref: '#/components/schemas/ContactDto'
+        organization:
+          $ref: '#/components/schemas/ContactDto'
+        receiverTenant:
+          $ref: '#/components/schemas/TenantDto'
+        enrollment:
+          $ref: '#/components/schemas/TenantEnrollmentDto'
+      additionalProperties: false
+    ExtendedDealUnitDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ExtendedDealUnitDto'
+      additionalProperties: false
+    ExtendedDealUnitDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedDealUnitDto'
+          nullable: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        businessIndustryId:
+          type: string
+          nullable: true
+        businessSegmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        slogan:
+          type: string
+          nullable: true
+        legalName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        whatsAppNumber:
+          type: string
+          nullable: true
+        supportPhoneNumber:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        businessName:
+          type: string
+          nullable: true
+          readOnly: true
+        businessLegalName:
+          type: string
+          nullable: true
+          readOnly: true
+        twitterUsername:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TenantEnrollmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        isRoot:
+          type: boolean
+        isOwner:
+          type: boolean
+        isAdmin:
+          type: boolean
+        isDisabled:
+          type: boolean
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+          readOnly: true
+        qualifiedName:
+          type: string
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        handler:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        idProvider:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        gender:
+          enum:
+            - Unknown
+            - Male
+            - Female
+            - PreferNotToSay
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        currentTenantId:
+          type: string
+          nullable: true
+        currentEnrollmentId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        userName:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        publicIdentifier:
+          type: string
+          nullable: true
+        identityProvider:
+          type: string
+          nullable: true
+        phoneNumberConfirmed:
+          type: boolean
+        emailConfirmed:
+          type: boolean
+        availability:
+          enum:
+            - DND
+            - Busy
+            - Away
+            - Offline
+            - Available
+          type: string
+          nullable: true
+        lockoutEnabled:
+          type: boolean
+        lockoutEnd:
+          type: string
+          format: date-time
+          nullable: true
+        enrollmentsCount:
+          type: integer
+          format: int32
+          nullable: true
+        siteTheme:
+          enum:
+            - System
+            - Light
+            - Dark
+          type: string
+          nullable: true
+      additionalProperties: false
+tags:
+  - name: Completions
+  - name: DealUnitFlows
+  - name: DealUnits
+  - name: FenixAlliance.Portals.Website

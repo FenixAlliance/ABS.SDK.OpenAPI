@@ -1,0 +1,7109 @@
+openapi: 3.0.4
+info:
+  title: ServicesService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.1.2.5532
+paths:
+  /api/v2/AiService/Completions/Complete:
+    get:
+      tags:
+        - Completions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: query
+          schema:
+            type: string
+        - name: message
+          in: query
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /version:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /api/v2/ServicesService/ServiceCases:
+    get:
+      tags:
+        - ServiceCases
+      summary: Get all service cases
+      description: Retrieves all service cases for the specified tenant.
+      operationId: GetServiceCasesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - ServiceCases
+      summary: Create a service case
+      description: Creates a new service case for the specified tenant.
+      operationId: CreateServiceCaseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceCases/Count:
+    get:
+      tags:
+        - ServiceCases
+      summary: Get service cases count
+      description: Returns the count of service cases for the specified tenant.
+      operationId: GetServiceCasesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/ServiceCases/{serviceCaseId}':
+    get:
+      tags:
+        - ServiceCases
+      summary: Get a service case by ID
+      description: Retrieves a service case by its identifier.
+      operationId: GetServiceCaseByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseDtoEnvelope'
+    put:
+      tags:
+        - ServiceCases
+      summary: Update a service case
+      description: Updates an existing service case.
+      operationId: UpdateServiceCaseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - ServiceCases
+      summary: Patch a service case
+      description: Partially updates an existing service case using a JSON Patch document.
+      operationId: PatchServiceCaseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - ServiceCases
+      summary: Delete a service case
+      description: Deletes a service case by its identifier.
+      operationId: DeleteServiceCaseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceCaseTypes:
+    get:
+      tags:
+        - ServiceCaseTypes
+      summary: Get all service case types
+      description: Retrieves all service case types for the specified tenant.
+      operationId: GetServiceCaseTypesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseTypeDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseTypeDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - ServiceCaseTypes
+      summary: Create a service case type
+      description: Creates a new service case type for the specified tenant.
+      operationId: CreateServiceCaseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseTypeCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseTypeCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceCaseTypes/Count:
+    get:
+      tags:
+        - ServiceCaseTypes
+      summary: Get service case types count
+      description: Returns the count of service case types for the specified tenant.
+      operationId: GetServiceCaseTypesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}':
+    get:
+      tags:
+        - ServiceCaseTypes
+      summary: Get a service case type by ID
+      description: Retrieves a service case type by its identifier.
+      operationId: GetServiceCaseTypeByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseTypeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseTypeDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceCaseTypeDtoEnvelope'
+    put:
+      tags:
+        - ServiceCaseTypes
+      summary: Update a service case type
+      description: Updates an existing service case type.
+      operationId: UpdateServiceCaseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseTypeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseTypeUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceCaseTypeUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - ServiceCaseTypes
+      summary: Patch a service case type
+      description: Partially updates an existing service case type using a JSON Patch document.
+      operationId: PatchServiceCaseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseTypeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - ServiceCaseTypes
+      summary: Delete a service case type
+      description: Deletes a service case type by its identifier.
+      operationId: DeleteServiceCaseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceCaseTypeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceLevelAgreements:
+    get:
+      tags:
+        - ServiceLevelAgreements
+      summary: Get all service level agreements
+      description: Retrieves all service level agreements for the specified tenant.
+      operationId: GetServiceLevelAgreementsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelAgreementDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelAgreementDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - ServiceLevelAgreements
+      summary: Create a service level agreement
+      description: Creates a new service level agreement for the specified tenant.
+      operationId: CreateServiceLevelAgreementAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelAgreementCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelAgreementCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceLevelAgreements/Count:
+    get:
+      tags:
+        - ServiceLevelAgreements
+      summary: Get service level agreements count
+      description: Returns the count of service level agreements for the specified tenant.
+      operationId: GetServiceLevelAgreementsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}':
+    get:
+      tags:
+        - ServiceLevelAgreements
+      summary: Get a service level agreement by ID
+      description: Retrieves a service level agreement by its identifier.
+      operationId: GetServiceLevelAgreementByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelAgreementId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelAgreementDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelAgreementDtoEnvelope'
+    put:
+      tags:
+        - ServiceLevelAgreements
+      summary: Update a service level agreement
+      description: Updates an existing service level agreement.
+      operationId: UpdateServiceLevelAgreementAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelAgreementId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelAgreementUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelAgreementUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - ServiceLevelAgreements
+      summary: Patch a service level agreement
+      description: Partially updates an existing service level agreement using a JSON Patch document.
+      operationId: PatchServiceLevelAgreementAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelAgreementId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - ServiceLevelAgreements
+      summary: Delete a service level agreement
+      description: Deletes a service level agreement by its identifier.
+      operationId: DeleteServiceLevelAgreementAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelAgreementId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceLevels:
+    get:
+      tags:
+        - ServiceLevels
+      summary: Get all service levels
+      description: Retrieves all service levels for the specified tenant.
+      operationId: GetAllServiceLevelsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoIReadOnlyListEnvelope'
+  /api/v2/ServicesService/ServiceLevels/Count:
+    get:
+      tags:
+        - ServiceLevels
+      summary: Get all service levels count
+      description: Returns the count of all service levels for the specified tenant.
+      operationId: CountAllServiceLevelsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels':
+    get:
+      tags:
+        - ServiceLevels
+      summary: Get all service levels
+      description: Retrieves all service levels for the specified service.
+      operationId: GetServiceLevelsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - ServiceLevels
+      summary: Create a service level
+      description: Creates a new service level for the specified service.
+      operationId: CreateServiceLevelAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/Count':
+    get:
+      tags:
+        - ServiceLevels
+      summary: Get service levels count
+      description: Returns the count of service levels for the specified service.
+      operationId: GetServiceLevelsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}':
+    get:
+      tags:
+        - ServiceLevels
+      summary: Get a service level by ID
+      description: Retrieves a service level by its identifier.
+      operationId: GetServiceLevelByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceLevelDtoEnvelope'
+    put:
+      tags:
+        - ServiceLevels
+      summary: Update a service level
+      description: Updates an existing service level.
+      operationId: UpdateServiceLevelAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceLevelUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - ServiceLevels
+      summary: Patch a service level
+      description: Partially updates an existing service level using a JSON Patch document.
+      operationId: PatchServiceLevelAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - ServiceLevels
+      summary: Delete a service level
+      description: Deletes a service level by its identifier.
+      operationId: DeleteServiceLevelAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceLevelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceQueues:
+    get:
+      tags:
+        - ServiceQueues
+      summary: Get all service queues
+      description: Retrieves all service queues for the specified tenant.
+      operationId: GetServiceQueuesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQueueDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceQueueDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - ServiceQueues
+      summary: Create a service queue
+      description: Creates a new service queue for the specified tenant.
+      operationId: CreateServiceQueueAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceQueueCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceQueueCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/ServiceQueues/Count:
+    get:
+      tags:
+        - ServiceQueues
+      summary: Get service queues count
+      description: Returns the count of service queues for the specified tenant.
+      operationId: GetServiceQueuesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}':
+    get:
+      tags:
+        - ServiceQueues
+      summary: Get a service queue by ID
+      description: Retrieves a service queue by its identifier.
+      operationId: GetServiceQueueByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceQueueId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQueueDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceQueueDtoEnvelope'
+    put:
+      tags:
+        - ServiceQueues
+      summary: Update a service queue
+      description: Updates an existing service queue.
+      operationId: UpdateServiceQueueAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceQueueId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceQueueUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceQueueUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - ServiceQueues
+      summary: Patch a service queue
+      description: Partially updates an existing service queue using a JSON Patch document.
+      operationId: PatchServiceQueueAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceQueueId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - ServiceQueues
+      summary: Delete a service queue
+      description: Deletes a service queue by its identifier.
+      operationId: DeleteServiceQueueAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceQueueId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/Services:
+    get:
+      tags:
+        - Services
+      summary: Get all services
+      description: Retrieves all services for the specified tenant.
+      operationId: GetServicesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Services
+      summary: Create a service
+      description: Creates a new service for the specified tenant.
+      operationId: CreateServiceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/ServicesService/Services/Count:
+    get:
+      tags:
+        - Services
+      summary: Get services count
+      description: Returns the count of services for the specified tenant.
+      operationId: GetServicesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ServicesService/Services/{serviceId}':
+    get:
+      tags:
+        - Services
+      summary: Get a service by ID
+      description: Retrieves a service by its identifier.
+      operationId: GetServiceByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceDtoEnvelope'
+    put:
+      tags:
+        - Services
+      summary: Update a service
+      description: Updates an existing service.
+      operationId: UpdateServiceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ServiceUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - Services
+      summary: Patch a service
+      description: Partially updates an existing service using a JSON Patch document.
+      operationId: PatchServiceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+        - Services
+      summary: Delete a service
+      description: Deletes a service by its identifier.
+      operationId: DeleteServiceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceCaseCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        taxable:
+          type: boolean
+        workLocation:
+          type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+        serviceQueueId:
+          type: string
+          nullable: true
+        serviceCaseTypeId:
+          type: string
+          nullable: true
+        serviceLevelAgreementId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        accountHolderId:
+          type: string
+          nullable: true
+        receiverBusinessId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        territoryId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+        promisedEndDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ServiceCaseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        taxable:
+          type: boolean
+        workLocation:
+          type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+        serviceQueueId:
+          type: string
+          nullable: true
+        serviceCaseTypeId:
+          type: string
+          nullable: true
+        serviceLevelAgreementId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        accountHolderId:
+          type: string
+          nullable: true
+        receiverBusinessId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        territoryId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+        promisedEndDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ServiceCaseDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceCaseDto'
+      additionalProperties: false
+    ServiceCaseDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceCaseDto'
+          nullable: true
+      additionalProperties: false
+    ServiceCaseTypeCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceCaseTypeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceCaseTypeDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceCaseTypeDto'
+      additionalProperties: false
+    ServiceCaseTypeDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceCaseTypeDto'
+          nullable: true
+      additionalProperties: false
+    ServiceCaseTypeUpdateDto:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceCaseUpdateDto:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        taxable:
+          type: boolean
+        workLocation:
+          type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+        serviceQueueId:
+          type: string
+          nullable: true
+        serviceCaseTypeId:
+          type: string
+          nullable: true
+        serviceLevelAgreementId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        accountHolderId:
+          type: string
+          nullable: true
+        receiverBusinessId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        territoryId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+        promisedEndDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ServiceCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        variations:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        mozaicCoverURL:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        trending:
+          type: boolean
+        featured:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        totalTax:
+          type: number
+          format: double
+        finalPrice:
+          type: number
+          format: double
+        reviewsAvg:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        regularPrice:
+          type: number
+          format: double
+        discountPrice:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        discountPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        estimatedWitholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        releaseDate:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        discountDeadLine:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        servicePlanId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        discriminator:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        longDescription:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        featured:
+          type: boolean
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        questionsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        reviewsAvg:
+          type: number
+          format: double
+          nullable: true
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        height:
+          type: number
+          format: double
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+          nullable: true
+        discountPrice:
+          type: number
+          format: double
+          nullable: true
+        customTaxValue:
+          type: number
+          format: double
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+          nullable: true
+        customTaxAmount:
+          type: number
+          format: double
+          nullable: true
+        discountPercentage:
+          type: number
+          format: double
+          nullable: true
+        customTaxPercentage:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedProfitInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        servicePlanId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceDto'
+      additionalProperties: false
+    ServiceDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceDto'
+          nullable: true
+      additionalProperties: false
+    ServiceLevelAgreementCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        serviceId:
+          type: string
+          nullable: true
+        serviceLevelId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceLevelAgreementDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+        serviceLevelId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceLevelAgreementDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceLevelAgreementDto'
+      additionalProperties: false
+    ServiceLevelAgreementDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLevelAgreementDto'
+          nullable: true
+      additionalProperties: false
+    ServiceLevelAgreementUpdateDto:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          nullable: true
+        serviceLevelId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceLevelCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        variations:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        mozaicCoverURL:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        trending:
+          type: boolean
+        featured:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        totalTax:
+          type: number
+          format: double
+        finalPrice:
+          type: number
+          format: double
+        reviewsAvg:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        regularPrice:
+          type: number
+          format: double
+        discountPrice:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        discountPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        estimatedWitholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        releaseDate:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        discountDeadLine:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceLevelDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        discriminator:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        longDescription:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        featured:
+          type: boolean
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        questionsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        reviewsAvg:
+          type: number
+          format: double
+          nullable: true
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        height:
+          type: number
+          format: double
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+          nullable: true
+        discountPrice:
+          type: number
+          format: double
+          nullable: true
+        customTaxValue:
+          type: number
+          format: double
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+          nullable: true
+        customTaxAmount:
+          type: number
+          format: double
+          nullable: true
+        discountPercentage:
+          type: number
+          format: double
+          nullable: true
+        customTaxPercentage:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedProfitInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceLevelDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceLevelDto'
+      additionalProperties: false
+    ServiceLevelDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLevelDto'
+          nullable: true
+      additionalProperties: false
+    ServiceLevelUpdateDto:
+      type: object
+      properties:
+        hot:
+          type: boolean
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        onSale:
+          type: boolean
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        width:
+          type: number
+          format: double
+        model:
+          type: string
+          nullable: true
+        auction:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        featured:
+          type: boolean
+        brands:
+          type: string
+          nullable: true
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        onDiscount:
+          type: boolean
+        totalTax:
+          type: number
+          format: double
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        reviewsCount:
+          type: integer
+          format: int32
+        isDailyDeal:
+          type: boolean
+        languageId:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        finalPrice:
+          type: number
+          format: double
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        reviewsAvg:
+          type: number
+          format: double
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        isMonthlyDeal:
+          type: boolean
+        recurrency:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        hasVariations:
+          type: boolean
+        questionsCount:
+          type: integer
+          format: int32
+        supplierCode:
+          type: string
+          nullable: true
+        auctionEnd:
+          type: string
+          format: date-time
+        purchaseNote:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        shippingCost:
+          type: number
+          format: double
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        cartRecordId:
+          type: string
+          nullable: true
+        variations:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        packagedQuantity:
+          type: integer
+          format: int32
+        isFixedDiscount:
+          type: boolean
+        discountPrice:
+          type: number
+          format: double
+        isDealersChoice:
+          type: boolean
+        currentStock:
+          type: number
+          format: double
+        manageInventory:
+          type: boolean
+        auctionStart:
+          type: string
+          format: date-time
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+        youtubeVideoId:
+          type: string
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+        isOfficialChoice:
+          type: boolean
+        publishedDate:
+          type: string
+          format: date-time
+        primaryImageUrl:
+          type: string
+          nullable: true
+        validPrimaryImage:
+          type: boolean
+        customTaxAmount:
+          type: number
+          format: double
+        longDescription:
+          type: string
+          nullable: true
+        compareRecordId:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        isProductOfTheMonth:
+          type: boolean
+        systemRequirements:
+          type: string
+          nullable: true
+        isPorcentualDiscount:
+          type: boolean
+        discountPercentage:
+          type: number
+          format: double
+        discountDeadLine:
+          type: string
+          format: date-time
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxDescription:
+          type: string
+          nullable: true
+        disableDefaultPolicies:
+          type: boolean
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        displayOnCategoryMozaic:
+          type: boolean
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        displayOnBannerMarketingRotation:
+          type: boolean
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedWitholdingTaxesInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        displayDescriptionEditor:
+          type: boolean
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        displayShortDescriptionEditor:
+          type: boolean
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceQueueCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceQueueDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceQueueDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ServiceQueueDto'
+      additionalProperties: false
+    ServiceQueueDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceQueueDto'
+          nullable: true
+      additionalProperties: false
+    ServiceQueueUpdateDto:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ServiceUpdateDto:
+      type: object
+      properties:
+        hot:
+          type: boolean
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        onSale:
+          type: boolean
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        width:
+          type: number
+          format: double
+        model:
+          type: string
+          nullable: true
+        auction:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        featured:
+          type: boolean
+        brands:
+          type: string
+          nullable: true
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        onDiscount:
+          type: boolean
+        totalTax:
+          type: number
+          format: double
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        reviewsCount:
+          type: integer
+          format: int32
+        isDailyDeal:
+          type: boolean
+        languageId:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        finalPrice:
+          type: number
+          format: double
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        reviewsAvg:
+          type: number
+          format: double
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        isMonthlyDeal:
+          type: boolean
+        recurrency:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        hasVariations:
+          type: boolean
+        questionsCount:
+          type: integer
+          format: int32
+        supplierCode:
+          type: string
+          nullable: true
+        auctionEnd:
+          type: string
+          format: date-time
+        purchaseNote:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        shippingCost:
+          type: number
+          format: double
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        cartRecordId:
+          type: string
+          nullable: true
+        variations:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        packagedQuantity:
+          type: integer
+          format: int32
+        isFixedDiscount:
+          type: boolean
+        discountPrice:
+          type: number
+          format: double
+        isDealersChoice:
+          type: boolean
+        currentStock:
+          type: number
+          format: double
+        manageInventory:
+          type: boolean
+        auctionStart:
+          type: string
+          format: date-time
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+        youtubeVideoId:
+          type: string
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+        isOfficialChoice:
+          type: boolean
+        publishedDate:
+          type: string
+          format: date-time
+        primaryImageUrl:
+          type: string
+          nullable: true
+        validPrimaryImage:
+          type: boolean
+        customTaxAmount:
+          type: number
+          format: double
+        longDescription:
+          type: string
+          nullable: true
+        compareRecordId:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        isProductOfTheMonth:
+          type: boolean
+        systemRequirements:
+          type: string
+          nullable: true
+        isPorcentualDiscount:
+          type: boolean
+        discountPercentage:
+          type: number
+          format: double
+        discountDeadLine:
+          type: string
+          format: date-time
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxDescription:
+          type: string
+          nullable: true
+        disableDefaultPolicies:
+          type: boolean
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        displayOnCategoryMozaic:
+          type: boolean
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        displayOnBannerMarketingRotation:
+          type: boolean
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedWitholdingTaxesInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        displayDescriptionEditor:
+          type: boolean
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        displayShortDescriptionEditor:
+          type: boolean
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        servicePlanId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: Completions
+  - name: FenixAlliance.Portals.Website
+  - name: ServiceCases
+  - name: ServiceCaseTypes
+  - name: ServiceLevelAgreements
+  - name: ServiceLevels
+  - name: ServiceQueues
+  - name: Services

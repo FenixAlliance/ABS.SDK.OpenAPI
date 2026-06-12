@@ -1,0 +1,3447 @@
+openapi: 3.0.4
+info:
+  title: SubscriptionsService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.1.2.5532
+paths:
+  /api/v2/AiService/Completions/Complete:
+    get:
+      tags:
+        - Completions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: query
+          schema:
+            type: string
+        - name: message
+          in: query
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /version:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /api/v2/SubscriptionsService/SubscriptionPlans:
+    get:
+      tags:
+        - SubscriptionPlans
+      summary: Get all subscription plans
+      description: Retrieves all subscription plans for the specified tenant.
+      operationId: GetSubscriptionPlansAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlanDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlanDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - SubscriptionPlans
+      summary: Create a subscription plan
+      description: Creates a new subscription plan for the specified tenant.
+      operationId: CreateSubscriptionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/SubscriptionsService/SubscriptionPlans/Count:
+    get:
+      tags:
+        - SubscriptionPlans
+      summary: Get subscription plans count
+      description: Returns the count of subscription plans for the specified tenant.
+      operationId: GetSubscriptionPlansCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}':
+    get:
+      tags:
+        - SubscriptionPlans
+      summary: Get a subscription plan by ID
+      description: Retrieves a subscription plan by its identifier.
+      operationId: GetSubscriptionPlanByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlanDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlanDtoEnvelope'
+    put:
+      tags:
+        - SubscriptionPlans
+      summary: Update a subscription plan
+      description: Updates an existing subscription plan.
+      operationId: UpdateSubscriptionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - SubscriptionPlans
+      summary: Patch a subscription plan
+      description: Patch a subscription plan
+      operationId: PatchSubscriptionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SubscriptionPlans
+      summary: Delete a subscription plan
+      description: Deletes a subscription plan by its identifier.
+      operationId: DeleteSubscriptionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/SubscriptionsService/Subscriptions:
+    get:
+      tags:
+        - Subscriptions
+      summary: Get all subscriptions
+      description: Retrieves all subscriptions for the specified tenant.
+      operationId: GetSubscriptionsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Subscriptions
+      summary: Create a subscription
+      description: Creates a new subscription for the specified tenant.
+      operationId: CreateSubscriptionAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /api/v2/SubscriptionsService/Subscriptions/Count:
+    get:
+      tags:
+        - Subscriptions
+      summary: Get subscriptions count
+      description: Returns the count of subscriptions for the specified tenant.
+      operationId: GetSubscriptionsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}':
+    get:
+      tags:
+        - Subscriptions
+      summary: Get a subscription by ID
+      description: Retrieves a subscription by its identifier.
+      operationId: GetSubscriptionByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDtoEnvelope'
+    put:
+      tags:
+        - Subscriptions
+      summary: Update a subscription
+      description: Updates an existing subscription.
+      operationId: UpdateSubscriptionAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    patch:
+      tags:
+        - Subscriptions
+      summary: Patch a subscription
+      description: Patch a subscription
+      operationId: PatchSubscriptionAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Subscriptions
+      summary: Delete a subscription
+      description: Deletes a subscription by its identifier.
+      operationId: DeleteSubscriptionAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubscriptionCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        subscriptionPlanId:
+          type: string
+          nullable: true
+        subscriptionClass:
+          enum:
+            - Trial
+            - Standard
+          type: string
+      additionalProperties: false
+    SubscriptionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        subscriptionPlanId:
+          type: string
+          nullable: true
+        subscriptionClass:
+          enum:
+            - Trial
+            - Standard
+          type: string
+      additionalProperties: false
+    SubscriptionDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SubscriptionDto'
+      additionalProperties: false
+    SubscriptionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionDto'
+          nullable: true
+      additionalProperties: false
+    SubscriptionPlanCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        variations:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        mozaicCoverURL:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        trending:
+          type: boolean
+        featured:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        totalTax:
+          type: number
+          format: double
+        finalPrice:
+          type: number
+          format: double
+        reviewsAvg:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        regularPrice:
+          type: number
+          format: double
+        discountPrice:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        discountPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        estimatedWitholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        releaseDate:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        discountDeadLine:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        allowSubscriptionTrials:
+          type: boolean
+        isPerpetualSubscription:
+          type: boolean
+        trialSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        standardSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        subscriptionsCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubscriptionPlanDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        supplierCode:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        purchaseNote:
+          type: string
+          nullable: true
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        discriminator:
+          type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        youtubeVideoId:
+          type: string
+          nullable: true
+        primaryImageUrl:
+          type: string
+          nullable: true
+        longDescription:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        systemRequirements:
+          type: string
+          nullable: true
+        customTaxDescription:
+          type: string
+          nullable: true
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        hot:
+          type: boolean
+        onSale:
+          type: boolean
+        auction:
+          type: boolean
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        featured:
+          type: boolean
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        onDiscount:
+          type: boolean
+        isDailyDeal:
+          type: boolean
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        isMonthlyDeal:
+          type: boolean
+        hasVariations:
+          type: boolean
+        isFixedDiscount:
+          type: boolean
+        isDealersChoice:
+          type: boolean
+        manageInventory:
+          type: boolean
+        isOfficialChoice:
+          type: boolean
+        validPrimaryImage:
+          type: boolean
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        isProductOfTheMonth:
+          type: boolean
+        isPercentageDiscount:
+          type: boolean
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        disableDefaultPolicies:
+          type: boolean
+        displayOnCategoryMozaic:
+          type: boolean
+        displayDescriptionEditor:
+          type: boolean
+        displayShortDescriptionEditor:
+          type: boolean
+        displayOnBannerMarketingRotation:
+          type: boolean
+        auctionEnd:
+          type: string
+          format: date-time
+          nullable: true
+        auctionStart:
+          type: string
+          format: date-time
+          nullable: true
+        publishedDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        reviewsCount:
+          type: integer
+          format: int32
+        questionsCount:
+          type: integer
+          format: int32
+        packagedQuantity:
+          type: integer
+          format: int32
+        reviewsAvg:
+          type: number
+          format: double
+          nullable: true
+        recurrency:
+          type: number
+          format: double
+        currentStock:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        height:
+          type: number
+          format: double
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+          nullable: true
+        discountPrice:
+          type: number
+          format: double
+          nullable: true
+        customTaxValue:
+          type: number
+          format: double
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+          nullable: true
+        customTaxAmount:
+          type: number
+          format: double
+          nullable: true
+        discountPercentage:
+          type: number
+          format: double
+          nullable: true
+        customTaxPercentage:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedProfitInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTotalPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedPaymentCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingTaxInUsd:
+          type: number
+          format: double
+          nullable: true
+        estimatedDefaultShippingCostInUsd:
+          type: number
+          format: double
+          nullable: true
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        allowSubscriptionTrials:
+          type: boolean
+        isPerpetualSubscription:
+          type: boolean
+        trialSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        standardSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        subscriptionsCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubscriptionPlanDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SubscriptionPlanDto'
+      additionalProperties: false
+    SubscriptionPlanDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionPlanDto'
+          nullable: true
+      additionalProperties: false
+    SubscriptionPlanUpdateDto:
+      type: object
+      properties:
+        hot:
+          type: boolean
+        sku:
+          type: string
+          nullable: true
+        upc:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        mpn:
+          type: string
+          nullable: true
+        skUs:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        upCs:
+          type: string
+          nullable: true
+        eaNs:
+          type: string
+          nullable: true
+        asin:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        mpNs:
+          type: string
+          nullable: true
+        part:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        onSale:
+          type: boolean
+        isbNs:
+          type: string
+          nullable: true
+        asiNs:
+          type: string
+          nullable: true
+        gtiNs:
+          type: string
+          nullable: true
+        width:
+          type: number
+          format: double
+        model:
+          type: string
+          nullable: true
+        auction:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        deleted:
+          type: boolean
+        digital:
+          type: boolean
+        preSale:
+          type: boolean
+        taxable:
+          type: boolean
+        inStock:
+          type: boolean
+        isbN13:
+          type: string
+          nullable: true
+        unspsc:
+          type: string
+          nullable: true
+        weight:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+        unitId:
+          type: string
+          nullable: true
+        series:
+          type: string
+          nullable: true
+        featured:
+          type: boolean
+        brands:
+          type: string
+          nullable: true
+        trending:
+          type: boolean
+        lowStock:
+          type: boolean
+        barcode:
+          type: string
+          nullable: true
+        unspsCs:
+          type: string
+          nullable: true
+        pattern:
+          type: string
+          nullable: true
+        published:
+          type: boolean
+        byRequest:
+          type: boolean
+        summary:
+          type: string
+          nullable: true
+        brandId:
+          type: string
+          nullable: true
+        viewsCount:
+          type: integer
+          format: int32
+        features:
+          type: string
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        onDiscount:
+          type: boolean
+        totalTax:
+          type: number
+          format: double
+        permalink:
+          type: string
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        reviewsCount:
+          type: integer
+          format: int32
+        isDailyDeal:
+          type: boolean
+        languageId:
+          type: string
+          nullable: true
+        categories:
+          type: string
+          nullable: true
+        finalPrice:
+          type: number
+          format: double
+        itemTypeId:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        reviewsAvg:
+          type: number
+          format: double
+        isNewArrival:
+          type: boolean
+        isWeeklyDeal:
+          type: boolean
+        isBestSeller:
+          type: boolean
+        unitGroupId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ingredients:
+          type: string
+          nullable: true
+        releaseDate:
+          type: string
+          nullable: true
+        isMonthlyDeal:
+          type: boolean
+        recurrency:
+          type: number
+          format: double
+        paymentCost:
+          type: number
+          format: double
+        customTaxValue:
+          type: number
+          format: double
+        hasVariations:
+          type: boolean
+        questionsCount:
+          type: integer
+          format: int32
+        supplierCode:
+          type: string
+          nullable: true
+        auctionEnd:
+          type: string
+          format: date-time
+        purchaseNote:
+          type: string
+          nullable: true
+        shipsToRules:
+          type: string
+          nullable: true
+        regularPrice:
+          type: number
+          format: double
+        images:
+          type: array
+          items:
+            type: string
+          nullable: true
+        shippingCost:
+          type: number
+          format: double
+        parentItemId:
+          type: string
+          nullable: true
+        itemTypeName:
+          type: string
+          nullable: true
+        cartRecordId:
+          type: string
+          nullable: true
+        variations:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tariffHeading:
+          type: string
+          nullable: true
+        packagedQuantity:
+          type: integer
+          format: int32
+        isFixedDiscount:
+          type: boolean
+        discountPrice:
+          type: number
+          format: double
+        isDealersChoice:
+          type: boolean
+        currentStock:
+          type: number
+          format: double
+        manageInventory:
+          type: boolean
+        auctionStart:
+          type: string
+          format: date-time
+        nutritionFacts:
+          type: string
+          nullable: true
+        mozaicCoverUrl:
+          type: string
+          nullable: true
+        packageContent:
+          type: string
+          nullable: true
+        discountAmount:
+          type: number
+          format: double
+        youtubeVideoId:
+          type: string
+          nullable: true
+        inCartQuantity:
+          type: number
+          format: double
+        isOfficialChoice:
+          type: boolean
+        publishedDate:
+          type: string
+          format: date-time
+        primaryImageUrl:
+          type: string
+          nullable: true
+        validPrimaryImage:
+          type: boolean
+        customTaxAmount:
+          type: number
+          format: double
+        longDescription:
+          type: string
+          nullable: true
+        compareRecordId:
+          type: string
+          nullable: true
+        measurementUnit:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        googleCategories:
+          type: string
+          nullable: true
+        isDeadlineDiscount:
+          type: boolean
+        displayShowcaseTab:
+          type: boolean
+        taxIncludedInPrice:
+          type: boolean
+        isProductOfTheWeek:
+          type: boolean
+        supplierProfileId:
+          type: string
+          nullable: true
+        shippingCountryId:
+          type: string
+          nullable: true
+        isProductOfTheMonth:
+          type: boolean
+        systemRequirements:
+          type: string
+          nullable: true
+        isPorcentualDiscount:
+          type: boolean
+        discountPercentage:
+          type: number
+          format: double
+        discountDeadLine:
+          type: string
+          format: date-time
+        displayOnGlobalMozaic:
+          type: boolean
+        displayOnBrandsMozaic:
+          type: boolean
+        customTaxPercentage:
+          type: number
+          format: double
+        estimatedTaxesInUsd:
+          type: number
+          format: double
+        customTaxDescription:
+          type: string
+          nullable: true
+        disableDefaultPolicies:
+          type: boolean
+        estimatedProfitInUsd:
+          type: number
+          format: double
+        displayOnCategoryMozaic:
+          type: boolean
+        officialDescriptionUrl:
+          type: string
+          nullable: true
+        energyEfficiencyRating:
+          type: string
+          nullable: true
+        pageCoverBackgroundUrl:
+          type: string
+          nullable: true
+        estimatedBasePriceInUsd:
+          type: number
+          format: double
+        estimatedDiscountsInUsd:
+          type: number
+          format: double
+        operatingSystemSupported:
+          type: string
+          nullable: true
+        estimatedSurchargesInUsd:
+          type: number
+          format: double
+        deadlineDiscountDueDate:
+          type: string
+          format: date-time
+          nullable: true
+        deadlineDiscountFromDate:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedRegularPriceInUsd:
+          type: number
+          format: double
+        estimatedTaxBasePriceInUsd:
+          type: number
+          format: double
+        displayOnBannerMarketingRotation:
+          type: boolean
+        lastFixedPricesUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedWitholdingTaxesInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedPaymentTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingCostInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedDefaultShippingTaxInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        estimatedTotalPriceInUsd:
+          maximum: 999999999999999
+          minimum: 0
+          type: number
+          format: double
+        recentlyViewedRecordId:
+          type: string
+          nullable: true
+        displayDescriptionEditor:
+          type: boolean
+        primaryGoogleCategoryId:
+          type: string
+          nullable: true
+        supportedOperatingSystem:
+          type: string
+          nullable: true
+        estimatedDealSavingsInUsd:
+          type: number
+          format: double
+        primaryGoogleCategoryName:
+          type: string
+          nullable: true
+        displayShortDescriptionEditor:
+          type: boolean
+        estimatedWithholdingTaxesInUsd:
+          type: number
+          format: double
+        selectedTags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTypes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedBrands:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedTaxPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingRules:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedRefundPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedReturnPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedPricingPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedGoogleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedWarrantyPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedShipmentPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedAttributesOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        selectedSellingMarginPolicies:
+          type: array
+          items:
+            type: string
+          nullable: true
+        allowSubscriptionTrials:
+          type: boolean
+        isPerpetualSubscription:
+          type: boolean
+        trialSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        standardSubscriptionRelativeExpirationInDays:
+          type: integer
+          format: int32
+        subscriptionsCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubscriptionUpdateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        subscriptionPlanId:
+          type: string
+          nullable: true
+        subscriptionClass:
+          enum:
+            - Trial
+            - Standard
+          type: string
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: Completions
+  - name: FenixAlliance.Portals.Website
+  - name: SubscriptionPlans
+  - name: Subscriptions

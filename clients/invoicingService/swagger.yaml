@@ -1,0 +1,5654 @@
+openapi: 3.0.4
+info:
+  title: InvoicingService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.1.2.5532
+paths:
+  /api/v2/AiService/Completions/Complete:
+    get:
+      tags:
+        - Completions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: query
+          schema:
+            type: string
+        - name: message
+          in: query
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /version:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /api/v2/InvoicingService/Invoices:
+    get:
+      tags:
+        - Invoices
+      summary: Get a list of invoices.
+      description: Retrieves a list of invoices for the specified tenant.
+      operationId: GetInvoices
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoListEnvelope'
+    post:
+      tags:
+        - Invoices
+      summary: Create a new invoice.
+      description: Creates a new invoice for the specified tenant.
+      operationId: CreateInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceCreateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/InvoicingService/Invoices/Count:
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of invoices.
+      description: Retrieves the total count of invoices for the specified tenant.
+      operationId: GetInvoicesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/InvoicingService/Invoices/Extended:
+    get:
+      tags:
+        - Invoices
+      summary: Get a list of extended invoices.
+      description: Retrieves a list of extended invoice details for the specified tenant.
+      operationId: GetExtendedInvoices
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedInvoiceDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedInvoiceDtoListEnvelope'
+  /api/v2/InvoicingService/Invoices/Extended/Count:
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of extended invoices.
+      description: Retrieves the total count of extended invoices for the specified tenant.
+      operationId: GetExtendedInvoicesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Extended':
+    get:
+      tags:
+        - Invoices
+      summary: Get an extended invoice by ID.
+      description: Retrieves the extended invoice details for the specified invoice ID.
+      operationId: GetExtendedInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}':
+    get:
+      tags:
+        - Invoices
+      summary: Get an invoice by ID.
+      description: Retrieves the invoice details for the specified invoice ID.
+      operationId: GetInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceDtoEnvelope'
+    put:
+      tags:
+        - Invoices
+      summary: Update an invoice.
+      description: Updates the specified invoice for the tenant.
+      operationId: UpdateInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceUpdateDto'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - Invoices
+      summary: Patch an invoice.
+      description: Partially updates the specified invoice for the tenant.
+      operationId: PatchInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Invoices
+      summary: Delete an invoice.
+      description: Deletes the specified invoice for the tenant.
+      operationId: DeleteInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Calculate':
+    put:
+      tags:
+        - Invoices
+      summary: Calculate an invoice.
+      description: Calculates the totals and taxes for the specified invoice.
+      operationId: CalculateInvoice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines':
+    get:
+      tags:
+        - Invoices
+      summary: Get invoice lines.
+      description: Retrieves the invoice lines for the specified invoice.
+      operationId: GetInvoiceLines
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: itemId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoListEnvelope'
+    post:
+      tags:
+        - Invoices
+      summary: Create a new invoice line.
+      description: Creates a new invoice line for the specified invoice.
+      operationId: CreateInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineCreateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoIReadOnlyListEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/Count':
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of invoice lines.
+      description: Retrieves the total count of invoice lines for the specified invoice.
+      operationId: GetInvoiceLinesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}':
+    get:
+      tags:
+        - Invoices
+      summary: Get an invoice line by ID.
+      description: Retrieves the invoice line details for the specified invoice line ID.
+      operationId: GetInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoEnvelope'
+    put:
+      tags:
+        - Invoices
+      summary: Update an invoice line.
+      description: Updates the specified invoice line.
+      operationId: UpdateInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineUpdateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineDtoEnvelope'
+    patch:
+      tags:
+        - Invoices
+      summary: Patch an invoice line.
+      description: Partially updates the specified invoice line.
+      operationId: PatchInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Invoices
+      summary: Delete an invoice line.
+      description: Deletes the specified invoice line.
+      operationId: DeleteInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Calculate':
+    put:
+      tags:
+        - Invoices
+      summary: Calculate an invoice line.
+      description: Calculates the totals and taxes for the specified invoice line.
+      operationId: CalculateInvoiceLine
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes':
+    get:
+      tags:
+        - Invoices
+      summary: Get taxes for an invoice line.
+      description: Retrieves the taxes applied to the specified invoice line.
+      operationId: GetInvoiceLineTaxes
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Invoices
+      summary: Create a new tax for an invoice line.
+      description: Creates a new tax entry for the specified invoice line.
+      operationId: CreateInvoiceLineTax
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineAppliedTaxCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineAppliedTaxCreateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/Count':
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of taxes for an invoice line.
+      description: Retrieves the total count of taxes applied to the specified invoice line.
+      operationId: GetInvoiceLineTaxesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}':
+    put:
+      tags:
+        - Invoices
+      summary: Update a tax for an invoice line.
+      description: Updates the specified tax entry for the invoice line.
+      operationId: UpdateInvoiceLineTax
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineTaxId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineAppliedTaxUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceLineAppliedTaxUpdateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - Invoices
+      summary: Patch a tax for an invoice line.
+      description: Partially updates the specified tax entry for the invoice line.
+      operationId: PatchInvoiceLineTax
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineTaxId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Invoices
+      summary: Delete a tax from an invoice line.
+      description: Deletes the specified tax entry from the invoice line.
+      operationId: DeleteInvoiceLineTax
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceLineTaxId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments':
+    get:
+      tags:
+        - Invoices
+      summary: Get invoice adjustments.
+      description: Retrieves the adjustments for the specified invoice.
+      operationId: GetInvoiceAdjustments
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceAdjustmentDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceAdjustmentDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Invoices
+      summary: Create a new invoice adjustment.
+      description: Creates a new adjustment for the specified invoice.
+      operationId: CreateInvoiceAdjustment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceAdjustmentCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceAdjustmentCreateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/Count':
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of invoice adjustments.
+      description: Retrieves the total count of adjustments for the specified invoice.
+      operationId: GetInvoiceAdjustmentsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}':
+    get:
+      tags:
+        - Invoices
+      summary: Get an invoice adjustment by ID.
+      description: Retrieves the adjustment details for the specified invoice adjustment ID.
+      operationId: GetInvoiceAdjustment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceAdjustmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceAdjustmentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceAdjustmentDtoEnvelope'
+    put:
+      tags:
+        - Invoices
+      summary: Update an invoice adjustment.
+      description: Updates the specified adjustment for the invoice.
+      operationId: UpdateInvoiceAdjustment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceAdjustmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceAdjustmentUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceAdjustmentUpdateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - Invoices
+      summary: Patch an invoice adjustment.
+      description: Partially updates the specified adjustment for the invoice.
+      operationId: PatchInvoiceAdjustment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceAdjustmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Invoices
+      summary: Delete an invoice adjustment.
+      description: Deletes the specified adjustment from the invoice.
+      operationId: DeleteInvoiceAdjustment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceAdjustmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/References':
+    get:
+      tags:
+        - Invoices
+      summary: Get invoice references.
+      description: Retrieves the references for the specified invoice.
+      operationId: GetInvoiceReferences
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceReferenceDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceReferenceDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Invoices
+      summary: Create a new invoice reference.
+      description: Creates a new reference for the specified invoice.
+      operationId: CreateInvoiceReference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceReferenceCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceReferenceCreateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/References/Count':
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of invoice references.
+      description: Retrieves the total count of references for the specified invoice.
+      operationId: GetInvoiceReferencesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}':
+    get:
+      tags:
+        - Invoices
+      summary: Get an invoice reference by ID.
+      description: Retrieves the reference details for the specified invoice reference ID.
+      operationId: GetInvoiceReference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceReferenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceReferenceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceReferenceDtoEnvelope'
+    put:
+      tags:
+        - Invoices
+      summary: Update an invoice reference.
+      description: Updates the specified reference for the invoice.
+      operationId: UpdateInvoiceReference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceReferenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceReferenceUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceReferenceUpdateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - Invoices
+      summary: Patch an invoice reference.
+      description: Partially updates the specified reference for the invoice.
+      operationId: PatchInvoiceReference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceReferenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Invoices
+      summary: Delete an invoice reference.
+      description: Deletes the specified reference from the invoice.
+      operationId: DeleteInvoiceReference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceReferenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments':
+    get:
+      tags:
+        - Invoices
+      summary: Get payments for an invoice.
+      description: Retrieves the list of payments related to the specified invoice.
+      operationId: GetInvoicePayments
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PaymentDtoIReadOnlyListEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments/Count':
+    get:
+      tags:
+        - Invoices
+      summary: Get the count of payments for an invoice.
+      description: Retrieves the total count of payments for the specified invoice.
+      operationId: GetInvoicePaymentsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/InvoicingService/Invoices/TotalsAggregate:
+    post:
+      tags:
+        - Invoices
+      summary: Aggregate invoice totals.
+      description: Aggregates the totals for the specified invoices.
+      operationId: AggregateInvoiceTotals
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+  /api/v2/InvoicingService/Invoices/TaxesAggregate:
+    post:
+      tags:
+        - Invoices
+      summary: Aggregate invoice taxes.
+      description: Aggregates the taxes for the specified invoices.
+      operationId: AggregateInvoiceTaxes
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+  /api/v2/InvoicingService/Invoices/DiscountsAggregate:
+    post:
+      tags:
+        - Invoices
+      summary: Aggregate invoice discounts.
+      description: Aggregates the discounts for the specified invoices.
+      operationId: AggregateInvoiceDiscounts
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+  /api/v2/InvoicingService/Invoices/TaxBasesAggregate:
+    post:
+      tags:
+        - Invoices
+      summary: Aggregate invoice tax bases.
+      description: Aggregates the tax bases for the specified invoices.
+      operationId: AggregateInvoiceTaxBases
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+  /api/v2/InvoicingService/Invoices/GlobalSurchargesAggregate:
+    post:
+      tags:
+        - Invoices
+      summary: Aggregate invoice global surcharges.
+      description: Aggregates the global surcharges for the specified invoices.
+      operationId: AggregateInvoiceGlobalSurcharges
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Send':
+    post:
+      tags:
+        - Invoices
+      summary: Send an invoice transactional email to recipients.
+      description: This action is only available for users with the 'send_email' permission.
+      operationId: SendInvoiceEmail
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailDispatchRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EmailDispatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  '/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Preview':
+    post:
+      tags:
+        - Invoices
+      summary: Preview the rendered email for an invoice.
+      description: This action is only available for users with the 'send_email' permission.
+      operationId: PreviewInvoiceEmail
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailDispatchRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EmailDispatchRequest'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CurrencyId:
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+          readOnly: true
+        code:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmailDispatchRequest:
+      required:
+        - culture
+        - message
+        - recipients
+        - title
+        - uiCulture
+      type: object
+      properties:
+        title:
+          maxLength: 150
+          minLength: 0
+          type: string
+        message:
+          minLength: 10
+          type: string
+        buttonLink:
+          type: string
+          format: uri
+          nullable: true
+        buttonText:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        alertMessage:
+          type: string
+          nullable: true
+        alertType:
+          enum:
+            - None
+            - Info
+            - Error
+            - Warning
+            - Success
+            - Action
+            - Alert
+          type: string
+        culture:
+          minLength: 1
+          pattern: '^[a-z]{2}(-[A-Z]{2})?$'
+          type: string
+        uiCulture:
+          minLength: 1
+          pattern: '^[a-z]{2}(-[A-Z]{2})?$'
+          type: string
+        recipients:
+          minItems: 1
+          type: array
+          items:
+            type: string
+        contactIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tenantIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        userIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        templateUrl:
+          type: string
+          format: uri
+          nullable: true
+        emailTemplateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ExtendedInvoiceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        paid:
+          type: boolean
+        number:
+          type: integer
+          format: int64
+        notes:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        enumeration:
+          type: string
+          nullable: true
+        paymentModeId:
+          type: string
+          nullable: true
+        enumerationRangeId:
+          type: string
+          nullable: true
+        emisorBillingProfileId:
+          type: string
+          nullable: true
+        receiverBillingProfileId:
+          type: string
+          nullable: true
+        emisorWalletAccountId:
+          type: string
+          nullable: true
+        receiverWalletAccountId:
+          type: string
+          nullable: true
+        paymentDue:
+          type: string
+          format: date-time
+          nullable: true
+        invoiceType:
+          enum:
+            - PurchaseInvoice
+            - SalesInvoice
+            - CreditNote
+            - DebitNote
+          type: string
+        documentType:
+          enum:
+            - Standard
+            - DebitNote
+            - CreditNote
+          type: string
+        invoiceStatus:
+          enum:
+            - Draft
+            - Closed
+            - Signed
+            - Expired
+            - Paid
+          type: string
+        tenant:
+          $ref: '#/components/schemas/TenantDto'
+        user:
+          $ref: '#/components/schemas/SimpleUserDto'
+        receiverTenant:
+          $ref: '#/components/schemas/TenantDto'
+        individual:
+          $ref: '#/components/schemas/SimpleContactDto'
+        organization:
+          $ref: '#/components/schemas/SimpleContactDto'
+        enrollment:
+          $ref: '#/components/schemas/SimpleTenantEnrollmentDto'
+        invoiceLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineDto'
+          nullable: true
+      additionalProperties: false
+    ExtendedInvoiceDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedInvoiceDto'
+          nullable: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    InvoiceAdjustmentCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        currencyId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        surchargePercent:
+          type: number
+          format: double
+        surchargeAmount:
+          type: number
+          format: double
+        discountPercent:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        totalSurcharge:
+          type: number
+          format: double
+        totalDiscount:
+          type: number
+          format: double
+        type:
+          enum:
+            - Discount
+            - Surcharge
+          type: string
+      additionalProperties: false
+    InvoiceAdjustmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        invoiceId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        surchargePercent:
+          type: number
+          format: double
+        surchargeAmount:
+          type: number
+          format: double
+        discountPercent:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        totalSurcharge:
+          type: number
+          format: double
+        totalDiscount:
+          type: number
+          format: double
+        type:
+          enum:
+            - Discount
+            - Surcharge
+          type: string
+      additionalProperties: false
+    InvoiceAdjustmentDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/InvoiceAdjustmentDto'
+      additionalProperties: false
+    InvoiceAdjustmentDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceAdjustmentDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceAdjustmentUpdateDto:
+      type: object
+      properties:
+        currencyId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        surchargePercent:
+          type: number
+          format: double
+        surchargeAmount:
+          type: number
+          format: double
+        discountPercent:
+          type: number
+          format: double
+        discountAmount:
+          type: number
+          format: double
+        totalSurcharge:
+          type: number
+          format: double
+        totalDiscount:
+          type: number
+          format: double
+        type:
+          enum:
+            - Discount
+            - Surcharge
+          type: string
+      additionalProperties: false
+    InvoiceCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        paid:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        notes:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        enumeration:
+          type: string
+          nullable: true
+        paymentModeId:
+          type: string
+          nullable: true
+        enumerationRangeId:
+          type: string
+          nullable: true
+        emisorBillingProfileId:
+          type: string
+          nullable: true
+        receiverBillingProfileId:
+          type: string
+          nullable: true
+        emisorWalletAccountId:
+          type: string
+          nullable: true
+        receiverWalletAccountId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        invoiceType:
+          enum:
+            - PurchaseInvoice
+            - SalesInvoice
+            - CreditNote
+            - DebitNote
+          type: string
+        documentType:
+          enum:
+            - Standard
+            - DebitNote
+            - CreditNote
+          type: string
+        invoiceStatus:
+          enum:
+            - Draft
+            - Closed
+            - Signed
+            - Expired
+            - Paid
+          type: string
+        paymentDue:
+          type: string
+          format: date-time
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          format: date-time
+          nullable: true
+        invoiceLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineCreateDto'
+          nullable: true
+        invoiceReferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceReferenceCreateDto'
+          nullable: true
+        invoiceAdjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceAdjustmentCreateDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        paid:
+          type: boolean
+        number:
+          type: integer
+          format: int64
+        notes:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        enumeration:
+          type: string
+          nullable: true
+        paymentModeId:
+          type: string
+          nullable: true
+        enumerationRangeId:
+          type: string
+          nullable: true
+        emisorBillingProfileId:
+          type: string
+          nullable: true
+        receiverBillingProfileId:
+          type: string
+          nullable: true
+        emisorWalletAccountId:
+          type: string
+          nullable: true
+        receiverWalletAccountId:
+          type: string
+          nullable: true
+        paymentDue:
+          type: string
+          format: date-time
+          nullable: true
+        invoiceType:
+          enum:
+            - PurchaseInvoice
+            - SalesInvoice
+            - CreditNote
+            - DebitNote
+          type: string
+        documentType:
+          enum:
+            - Standard
+            - DebitNote
+            - CreditNote
+          type: string
+        invoiceStatus:
+          enum:
+            - Draft
+            - Closed
+            - Signed
+            - Expired
+            - Paid
+          type: string
+      additionalProperties: false
+    InvoiceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/InvoiceDto'
+      additionalProperties: false
+    InvoiceDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceLineAppliedTaxCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        invoiceId:
+          type: string
+          nullable: true
+        taxPolicyId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceLineAppliedTaxDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        invoiceId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        invoiceLineId:
+          type: string
+          nullable: true
+        taxPolicyId:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        itemId:
+          type: string
+          nullable: true
+        taxAmountInUsd:
+          type: number
+          format: double
+        taxBaseAmountInUsd:
+          type: number
+          format: double
+        taxPolicyName:
+          type: string
+          nullable: true
+        taxPolicyDescription:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineAppliedTaxDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceLineAppliedTaxUpdateDto:
+      type: object
+      properties:
+        taxPolicyId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceLineCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        itemId:
+          type: string
+          nullable: true
+        invoiceId:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceLineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        closed:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        totalDetailInUsd:
+          type: number
+          format: double
+        totalProfitInUsd:
+          type: number
+          format: double
+        totalDiscountsInUsd:
+          type: number
+          format: double
+        totalSurchargesInUsd:
+          type: number
+          format: double
+        totalTaxBaseInUsd:
+          type: number
+          format: double
+        totalTaxesInUsd:
+          type: number
+          format: double
+        totalWithheldTaxesInUsd:
+          type: number
+          format: double
+        totalShippingCostInUsd:
+          type: number
+          format: double
+        totalShippingTaxesInUsd:
+          type: number
+          format: double
+        totalGlobalDiscountsInUsd:
+          type: number
+          format: double
+        totalGlobalSurchargesInUsd:
+          type: number
+          format: double
+        totalInUsd:
+          type: number
+          format: double
+        itemId:
+          type: string
+          nullable: true
+        itemTitle:
+          type: string
+          nullable: true
+        itemShortDescription:
+          type: string
+          nullable: true
+        itemPrimaryImageUrl:
+          type: string
+          nullable: true
+        shippingPolicyId:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+        free:
+          type: boolean
+        freeReason:
+          type: string
+          nullable: true
+        freeReasonCode:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        priceListItemId:
+          type: string
+          nullable: true
+        unitId:
+          type: string
+          nullable: true
+        unitGroupId:
+          type: string
+          nullable: true
+        totalWarrantyCostInUsd:
+          type: number
+          format: double
+        totalReturnCostInUsd:
+          type: number
+          format: double
+        totalRefundCostInUsd:
+          type: number
+          format: double
+        customGlobalSurchargesAmount:
+          type: number
+          format: double
+        customGlobalDiscountsAmount:
+          type: number
+          format: double
+        returnPolicyId:
+          type: string
+          nullable: true
+        refundPolicyId:
+          type: string
+          nullable: true
+        warrantyPolicyId:
+          type: string
+          nullable: true
+        shipmentPolicyId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        quoteItemRecordId:
+          type: string
+          nullable: true
+        businessProfileRecordId:
+          type: string
+          nullable: true
+        parentBillingItemRecordId:
+          type: string
+          nullable: true
+        invoiceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceLineDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/InvoiceLineDto'
+      additionalProperties: false
+    InvoiceLineDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceLineDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceLineUpdateDto:
+      type: object
+      properties:
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        shippingMethodId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        itemId:
+          type: string
+          nullable: true
+        itemPriceId:
+          type: string
+          nullable: true
+        invoiceLineId:
+          type: string
+          nullable: true
+        taxAmountInUsd:
+          type: number
+          format: double
+        taxBaseAmountInUsd:
+          type: number
+          format: double
+      additionalProperties: false
+    InvoiceReferenceCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        referencedInvoiceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceReferenceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        referralInvoiceId:
+          type: string
+          nullable: true
+        referencedInvoiceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceReferenceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/InvoiceReferenceDto'
+      additionalProperties: false
+    InvoiceReferenceDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceReferenceDto'
+          nullable: true
+      additionalProperties: false
+    InvoiceReferenceUpdateDto:
+      type: object
+      properties:
+        referencedInvoiceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InvoiceUpdateDto:
+      type: object
+      properties:
+        closed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        priceListId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        paymentTermId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        billingEmail:
+          type: string
+          nullable: true
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        billingLocationId:
+          type: string
+          nullable: true
+        shippingLocationId:
+          type: string
+          nullable: true
+        shippingMethodId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        totalDetail:
+          type: number
+          format: double
+        totalDetailCurrencyId:
+          type: string
+          nullable: true
+        totalProfit:
+          type: number
+          format: double
+        totalProfitCurrencyId:
+          type: string
+          nullable: true
+        totalDiscounts:
+          type: number
+          format: double
+        totalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalSurcharges:
+          type: number
+          format: double
+        totalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalShippingTax:
+          type: number
+          format: double
+        totalShippingTaxCurrencyId:
+          type: string
+          nullable: true
+        totalShippingCost:
+          type: number
+          format: double
+        totalShippingCostCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalDiscounts:
+          type: number
+          format: double
+        totalGlobalDiscountsCurrencyId:
+          type: string
+          nullable: true
+        totalGlobalSurcharges:
+          type: number
+          format: double
+        totalGlobalSurchargesCurrencyId:
+          type: string
+          nullable: true
+        totalWithheldTax:
+          type: number
+          format: double
+        totalWithheldTaxCurrencyId:
+          type: string
+          nullable: true
+        totalTaxBase:
+          type: number
+          format: double
+        totalTaxBaseCurrencyId:
+          type: string
+          nullable: true
+        totalTaxes:
+          type: number
+          format: double
+        totalTaxesCurrencyId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
+        taxCalculationMethod:
+          enum:
+            - Included
+            - Excluded
+          type: string
+        paid:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        notes:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        enumeration:
+          type: string
+          nullable: true
+        paymentModeId:
+          type: string
+          nullable: true
+        enumerationRangeId:
+          type: string
+          nullable: true
+        emisorBillingProfileId:
+          type: string
+          nullable: true
+        receiverBillingProfileId:
+          type: string
+          nullable: true
+        emisorWalletAccountId:
+          type: string
+          nullable: true
+        receiverWalletAccountId:
+          type: string
+          nullable: true
+        customerNotes:
+          type: string
+          nullable: true
+        invoiceType:
+          enum:
+            - PurchaseInvoice
+            - SalesInvoice
+            - CreditNote
+            - DebitNote
+          type: string
+        documentType:
+          enum:
+            - Standard
+            - DebitNote
+            - CreditNote
+          type: string
+        invoiceStatus:
+          enum:
+            - Draft
+            - Closed
+            - Signed
+            - Expired
+            - Paid
+          type: string
+        paymentDue:
+          type: string
+          format: date-time
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          format: date-time
+          nullable: true
+        invoiceLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineCreateDto'
+          nullable: true
+        invoiceReferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceReferenceCreateDto'
+          nullable: true
+        invoiceAdjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceAdjustmentCreateDto'
+          nullable: true
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Money:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          $ref: '#/components/schemas/CurrencyId'
+      additionalProperties: false
+    MoneyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/Money'
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    PaymentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        test:
+          type: boolean
+        invoiceId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        emisorWalletId:
+          type: string
+          nullable: true
+        receiverWalletId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        totalCost:
+          type: number
+          format: double
+        totalTaxes:
+          type: number
+          format: double
+        closed:
+          type: boolean
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        response:
+          type: string
+          nullable: true
+        authorization:
+          type: string
+          nullable: true
+        referenceCode:
+          type: string
+          nullable: true
+        correlationCode:
+          type: string
+          nullable: true
+        lastUpdated:
+          type: string
+          format: date-time
+        onBehalfOf:
+          enum:
+            - Self
+            - Tenant
+            - Individual
+            - Organization
+          type: string
+        paymentType:
+          enum:
+            - Paid
+            - Received
+            - Internal
+          type: string
+        paymentStatus:
+          enum:
+            - Unset
+            - Accepted
+            - Rejected
+            - OnHold
+            - Failed
+            - Reversed
+            - Retained
+            - Initialized
+            - Expired
+            - Abandoned
+            - Cancelled
+            - AcceptedRetained
+          type: string
+        baseCost:
+          type: number
+          format: double
+        signature:
+          type: string
+          nullable: true
+        signatureMismatch:
+          type: boolean
+        isExternal:
+          type: boolean
+        markedForRevision:
+          type: boolean
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        officialId:
+          type: string
+          nullable: true
+        officialIdExpeditionDate:
+          type: string
+          format: date-time
+        fiscalIdentificationTypeId:
+          type: string
+          nullable: true
+        billingAddress:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        cellphone:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        entitlementId:
+          type: string
+          nullable: true
+        antiFraudScore:
+          type: number
+          format: double
+        callRecordURL:
+          type: string
+          nullable: true
+        called:
+          type: boolean
+        verified:
+          type: boolean
+        payerPictureTimestamp:
+          type: string
+          nullable: true
+        payerPicture:
+          type: string
+          nullable: true
+        identificationPictureTimestamp:
+          type: string
+          nullable: true
+        identificationPicture:
+          type: string
+          nullable: true
+        identificationBackPicture:
+          type: string
+          nullable: true
+        identificationBackPictureTimestamp:
+          type: string
+          nullable: true
+        ipLookupId:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        accountingEntryId:
+          type: string
+          nullable: true
+        paymentGatewayId:
+          type: string
+          nullable: true
+        bankAccountId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        bankId:
+          type: string
+          nullable: true
+        paymentTokenId:
+          type: string
+          nullable: true
+        emisorWalletAccountId:
+          type: string
+          nullable: true
+        receiverWalletAccountId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentDto'
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SimpleContactDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        tenantId:
+          type: string
+          nullable: true
+        type:
+          enum:
+            - Individual
+            - Organization
+          type: string
+        email:
+          type: string
+          format: email
+          nullable: true
+        phone:
+          type: string
+          format: tel
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          format: uri
+          nullable: true
+        gitHubUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitchUrl:
+          type: string
+          format: uri
+          nullable: true
+        redditUrl:
+          type: string
+          format: uri
+          nullable: true
+        tikTokUrl:
+          type: string
+          format: uri
+          nullable: true
+        websiteUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitterUrl:
+          type: string
+          format: uri
+          nullable: true
+        facebookUrl:
+          type: string
+          format: uri
+          nullable: true
+        youTubeUrl:
+          type: string
+          format: uri
+          nullable: true
+        linkedInUrl:
+          type: string
+          format: uri
+          nullable: true
+        instagramUrl:
+          type: string
+          format: uri
+          nullable: true
+        githubUsername:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SimpleTenantEnrollmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SimpleUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+          readOnly: true
+        qualifiedName:
+          type: string
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        handler:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        businessIndustryId:
+          type: string
+          nullable: true
+        businessSegmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        slogan:
+          type: string
+          nullable: true
+        legalName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        whatsAppNumber:
+          type: string
+          nullable: true
+        supportPhoneNumber:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        businessName:
+          type: string
+          nullable: true
+          readOnly: true
+        businessLegalName:
+          type: string
+          nullable: true
+          readOnly: true
+        twitterUsername:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: Completions
+  - name: FenixAlliance.Portals.Website
+  - name: Invoices

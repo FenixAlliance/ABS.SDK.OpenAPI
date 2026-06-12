@@ -1,0 +1,4187 @@
+openapi: 3.0.4
+info:
+  title: UsersService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.1.2.5532
+paths:
+  /api/v2/AiService/Completions/Complete:
+    get:
+      tags:
+        - Completions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: query
+          schema:
+            type: string
+        - name: message
+          in: query
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /version:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.Portals.Website
+      responses:
+        '200':
+          description: OK
+  /api/v2/Me/Options:
+    get:
+      tags:
+        - Options
+      summary: Retrieve a list of user options
+      description: Retrieve a list of options for the current user
+      operationId: GetUserOptions
+      parameters:
+        - name: portalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OptionDtoListEnvelope'
+    post:
+      tags:
+        - Options
+      summary: Create a new user option
+      description: Create a new option for the current user
+      operationId: CreateUserOption
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: portalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptionCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OptionCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/Me/Options/Count:
+    get:
+      tags:
+        - Options
+      summary: Get the count of user options
+      description: Get the count of options for the current user
+      operationId: GetUserOptionsCount
+      parameters:
+        - name: portalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/Me/Options/{optionId}':
+    get:
+      tags:
+        - Options
+      summary: Retrieve a single user option by its ID
+      description: Retrieve a single user option by its ID
+      operationId: GetUserOptionById
+      parameters:
+        - name: optionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OptionDtoEnvelope'
+    put:
+      tags:
+        - Options
+      summary: Update a user option
+      description: Update a user option
+      operationId: UpdateUserOption
+      parameters:
+        - name: optionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptionUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OptionUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    patch:
+      tags:
+        - Options
+      summary: Patch a user option
+      description: Partially updates a user option using a JSON Patch document
+      operationId: PatchUserOption
+      parameters:
+        - name: optionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Options
+      summary: Delete a user option
+      description: Delete a user option
+      operationId: DeleteUserOption
+      parameters:
+        - name: optionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/Me/Options/Key/{key}':
+    get:
+      tags:
+        - Options
+      summary: Retrieve a single user option by its key
+      description: Retrieve a single user option by its key
+      operationId: GetUserOptionByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OptionDtoEnvelope'
+  '/api/v2/Me/Options/Upsert/{key}':
+    put:
+      tags:
+        - Options
+      summary: Create or update a user option by key
+      description: Create or update a user option by key
+      operationId: UpsertUserOption
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptionUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OptionUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/Me:
+    get:
+      tags:
+        - Users
+      summary: Gets the current user
+      description: Get the currently acting user.
+      operationId: GetCurrentUserAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/UserDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+    put:
+      tags:
+        - Users
+      summary: Update the current user's profile
+      description: Update the current user's profile
+      operationId: UpdateCurrentUserAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserUpdateDto'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserUpdateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+    patch:
+      tags:
+        - Users
+      summary: Partially update the current user's profile
+      description: Partially update the current user's profile
+      operationId: PatchCurrentUserAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          multipart/form-data:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Extended:
+    get:
+      tags:
+        - Users
+      summary: Get the current user's extended profile
+      description: Get the current user's extended profile
+      operationId: GetExtendedCurrentUserAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUserDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedUserDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ExtendedUserDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Avatar:
+    get:
+      tags:
+        - Users
+      summary: Get the current user's avatar
+      description: Get the current user's avatar
+      operationId: GetCurrentUserAvatarAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+            application/xml:
+              schema:
+                type: string
+                format: binary
+            multipart/form-data:
+              schema:
+                type: string
+                format: binary
+    post:
+      tags:
+        - Users
+      summary: Update the current user's avatar
+      description: Update the current user's avatar
+      operationId: UpdateAvatarAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+            encoding:
+              avatar:
+                style: form
+          application/json:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+            encoding:
+              avatar:
+                style: form
+          application/xml:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+            encoding:
+              avatar:
+                style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Follows:
+    get:
+      tags:
+        - Users
+      summary: Get the social profiles that the current user follows
+      description: Get the social profiles that the current user follows
+      operationId: GetCurrentUserFollowsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+  /api/v2/Me/Follows/Count:
+    get:
+      tags:
+        - Users
+      summary: Count the social profiles that the current user follows
+      description: Count the social profiles that the current user follows
+      operationId: CountCurrentUserFollowsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/Me/Followers:
+    get:
+      tags:
+        - Users
+      summary: Get the social profiles that follow the current user
+      description: Get the social profiles that follow the current user
+      operationId: GetCurrentUserFollowersAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/FollowRecordDtoListEnvelope'
+  /api/v2/Me/Followers/Count:
+    get:
+      tags:
+        - Users
+      summary: Count the social profiles that follow the current user
+      description: Count the social profiles that follow the current user
+      operationId: CountCurrentUserFollowersAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/Me/Tenants:
+    get:
+      tags:
+        - Users
+      summary: Get the tenants that the current user is enrolled in
+      description: Get the tenants that the current user is enrolled in
+      operationId: GetCurrentUserTenantsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/TenantDtoListEnvelope'
+  /api/v2/Me/Tenants/Count:
+    get:
+      tags:
+        - Users
+      summary: Count the tenants that the current user is enrolled in
+      description: Count the tenants that the current user is enrolled in
+      operationId: CountCurrentUserTenantsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/Me/Tenants/Extended:
+    get:
+      tags:
+        - Users
+      summary: Get the tenants that the current user is enrolled in
+      description: Get the tenants that the current user is enrolled in
+      operationId: GetCurrentUserTenantsExtendedAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantDtoListEnvelope'
+  /api/v2/Me/Enrollments:
+    get:
+      tags:
+        - Users
+      summary: Get the list of enrollments for the current user
+      description: Get the list of enrollments for the current user
+      operationId: GetCurrentUserEnrollmentsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoListEnvelope'
+  /api/v2/Me/Enrollments/Extended:
+    get:
+      tags:
+        - Users
+      summary: Get the list of enrollments for the current user
+      description: Get the list of enrollments for the current user
+      operationId: GetCurrentUserEnrollmentsExtendedAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantEnrollmentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantEnrollmentDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ExtendedTenantEnrollmentDtoListEnvelope'
+  '/api/v2/Me/Enrollments/{enrollmentId}':
+    get:
+      tags:
+        - Users
+      summary: Get a single TenantEnrollment by its ID
+      description: Get a single TenantEnrollment by its ID
+      operationId: GetEnrollmentAsync
+      parameters:
+        - name: enrollmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/TenantEnrollmentDtoEnvelope'
+  /api/v2/Me/SocialProfile:
+    get:
+      tags:
+        - Users
+      summary: Get the current user's social profile
+      description: Get the current user's social profile
+      operationId: GetCurrentUserSocialProfileAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialProfileDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SocialProfileDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/SocialProfileDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Cart:
+    get:
+      tags:
+        - Users
+      summary: Get the current user's cart
+      description: Get the current user's cart
+      operationId: GetCurrentUserCartAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CartDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/CartDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Wallet:
+    get:
+      tags:
+        - Users
+      summary: Get the current user's billing profile
+      description: Get the current user's billing profile
+      operationId: GetCurrentUserWalletAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WalletDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/WalletDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/Me/Notifications:
+    get:
+      tags:
+        - Users
+      summary: Get the list of notifications for the current user
+      description: Get the list of notifications for the current user
+      operationId: GetCurrentUserNotificationsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoListEnvelope'
+  /api/v2/Me/Notifications/Count:
+    get:
+      tags:
+        - Users
+      summary: Count the notifications for the current user
+      description: Count the notifications for the current user
+      operationId: CountCurrentUserNotificationsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/Me/Settings:
+    get:
+      tags:
+        - Users
+      summary: Get the settings for the current user
+      description: Get the settings for the current user
+      operationId: GetCurrentUserSettingsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+    put:
+      tags:
+        - Users
+      summary: Update the settings for the current user
+      description: Update the settings for the current user
+      operationId: UpdateCurrentUserSettingsAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettingsUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserSettingsUpdateDto'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSettingsUpdateDto'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDtoEnvelope'
+  /api/v2/Me/Addresses:
+    get:
+      tags:
+        - Users
+      summary: Get the list of addresses for the current user
+      description: Get the list of addresses for the current user
+      operationId: GetCurrentUserAddressesAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/AddressDtoListEnvelope'
+  /api/v2/Me/Invitations:
+    get:
+      tags:
+        - Users
+      summary: Get the list of tenant enrollment invitations for the current user
+      description: Get the list of tenant enrollment invitations for the current user
+      operationId: GetCurrentUserInvitationAsync
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationDtoListEnvelope'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationDtoListEnvelope'
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddressDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        business:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        fax:
+          type: string
+          nullable: true
+        address1:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        address3:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        isRoutable:
+          type: boolean
+        isGlobalPrimary:
+          type: boolean
+        isCountryPrimary:
+          type: boolean
+        canGenerateLabels:
+          type: boolean
+        isDefaultSenderAddress:
+          type: boolean
+        isDefaultReturnAddress:
+          type: boolean
+        isDefaultSuppingLocation:
+          type: boolean
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddressDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressDto'
+          nullable: true
+      additionalProperties: false
+    CartDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        ip:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        taxes:
+          type: number
+          format: double
+        freight:
+          type: number
+          format: double
+        subTotal:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        itemCartRecordsCount:
+          type: integer
+          format: int32
+          nullable: true
+        itemToCompareRecordsCount:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    CartDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/CartDto'
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ExtendedTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        businessIndustryId:
+          type: string
+          nullable: true
+        businessSegmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        slogan:
+          type: string
+          nullable: true
+        legalName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        whatsAppNumber:
+          type: string
+          nullable: true
+        supportPhoneNumber:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        businessName:
+          type: string
+          nullable: true
+          readOnly: true
+        businessLegalName:
+          type: string
+          nullable: true
+          readOnly: true
+        twitterUsername:
+          type: string
+          nullable: true
+        cart:
+          $ref: '#/components/schemas/CartDto'
+        wallet:
+          $ref: '#/components/schemas/WalletDto'
+        socialProfile:
+          $ref: '#/components/schemas/SocialProfileDto'
+      additionalProperties: false
+    ExtendedTenantDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedTenantDto'
+          nullable: true
+      additionalProperties: false
+    ExtendedTenantEnrollmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        isRoot:
+          type: boolean
+        isOwner:
+          type: boolean
+        isAdmin:
+          type: boolean
+        isDisabled:
+          type: boolean
+        tenant:
+          $ref: '#/components/schemas/TenantDto'
+        user:
+          $ref: '#/components/schemas/UserDto'
+      additionalProperties: false
+    ExtendedTenantEnrollmentDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedTenantEnrollmentDto'
+          nullable: true
+      additionalProperties: false
+    ExtendedUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+          readOnly: true
+        qualifiedName:
+          type: string
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        handler:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        idProvider:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        gender:
+          enum:
+            - Unknown
+            - Male
+            - Female
+            - PreferNotToSay
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        currentTenantId:
+          type: string
+          nullable: true
+        currentEnrollmentId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        userName:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        publicIdentifier:
+          type: string
+          nullable: true
+        identityProvider:
+          type: string
+          nullable: true
+        phoneNumberConfirmed:
+          type: boolean
+        emailConfirmed:
+          type: boolean
+        availability:
+          enum:
+            - DND
+            - Busy
+            - Away
+            - Offline
+            - Available
+          type: string
+          nullable: true
+        lockoutEnabled:
+          type: boolean
+        lockoutEnd:
+          type: string
+          format: date-time
+          nullable: true
+        enrollmentsCount:
+          type: integer
+          format: int32
+          nullable: true
+        siteTheme:
+          enum:
+            - System
+            - Light
+            - Dark
+          type: string
+          nullable: true
+        cart:
+          $ref: '#/components/schemas/CartDto'
+        wallet:
+          $ref: '#/components/schemas/WalletDto'
+        socialProfile:
+          $ref: '#/components/schemas/SocialProfileDto'
+        settings:
+          $ref: '#/components/schemas/UserSettingsDto'
+      additionalProperties: false
+    ExtendedUserDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ExtendedUserDto'
+      additionalProperties: false
+    FollowRecordDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        followerId:
+          type: string
+          nullable: true
+        followedId:
+          type: string
+          nullable: true
+        alerts:
+          type: boolean
+      additionalProperties: false
+    FollowRecordDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/FollowRecordDto'
+          nullable: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    NotificationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        read:
+          type: boolean
+        icon:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        redirectUrl:
+          type: string
+          nullable: true
+        type:
+          enum:
+            - Event
+            - Alert
+            - Log
+          type: string
+        socialProfileId:
+          type: string
+          nullable: true
+        readTimestamp:
+          type: string
+          format: date-time
+        issuedTimestamp:
+          type: string
+          format: date-time
+      additionalProperties: false
+    NotificationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationDto'
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    OptionCreateDto:
+      required:
+        - key
+        - value
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        key:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+        portalId:
+          type: string
+          nullable: true
+        frozen:
+          type: boolean
+        autoload:
+          type: boolean
+        transient:
+          type: boolean
+        expiration:
+          type: integer
+          format: int32
+      additionalProperties: false
+    OptionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        portalId:
+          type: string
+          nullable: true
+        frozen:
+          type: boolean
+        autoload:
+          type: boolean
+        transient:
+          type: boolean
+        expiration:
+          type: integer
+          format: int32
+      additionalProperties: false
+    OptionDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/OptionDto'
+      additionalProperties: false
+    OptionDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionDto'
+          nullable: true
+      additionalProperties: false
+    OptionUpdateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        portalId:
+          type: string
+          nullable: true
+        frozen:
+          type: boolean
+        autoload:
+          type: boolean
+        transient:
+          type: boolean
+        expiration:
+          type: integer
+          format: int32
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SocialProfileDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        cover:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        countryName:
+          type: string
+          nullable: true
+        identityId:
+          type: string
+          nullable: true
+        followsCount:
+          type: integer
+          format: int32
+          nullable: true
+        messagesCount:
+          type: integer
+          format: int32
+          nullable: true
+        followersCount:
+          type: integer
+          format: int32
+          nullable: true
+        notificationsCount:
+          type: integer
+          format: int32
+          nullable: true
+        unreadNotificationsCount:
+          type: integer
+          format: int32
+          nullable: true
+        unreadMessagesCount:
+          type: integer
+          format: int32
+          nullable: true
+        type:
+          enum:
+            - User
+            - Tenant
+            - Contact
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        facebookURL:
+          type: string
+          nullable: true
+        linkedInURL:
+          type: string
+          nullable: true
+        youtubeURL:
+          type: string
+          nullable: true
+        githubURL:
+          type: string
+          nullable: true
+        pinterestURL:
+          type: string
+          nullable: true
+        dribbleURL:
+          type: string
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SocialProfileDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SocialProfileDto'
+      additionalProperties: false
+    TenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        businessIndustryId:
+          type: string
+          nullable: true
+        businessSegmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        slogan:
+          type: string
+          nullable: true
+        legalName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        whatsAppNumber:
+          type: string
+          nullable: true
+        supportPhoneNumber:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        businessName:
+          type: string
+          nullable: true
+          readOnly: true
+        businessLegalName:
+          type: string
+          nullable: true
+          readOnly: true
+        twitterUsername:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TenantDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantDto'
+          nullable: true
+      additionalProperties: false
+    TenantEnrollmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        isRoot:
+          type: boolean
+        isOwner:
+          type: boolean
+        isAdmin:
+          type: boolean
+        isDisabled:
+          type: boolean
+      additionalProperties: false
+    TenantEnrollmentDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TenantEnrollmentDto'
+      additionalProperties: false
+    TenantEnrollmentDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantEnrollmentDto'
+          nullable: true
+      additionalProperties: false
+    TenantInvitationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        revoked:
+          type: boolean
+        redeemed:
+          type: boolean
+        redeemedTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        userEmail:
+          type: string
+          nullable: true
+        creatorEnrollmentId:
+          type: string
+          nullable: true
+        relatedEnrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TenantInvitationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantInvitationDto'
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+          readOnly: true
+        qualifiedName:
+          type: string
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        handler:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        idProvider:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        gender:
+          enum:
+            - Unknown
+            - Male
+            - Female
+            - PreferNotToSay
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        socialFeedId:
+          type: string
+          nullable: true
+        currentTenantId:
+          type: string
+          nullable: true
+        currentEnrollmentId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        userName:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        publicIdentifier:
+          type: string
+          nullable: true
+        identityProvider:
+          type: string
+          nullable: true
+        phoneNumberConfirmed:
+          type: boolean
+        emailConfirmed:
+          type: boolean
+        availability:
+          enum:
+            - DND
+            - Busy
+            - Away
+            - Offline
+            - Available
+          type: string
+          nullable: true
+        lockoutEnabled:
+          type: boolean
+        lockoutEnd:
+          type: string
+          format: date-time
+          nullable: true
+        enrollmentsCount:
+          type: integer
+          format: int32
+          nullable: true
+        siteTheme:
+          enum:
+            - System
+            - Light
+            - Dark
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/UserDto'
+      additionalProperties: false
+    UserSettingsDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        pageSize:
+          type: integer
+          format: int32
+        dateFormat:
+          type: string
+          nullable: true
+        currencyFormat:
+          type: string
+          nullable: true
+        dateTimeFormat:
+          type: string
+          nullable: true
+        siteTheme:
+          enum:
+            - System
+            - Light
+            - Dark
+          type: string
+      additionalProperties: false
+    UserSettingsDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/UserSettingsDto'
+      additionalProperties: false
+    UserSettingsUpdateDto:
+      required:
+        - currencyFormat
+        - dateFormat
+        - dateTimeFormat
+        - siteTheme
+      type: object
+      properties:
+        pageSize:
+          maximum: 1000
+          minimum: 0
+          type: integer
+          format: int32
+          nullable: true
+        dateFormat:
+          minLength: 1
+          type: string
+        currencyFormat:
+          minLength: 1
+          type: string
+        dateTimeFormat:
+          minLength: 1
+          type: string
+        siteTheme:
+          enum:
+            - System
+            - Light
+            - Dark
+          type: string
+      additionalProperties: false
+    UserUpdateDto:
+      type: object
+      properties:
+        qualifiedName:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        idProvider:
+          type: string
+          nullable: true
+        gender:
+          enum:
+            - Unknown
+            - Male
+            - Female
+            - PreferNotToSay
+          type: string
+        email:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        availability:
+          enum:
+            - DND
+            - Busy
+            - Away
+            - Offline
+            - Available
+          type: string
+      additionalProperties: false
+    WalletDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        balance:
+          type: number
+          format: double
+        cryptoBalance:
+          type: number
+          format: double
+        testMode:
+          type: boolean
+        verified:
+          type: boolean
+        type:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        balanceInUsd:
+          type: number
+          format: double
+        mainNetEtherBalance:
+          type: number
+          format: double
+        ethereumAddress:
+          type: string
+          nullable: true
+        ethereumPublicKey:
+          type: string
+          nullable: true
+        ethereumPrivateKey:
+          type: string
+          nullable: true
+        rollingReservePercent:
+          type: number
+          format: double
+      additionalProperties: false
+    WalletDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/WalletDto'
+      additionalProperties: false
+tags:
+  - name: Completions
+  - name: FenixAlliance.Portals.Website
+  - name: Options
+  - name: Users

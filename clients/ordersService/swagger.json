@@ -1,0 +1,6373 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "OrdersService",
+    "termsOfService": "https://absuite.net/eula",
+    "contact": {
+      "name": "Fenix Alliance Inc.",
+      "url": "https://fenixalliance.com.co/Support",
+      "email": "support@fenix-alliance.com"
+    },
+    "license": {
+      "name": "Fenix Alliance Inc.",
+      "url": "https://fenix-alliance.com.co/Legal/Policies/eula"
+    },
+    "version": "2.1.2.5532"
+  },
+  "paths": {
+    "/api/v2/AiService/Completions/Complete": {
+      "get": {
+        "tags": [
+          "Completions"
+        ],
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/json;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/hello": {
+      "get": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "parameters": [
+          {
+            "name": "useCookies",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "useSessionCookies",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refresh": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/confirmEmail": {
+      "get": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "operationId": "MapIdentityApi-/confirmEmail",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "changedEmail",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/resendConfirmationEmail": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendConfirmationEmailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/forgotPassword": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resetPassword": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/manage/2fa": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TwoFactorRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/manage/info": {
+      "get": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/Account/PerformExternalLogin": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string"
+                  },
+                  "returnUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "provider": {
+                  "style": "form"
+                },
+                "returnUrl": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string"
+                  },
+                  "returnUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "provider": {
+                  "style": "form"
+                },
+                "returnUrl": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Account/Logout": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "returnUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "returnUrl": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "returnUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "returnUrl": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Account/Manage/LinkExternalLogin": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "provider": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "provider": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Account/Manage/DownloadPersonalData": {
+      "post": {
+        "tags": [
+          "FenixAlliance.Portals.Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/SubmitCart": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Submits a cart and creates an order.",
+        "description": "Submits the specified cart and creates an order for the authenticated user.",
+        "operationId": "SubmitCart",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets a list of orders for a tenant.",
+        "description": "Retrieves a list of orders for the specified tenant.",
+        "operationId": "GetOrders",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Creates a new order.",
+        "description": "Creates a new order for the specified tenant.",
+        "operationId": "CreateOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/Extended": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets a list of extended orders for a tenant.",
+        "description": "Retrieves a list of extended order details for the specified tenant.",
+        "operationId": "GetExtendedOrders",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedOrderDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedOrderDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/Count": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets the count of orders for a tenant.",
+        "description": "Retrieves the total number of orders for the specified tenant.",
+        "operationId": "GetOrdersCount",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets a specific order by ID.",
+        "description": "Retrieves the details of a specific order by its ID.",
+        "operationId": "GetOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Updates an existing order.",
+        "description": "Updates the details of an existing order.",
+        "operationId": "UpdateOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Partially updates an existing order.",
+        "description": "Applies a JSON Patch document to partially update an existing order.",
+        "operationId": "PatchOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Deletes an order.",
+        "description": "Deletes the specified order.",
+        "operationId": "DeleteOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Calculate": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Calculates totals for an order.",
+        "description": "Performs calculation of totals and taxes for the specified order.",
+        "operationId": "CalculateOrder",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Lines": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets order lines for an order.",
+        "description": "Retrieves the lines (items) for the specified order.",
+        "operationId": "GetOrderLines",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderLineDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderLineDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Creates a new order line.",
+        "description": "Creates a new line (item) for the specified order.",
+        "operationId": "CreateOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Lines/Count": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets the count of order lines for an order.",
+        "description": "Retrieves the total number of lines for the specified order.",
+        "operationId": "GetOrderLinesCount",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Gets a specific order line.",
+        "description": "Retrieves the details of a specific order line by its ID.",
+        "operationId": "GetOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderLineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderLineDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderLineDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Updates an order line.",
+        "description": "Updates the details of a specific order line.",
+        "operationId": "UpdateOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderLineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Partially updates an order line.",
+        "description": "Applies a JSON Patch document to partially update a specific order line.",
+        "operationId": "PatchOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderLineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Deletes an order line.",
+        "description": "Deletes the specified order line.",
+        "operationId": "DeleteOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderLineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}/Calculate": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Calculates totals for an order line.",
+        "description": "Performs calculation of totals and taxes for the specified order line.",
+        "operationId": "CalculateOrderLine",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderLineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Emails/Send": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Send a transactional email for an order.",
+        "description": "Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.",
+        "operationId": "SendOrderEmail",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailDispatchRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailDispatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/OrdersService/Orders/{orderId}/Emails/Preview": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Preview the rendered email for an Order.",
+        "description": "Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.",
+        "operationId": "PreviewOrderEmailTemplate",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailDispatchRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailDispatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessTokenResponse": {
+        "required": [
+          "accessToken",
+          "expiresIn",
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "tokenType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "qualifiedName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "enum": [
+              "Individual",
+              "Organization"
+            ],
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "format": "tel",
+            "nullable": true
+          },
+          "publicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timezoneId": {
+            "type": "string",
+            "nullable": true
+          },
+          "languageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "socialProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "webUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "gitHubUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "twitchUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "redditUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "tikTokUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "twitterUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "facebookUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "youTubeUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "linkedInUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "instagramUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "githubUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "duns": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "cartId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "faxNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "territoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobilePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "annualRevenue": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerContactId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityFeedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentContactId": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "partnerProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryContactId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activeDirectoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityProviderAccessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmailDispatchRequest": {
+        "required": [
+          "culture",
+          "message",
+          "recipients",
+          "title",
+          "uiCulture"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string"
+          },
+          "message": {
+            "minLength": 10,
+            "type": "string"
+          },
+          "buttonLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "buttonText": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "alertMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "alertType": {
+            "enum": [
+              "None",
+              "Info",
+              "Error",
+              "Warning",
+              "Success",
+              "Action",
+              "Alert"
+            ],
+            "type": "string"
+          },
+          "culture": {
+            "minLength": 1,
+            "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+            "type": "string"
+          },
+          "uiCulture": {
+            "minLength": 1,
+            "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+            "type": "string"
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contactIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tenantIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "templateUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "emailTemplateId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmptyEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtendedOrderDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "forexRatesSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetailInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "orderLinesCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quoteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "qualifiedIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "freightTerms": {
+            "enum": [
+              "FOB",
+              "NoCharge"
+            ],
+            "type": "string"
+          },
+          "orderStatus": {
+            "enum": [
+              "New",
+              "Processing",
+              "Accepted",
+              "Declined",
+              "Shipped",
+              "Delivered",
+              "OnHold",
+              "Failed",
+              "Fulfilled",
+              "Cancelled"
+            ],
+            "type": "string"
+          },
+          "requestedDeliveryDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customTotalAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customDetailAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customProfitAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customDiscountsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customSurchargesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customShippingTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customShippingCostAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customWithholdingTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDto"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/TenantDto"
+          },
+          "individual": {
+            "$ref": "#/components/schemas/ContactDto"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/ContactDto"
+          },
+          "receiverTenant": {
+            "$ref": "#/components/schemas/TenantDto"
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/TenantEnrollmentDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtendedOrderDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtendedOrderDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForgotPasswordRequest": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HttpValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "InfoRequest": {
+        "type": "object",
+        "properties": {
+          "newEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InfoResponse": {
+        "required": [
+          "email",
+          "isEmailConfirmed"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmailConfirmed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Int32Envelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "twoFactorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "twoFactorRecoveryCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "enum": [
+              "Add",
+              "Remove",
+              "Replace",
+              "Move",
+              "Copy",
+              "Test",
+              "Invalid"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderCreateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "cartId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderStatus": {
+            "enum": [
+              "New",
+              "Processing",
+              "Accepted",
+              "Declined",
+              "Shipped",
+              "Delivered",
+              "OnHold",
+              "Failed",
+              "Fulfilled",
+              "Cancelled"
+            ],
+            "type": "string"
+          },
+          "quoteStatus": {
+            "enum": [
+              "Draft",
+              "New",
+              "Accepted",
+              "Declined",
+              "Expired"
+            ],
+            "type": "string"
+          },
+          "freightTerms": {
+            "enum": [
+              "FOB",
+              "NoCharge"
+            ],
+            "type": "string"
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "qualifiedIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "effectiveFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "orderLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderLineCreateDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "forexRatesSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetailInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "orderLinesCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quoteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "qualifiedIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "freightTerms": {
+            "enum": [
+              "FOB",
+              "NoCharge"
+            ],
+            "type": "string"
+          },
+          "orderStatus": {
+            "enum": [
+              "New",
+              "Processing",
+              "Accepted",
+              "Declined",
+              "Shipped",
+              "Delivered",
+              "OnHold",
+              "Failed",
+              "Fulfilled",
+              "Cancelled"
+            ],
+            "type": "string"
+          },
+          "requestedDeliveryDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customTotalAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customDetailAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customProfitAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customDiscountsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customSurchargesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customShippingTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customShippingCostAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customWithholdingTaxAmount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/OrderDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderLineCreateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "itemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemShortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPrimaryImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "free": {
+            "type": "boolean"
+          },
+          "freeReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "freeReasonCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPriceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitGroupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRatesSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalBaseAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWarrantyCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalReturnCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRefundCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalSurchargesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalSurchargesAmountCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customGlobalDiscountsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalDiscountsAmountCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "returnPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "refundPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "warrantyPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteItemRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentBillingItemRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "forexRatesSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetailInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "itemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemShortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPrimaryImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "free": {
+            "type": "boolean"
+          },
+          "freeReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "freeReasonCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPriceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitGroupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWarrantyCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalReturnCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRefundCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalSurchargesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalDiscountsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "returnPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "refundPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "warrantyPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteItemRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessProfileRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentBillingItemRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderLineDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/OrderLineDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderLineDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderLineDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderLineUpdateDto": {
+        "type": "object",
+        "properties": {
+          "closed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "itemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemShortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPrimaryImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "free": {
+            "type": "boolean"
+          },
+          "freeReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "freeReasonCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1": {
+            "type": "string",
+            "nullable": true
+          },
+          "data1Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2": {
+            "type": "string",
+            "nullable": true
+          },
+          "data2Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3": {
+            "type": "string",
+            "nullable": true
+          },
+          "data3Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4": {
+            "type": "string",
+            "nullable": true
+          },
+          "data4Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5": {
+            "type": "string",
+            "nullable": true
+          },
+          "data5Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6": {
+            "type": "string",
+            "nullable": true
+          },
+          "data6Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7": {
+            "type": "string",
+            "nullable": true
+          },
+          "data7Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8": {
+            "type": "string",
+            "nullable": true
+          },
+          "data8Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9": {
+            "type": "string",
+            "nullable": true
+          },
+          "data9Label": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemPriceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitGroupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRatesSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalBaseAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWarrantyCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalReturnCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRefundCostInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalSurchargesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalSurchargesAmountCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customGlobalDiscountsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customGlobalDiscountsAmountCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "returnPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "refundPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "warrantyPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentPolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteItemRecordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentBillingItemRecordId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderUpdateDto": {
+        "type": "object",
+        "properties": {
+          "closed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "individualId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTermId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingLocationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDetail": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDetailCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalProfit": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalProfitCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalShippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalShippingCostCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalDiscounts": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalDiscountsCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalGlobalSurcharges": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalGlobalSurchargesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWithheldTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalWithheldTaxCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxBaseCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTaxes": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "taxCalculationMethod": {
+            "enum": [
+              "Included",
+              "Excluded"
+            ],
+            "type": "string"
+          },
+          "cartId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAmountInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalTaxesInUsd": {
+            "type": "number",
+            "format": "double"
+          },
+          "quoteStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "effectiveTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "effectiveFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshRequest": {
+        "required": [
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResendConfirmationEmailRequest": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordRequest": {
+        "required": [
+          "email",
+          "newPassword",
+          "resetCode"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "resetCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "qualifiedName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "taxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "socialFeedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessIndustryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessSegmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "socialProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "languageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "duns": {
+            "type": "string",
+            "nullable": true
+          },
+          "slogan": {
+            "type": "string",
+            "nullable": true
+          },
+          "legalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "cartId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timezoneId": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "webUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "facebookUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "twitterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gitHubUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkedInUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "youTubeUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatsAppNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessLegalName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "twitterUsername": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantEnrollmentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRoot": {
+            "type": "boolean"
+          },
+          "isOwner": {
+            "type": "boolean"
+          },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TwoFactorRequest": {
+        "type": "object",
+        "properties": {
+          "enable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "twoFactorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "resetSharedKey": {
+            "type": "boolean"
+          },
+          "resetRecoveryCodes": {
+            "type": "boolean"
+          },
+          "forgetMachine": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TwoFactorResponse": {
+        "required": [
+          "isMachineRemembered",
+          "isTwoFactorEnabled",
+          "recoveryCodesLeft",
+          "sharedKey"
+        ],
+        "type": "object",
+        "properties": {
+          "sharedKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoveryCodesLeft": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recoveryCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "isTwoFactorEnabled": {
+            "type": "boolean"
+          },
+          "isMachineRemembered": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "qualifiedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "handler": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gitHubUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timezoneId": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "twitterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "youTubeUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkedInUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "facebookUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "socialProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "idProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "languageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "enum": [
+              "Unknown",
+              "Male",
+              "Female",
+              "PreferNotToSay"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "socialFeedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentTenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentEnrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "cartId": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "availability": {
+            "enum": [
+              "DND",
+              "Busy",
+              "Away",
+              "Offline",
+              "Available"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "enrollmentsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "siteTheme": {
+            "enum": [
+              "System",
+              "Light",
+              "Dark"
+            ],
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Completions"
+    },
+    {
+      "name": "FenixAlliance.Portals.Website"
+    },
+    {
+      "name": "Orders"
+    }
+  ]
+}
