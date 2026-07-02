@@ -12,8 +12,26 @@
       "name": "Fenix Alliance Inc.",
       "url": "https://fenix-alliance.com.co/Legal/Policies/eula"
     },
-    "version": "2.1.2.5532"
+    "version": "2.0.0.0"
   },
+  "servers": [
+    {
+      "url": "{server}",
+      "description": "Alliance Business Suite API",
+      "variables": {
+        "server": {
+          "default": "https://absuite.net",
+          "description": "ABS instance base URL",
+          "enum": [
+            "https://absuite.net",
+            "https://test.absuite.net",
+            "https://dev.absuite.net",
+            "https://localhost:44388"
+          ]
+        }
+      }
+    }
+  ],
   "paths": {
     "/api/v2/AccountingService/AccountGroups": {
       "get": {
@@ -709,6 +727,170 @@
           },
           "404": {
             "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/AccountingService/AccountingEntries/Debits/Sum": {
+      "get": {
+        "tags": [
+          "AccountingEntries"
+        ],
+        "summary": "Sum tenant accounting-entry debits",
+        "description": "Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.",
+        "operationId": "GetDebitsSumAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/AccountingService/AccountingEntries/Credits/Sum": {
+      "get": {
+        "tags": [
+          "AccountingEntries"
+        ],
+        "summary": "Sum tenant accounting-entry credits",
+        "description": "Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.",
+        "operationId": "GetCreditsSumAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -12282,463 +12464,6 @@
         }
       }
     },
-    "/api/v2/AiService/Completions/Complete": {
-      "get": {
-        "tags": [
-          "Completions"
-        ],
-        "parameters": [
-          {
-            "name": "tenantId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "conversationId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "message",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/v2/AccountingService/CostCentres": {
       "get": {
         "tags": [
@@ -15920,7 +15645,7 @@
     "/version": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -15932,7 +15657,7 @@
     "/health": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -15944,7 +15669,7 @@
     "/hello": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -15956,7 +15681,7 @@
     "/register": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -15988,7 +15713,7 @@
     "/login": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "parameters": [
           {
@@ -16033,7 +15758,7 @@
     "/refresh": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16062,7 +15787,7 @@
     "/confirmEmail": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "operationId": "MapIdentityApi-/confirmEmail",
         "parameters": [
@@ -16100,7 +15825,7 @@
     "/resendConfirmationEmail": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16122,7 +15847,7 @@
     "/forgotPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16154,7 +15879,7 @@
     "/resetPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16186,7 +15911,7 @@
     "/manage/2fa": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16228,7 +15953,7 @@
     "/manage/info": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -16258,7 +15983,7 @@
       },
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16300,7 +16025,7 @@
     "/Account/PerformExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16358,7 +16083,7 @@
     "/Account/Logout": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16404,7 +16129,7 @@
     "/Account/Manage/LinkExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -16450,7 +16175,7 @@
     "/Account/Manage/DownloadPersonalData": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -24295,6 +24020,170 @@
         }
       }
     },
+    "/api/v2/AccountingService/JournalEntries/Incomes/Sum": {
+      "get": {
+        "tags": [
+          "JournalEntries"
+        ],
+        "summary": "Sum tenant incomes",
+        "description": "Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.",
+        "operationId": "GetIncomesSumAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/AccountingService/JournalEntries/Expenses/Sum": {
+      "get": {
+        "tags": [
+          "JournalEntries"
+        ],
+        "summary": "Sum tenant expenses",
+        "description": "Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.",
+        "operationId": "GetExpensesSumAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/AccountingService/Journals": {
       "get": {
         "tags": [
@@ -30832,6 +30721,88 @@
               "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/AccountingService/Shares/Issuances/Sum": {
+      "get": {
+        "tags": [
+          "Shares"
+        ],
+        "summary": "Sum tenant share issuance quantities",
+        "description": "Returns SUM(ShareIssuance.Quantity) for the tenant, filtered by the supplied OData date range.",
+        "operationId": "GetShareIssuancesSum",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecimalEnvelope"
                 }
               }
             }
@@ -40267,6 +40238,26 @@
             "minLength": 1,
             "type": "string"
           },
+          "verificationDigit": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityScheme": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "establishmentCode": {
+            "type": "string",
+            "nullable": true
+          },
           "ticker": {
             "type": "string",
             "nullable": true
@@ -40491,6 +40482,26 @@
             "type": "string",
             "nullable": true
           },
+          "verificationDigit": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityScheme": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "establishmentCode": {
+            "type": "string",
+            "nullable": true
+          },
           "ticker": {
             "type": "string",
             "nullable": true
@@ -40657,6 +40668,26 @@
             "nullable": true
           },
           "commercialName": {
+            "type": "string",
+            "nullable": true
+          },
+          "verificationDigit": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicActivityScheme": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "establishmentCode": {
             "type": "string",
             "nullable": true
           },
@@ -42258,6 +42289,38 @@
           "country": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecimalEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -47533,6 +47596,14 @@
           "withholding": {
             "type": "boolean"
           },
+          "taxSchemeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
           "fiscalAuthorityId": {
             "maxLength": 36,
             "minLength": 0,
@@ -47649,6 +47720,14 @@
           },
           "withholding": {
             "type": "boolean"
+          },
+          "taxSchemeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCategoryCode": {
+            "type": "string",
+            "nullable": true
           },
           "fiscalAuthorityId": {
             "type": "string",
@@ -47821,6 +47900,14 @@
           },
           "withholding": {
             "type": "boolean"
+          },
+          "taxSchemeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxCategoryCode": {
+            "type": "string",
+            "nullable": true
           },
           "fiscalAuthorityId": {
             "maxLength": 36,
@@ -48664,6 +48751,9 @@
       "name": "AccountGroups"
     },
     {
+      "name": "AccountingEntries"
+    },
+    {
       "name": "AccountingPeriods"
     },
     {
@@ -48688,9 +48778,6 @@
       "name": "Commissions"
     },
     {
-      "name": "Completions"
-    },
-    {
       "name": "CostCentres"
     },
     {
@@ -48700,7 +48787,7 @@
       "name": "ExpenseTypes"
     },
     {
-      "name": "FenixAlliance.Portals.Website"
+      "name": "FenixAlliance.ABS.Web"
     },
     {
       "name": "FinancialBooks"
@@ -48737,6 +48824,9 @@
     },
     {
       "name": "InvoiceEnumerationRanges"
+    },
+    {
+      "name": "JournalEntries"
     },
     {
       "name": "Journals"

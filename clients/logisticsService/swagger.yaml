@@ -9,7 +9,19 @@ info:
   license:
     name: Fenix Alliance Inc.
     url: https://fenix-alliance.com.co/Legal/Policies/eula
-  version: 2.1.2.5532
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
 paths:
   /api/v2/LogisticsService/AirwayBills:
     get:
@@ -915,280 +927,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-  /api/v2/AiService/Completions/Complete:
-    get:
-      tags:
-        - Completions
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: conversationId
-          in: query
-          schema:
-            type: string
-        - name: message
-          in: query
-          schema:
-            type: string
-      responses:
-        '403':
-          description: Forbidden
-          content:
-            application/json;odata.metadata=minimal;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/octet-stream:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json;odata.metadata=minimal;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/octet-stream:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '200':
-          description: OK
   /api/v2/LogisticsService/DeliveryNotes:
     get:
       tags:
@@ -1469,28 +1207,28 @@ paths:
   /version:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /health:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /hello:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /register:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1509,7 +1247,7 @@ paths:
   /login:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       parameters:
         - name: useCookies
           in: query
@@ -1535,7 +1273,7 @@ paths:
   /refresh:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1552,7 +1290,7 @@ paths:
   /confirmEmail:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       operationId: MapIdentityApi-/confirmEmail
       parameters:
         - name: userId
@@ -1575,7 +1313,7 @@ paths:
   /resendConfirmationEmail:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1588,7 +1326,7 @@ paths:
   /forgotPassword:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1607,7 +1345,7 @@ paths:
   /resetPassword:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1626,7 +1364,7 @@ paths:
   /manage/2fa:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1651,7 +1389,7 @@ paths:
   /manage/info:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
@@ -1669,7 +1407,7 @@ paths:
           description: Not Found
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1694,7 +1432,7 @@ paths:
   /Account/PerformExternalLogin:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1729,7 +1467,7 @@ paths:
   /Account/Logout:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1756,7 +1494,7 @@ paths:
   /Account/Manage/LinkExternalLogin:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1783,7 +1521,7 @@ paths:
   /Account/Manage/DownloadPersonalData:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
@@ -12031,6 +11769,159 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactCreateDto:
+      required:
+        - email
+        - firstName
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          enum:
+            - Individual
+            - Organization
+          type: string
+        firstName:
+          maxLength: 50
+          minLength: 1
+          type: string
+        lastName:
+          maxLength: 50
+          type: string
+          nullable: true
+        email:
+          minLength: 1
+          type: string
+          format: email
+        taxId:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        primaryContactId:
+          maxLength: 36
+          minLength: 0
+          type: string
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        about:
+          maxLength: 500
+          type: string
+          nullable: true
+        countryId:
+          maxLength: 3
+          minLength: 0
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        mobilePhone:
+          type: string
+          format: tel
+          nullable: true
+        businessPhone:
+          type: string
+          format: tel
+          nullable: true
+        postalCode:
+          pattern: '^[\w\s-]{3,10}$'
+          type: string
+          nullable: true
+        duns:
+          maxLength: 9
+          minLength: 0
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        streetLine1:
+          type: string
+          nullable: true
+        streetLine2:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        twitchUrl:
+          type: string
+          nullable: true
+        redditUrl:
+          type: string
+          nullable: true
+        tikTokUrl:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        githubUsername:
+          type: string
+          nullable: true
+        instagramUsername:
+          type: string
+          nullable: true
+        tikTokUsername:
+          type: string
+          nullable: true
+        stackExchangeUrl:
+          type: string
+          nullable: true
+        stackOverflowUrl:
+          type: string
+          nullable: true
+        parentContactId:
+          type: string
+          nullable: true
+        faxNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
     ContactDto:
       type: object
       properties:
@@ -12955,6 +12846,12 @@ components:
         entryCount:
           type: integer
           format: int32
+        sellerBillingProfileId:
+          type: string
+          nullable: true
+        buyerBillingProfileId:
+          type: string
+          nullable: true
       additionalProperties: false
     ItemRestockDtoEnvelope:
       type: object
@@ -15031,6 +14928,8 @@ components:
         contactId:
           type: string
           nullable: true
+        contact:
+          $ref: '#/components/schemas/ContactCreateDto'
         about:
           type: string
           nullable: true
@@ -16932,9 +16831,8 @@ components:
       additionalProperties: false
 tags:
   - name: AirwayBills
-  - name: Completions
   - name: DeliveryNotes
-  - name: FenixAlliance.Portals.Website
+  - name: FenixAlliance.ABS.Web
   - name: ItemPackingSlips
   - name: ItemPickLists
   - name: ItemRestocks

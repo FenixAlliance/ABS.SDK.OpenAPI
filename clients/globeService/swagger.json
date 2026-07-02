@@ -12,466 +12,27 @@
       "name": "Fenix Alliance Inc.",
       "url": "https://fenix-alliance.com.co/Legal/Policies/eula"
     },
-    "version": "2.1.2.5532"
+    "version": "2.0.0.0"
   },
-  "paths": {
-    "/api/v2/AiService/Completions/Complete": {
-      "get": {
-        "tags": [
-          "Completions"
-        ],
-        "parameters": [
-          {
-            "name": "tenantId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "conversationId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "message",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "OK"
-          }
+  "servers": [
+    {
+      "url": "{server}",
+      "description": "Alliance Business Suite API",
+      "variables": {
+        "server": {
+          "default": "https://absuite.net",
+          "description": "ABS instance base URL",
+          "enum": [
+            "https://absuite.net",
+            "https://test.absuite.net",
+            "https://dev.absuite.net",
+            "https://localhost:44388"
+          ]
         }
       }
-    },
+    }
+  ],
+  "paths": {
     "/api/v2/GlobeService/Countries": {
       "get": {
         "tags": [
@@ -1766,7 +1327,7 @@
     "/version": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -1778,7 +1339,7 @@
     "/health": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -1790,7 +1351,7 @@
     "/hello": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -1802,7 +1363,7 @@
     "/register": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -1834,7 +1395,7 @@
     "/login": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "parameters": [
           {
@@ -1879,7 +1440,7 @@
     "/refresh": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -1908,7 +1469,7 @@
     "/confirmEmail": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "operationId": "MapIdentityApi-/confirmEmail",
         "parameters": [
@@ -1946,7 +1507,7 @@
     "/resendConfirmationEmail": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -1968,7 +1529,7 @@
     "/forgotPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2000,7 +1561,7 @@
     "/resetPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2032,7 +1593,7 @@
     "/manage/2fa": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2074,7 +1635,7 @@
     "/manage/info": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -2104,7 +1665,7 @@
       },
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2146,7 +1707,7 @@
     "/Account/PerformExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2204,7 +1765,7 @@
     "/Account/Logout": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2250,7 +1811,7 @@
     "/Account/Manage/LinkExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -2296,7 +1857,7 @@
     "/Account/Manage/DownloadPersonalData": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -2525,76 +2086,6 @@
               "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/CountryLanguageDtoEnvelope"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v2/Global/System/Migrate": {
-      "post": {
-        "tags": [
-          "Migrations"
-        ],
-        "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentResponse"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseStatus"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseStatus"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseStatus"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseStatus"
                 }
               }
             }
@@ -3435,24 +2926,6 @@
         },
         "additionalProperties": false
       },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "help": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "ErrorEnvelope": {
         "type": "object",
         "properties": {
@@ -3624,67 +3097,6 @@
         },
         "additionalProperties": false
       },
-      "PaymentResponse": {
-        "type": "object",
-        "properties": {
-          "test": {
-            "type": "boolean"
-          },
-          "ip": {
-            "type": "string",
-            "nullable": true
-          },
-          "bank": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "errors": {
-            "nullable": true
-          },
-          "response": {
-            "type": "string",
-            "nullable": true
-          },
-          "authCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentID": {
-            "type": "string",
-            "nullable": true
-          },
-          "franchise": {
-            "type": "string",
-            "nullable": true
-          },
-          "signature": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentStatus": {
-            "enum": [
-              "Unset",
-              "Accepted",
-              "Rejected",
-              "OnHold",
-              "Failed",
-              "Reversed",
-              "Retained",
-              "Initialized",
-              "Expired",
-              "Abandoned",
-              "Cancelled",
-              "AcceptedRetained"
-            ],
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -3748,26 +3160,6 @@
           "newPassword": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ResponseStatus": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          },
-          "correlationID": {
-            "type": "string",
-            "nullable": true
-          },
-          "utcTimestamp": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -3926,22 +3318,16 @@
   },
   "tags": [
     {
-      "name": "Completions"
-    },
-    {
       "name": "Countries"
     },
     {
       "name": "Currencies"
     },
     {
-      "name": "FenixAlliance.Portals.Website"
+      "name": "FenixAlliance.ABS.Web"
     },
     {
       "name": "Languages"
-    },
-    {
-      "name": "Migrations"
     },
     {
       "name": "Timezones"

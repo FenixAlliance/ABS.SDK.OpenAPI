@@ -12,17 +12,47 @@
       "name": "Fenix Alliance Inc.",
       "url": "https://fenix-alliance.com.co/Legal/Policies/eula"
     },
-    "version": "2.1.2.5532"
+    "version": "2.0.0.0"
   },
+  "servers": [
+    {
+      "url": "{server}",
+      "description": "Alliance Business Suite API",
+      "variables": {
+        "server": {
+          "default": "https://absuite.net",
+          "description": "ABS instance base URL",
+          "enum": [
+            "https://absuite.net",
+            "https://test.absuite.net",
+            "https://dev.absuite.net",
+            "https://localhost:44388"
+          ]
+        }
+      }
+    }
+  ],
   "paths": {
-    "/api/v2/AiService/Completions/Complete": {
+    "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences": {
       "get": {
         "tags": [
-          "Completions"
+          "CurriculumExperiences"
         ],
+        "summary": "Get curriculum experiences",
+        "description": "Retrieves the work-experience records of a curriculum authored on the specified social profile.",
+        "operationId": "GetCurriculumExperiencesAsync",
         "parameters": [
           {
-            "name": "tenantId",
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
             "in": "query",
             "required": true,
             "schema": {
@@ -31,15 +61,23 @@
             }
           },
           {
-            "name": "conversationId",
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "message",
-            "in": "query",
+            "name": "x-api-version",
+            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -49,207 +87,12 @@
           "403": {
             "description": "Forbidden",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
               },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
               "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
@@ -259,182 +102,7 @@
           "401": {
             "description": "Unauthorized",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=full;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.metadata=none;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=true;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;odata.streaming=false;IEEE754Compatible=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorEnvelope"
-                }
-              },
-              "application/json;IEEE754Compatible=true": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
@@ -443,23 +111,228 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumExperienceDtoListEnvelope"
+                }
               },
-              "text/plain": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumExperienceDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Create a curriculum experience",
+        "description": "Adds a work-experience record to a curriculum authored on the specified social profile.",
+        "operationId": "CreateCurriculumExperienceAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumExperienceCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumExperienceCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
               },
-              "application/octet-stream": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
               },
-              "text/json": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
               },
-              "text/xml": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/Count": {
+      "get": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Count curriculum experiences",
+        "description": "Returns the count of work-experience records of a curriculum.",
+        "operationId": "GetCurriculumExperiencesCountAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorEnvelope"
                 }
@@ -467,7 +340,1290 @@
             }
           },
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}": {
+      "get": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Get curriculum experience by ID",
+        "description": "Retrieves a specific work-experience record of a curriculum.",
+        "operationId": "GetCurriculumExperienceAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "experienceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumExperienceDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumExperienceDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Update a curriculum experience",
+        "description": "Updates an existing work-experience record of a curriculum.",
+        "operationId": "UpdateCurriculumExperienceAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "experienceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumExperienceUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumExperienceUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Patch a curriculum experience",
+        "description": "Partially updates an existing work-experience record of a curriculum.",
+        "operationId": "PatchCurriculumExperienceAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "experienceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CurriculumExperiences"
+        ],
+        "summary": "Delete a curriculum experience",
+        "description": "Removes a work-experience record from a curriculum.",
+        "operationId": "DeleteCurriculumExperienceAsync",
+        "parameters": [
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "experienceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Curriculums": {
+      "get": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Get curricula",
+        "description": "Retrieves the curricula (CVs) authored on the specified social profile.",
+        "operationId": "GetCurriculumsAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Create a curriculum",
+        "description": "Creates a curriculum (CV) on the specified social profile.",
+        "operationId": "CreateCurriculumAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Curriculums/Count": {
+      "get": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Count curricula",
+        "description": "Returns the count of curricula authored on the specified social profile.",
+        "operationId": "GetCurriculumsCountAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Curriculums/{curriculumId}": {
+      "get": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Get curriculum by ID",
+        "description": "Retrieves a specific curriculum authored on the specified social profile.",
+        "operationId": "GetCurriculumAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Update a curriculum",
+        "description": "Updates an existing curriculum authored on the specified social profile.",
+        "operationId": "UpdateCurriculumAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CurriculumUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Patch a curriculum",
+        "description": "Partially updates an existing curriculum authored on the specified social profile.",
+        "operationId": "PatchCurriculumAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Curriculums"
+        ],
+        "summary": "Delete a curriculum",
+        "description": "Deletes a curriculum authored on the specified social profile.",
+        "operationId": "DeleteCurriculumAsync",
+        "parameters": [
+          {
+            "name": "socialProfileId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "curriculumId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
           }
         }
       }
@@ -475,7 +1631,7 @@
     "/version": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -487,7 +1643,7 @@
     "/health": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -499,7 +1655,7 @@
     "/hello": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -511,7 +1667,7 @@
     "/register": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -543,7 +1699,7 @@
     "/login": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "parameters": [
           {
@@ -588,7 +1744,7 @@
     "/refresh": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -617,7 +1773,7 @@
     "/confirmEmail": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "operationId": "MapIdentityApi-/confirmEmail",
         "parameters": [
@@ -655,7 +1811,7 @@
     "/resendConfirmationEmail": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -677,7 +1833,7 @@
     "/forgotPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -709,7 +1865,7 @@
     "/resetPassword": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -741,7 +1897,7 @@
     "/manage/2fa": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -783,7 +1939,7 @@
     "/manage/info": {
       "get": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
@@ -813,7 +1969,7 @@
       },
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -855,7 +2011,7 @@
     "/Account/PerformExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -913,7 +2069,7 @@
     "/Account/Logout": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -959,7 +2115,7 @@
     "/Account/Manage/LinkExternalLogin": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "requestBody": {
           "content": {
@@ -1005,11 +2161,721 @@
     "/Account/Manage/DownloadPersonalData": {
       "post": {
         "tags": [
-          "FenixAlliance.Portals.Website"
+          "FenixAlliance.ABS.Web"
         ],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Skills": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Get skills",
+        "description": "Retrieves the skill catalog for the specified tenant.",
+        "operationId": "GetSkillsAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Create a skill",
+        "description": "Creates a new skill catalog entry for the specified tenant.",
+        "operationId": "CreateSkillAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Skills/Count": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Count skills",
+        "description": "Counts skill catalog entries for the specified tenant.",
+        "operationId": "GetSkillsCountAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SocialService/Skills/{skillId}": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Get skill by ID",
+        "description": "Retrieves a specific skill by its identifier.",
+        "operationId": "GetSkillByIdAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Update a skill",
+        "description": "Updates an existing skill for the specified tenant.",
+        "operationId": "UpdateSkillAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Patch a skill",
+        "description": "Partially updates an existing skill for the specified tenant.",
+        "operationId": "PatchSkillAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Delete a skill",
+        "description": "Deletes a skill for the specified tenant.",
+        "operationId": "DeleteSkillAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
           }
         }
       }
@@ -7392,6 +9258,638 @@
         },
         "additionalProperties": false
       },
+      "CurriculumCreateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "socialProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobApplicantProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "undergraduate": {
+            "type": "boolean"
+          },
+          "certifiedProfessional": {
+            "type": "boolean"
+          },
+          "sales": {
+            "type": "boolean"
+          },
+          "others": {
+            "type": "boolean"
+          },
+          "finance": {
+            "type": "boolean"
+          },
+          "research": {
+            "type": "boolean"
+          },
+          "advocate": {
+            "type": "boolean"
+          },
+          "marketing": {
+            "type": "boolean"
+          },
+          "education": {
+            "type": "boolean"
+          },
+          "executive": {
+            "type": "boolean"
+          },
+          "commercial": {
+            "type": "boolean"
+          },
+          "graphicDesign": {
+            "type": "boolean"
+          },
+          "sustainability": {
+            "type": "boolean"
+          },
+          "administrative": {
+            "type": "boolean"
+          },
+          "humanResources": {
+            "type": "boolean"
+          },
+          "soundEngineering": {
+            "type": "boolean"
+          },
+          "cloudEngineering": {
+            "type": "boolean"
+          },
+          "firstLevelSupport": {
+            "type": "boolean"
+          },
+          "secondLevelSupport": {
+            "type": "boolean"
+          },
+          "softwareEngineering": {
+            "type": "boolean"
+          },
+          "partnerAccountRepresentative": {
+            "type": "boolean"
+          },
+          "startupSuccessRepresentative": {
+            "type": "boolean"
+          },
+          "customerSuccessRepresentative": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "socialProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobApplicantProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "undergraduate": {
+            "type": "boolean"
+          },
+          "certifiedProfessional": {
+            "type": "boolean"
+          },
+          "sales": {
+            "type": "boolean"
+          },
+          "others": {
+            "type": "boolean"
+          },
+          "finance": {
+            "type": "boolean"
+          },
+          "research": {
+            "type": "boolean"
+          },
+          "advocate": {
+            "type": "boolean"
+          },
+          "marketing": {
+            "type": "boolean"
+          },
+          "education": {
+            "type": "boolean"
+          },
+          "executive": {
+            "type": "boolean"
+          },
+          "commercial": {
+            "type": "boolean"
+          },
+          "graphicDesign": {
+            "type": "boolean"
+          },
+          "sustainability": {
+            "type": "boolean"
+          },
+          "administrative": {
+            "type": "boolean"
+          },
+          "humanResources": {
+            "type": "boolean"
+          },
+          "soundEngineering": {
+            "type": "boolean"
+          },
+          "cloudEngineering": {
+            "type": "boolean"
+          },
+          "firstLevelSupport": {
+            "type": "boolean"
+          },
+          "secondLevelSupport": {
+            "type": "boolean"
+          },
+          "softwareEngineering": {
+            "type": "boolean"
+          },
+          "partnerAccountRepresentative": {
+            "type": "boolean"
+          },
+          "startupSuccessRepresentative": {
+            "type": "boolean"
+          },
+          "customerSuccessRepresentative": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/CurriculumDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurriculumDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumExperienceCreateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "curriculumId": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "number",
+            "format": "double"
+          },
+          "organization": {
+            "type": "string",
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "validated": {
+            "type": "boolean"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "countryLanguageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingValueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingModelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "achievements": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibilities": {
+            "type": "string",
+            "nullable": true
+          },
+          "employerProfileId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumExperienceDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "curriculumId": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "number",
+            "format": "double"
+          },
+          "organization": {
+            "type": "string",
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "validated": {
+            "type": "boolean"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "countryLanguageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingValueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingModelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "achievements": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibilities": {
+            "type": "string",
+            "nullable": true
+          },
+          "employerProfileId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumExperienceDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/CurriculumExperienceDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumExperienceDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurriculumExperienceDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumExperienceUpdateDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "number",
+            "format": "double"
+          },
+          "organization": {
+            "type": "string",
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "validated": {
+            "type": "boolean"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "countryLanguageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingValueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficiencyRatingModelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "achievements": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibilities": {
+            "type": "string",
+            "nullable": true
+          },
+          "employerProfileId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurriculumUpdateDto": {
+        "type": "object",
+        "properties": {
+          "jobApplicantProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "undergraduate": {
+            "type": "boolean"
+          },
+          "certifiedProfessional": {
+            "type": "boolean"
+          },
+          "sales": {
+            "type": "boolean"
+          },
+          "others": {
+            "type": "boolean"
+          },
+          "finance": {
+            "type": "boolean"
+          },
+          "research": {
+            "type": "boolean"
+          },
+          "advocate": {
+            "type": "boolean"
+          },
+          "marketing": {
+            "type": "boolean"
+          },
+          "education": {
+            "type": "boolean"
+          },
+          "executive": {
+            "type": "boolean"
+          },
+          "commercial": {
+            "type": "boolean"
+          },
+          "graphicDesign": {
+            "type": "boolean"
+          },
+          "sustainability": {
+            "type": "boolean"
+          },
+          "administrative": {
+            "type": "boolean"
+          },
+          "humanResources": {
+            "type": "boolean"
+          },
+          "soundEngineering": {
+            "type": "boolean"
+          },
+          "cloudEngineering": {
+            "type": "boolean"
+          },
+          "firstLevelSupport": {
+            "type": "boolean"
+          },
+          "secondLevelSupport": {
+            "type": "boolean"
+          },
+          "softwareEngineering": {
+            "type": "boolean"
+          },
+          "partnerAccountRepresentative": {
+            "type": "boolean"
+          },
+          "startupSuccessRepresentative": {
+            "type": "boolean"
+          },
+          "customerSuccessRepresentative": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "EmptyEnvelope": {
         "type": "object",
         "properties": {
@@ -8010,6 +10508,205 @@
         },
         "additionalProperties": false
       },
+      "SkillCreateDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "skillType": {
+            "enum": [
+              "Skill",
+              "Certification"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "skillType": {
+            "enum": [
+              "Skill",
+              "Certification"
+            ],
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/SkillDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "skillType": {
+            "enum": [
+              "Skill",
+              "Certification"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "SocialFeedDto": {
         "type": "object",
         "properties": {
@@ -8458,6 +11155,15 @@
             "type": "string",
             "nullable": true
           },
+          "publicAccessType": {
+            "enum": [
+              "Off",
+              "Container",
+              "Blob",
+              "Unknown"
+            ],
+            "type": "string"
+          },
           "socialPostId": {
             "type": "string",
             "nullable": true
@@ -8501,6 +11207,14 @@
             "nullable": true
           },
           "filePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "storageKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "storageProviderKey": {
             "type": "string",
             "nullable": true
           },
@@ -8554,6 +11268,56 @@
           "folderPath": {
             "type": "string",
             "nullable": true
+          },
+          "scanStatus": {
+            "enum": [
+              "NotRequired",
+              "Pending",
+              "Clean",
+              "Infected",
+              "Failed",
+              "Quarantined"
+            ],
+            "type": "string"
+          },
+          "thumbnailStatus": {
+            "enum": [
+              "NotRequired",
+              "Pending",
+              "Ready",
+              "Failed",
+              "Unsupported"
+            ],
+            "type": "string"
+          },
+          "hasThumbnail": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "thumbnailStorageKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnailContentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnailWidth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thumbnailHeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicAccessType": {
+            "enum": [
+              "Off",
+              "Container",
+              "Blob",
+              "Unknown"
+            ],
+            "type": "string"
           },
           "socialPostId": {
             "type": "string",
@@ -8696,6 +11460,19 @@
             "pattern": "^[\\w\\s\\.\\,\\!\\?\\-\\(\\)\\[\\]\\{\\}\\'\\\"\\:\\;]{1,280}$",
             "type": "string"
           },
+          "bodyHtml": {
+            "maxLength": 8000,
+            "type": "string",
+            "nullable": true
+          },
+          "bodyFormat": {
+            "enum": [
+              "PlainText",
+              "Html"
+            ],
+            "type": "string",
+            "nullable": true
+          },
           "parentCommentId": {
             "type": "string",
             "nullable": true
@@ -8748,6 +11525,18 @@
             "nullable": true
           },
           "socialProfileAvatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyFormat": {
+            "enum": [
+              "PlainText",
+              "Html"
+            ],
             "type": "string",
             "nullable": true
           },
@@ -9416,10 +12205,16 @@
   },
   "tags": [
     {
-      "name": "Completions"
+      "name": "CurriculumExperiences"
     },
     {
-      "name": "FenixAlliance.Portals.Website"
+      "name": "Curriculums"
+    },
+    {
+      "name": "FenixAlliance.ABS.Web"
+    },
+    {
+      "name": "Skills"
     },
     {
       "name": "SocialFeeds"

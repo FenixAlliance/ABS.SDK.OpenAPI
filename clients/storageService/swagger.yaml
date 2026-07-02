@@ -9,7 +9,19 @@ info:
   license:
     name: Fenix Alliance Inc.
     url: https://fenix-alliance.com.co/Legal/Policies/eula
-  version: 2.1.2.5532
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
 paths:
   '/api/v2/StorageService/Avatars/{socialProfileId}':
     get:
@@ -42,24 +54,6 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/StorageService/Avatars/User:
     get:
       tags:
@@ -85,24 +79,6 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
     post:
       tags:
         - Avatars
@@ -197,24 +173,6 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   '/api/v2/StorageService/Avatars/Tenant/{tenantId}':
     get:
       tags:
@@ -246,24 +204,6 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
     post:
       tags:
         - Avatars
@@ -364,24 +304,6 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   '/api/v2/StorageService/Avatars/Contacts/{contactId}':
     post:
       tags:
@@ -580,305 +502,338 @@ paths:
             image/png:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
-  /api/v2/AiService/Completions/Complete:
+  '/api/v2/StorageService/EditorAssets/{fileId}':
     get:
       tags:
-        - Completions
+        - EditorAssets
+      operationId: GetEditorAssetAsync
       parameters:
-        - name: tenantId
-          in: query
+        - name: fileId
+          in: path
           required: true
           schema:
             type: string
             format: uuid
-        - name: conversationId
+        - name: api-version
           in: query
           schema:
             type: string
-        - name: message
-          in: query
+        - name: x-api-version
+          in: header
           schema:
             type: string
       responses:
-        '403':
-          description: Forbidden
-          content:
-            application/json;odata.metadata=minimal;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/octet-stream:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json;odata.metadata=minimal;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=minimal;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=full;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.metadata=none;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=true;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;odata.streaming=false;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=false:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/json;IEEE754Compatible=true:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/octet-stream:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=false:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/json;IEEE754Compatible=false:
+              schema:
+                type: string
+                format: binary
+            application/json;IEEE754Compatible=true:
+              schema:
+                type: string
+                format: binary
+            application/xml:
+              schema:
+                type: string
+                format: binary
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /version:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /health:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /hello:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
   /register:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -897,7 +852,7 @@ paths:
   /login:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       parameters:
         - name: useCookies
           in: query
@@ -923,7 +878,7 @@ paths:
   /refresh:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -940,7 +895,7 @@ paths:
   /confirmEmail:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       operationId: MapIdentityApi-/confirmEmail
       parameters:
         - name: userId
@@ -963,7 +918,7 @@ paths:
   /resendConfirmationEmail:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -976,7 +931,7 @@ paths:
   /forgotPassword:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -995,7 +950,7 @@ paths:
   /resetPassword:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1014,7 +969,7 @@ paths:
   /manage/2fa:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1039,7 +994,7 @@ paths:
   /manage/info:
     get:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
@@ -1057,7 +1012,7 @@ paths:
           description: Not Found
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           application/json:
@@ -1082,7 +1037,7 @@ paths:
   /Account/PerformExternalLogin:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1117,7 +1072,7 @@ paths:
   /Account/Logout:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1144,7 +1099,7 @@ paths:
   /Account/Manage/LinkExternalLogin:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       requestBody:
         content:
           multipart/form-data:
@@ -1171,7 +1126,7 @@ paths:
   /Account/Manage/DownloadPersonalData:
     post:
       tags:
-        - FenixAlliance.Portals.Website
+        - FenixAlliance.ABS.Web
       responses:
         '200':
           description: OK
@@ -1244,550 +1199,11 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PayloadFileUploadCreateDto'
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmptyEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/EmptyEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '409':
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '422':
-          description: Unprocessable Content
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  '/api/v2/StorageService/Files/{fileId}':
-    get:
-      tags:
-        - Files
-      operationId: GetFileAsync
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: fileId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-    put:
-      tags:
-        - Files
-      operationId: UpdateFileAsync
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: fileId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PayloadFileUploadUpdateDto'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '409':
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '422':
-          description: Unprocessable Content
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-    delete:
-      tags:
-        - Files
-      operationId: DeleteFileAsync
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: fileId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/FileUploadDtoEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '409':
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '422':
-          description: Unprocessable Content
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  '/api/v2/StorageService/Files/{fileId}/Raw':
-    get:
-      tags:
-        - Files
-      operationId: DownloadFileAsync
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: fileId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            image/png:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  /api/v2/StorageService/RadzenEditor/Uploads/Single:
-    post:
-      tags:
-        - RadzenEditor
-      summary: Upload a single file
-      description: Uploads a single file to tenant or user storage.
-      operationId: Single
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
               type: object
               properties:
                 file:
                   type: string
                   format: binary
-            encoding:
-              file:
-                style: form
-      responses:
-        '200':
-          description: OK
-  /api/v2/StorageService/RadzenEditor/Uploads/Image:
-    post:
-      tags:
-        - RadzenEditor
-      summary: Upload an image file
-      description: Uploads an image file and returns its URL for editor embedding.
-      operationId: Image
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-            encoding:
-              file:
-                style: form
-      responses:
-        '200':
-          description: OK
-  /api/v2/StorageService/RadzenEditor/Uploads/Multiple:
-    post:
-      tags:
-        - RadzenEditor
-      summary: Upload multiple files
-      description: Uploads multiple files to tenant or user storage.
-      operationId: Multiple
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-            encoding:
-              files:
-                style: form
-      responses:
-        '200':
-          description: OK
-  '/api/v2/StorageService/RadzenEditor/Uploads/{id}':
-    post:
-      tags:
-        - RadzenEditor
-      summary: Upload files by ID
-      description: Uploads files associated with a specific resource ID.
-      operationId: Post
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-            encoding:
-              files:
-                style: form
-      responses:
-        '200':
-          description: OK
-  /api/v2/StorageService/RadzenEditor/Uploads/Specific:
-    post:
-      tags:
-        - RadzenEditor
-      summary: Upload a specific file
-      description: Uploads a specific file to tenant or user storage.
-      operationId: Specific
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-            encoding:
-              file:
-                style: form
-      responses:
-        '200':
-          description: OK
-  /api/v2/StorageService/Uploads:
-    post:
-      tags:
-        - Uploads
-      summary: Upload a file
-      description: Uploads a file to tenant or user storage.
-      operationId: SaveFileAsync
-      parameters:
-        - name: tenantId
-          in: query
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
                 notes:
                   type: string
                 title:
@@ -1808,6 +1224,31 @@ paths:
                   type: string
                 filePath:
                   type: string
+                publicAccessType:
+                  enum:
+                    - Off
+                    - Container
+                    - Blob
+                    - Unknown
+                  type: string
+                purpose:
+                  enum:
+                    - Unknown
+                    - IdentityAvatar
+                    - IdentityBanner
+                    - ProfileAsset
+                    - EngagementInline
+                    - EngagementAttachment
+                    - MessageAttachment
+                    - SocialPost
+                    - RecordAttachment
+                    - AiGenerated
+                    - SystemArtifact
+                    - Temporary
+                  type: string
+                socialProfileId.value:
+                  type: string
+                  format: uuid
                 appFile.content:
                   type: string
                   format: byte
@@ -1862,6 +1303,8 @@ paths:
                   type: string
                   format: date-time
             encoding:
+              file:
+                style: form
               notes:
                 style: form
               title:
@@ -1881,6 +1324,1045 @@ paths:
               parentFileUploadId:
                 style: form
               filePath:
+                style: form
+              publicAccessType:
+                style: form
+              purpose:
+                style: form
+              socialProfileId.value:
+                style: form
+              appFile.content:
+                style: form
+              appFile.sha256:
+                style: form
+              appFile.createdAtUtc:
+                style: form
+              appFile.userId.value:
+                style: form
+              appFile.tenantId.value:
+                style: form
+              appFile.enrollmentId.value:
+                style: form
+              appFile.source:
+                style: form
+              appFile.length:
+                style: form
+              appFile.name:
+                style: form
+              appFile.fileName:
+                style: form
+              appFile.lastModified:
+                style: form
+              appFile.size:
+                style: form
+              appFile.contentType:
+                style: form
+              appFile.contentDisposition:
+                style: form
+              appFile.headers:
+                style: form
+              id:
+                style: form
+              timestamp:
+                style: form
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/StorageService/Files/Count:
+    get:
+      tags:
+        - Files
+      operationId: GetFilesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64
+            image/png:
+              schema:
+                type: integer
+                format: int64
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/StorageService/Files/{fileId}':
+    get:
+      tags:
+        - Files
+      operationId: GetFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadDtoEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/FileUploadDtoEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+    put:
+      tags:
+        - Files
+      operationId: UpdateFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                notes:
+                  type: string
+                metadata:
+                  type: string
+                title:
+                  type: string
+                author:
+                  type: string
+                isFolder:
+                  type: boolean
+                fileName:
+                  type: string
+                abstract:
+                  type: string
+                keyWords:
+                  type: string
+                validResponse:
+                  type: boolean
+                parentFileUploadID:
+                  type: string
+                filePath:
+                  type: string
+                appFile.content:
+                  type: string
+                  format: byte
+                appFile.sha256:
+                  type: string
+                appFile.createdAtUtc:
+                  type: string
+                  format: date-time
+                appFile.userId.value:
+                  type: string
+                  format: uuid
+                appFile.tenantId.value:
+                  type: string
+                  format: uuid
+                appFile.enrollmentId.value:
+                  type: string
+                  format: uuid
+                appFile.source:
+                  enum:
+                    - Unknown
+                    - HttpUpload
+                    - Integration
+                    - InternalProcess
+                    - ApiClient
+                    - WorkflowEngine
+                  type: string
+                appFile.length:
+                  type: integer
+                  format: int64
+                appFile.name:
+                  type: string
+                appFile.fileName:
+                  type: string
+                appFile.lastModified:
+                  type: string
+                  format: date-time
+                appFile.size:
+                  type: integer
+                  format: int64
+                appFile.contentType:
+                  type: string
+                appFile.contentDisposition:
+                  type: string
+                appFile.headers:
+                  type: object
+                  additionalProperties:
+                    type: string
+            encoding:
+              file:
+                style: form
+              notes:
+                style: form
+              metadata:
+                style: form
+              title:
+                style: form
+              author:
+                style: form
+              isFolder:
+                style: form
+              fileName:
+                style: form
+              abstract:
+                style: form
+              keyWords:
+                style: form
+              validResponse:
+                style: form
+              parentFileUploadID:
+                style: form
+              filePath:
+                style: form
+              appFile.content:
+                style: form
+              appFile.sha256:
+                style: form
+              appFile.createdAtUtc:
+                style: form
+              appFile.userId.value:
+                style: form
+              appFile.tenantId.value:
+                style: form
+              appFile.enrollmentId.value:
+                style: form
+              appFile.source:
+                style: form
+              appFile.length:
+                style: form
+              appFile.name:
+                style: form
+              appFile.fileName:
+                style: form
+              appFile.lastModified:
+                style: form
+              appFile.size:
+                style: form
+              appFile.contentType:
+                style: form
+              appFile.contentDisposition:
+                style: form
+              appFile.headers:
+                style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+    delete:
+      tags:
+        - Files
+      operationId: DeleteFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/StorageService/Files/{fileId}/Raw':
+    get:
+      tags:
+        - Files
+      operationId: DownloadFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/StorageService/Files/{fileId}/Thumbnail':
+    get:
+      tags:
+        - Files
+      operationId: GetFileThumbnailAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/fs/radzen/tenants/{tenantId}/upload/single':
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload a single editor file to tenant storage.
+      operationId: RadzenUploadSingle
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/single':
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload a single editor file scoped to a record.
+      operationId: RadzenUploadSingleScoped
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: recordType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/tenants/{tenantId}/upload/image':
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload an editor image to tenant storage.
+      operationId: RadzenUploadImage
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: visibility
+          in: query
+          schema:
+            type: string
+        - name: socialProfileId
+          in: query
+          schema:
+            type: string
+        - name: purpose
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/image':
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload an editor image scoped to a record.
+      operationId: RadzenUploadImageScoped
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: recordType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: visibility
+          in: query
+          schema:
+            type: string
+        - name: socialProfileId
+          in: query
+          schema:
+            type: string
+        - name: purpose
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /api/v2/fs/radzen/users/upload/image:
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload an editor image to user storage.
+      operationId: RadzenUploadUserImage
+      parameters:
+        - name: visibility
+          in: query
+          schema:
+            type: string
+        - name: socialProfileId
+          in: query
+          schema:
+            type: string
+        - name: purpose
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/users/{recordType}/{recordId}/upload/image':
+    post:
+      tags:
+        - RadzenEditor
+      summary: Upload a user editor image scoped to a record.
+      operationId: RadzenUploadUserImageScoped
+      parameters:
+        - name: recordType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: visibility
+          in: query
+          schema:
+            type: string
+        - name: socialProfileId
+          in: query
+          schema:
+            type: string
+        - name: purpose
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/tenants/{tenantId}/upload/stream':
+    put:
+      tags:
+        - RadzenEditor
+      summary: Chunked editor upload (not implemented).
+      operationId: RadzenUploadStream
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream':
+    put:
+      tags:
+        - RadzenEditor
+      summary: Chunked editor upload (not implemented).
+      operationId: RadzenUploadStream
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /api/v2/StorageService/Uploads:
+    post:
+      tags:
+        - Uploads
+      summary: Upload a file
+      description: 'Uploads a file to tenant or user storage, scanned and catalogued through the storage spine.'
+      operationId: SaveFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                notes:
+                  type: string
+                title:
+                  type: string
+                author:
+                  type: string
+                isFolder:
+                  type: boolean
+                fileName:
+                  type: string
+                abstract:
+                  type: string
+                keyWords:
+                  type: string
+                validResponse:
+                  type: boolean
+                parentFileUploadId:
+                  type: string
+                filePath:
+                  type: string
+                publicAccessType:
+                  enum:
+                    - Off
+                    - Container
+                    - Blob
+                    - Unknown
+                  type: string
+                purpose:
+                  enum:
+                    - Unknown
+                    - IdentityAvatar
+                    - IdentityBanner
+                    - ProfileAsset
+                    - EngagementInline
+                    - EngagementAttachment
+                    - MessageAttachment
+                    - SocialPost
+                    - RecordAttachment
+                    - AiGenerated
+                    - SystemArtifact
+                    - Temporary
+                  type: string
+                socialProfileId.value:
+                  type: string
+                  format: uuid
+                appFile.content:
+                  type: string
+                  format: byte
+                appFile.sha256:
+                  type: string
+                appFile.createdAtUtc:
+                  type: string
+                  format: date-time
+                appFile.userId.value:
+                  type: string
+                  format: uuid
+                appFile.tenantId.value:
+                  type: string
+                  format: uuid
+                appFile.enrollmentId.value:
+                  type: string
+                  format: uuid
+                appFile.source:
+                  enum:
+                    - Unknown
+                    - HttpUpload
+                    - Integration
+                    - InternalProcess
+                    - ApiClient
+                    - WorkflowEngine
+                  type: string
+                appFile.length:
+                  type: integer
+                  format: int64
+                appFile.name:
+                  type: string
+                appFile.fileName:
+                  type: string
+                appFile.lastModified:
+                  type: string
+                  format: date-time
+                appFile.size:
+                  type: integer
+                  format: int64
+                appFile.contentType:
+                  type: string
+                appFile.contentDisposition:
+                  type: string
+                appFile.headers:
+                  type: object
+                  additionalProperties:
+                    type: string
+                id:
+                  type: string
+                  format: uuid
+                timestamp:
+                  type: string
+                  format: date-time
+            encoding:
+              file:
+                style: form
+              notes:
+                style: form
+              title:
+                style: form
+              author:
+                style: form
+              isFolder:
+                style: form
+              fileName:
+                style: form
+              abstract:
+                style: form
+              keyWords:
+                style: form
+              validResponse:
+                style: form
+              parentFileUploadId:
+                style: form
+              filePath:
+                style: form
+              publicAccessType:
+                style: form
+              purpose:
+                style: form
+              socialProfileId.value:
                 style: form
               appFile.content:
                 style: form
@@ -2119,6 +2601,12 @@ components:
         filePath:
           type: string
           nullable: true
+        storageKey:
+          type: string
+          nullable: true
+        storageProviderKey:
+          type: string
+          nullable: true
         fileName:
           type: string
           nullable: true
@@ -2157,6 +2645,45 @@ components:
         folderPath:
           type: string
           nullable: true
+        scanStatus:
+          enum:
+            - NotRequired
+            - Pending
+            - Clean
+            - Infected
+            - Failed
+            - Quarantined
+          type: string
+        thumbnailStatus:
+          enum:
+            - NotRequired
+            - Pending
+            - Ready
+            - Failed
+            - Unsupported
+          type: string
+        hasThumbnail:
+          type: boolean
+          readOnly: true
+        thumbnailStorageKey:
+          type: string
+          nullable: true
+        thumbnailContentType:
+          type: string
+          nullable: true
+        thumbnailWidth:
+          type: integer
+          format: int32
+        thumbnailHeight:
+          type: integer
+          format: int32
+        publicAccessType:
+          enum:
+            - Off
+            - Container
+            - Blob
+            - Unknown
+          type: string
       additionalProperties: false
     FileUploadDtoEnvelope:
       type: object
@@ -2261,87 +2788,26 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    PayloadFileUploadCreateDto:
+    ProblemDetails:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        timestamp:
-          type: string
-          format: date-time
-        notes:
+        type:
           type: string
           nullable: true
         title:
           type: string
           nullable: true
-        author:
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
           type: string
           nullable: true
-        isFolder:
-          type: boolean
-        fileName:
+        instance:
           type: string
           nullable: true
-        abstract:
-          type: string
-          nullable: true
-        keyWords:
-          type: string
-          nullable: true
-        validResponse:
-          type: boolean
-        parentFileUploadId:
-          type: string
-          nullable: true
-        filePath:
-          type: string
-          nullable: true
-        file:
-          type: string
-          format: binary
-          nullable: true
-      additionalProperties: false
-    PayloadFileUploadUpdateDto:
-      type: object
-      properties:
-        notes:
-          type: string
-          nullable: true
-        metadata:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        author:
-          type: string
-          nullable: true
-        isFolder:
-          type: boolean
-        fileName:
-          type: string
-          nullable: true
-        abstract:
-          type: string
-          nullable: true
-        keyWords:
-          type: string
-          nullable: true
-        validResponse:
-          type: boolean
-        parentFileUploadID:
-          type: string
-          nullable: true
-        filePath:
-          type: string
-          nullable: true
-        file:
-          type: string
-          format: binary
-          nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     RefreshRequest:
       required:
         - refreshToken
@@ -2433,8 +2899,8 @@ components:
 tags:
   - name: Avatars
   - name: Blobs
-  - name: Completions
-  - name: FenixAlliance.Portals.Website
+  - name: EditorAssets
+  - name: FenixAlliance.ABS.Web
   - name: Files
   - name: RadzenEditor
   - name: Uploads
