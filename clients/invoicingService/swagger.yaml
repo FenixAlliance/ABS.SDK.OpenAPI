@@ -37,6 +37,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -2172,10 +2185,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
+                $ref: '#/components/schemas/MoneyEnvelope'
             application/xml:
               schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
+                $ref: '#/components/schemas/MoneyEnvelope'
   /api/v2/InvoicingService/Invoices/PurchaseInvoices/Sum:
     get:
       tags:
@@ -2214,10 +2227,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
+                $ref: '#/components/schemas/MoneyEnvelope'
             application/xml:
               schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
+                $ref: '#/components/schemas/MoneyEnvelope'
   '/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Send':
     post:
       tags:
@@ -2323,30 +2336,6 @@ components:
         country:
           type: string
           nullable: true
-      additionalProperties: false
-    DecimalEnvelope:
-      type: object
-      properties:
-        isSuccess:
-          type: boolean
-          readOnly: true
-        errorMessage:
-          type: string
-          nullable: true
-        correlationId:
-          type: string
-          nullable: true
-        timestamp:
-          type: string
-          format: date-time
-          readOnly: true
-        activityId:
-          type: string
-          nullable: true
-          readOnly: true
-        result:
-          type: number
-          format: double
       additionalProperties: false
     EmailDispatchRequest:
       required:

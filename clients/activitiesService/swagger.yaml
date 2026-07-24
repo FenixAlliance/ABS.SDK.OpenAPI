@@ -619,6 +619,56 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ActivitiesService/Activities/Count:
+    get:
+      tags:
+        - ActivityFeeds
+      summary: Count activity records
+      description: Returns the tenant-wide count of activity records across all feeds owned by the tenant.
+      operationId: GetActivityRecordsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
   /api/v2/ActivitiesService/ActivityTypes:
     get:
       tags:
@@ -1017,56 +1067,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Envelope'
-  /api/v2/ActivitiesService/ActivityRecords/Count:
-    get:
-      tags:
-        - ActivityRecords
-      summary: Count activity records
-      description: Returns the tenant-wide count of activity records across all feeds owned by the tenant.
-      operationId: GetActivityRecordsCountAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Int32Envelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Int32Envelope'
   /version:
     get:
       tags:
@@ -1078,6 +1078,19 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -2014,5 +2027,4 @@ components:
       additionalProperties: false
 tags:
   - name: ActivityFeeds
-  - name: ActivityRecords
   - name: FenixAlliance.ABS.Web

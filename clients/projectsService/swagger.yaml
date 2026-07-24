@@ -37,6 +37,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -975,7 +988,7 @@ paths:
         - Projects
       summary: Retrieves project time logs
       description: Gets all time log entries for a specific project with OData support.
-      operationId: GetProjectTimeLogsAsync
+      operationId: GetTimeLogsForProjectAsync
       parameters:
         - name: projectId
           in: path
@@ -1071,7 +1084,7 @@ paths:
         - Projects
       summary: Retrieves project tasks
       description: Gets all tasks for a specific project with OData support.
-      operationId: GetProjectTasksAsync
+      operationId: GetTasksForProjectAsync
       parameters:
         - name: projectId
           in: path
@@ -1118,7 +1131,7 @@ paths:
         - Projects
       summary: Creates a project task
       description: Creates a new task for the specified project.
-      operationId: CreateProjectTaskAsync
+      operationId: CreateTaskForProjectAsync
       parameters:
         - name: projectId
           in: path
@@ -1174,7 +1187,7 @@ paths:
         - Projects
       summary: Counts project tasks
       description: Gets the count of tasks for a specific project.
-      operationId: GetProjectTasksCountAsync
+      operationId: GetTasksForProjectCountAsync
       parameters:
         - name: projectId
           in: path
@@ -1222,7 +1235,7 @@ paths:
         - Projects
       summary: Updates a project task
       description: Updates the specified task in a project.
-      operationId: UpdateProjectTaskAsync
+      operationId: UpdateTaskForProjectAsync
       parameters:
         - name: projectId
           in: path
@@ -1283,7 +1296,7 @@ paths:
         - Projects
       summary: Patches a project task
       description: Partially updates the specified task in a project.
-      operationId: PatchProjectTaskAsync
+      operationId: PatchTaskForProjectAsync
       parameters:
         - name: projectId
           in: path
@@ -1348,7 +1361,7 @@ paths:
         - Projects
       summary: Deletes a project task
       description: Deletes the specified task from a project.
-      operationId: DeleteProjectTaskAsync
+      operationId: DeleteTaskForProjectAsync
       parameters:
         - name: tenantId
           in: query

@@ -1,0 +1,2923 @@
+openapi: 3.0.4
+info:
+  title: LicensingService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
+paths:
+  /version:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseAttributes:
+    get:
+      tags:
+        - LicenseAttributes
+      summary: Get all license attributes
+      description: Retrieves all license attributes for the specified tenant.
+      operationId: GetLicenseAttributesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseAttributeDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseAttributeDtoListEnvelope'
+    post:
+      tags:
+        - LicenseAttributes
+      summary: Create a new license attribute
+      description: Creates a new license attribute for the specified tenant.
+      operationId: CreateLicenseAttributeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseAttributes/Count:
+    get:
+      tags:
+        - LicenseAttributes
+      summary: Get license attributes count
+      description: Returns the count of license attributes for the specified tenant.
+      operationId: GetLicenseAttributesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/LicensingService/LicenseAttributes/{id}':
+    get:
+      tags:
+        - LicenseAttributes
+      summary: Get license attribute by ID
+      description: Retrieves a specific license attribute by its identifier.
+      operationId: GetLicenseAttributeByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseAttributeDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseAttributeDto'
+    put:
+      tags:
+        - LicenseAttributes
+      summary: Update a license attribute
+      description: Updates an existing license attribute for the specified tenant.
+      operationId: UpdateLicenseAttributeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - LicenseAttributes
+      summary: Patch a license attribute
+      description: Patch a license attribute for the specified tenant.
+      operationId: PatchLicenseAttributeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - LicenseAttributes
+      summary: Delete a license attribute
+      description: Deletes a license attribute for the specified tenant.
+      operationId: DeleteLicenseAttributeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseFeatures:
+    get:
+      tags:
+        - LicenseFeatures
+      summary: Get all license features
+      description: Retrieves all license features for the specified tenant.
+      operationId: GetLicenseFeaturesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseFeatureDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseFeatureDtoListEnvelope'
+    post:
+      tags:
+        - LicenseFeatures
+      summary: Create a new license feature
+      description: Creates a new license feature for the specified tenant.
+      operationId: CreateLicenseFeatureAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseFeatures/Count:
+    get:
+      tags:
+        - LicenseFeatures
+      summary: Get license features count
+      description: Returns the count of license features for the specified tenant.
+      operationId: GetLicenseFeaturesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/LicensingService/LicenseFeatures/{id}':
+    get:
+      tags:
+        - LicenseFeatures
+      summary: Get license feature by ID
+      description: Retrieves a specific license feature by its identifier.
+      operationId: GetLicenseFeatureByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseFeatureDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseFeatureDto'
+    put:
+      tags:
+        - LicenseFeatures
+      summary: Update a license feature
+      description: Updates an existing license feature for the specified tenant.
+      operationId: UpdateLicenseFeatureAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - LicenseFeatures
+      summary: Patch a license feature
+      description: Patch a license feature for the specified tenant.
+      operationId: PatchLicenseFeatureAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - LicenseFeatures
+      summary: Delete a license feature
+      description: Deletes a license feature for the specified tenant.
+      operationId: DeleteLicenseFeatureAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/Licenses:
+    get:
+      tags:
+        - Licenses
+      summary: Get licenses
+      description: 'Retrieves the license instances owned by the specified tenant, filtered via OData query options.'
+      operationId: GetLicensesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoListEnvelope'
+    post:
+      tags:
+        - Licenses
+      summary: Create a new license
+      description: Creates a new license instance for the specified tenant.
+      operationId: CreateLicenseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+  /api/v2/LicensingService/Licenses/Count:
+    get:
+      tags:
+        - Licenses
+      summary: Get licenses count
+      description: Returns the count of license instances owned by the specified tenant.
+      operationId: GetLicensesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/LicensingService/Licenses/{licenseId}':
+    get:
+      tags:
+        - Licenses
+      summary: Get license by ID
+      description: Retrieves a specific license instance by its identifier.
+      operationId: GetLicenseByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseDto'
+    put:
+      tags:
+        - Licenses
+      summary: Update a license
+      description: Updates an existing license instance for the specified tenant.
+      operationId: UpdateLicenseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    delete:
+      tags:
+        - Licenses
+      summary: Delete a license
+      description: Deletes a license instance for the specified tenant.
+      operationId: DeleteLicenseAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseTypes:
+    get:
+      tags:
+        - LicenseTypes
+      summary: Get all license types
+      description: Retrieves all license types for the specified tenant.
+      operationId: GetLicenseTypesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseTypeDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseTypeDtoListEnvelope'
+    post:
+      tags:
+        - LicenseTypes
+      summary: Create a new license type
+      description: Creates a new license type for the specified tenant.
+      operationId: CreateLicenseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicenseTypes/Count:
+    get:
+      tags:
+        - LicenseTypes
+      summary: Get license types count
+      description: Returns the count of license types for the specified tenant.
+      operationId: GetLicenseTypesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/LicensingService/LicenseTypes/{id}':
+    get:
+      tags:
+        - LicenseTypes
+      summary: Get license type by ID
+      description: Retrieves a specific license type by its identifier.
+      operationId: GetLicenseTypeByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseTypeDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicenseTypeDto'
+    put:
+      tags:
+        - LicenseTypes
+      summary: Update a license type
+      description: Updates an existing license type for the specified tenant.
+      operationId: UpdateLicenseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - LicenseTypes
+      summary: Patch a license type
+      description: Patch a license type for the specified tenant.
+      operationId: PatchLicenseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - LicenseTypes
+      summary: Delete a license type
+      description: Deletes a license type for the specified tenant.
+      operationId: DeleteLicenseTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicensingCertificates:
+    get:
+      tags:
+        - LicensingCertificates
+      summary: Get all licensing certificates
+      description: Retrieves all licensing certificates for the specified tenant.
+      operationId: GetLicensingCertificatesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicensingCertificateDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicensingCertificateDtoListEnvelope'
+    post:
+      tags:
+        - LicensingCertificates
+      summary: Create a new licensing certificate
+      description: Creates a new licensing certificate for the specified tenant.
+      operationId: CreateLicensingCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/LicensingService/LicensingCertificates/Count:
+    get:
+      tags:
+        - LicensingCertificates
+      summary: Get licensing certificates count
+      description: Returns the count of licensing certificates for the specified tenant.
+      operationId: GetLicensingCertificatesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/LicensingService/LicensingCertificates/{id}':
+    get:
+      tags:
+        - LicensingCertificates
+      summary: Get licensing certificate by ID
+      description: Retrieves a specific licensing certificate by its identifier.
+      operationId: GetLicensingCertificateByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicensingCertificateDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LicensingCertificateDto'
+    put:
+      tags:
+        - LicensingCertificates
+      summary: Update a licensing certificate
+      description: Updates an existing licensing certificate for the specified tenant.
+      operationId: UpdateLicensingCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - LicensingCertificates
+      summary: Patch a licensing certificate
+      description: Patch a licensing certificate for the specified tenant.
+      operationId: PatchLicensingCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - LicensingCertificates
+      summary: Delete a licensing certificate
+      description: Deletes a licensing certificate for the specified tenant.
+      operationId: DeleteLicensingCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LicenseAttributeCreateDto:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        code:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseAttributeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseAttributeDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseAttributeDto'
+          nullable: true
+      additionalProperties: false
+    LicenseAttributeUpdateDto:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseCreateDto:
+      required:
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseDto'
+          nullable: true
+      additionalProperties: false
+    LicenseFeatureCreateDto:
+      required:
+        - key
+        - name
+        - value
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        code:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        key:
+          maxLength: 255
+          minLength: 0
+          type: string
+        value:
+          maxLength: 500
+          minLength: 0
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseFeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseFeatureDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseFeatureDto'
+          nullable: true
+      additionalProperties: false
+    LicenseFeatureUpdateDto:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseTypeCreateDto:
+      required:
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        allowTrials:
+          type: boolean
+        isPerpetualLicense:
+          type: boolean
+        maxLicenseUsages:
+          type: integer
+          format: int32
+        trialLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+        standardLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+        licensingCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseTypeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        allowTrials:
+          type: boolean
+        isPerpetualLicense:
+          type: boolean
+        maxLicenseUsages:
+          type: integer
+          format: int32
+        trialLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+        standardLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+        licensingCertificateId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseTypeDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseTypeDto'
+          nullable: true
+      additionalProperties: false
+    LicenseTypeUpdateDto:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        allowTrials:
+          type: boolean
+          nullable: true
+        isPerpetualLicense:
+          type: boolean
+          nullable: true
+        maxLicenseUsages:
+          type: integer
+          format: int32
+          nullable: true
+        trialLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+          nullable: true
+        standardLicenseRelativeExpirationInDays:
+          type: integer
+          format: int32
+          nullable: true
+        licensingCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicenseUpdateDto:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        licenseTypeId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicensingCertificateCreateDto:
+      required:
+        - contactId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+          nullable: true
+        contactId:
+          minLength: 1
+          type: string
+        csr:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicensingCertificateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        expired:
+          type: boolean
+        disabled:
+          type: boolean
+        publicKey:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LicensingCertificateDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicensingCertificateDto'
+          nullable: true
+      additionalProperties: false
+    LicensingCertificateUpdateDto:
+      type: object
+      properties:
+        expired:
+          type: boolean
+          nullable: true
+        disabled:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: FenixAlliance.ABS.Web
+  - name: LicenseAttributes
+  - name: LicenseFeatures
+  - name: Licenses
+  - name: LicenseTypes
+  - name: LicensingCertificates

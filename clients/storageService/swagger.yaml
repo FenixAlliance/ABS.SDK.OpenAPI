@@ -823,6 +823,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -2178,8 +2191,8 @@ paths:
     put:
       tags:
         - RadzenEditor
-      summary: Chunked editor upload (not implemented).
-      operationId: RadzenUploadStream
+      summary: Chunked editor upload scoped to a record (not implemented).
+      operationId: RadzenUploadStreamScoped
       parameters:
         - name: tenantId
           in: path

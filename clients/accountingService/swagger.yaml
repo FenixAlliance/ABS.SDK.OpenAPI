@@ -457,106 +457,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
-  /api/v2/AccountingService/AccountingEntries/Debits/Sum:
-    get:
-      tags:
-        - AccountingEntries
-      summary: Sum tenant accounting-entry debits
-      description: 'Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.'
-      operationId: GetDebitsSumAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  /api/v2/AccountingService/AccountingEntries/Credits/Sum:
-    get:
-      tags:
-        - AccountingEntries
-      summary: Sum tenant accounting-entry credits
-      description: 'Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.'
-      operationId: GetCreditsSumAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/AccountingService/AccountingPeriods:
     get:
       tags:
@@ -982,6 +882,206 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/AccountingService/Summary/Incomes/Sum:
+    get:
+      tags:
+        - AccountingSummary
+      summary: Sum tenant incomes
+      description: 'Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.'
+      operationId: GetIncomesSumAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/AccountingService/Summary/Expenses/Sum:
+    get:
+      tags:
+        - AccountingSummary
+      summary: Sum tenant expenses
+      description: 'Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.'
+      operationId: GetExpensesSumAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/AccountingService/Summary/Debits/Sum:
+    get:
+      tags:
+        - AccountingSummary
+      summary: Sum tenant accounting-entry debits
+      description: 'Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.'
+      operationId: GetDebitsSumAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecimalEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DecimalEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/AccountingService/Summary/Credits/Sum:
+    get:
+      tags:
+        - AccountingSummary
+      summary: Sum tenant accounting-entry credits
+      description: 'Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.'
+      operationId: GetCreditsSumAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecimalEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DecimalEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/AccountingService/Accounts:
     get:
       tags:
@@ -2483,6 +2583,7 @@ paths:
           in: query
           schema:
             type: string
+            default: USD.USA
         - name: api-version
           in: query
           schema:
@@ -2537,6 +2638,7 @@ paths:
           in: query
           schema:
             type: string
+            default: USD.USA
         - name: api-version
           in: query
           schema:
@@ -9620,6 +9722,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -12484,6 +12599,136 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Open':
+    post:
+      tags:
+        - FiscalPeriods
+      summary: Open a fiscal period
+      description: Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
+      operationId: OpenFiscalPeriod
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fiscalPeriodId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Close':
+    post:
+      tags:
+        - FiscalPeriods
+      summary: Close a fiscal period
+      description: Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
+      operationId: CloseFiscalPeriod
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fiscalPeriodId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
   '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalRegimes':
     get:
       tags:
@@ -14739,106 +14984,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
-  /api/v2/AccountingService/JournalEntries/Incomes/Sum:
-    get:
-      tags:
-        - JournalEntries
-      summary: Sum tenant incomes
-      description: 'Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.'
-      operationId: GetIncomesSumAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  /api/v2/AccountingService/JournalEntries/Expenses/Sum:
-    get:
-      tags:
-        - JournalEntries
-      summary: Sum tenant expenses
-      description: 'Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.'
-      operationId: GetExpensesSumAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/DecimalEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/AccountingService/Journals:
     get:
       tags:
@@ -15412,127 +15557,68 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
-  '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits':
-    get:
-      tags:
-        - Journals
-      summary: Aggregate journal entry debits
-      description: 'Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.'
-      operationId: AggregateJournalEntryDebitsAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: journalId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: currencyId
-          in: query
-          schema:
-            type: string
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MoneyEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/MoneyEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-  '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits':
-    get:
-      tags:
-        - Journals
-      summary: Aggregate journal entry credits
-      description: 'Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.'
-      operationId: AggregateJournalEntryCreditsAsync
-      parameters:
-        - name: tenantId
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: journalId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: currencyId
-          in: query
-          schema:
-            type: string
-        - name: api-version
-          in: query
-          schema:
-            type: string
-        - name: x-api-version
-          in: header
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MoneyEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/MoneyEnvelope'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ErrorEnvelope'
   '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}':
+    get:
+      tags:
+        - Journals
+      summary: Get journal entry by ID
+      description: 'Retrieves a single journal entry WITH its hydrated posting lines — each line''s account, direction, description and currency facets (transaction / functional / account / USD).'
+      operationId: GetJournalEntryDetailsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JournalEntryDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JournalEntryDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
     put:
       tags:
         - Journals
@@ -15729,6 +15815,287 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits':
+    get:
+      tags:
+        - Journals
+      summary: Aggregate journal entry debits
+      description: 'Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.'
+      operationId: AggregateJournalEntryDebitsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+            default: USD.USA
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits':
+    get:
+      tags:
+        - Journals
+      summary: Aggregate journal entry credits
+      description: 'Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.'
+      operationId: AggregateJournalEntryCreditsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+            default: USD.USA
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MoneyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Post':
+    post:
+      tags:
+        - Journals
+      summary: Post a draft journal entry
+      description: 'Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.'
+      operationId: PostJournalEntryAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Reverse':
+    post:
+      tags:
+        - Journals
+      summary: Reverse a posted journal entry
+      description: Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
+      operationId: ReverseJournalEntryAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReverseJournalEntryRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReverseJournalEntryRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
           content:
             application/json:
               schema:
@@ -18258,6 +18625,72 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/AccountingService/Reports/TrialBalance:
+    get:
+      tags:
+        - Reports
+      summary: Trial balance for a fiscal period
+      description: 'Returns the per-account posted debit/credit totals for the given fiscal period (optionally scoped to a single financial book), plus grand totals and the Σdebits == Σcredits balanced flag. Amounts are normalized to the target currency (default USD) from the stored USD reporting amounts.'
+      operationId: GetTrialBalanceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fiscalPeriodId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: financialBookId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+            default: USD.USA
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrialBalanceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TrialBalanceDtoEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/AccountingService/Shares/Classes:
     get:
       tags:
@@ -23076,6 +23509,18 @@ components:
             - Expense
             - Liabilities
           type: string
+        isContra:
+          type: boolean
+        isMonetary:
+          type: boolean
+        incomeStatementSubType:
+          enum:
+            - OperatingRevenue
+            - Gain
+            - OperatingExpense
+            - Loss
+          type: string
+          nullable: true
       additionalProperties: false
     AccountDto:
       type: object
@@ -23161,6 +23606,23 @@ components:
             - Revenue
             - Expense
             - Liabilities
+          type: string
+        isContra:
+          type: boolean
+        isMonetary:
+          type: boolean
+        incomeStatementSubType:
+          enum:
+            - OperatingRevenue
+            - Gain
+            - OperatingExpense
+            - Loss
+          type: string
+          nullable: true
+        normalBalance:
+          enum:
+            - Debit
+            - Credit
           type: string
         balanceAmount:
           $ref: '#/components/schemas/Money'
@@ -23570,11 +24032,26 @@ components:
             - Expense
             - Liabilities
           type: string
+        isContra:
+          type: boolean
+        isMonetary:
+          type: boolean
+        incomeStatementSubType:
+          enum:
+            - OperatingRevenue
+            - Gain
+            - OperatingExpense
+            - Loss
+          type: string
+          nullable: true
       additionalProperties: false
     AccountingEntryCreateDto:
       required:
-        - currencyId
+        - accountId
         - description
+        - direction
+        - journalEntryId
+        - transactionCurrencyId
       type: object
       properties:
         id:
@@ -23583,40 +24060,90 @@ components:
         timestamp:
           type: string
           format: date-time
+        journalEntryId:
+          minLength: 1
+          type: string
+        accountId:
+          minLength: 1
+          type: string
+        direction:
+          enum:
+            - Debit
+            - Credit
+          type: string
+        transactionAmount:
+          maximum: 9.999999999999999E+20
+          minimum: 1E-16
+          type: number
+          format: double
+        transactionCurrencyId:
+          minLength: 1
+          type: string
         description:
           maxLength: 300
           minLength: 1
-          type: string
-        date:
-          type: string
-          format: date-time
-          nullable: true
-        amount:
-          type: number
-          format: double
-        currencyId:
-          minLength: 1
-          type: string
-        debitAccountId:
-          type: string
-          nullable: true
-        creditAccountId:
-          type: string
-          nullable: true
-        journalEntryId:
-          type: string
-          nullable: true
-        accountingEntryType:
-          enum:
-            - None
-            - Debit
-            - Credit
           type: string
       additionalProperties: false
     AccountingEntryDto:
       type: object
       properties:
         id:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        journalEntryId:
+          type: string
+          nullable: true
+        accountId:
+          type: string
+          nullable: true
+        accountName:
+          type: string
+          nullable: true
+        direction:
+          enum:
+            - Debit
+            - Credit
+          type: string
+        description:
+          type: string
+          nullable: true
+        transactionAmount:
+          type: number
+          format: double
+        transactionCurrencyId:
+          type: string
+          nullable: true
+        functionalAmount:
+          type: number
+          format: double
+        functionalCurrencyId:
+          type: string
+          nullable: true
+        accountAmount:
+          type: number
+          format: double
+        accountCurrencyId:
+          type: string
+          nullable: true
+        reportingAmountInUsd:
+          type: number
+          format: double
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        costCentreId:
+          type: string
+          nullable: true
+        projectId:
           type: string
           nullable: true
         timestamp:
@@ -23626,55 +24153,14 @@ components:
         debit:
           type: number
           format: double
+          readOnly: true
         credit:
           type: number
           format: double
-        description:
-          type: string
-          nullable: true
-        forexRate:
-          type: number
-          format: double
-        accountId:
-          type: string
-          nullable: true
-        tenantId:
-          type: string
-          nullable: true
-        date:
-          type: string
-          format: date-time
-          nullable: true
-        enrollmentId:
-          type: string
-          nullable: true
-        currencyId:
-          type: string
-          nullable: true
-        debitAccountId:
-          type: string
-          nullable: true
-        creditAccountId:
-          type: string
-          nullable: true
-        journalEntryId:
-          type: string
-          nullable: true
-        debitAccountName:
-          type: string
-          nullable: true
-        creditAccountName:
-          type: string
-          nullable: true
-        accountingEntryType:
-          enum:
-            - None
-            - Debit
-            - Credit
-          type: string
-        debitAmount:
+          readOnly: true
+        amount:
           $ref: '#/components/schemas/Money'
-        creditAmount:
+        amountInUsd:
           $ref: '#/components/schemas/Money'
       additionalProperties: false
     AccountingEntryDtoEnvelope:
@@ -23729,42 +24215,30 @@ components:
     AccountingEntryUpdateDto:
       type: object
       properties:
-        description:
-          maxLength: 1000
-          minLength: 1
-          type: string
-          nullable: true
-        amount:
-          maximum: 999999999999999
-          minimum: 0.01
-          type: number
-          format: double
-        date:
-          type: string
-          format: date-time
-          nullable: true
-        currencyId:
-          type: string
-          nullable: true
-        debitAccountId:
-          type: string
-          nullable: true
-        creditAccountId:
-          maxLength: 36
-          minLength: 36
-          type: string
-          nullable: true
         journalEntryId:
-          maxLength: 36
-          minLength: 36
           type: string
           nullable: true
-        accountingEntryType:
+        accountId:
+          type: string
+          nullable: true
+        direction:
           enum:
-            - None
             - Debit
             - Credit
           type: string
+        transactionAmount:
+          maximum: 9.999999999999999E+20
+          minimum: 1E-16
+          type: number
+          format: double
+        transactionCurrencyId:
+          type: string
+          nullable: true
+        description:
+          maxLength: 300
+          minLength: 1
+          type: string
+          nullable: true
       additionalProperties: false
     AccountingPeriodCreateDto:
       type: object
@@ -25453,7 +25927,10 @@ components:
       additionalProperties: false
     BudgetAccountEntryCreateDto:
       required:
+        - budgetId
+        - creditAccountId
         - currencyId
+        - debitAccountId
         - description
       type: object
       properties:
@@ -25467,36 +25944,21 @@ components:
           maxLength: 300
           minLength: 1
           type: string
-        date:
-          type: string
-          format: date-time
-          nullable: true
-        amount:
+        plannedAmount:
           type: number
           format: double
         currencyId:
           minLength: 1
           type: string
         debitAccountId:
+          minLength: 1
           type: string
-          nullable: true
         creditAccountId:
-          type: string
-          nullable: true
-        journalEntryId:
-          type: string
-          nullable: true
-        accountingEntryType:
-          enum:
-            - None
-            - Debit
-            - Credit
+          minLength: 1
           type: string
         budgetId:
-          maxLength: 36
-          minLength: 0
+          minLength: 1
           type: string
-          nullable: true
       additionalProperties: false
     BudgetAccountEntryDto:
       type: object
@@ -25508,31 +25970,18 @@ components:
           type: string
           format: date-time
           nullable: true
-        debit:
-          type: number
-          format: double
-        credit:
-          type: number
-          format: double
-        description:
-          type: string
-          nullable: true
-        forexRate:
-          type: number
-          format: double
-        accountId:
-          type: string
-          nullable: true
         tenantId:
           type: string
-          nullable: true
-        date:
-          type: string
-          format: date-time
           nullable: true
         enrollmentId:
           type: string
           nullable: true
+        description:
+          type: string
+          nullable: true
+        plannedAmount:
+          type: number
+          format: double
         currencyId:
           type: string
           nullable: true
@@ -25542,28 +25991,15 @@ components:
         creditAccountId:
           type: string
           nullable: true
-        journalEntryId:
-          type: string
-          nullable: true
-        debitAccountName:
-          type: string
-          nullable: true
-        creditAccountName:
-          type: string
-          nullable: true
-        accountingEntryType:
-          enum:
-            - None
-            - Debit
-            - Credit
-          type: string
-        debitAmount:
-          $ref: '#/components/schemas/Money'
-        creditAmount:
-          $ref: '#/components/schemas/Money'
         budgetId:
           type: string
           nullable: true
+        date:
+          type: string
+          format: date-time
+          nullable: true
+        plannedAmountMoney:
+          $ref: '#/components/schemas/Money'
       additionalProperties: false
     BudgetAccountEntryDtoEnvelope:
       type: object
@@ -25618,19 +26054,13 @@ components:
       type: object
       properties:
         description:
-          maxLength: 1000
+          maxLength: 300
           minLength: 1
           type: string
           nullable: true
-        amount:
-          maximum: 999999999999999
-          minimum: 0.01
+        plannedAmount:
           type: number
           format: double
-        date:
-          type: string
-          format: date-time
-          nullable: true
         currencyId:
           type: string
           nullable: true
@@ -25638,24 +26068,9 @@ components:
           type: string
           nullable: true
         creditAccountId:
-          maxLength: 36
-          minLength: 36
           type: string
           nullable: true
-        journalEntryId:
-          maxLength: 36
-          minLength: 36
-          type: string
-          nullable: true
-        accountingEntryType:
-          enum:
-            - None
-            - Debit
-            - Credit
-          type: string
         budgetId:
-          maxLength: 36
-          minLength: 0
           type: string
           nullable: true
       additionalProperties: false
@@ -27228,6 +27643,9 @@ components:
           nullable: true
       additionalProperties: false
     FiscalPeriodCreateDto:
+      required:
+        - fiscalYearId
+        - name
       type: object
       properties:
         id:
@@ -27240,7 +27658,6 @@ components:
           maxLength: 50
           minLength: 0
           type: string
-          nullable: true
         fromDate:
           type: string
           format: date-time
@@ -27251,7 +27668,6 @@ components:
           maxLength: 36
           minLength: 0
           type: string
-          nullable: true
       additionalProperties: false
     FiscalPeriodDto:
       type: object
@@ -27332,13 +27748,15 @@ components:
           nullable: true
       additionalProperties: false
     FiscalPeriodUpdateDto:
+      required:
+        - fiscalYearId
+        - name
       type: object
       properties:
         name:
           maxLength: 50
           minLength: 0
           type: string
-          nullable: true
         fromDate:
           type: string
           format: date-time
@@ -27349,7 +27767,6 @@ components:
           maxLength: 36
           minLength: 0
           type: string
-          nullable: true
       additionalProperties: false
     FiscalRegimeCreateDto:
       type: object
@@ -27688,6 +28105,9 @@ components:
           nullable: true
       additionalProperties: false
     FiscalYearCreateDto:
+      required:
+        - fiscalAuthorityId
+        - name
       type: object
       properties:
         id:
@@ -27697,8 +28117,8 @@ components:
           type: string
           format: date-time
         name:
+          minLength: 1
           type: string
-          nullable: true
         description:
           type: string
           nullable: true
@@ -27711,8 +28131,8 @@ components:
           type: string
           format: date-time
         fiscalAuthorityId:
+          minLength: 1
           type: string
-          nullable: true
       additionalProperties: false
     FiscalYearDto:
       type: object
@@ -27824,11 +28244,14 @@ components:
           nullable: true
       additionalProperties: false
     FiscalYearUpdateDto:
+      required:
+        - fiscalAuthorityId
+        - name
       type: object
       properties:
         name:
+          minLength: 1
           type: string
-          nullable: true
         description:
           type: string
           nullable: true
@@ -27841,8 +28264,8 @@ components:
           type: string
           format: date-time
         fiscalAuthorityId:
+          minLength: 1
           type: string
-          nullable: true
       additionalProperties: false
     ForgotPasswordRequest:
       required:
@@ -28443,12 +28866,10 @@ components:
       additionalProperties: false
     JournalEntryCreateDto:
       required:
-        - creditAccountId
-        - currencyId
-        - date
-        - debitAccountId
         - description
+        - fiscalPeriodId
         - journalId
+        - transactionCurrencyId
       type: object
       properties:
         id:
@@ -28457,81 +28878,40 @@ components:
         timestamp:
           type: string
           format: date-time
-        group:
-          type: boolean
-        opening:
-          type: boolean
-        description:
-          minLength: 1
-          type: string
-        date:
-          type: string
-          format: date-time
-        debit:
-          type: number
-          format: double
-        credit:
-          type: number
-          format: double
         journalId:
           minLength: 1
           type: string
-        currencyId:
+        fiscalPeriodId:
           minLength: 1
           type: string
-        debitAccountId:
+        transactionCurrencyId:
           minLength: 1
           type: string
-        creditAccountId:
+        description:
+          maxLength: 300
           minLength: 1
           type: string
-        parentJournalEntryId:
+        sourceDocumentType:
           type: string
           nullable: true
-        invoiceCode:
+        sourceDocumentId:
           type: string
+          nullable: true
+        idempotencyKey:
+          type: string
+          nullable: true
+        isOpeningBalance:
+          type: boolean
+        accountingEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountingEntryCreateDto'
           nullable: true
       additionalProperties: false
     JournalEntryDto:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
-        timestamp:
-          type: string
-          format: date-time
-          nullable: true
-        group:
-          type: boolean
-        opening:
-          type: boolean
-        description:
-          type: string
-          nullable: true
-        date:
-          type: string
-          format: date-time
-          nullable: true
-        forexRatesSnapshot:
-          type: string
-          nullable: true
-        forexRate:
-          type: number
-          format: double
-        credit:
-          type: number
-          format: double
-        debit:
-          type: number
-          format: double
-        creditInUsd:
-          type: number
-          format: double
-        debitInUsd:
-          type: number
-          format: double
-        currencyId:
           type: string
           nullable: true
         tenantId:
@@ -28549,32 +28929,109 @@ components:
         journalCode:
           type: string
           nullable: true
-        creditAccountId:
+        fiscalPeriodId:
           type: string
           nullable: true
-        creditAccountName:
+        financialBookId:
           type: string
           nullable: true
-        debitAccountId:
+        description:
           type: string
           nullable: true
-        debitAccountName:
+        entryType:
+          enum:
+            - Simple
+            - Compound
+            - Adjusting
+            - Reversing
+          type: string
+        status:
+          enum:
+            - Draft
+            - Posted
+            - Reversed
+            - Voided
+          type: string
+        postingDate:
+          type: string
+          format: date-time
+          nullable: true
+        isOpeningBalance:
+          type: boolean
+        transactionCurrencyId:
           type: string
           nullable: true
-        invoiceCode:
+        sourceDocumentType:
           type: string
           nullable: true
-        parentJournalEntryId:
+        sourceDocumentId:
           type: string
           nullable: true
-        creditAmount:
+        idempotencyKey:
+          type: string
+          nullable: true
+        reversalOfJournalEntryId:
+          type: string
+          nullable: true
+        postedBy:
+          type: string
+          nullable: true
+        forexRate:
+          type: number
+          format: double
+        forexRatesSnapshot:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        debitInUsd:
+          type: number
+          format: double
+        creditInUsd:
+          type: number
+          format: double
+        accountingEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountingEntryDto'
+          nullable: true
+        totalDebit:
+          type: number
+          format: double
+          readOnly: true
+        totalCredit:
+          type: number
+          format: double
+          readOnly: true
+        totalDebitAmount:
           $ref: '#/components/schemas/Money'
-        debitAmount:
+        totalCreditAmount:
           $ref: '#/components/schemas/Money'
-        creditAmountInUsd:
-          $ref: '#/components/schemas/Money'
-        debitAmountInUsd:
-          $ref: '#/components/schemas/Money'
+      additionalProperties: false
+    JournalEntryDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/JournalEntryDto'
       additionalProperties: false
     JournalEntryDtoIReadOnlyListEnvelope:
       type: object
@@ -28604,48 +29061,29 @@ components:
       additionalProperties: false
     JournalEntryUpdateDto:
       required:
-        - creditAccountId
-        - currencyId
-        - date
-        - debitAccountId
         - description
-        - journalId
+        - fiscalPeriodId
+        - transactionCurrencyId
       type: object
       properties:
-        group:
-          type: boolean
-        opening:
-          type: boolean
+        fiscalPeriodId:
+          minLength: 1
+          type: string
+        transactionCurrencyId:
+          minLength: 1
+          type: string
         description:
+          maxLength: 300
           minLength: 1
           type: string
-        date:
-          type: string
-          format: date-time
-        debit:
-          type: number
-          format: double
-        credit:
-          type: number
-          format: double
-        journalId:
-          minLength: 1
-          type: string
-        currencyId:
-          minLength: 1
-          type: string
-        invoiceCode:
+        sourceDocumentType:
           type: string
           nullable: true
-        debitAccountId:
-          minLength: 1
-          type: string
-        creditAccountId:
-          minLength: 1
-          type: string
-        parentJournalEntryId:
+        sourceDocumentId:
           type: string
           nullable: true
+        isOpeningBalance:
+          type: boolean
       additionalProperties: false
     JournalTypeCreateDto:
       type: object
@@ -28865,10 +29303,8 @@ components:
           enum:
             - Assets
             - Equity
-            - Gains
-            - Losses
             - Revenue
-            - Expenses
+            - Expense
             - Liabilities
           type: string
       additionalProperties: false
@@ -28889,10 +29325,8 @@ components:
           enum:
             - Assets
             - Equity
-            - Gains
-            - Losses
             - Revenue
-            - Expenses
+            - Expense
             - Liabilities
           type: string
         tenantId:
@@ -28963,10 +29397,8 @@ components:
           enum:
             - Assets
             - Equity
-            - Gains
-            - Losses
             - Revenue
-            - Expenses
+            - Expense
             - Liabilities
           type: string
           nullable: true
@@ -29887,6 +30319,15 @@ components:
         newPassword:
           type: string
           nullable: true
+      additionalProperties: false
+    ReverseJournalEntryRequest:
+      required:
+        - reversalPeriodId
+      type: object
+      properties:
+        reversalPeriodId:
+          minLength: 1
+          type: string
       additionalProperties: false
     SeedChartOfAccountsRequest:
       type: object
@@ -31389,6 +31830,79 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    TrialBalanceDto:
+      type: object
+      properties:
+        fiscalPeriodId:
+          type: string
+          nullable: true
+        financialBookId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrialBalanceRowDto'
+          nullable: true
+        totalDebit:
+          type: number
+          format: double
+        totalCredit:
+          type: number
+          format: double
+        isBalanced:
+          type: boolean
+      additionalProperties: false
+    TrialBalanceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TrialBalanceDto'
+      additionalProperties: false
+    TrialBalanceRowDto:
+      type: object
+      properties:
+        accountId:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        normalBalance:
+          enum:
+            - Debit
+            - Credit
+          type: string
+        debit:
+          type: number
+          format: double
+        credit:
+          type: number
+          format: double
+      additionalProperties: false
     TwoFactorRequest:
       type: object
       properties:
@@ -31450,8 +31964,8 @@ components:
       additionalProperties: false
 tags:
   - name: AccountGroups
-  - name: AccountingEntries
   - name: AccountingPeriods
+  - name: AccountingSummary
   - name: Accounts
   - name: Banking
   - name: BankProfiles
@@ -31475,13 +31989,13 @@ tags:
   - name: FiscalYears
   - name: Grants
   - name: InvoiceEnumerationRanges
-  - name: JournalEntries
   - name: Journals
   - name: JournalTypes
   - name: Ledgers
   - name: LedgerTypes
   - name: Loans
   - name: Receipts
+  - name: Reports
   - name: Shares
   - name: TaxClasses
   - name: TaxPolicies

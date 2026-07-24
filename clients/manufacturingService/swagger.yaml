@@ -1,0 +1,2530 @@
+openapi: 3.0.4
+info:
+  title: ManufacturingService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
+paths:
+  /version:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/ProductionPlans:
+    get:
+      tags:
+        - ProductionPlans
+      summary: Get all production plans
+      description: Retrieves all production plans for the specified tenant.
+      operationId: GetProductionPlansAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductionPlanDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductionPlanDtoListEnvelope'
+    post:
+      tags:
+        - ProductionPlans
+      summary: Create a new production plan
+      description: Creates a new production plan for the specified tenant.
+      operationId: CreateProductionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductionPlanCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProductionPlanCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/ProductionPlans/Count:
+    get:
+      tags:
+        - ProductionPlans
+      summary: Get production plans count
+      description: Returns the count of production plans for the specified tenant.
+      operationId: GetProductionPlansCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ManufacturingService/ProductionPlans/{id}':
+    get:
+      tags:
+        - ProductionPlans
+      summary: Get production plan by ID
+      description: Retrieves a specific production plan by its identifier.
+      operationId: GetProductionPlanByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductionPlanDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductionPlanDto'
+    put:
+      tags:
+        - ProductionPlans
+      summary: Update a production plan
+      description: Updates an existing production plan for the specified tenant.
+      operationId: UpdateProductionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductionPlanUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProductionPlanUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - ProductionPlans
+      summary: Patch a production plan
+      description: Patch a production plan
+      operationId: PatchProductionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - ProductionPlans
+      summary: Delete a production plan
+      description: Deletes a production plan for the specified tenant.
+      operationId: DeleteProductionPlanAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/WorkOrders:
+    get:
+      tags:
+        - WorkOrders
+      summary: Get all work orders
+      description: Retrieves all work orders for the specified tenant.
+      operationId: GetWorkOrdersAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkOrderDtoListEnvelope'
+    post:
+      tags:
+        - WorkOrders
+      summary: Create a new work order
+      description: Creates a new work order for the specified tenant.
+      operationId: CreateWorkOrderAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrderCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkOrderCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/WorkOrders/Count:
+    get:
+      tags:
+        - WorkOrders
+      summary: Get work orders count
+      description: Returns the count of work orders for the specified tenant.
+      operationId: GetWorkOrdersCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ManufacturingService/WorkOrders/{id}':
+    get:
+      tags:
+        - WorkOrders
+      summary: Get work order by ID
+      description: Retrieves a specific work order by its identifier.
+      operationId: GetWorkOrderByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkOrderDto'
+    put:
+      tags:
+        - WorkOrders
+      summary: Update a work order
+      description: Updates an existing work order for the specified tenant.
+      operationId: UpdateWorkOrderAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrderUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkOrderUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - WorkOrders
+      summary: Patch a work order
+      description: Patch a work order
+      operationId: PatchWorkOrderAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - WorkOrders
+      summary: Delete a work order
+      description: Deletes a work order for the specified tenant.
+      operationId: DeleteWorkOrderAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/WorkOrderTypes:
+    get:
+      tags:
+        - WorkOrderTypes
+      summary: Get all work order types
+      description: Retrieves all work order types for the specified tenant.
+      operationId: GetWorkOrderTypesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderTypeDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkOrderTypeDtoListEnvelope'
+    post:
+      tags:
+        - WorkOrderTypes
+      summary: Create a new work order type
+      description: Creates a new work order type for the specified tenant.
+      operationId: CreateWorkOrderTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrderTypeCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkOrderTypeCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/WorkOrderTypes/Count:
+    get:
+      tags:
+        - WorkOrderTypes
+      summary: Get work order types count
+      description: Returns the count of work order types for the specified tenant.
+      operationId: GetWorkOrderTypesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ManufacturingService/WorkOrderTypes/{id}':
+    get:
+      tags:
+        - WorkOrderTypes
+      summary: Get work order type by ID
+      description: Retrieves a specific work order type by its identifier.
+      operationId: GetWorkOrderTypeByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderTypeDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkOrderTypeDto'
+    put:
+      tags:
+        - WorkOrderTypes
+      summary: Update a work order type
+      description: Updates an existing work order type for the specified tenant.
+      operationId: UpdateWorkOrderTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrderTypeUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkOrderTypeUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - WorkOrderTypes
+      summary: Patch a work order type
+      description: Patch a work order type
+      operationId: PatchWorkOrderTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - WorkOrderTypes
+      summary: Delete a work order type
+      description: Deletes a work order type for the specified tenant.
+      operationId: DeleteWorkOrderTypeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/Workstations:
+    get:
+      tags:
+        - Workstations
+      summary: Get all workstations
+      description: Retrieves all workstations for the specified tenant.
+      operationId: GetWorkstationsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkstationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkstationDtoListEnvelope'
+    post:
+      tags:
+        - Workstations
+      summary: Create a new workstation
+      description: Creates a new workstation for the specified tenant.
+      operationId: CreateWorkstationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkstationCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkstationCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/ManufacturingService/Workstations/Count:
+    get:
+      tags:
+        - Workstations
+      summary: Get workstations count
+      description: Returns the count of workstations for the specified tenant.
+      operationId: GetWorkstationsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ManufacturingService/Workstations/{id}':
+    get:
+      tags:
+        - Workstations
+      summary: Get workstation by ID
+      description: Retrieves a specific workstation by its identifier.
+      operationId: GetWorkstationByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkstationDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkstationDto'
+    put:
+      tags:
+        - Workstations
+      summary: Update a workstation
+      description: Updates an existing workstation for the specified tenant.
+      operationId: UpdateWorkstationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkstationUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkstationUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - Workstations
+      summary: Patch a workstation
+      description: Patch a workstation
+      operationId: PatchWorkstationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Workstations
+      summary: Delete a workstation
+      description: Deletes a workstation for the specified tenant.
+      operationId: DeleteWorkstationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    ProductionPlanCreateDto:
+      required:
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProductionPlanDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProductionPlanDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductionPlanDto'
+          nullable: true
+      additionalProperties: false
+    ProductionPlanUpdateDto:
+      type: object
+      properties:
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+    WorkOrderCreateDto:
+      required:
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          nullable: true
+        instructions:
+          maxLength: 4000
+          minLength: 0
+          type: string
+          nullable: true
+        productionPlanId:
+          type: string
+          nullable: true
+        workOrderTypeId:
+          type: string
+          nullable: true
+        workstationId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        promisedEndDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkOrderDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        taxable:
+          type: boolean
+        workLocation:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+        promisedEndDate:
+          type: string
+          format: date-time
+        currencyId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        productionPlanId:
+          type: string
+          nullable: true
+        workOrderTypeId:
+          type: string
+          nullable: true
+        workstationId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkOrderDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrderDto'
+          nullable: true
+      additionalProperties: false
+    WorkOrderTypeCreateDto:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkOrderTypeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkOrderTypeDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrderTypeDto'
+          nullable: true
+      additionalProperties: false
+    WorkOrderTypeUpdateDto:
+      type: object
+      properties:
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkOrderUpdateDto:
+      type: object
+      properties:
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          nullable: true
+        instructions:
+          maxLength: 4000
+          minLength: 0
+          type: string
+          nullable: true
+        taxable:
+          type: boolean
+          nullable: true
+        workLocation:
+          type: string
+          nullable: true
+        productionPlanId:
+          type: string
+          nullable: true
+        workOrderTypeId:
+          type: string
+          nullable: true
+        workstationId:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        promisedStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        promisedEndDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkstationCreateDto:
+      required:
+        - code
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        code:
+          maxLength: 100
+          minLength: 0
+          type: string
+        type:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkstationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WorkstationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkstationDto'
+          nullable: true
+      additionalProperties: false
+    WorkstationUpdateDto:
+      type: object
+      properties:
+        code:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        type:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        locationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+tags:
+  - name: FenixAlliance.ABS.Web
+  - name: ProductionPlans
+  - name: WorkOrders
+  - name: WorkOrderTypes
+  - name: Workstations

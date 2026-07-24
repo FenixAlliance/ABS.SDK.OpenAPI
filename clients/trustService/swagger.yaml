@@ -1,0 +1,6876 @@
+openapi: 3.0.4
+info:
+  title: TrustService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
+paths:
+  /version:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: MapIdentityApi-/confirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      responses:
+        '200':
+          description: OK
+  /api/v2/TrustService/Signatures:
+    get:
+      tags:
+        - Signatures
+      summary: Get all signatures
+      description: Retrieves all signatures for the specified tenant.
+      operationId: GetSignaturesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignatureDtoListEnvelope'
+  /api/v2/TrustService/Signatures/Count:
+    get:
+      tags:
+        - Signatures
+      summary: Get signatures count
+      description: Returns the count of signatures for the specified tenant.
+      operationId: GetSignaturesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/Signatures/{id}':
+    get:
+      tags:
+        - Signatures
+      summary: Get signature by ID
+      description: Retrieves a specific signature by its identifier.
+      operationId: GetSignatureByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignatureDto'
+  '/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/primary-file/{fileUploadId}':
+    put:
+      tags:
+        - SignedDocumentArtifacts
+      summary: Set the primary authoring file
+      description: Links an existing scan-gated FileUpload as the document's mutable authoring artifact (only while editable).
+      operationId: SetPrimaryAuthoringFileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: signedDocumentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fileUploadId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  '/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/freeze':
+    post:
+      tags:
+        - SignedDocumentArtifacts
+      summary: Freeze the source for signature
+      description: 'Copies the primary authoring artifact into a new Sealed frozen-source artifact, hashes it, and binds it to the document (LockState = FrozenForSignature).'
+      operationId: FreezeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: signedDocumentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustArtifactReferenceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TrustArtifactReferenceDtoEnvelope'
+  '/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}':
+    get:
+      tags:
+        - SignedDocumentArtifacts
+      summary: Get an artifact reference
+      description: Resolves a stored artifact's reference (FileUpload id + key + hash + media hints).
+      operationId: GetReferenceAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fileUploadId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustArtifactReferenceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TrustArtifactReferenceDtoEnvelope'
+  '/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}/verify':
+    get:
+      tags:
+        - SignedDocumentArtifacts
+      summary: Verify an artifact hash
+      description: Re-reads the artifact bytes and verifies them against the recorded SHA-256. Returns true on match.
+      operationId: VerifyAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fileUploadId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+  /api/v2/TrustService/SignedDocumentAttachments:
+    get:
+      tags:
+        - SignedDocumentAttachments
+      summary: Get all signed document attachments
+      description: Retrieves all signed document attachments for the specified tenant.
+      operationId: GetSignedDocumentAttachmentsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentAttachmentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentAttachmentDtoListEnvelope'
+    post:
+      tags:
+        - SignedDocumentAttachments
+      summary: Create a new signed document attachment
+      description: Links an already-stored file to a SignedDocument (metadata + Storage pointer; no bytes).
+      operationId: CreateSignedDocumentAttachmentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentAttachmentCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentAttachmentCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SignedDocumentAttachments/Count:
+    get:
+      tags:
+        - SignedDocumentAttachments
+      summary: Get signed document attachments count
+      description: Returns the count of signed document attachments for the specified tenant.
+      operationId: GetSignedDocumentAttachmentsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SignedDocumentAttachments/{id}':
+    get:
+      tags:
+        - SignedDocumentAttachments
+      summary: Get signed document attachment by ID
+      description: Retrieves a specific signed document attachment by its identifier.
+      operationId: GetSignedDocumentAttachmentByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentAttachmentDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentAttachmentDto'
+    put:
+      tags:
+        - SignedDocumentAttachments
+      summary: Update a signed document attachment
+      description: Updates signed document attachment metadata for the specified tenant.
+      operationId: UpdateSignedDocumentAttachmentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentAttachmentUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentAttachmentUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - SignedDocumentAttachments
+      summary: Patch a signed document attachment
+      description: Patch a signed document attachment
+      operationId: PatchSignedDocumentAttachmentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SignedDocumentAttachments
+      summary: Delete a signed document attachment
+      description: Deletes a signed document attachment link for the specified tenant.
+      operationId: DeleteSignedDocumentAttachmentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SignedDocuments:
+    get:
+      tags:
+        - SignedDocuments
+      summary: Get all signed documents
+      description: Retrieves all signed documents for the specified tenant.
+      operationId: GetSignedDocumentsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDtoListEnvelope'
+    post:
+      tags:
+        - SignedDocuments
+      summary: Create a new signed document
+      description: Creates a new signed document for the specified tenant.
+      operationId: CreateSignedDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SignedDocuments/Count:
+    get:
+      tags:
+        - SignedDocuments
+      summary: Get signed documents count
+      description: Returns the count of signed documents for the specified tenant.
+      operationId: GetSignedDocumentsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SignedDocuments/{id}':
+    get:
+      tags:
+        - SignedDocuments
+      summary: Get signed document by ID
+      description: Retrieves a specific signed document by its identifier.
+      operationId: GetSignedDocumentByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDto'
+    put:
+      tags:
+        - SignedDocuments
+      summary: Update a signed document
+      description: Updates an existing signed document for the specified tenant.
+      operationId: UpdateSignedDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SignedDocumentUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - SignedDocuments
+      summary: Patch a signed document
+      description: Patch a signed document
+      operationId: PatchSignedDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SignedDocuments
+      summary: Delete a signed document
+      description: Deletes a signed document for the specified tenant.
+      operationId: DeleteSignedDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  '/api/v2/TrustService/SignedDocuments/{id}/quick-sign':
+    post:
+      tags:
+        - SignedDocuments
+      summary: Quick-sign a frozen document
+      description: Signs a frozen signed document directly with a chosen certificate + provider (no signing-request workflow) and seals it. Returns the sealed document.
+      operationId: QuickSignSignedDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickSignSignedDocumentDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/QuickSignSignedDocumentDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SignedDocuments/prepare-and-quick-sign:
+    post:
+      tags:
+        - SignedDocuments
+      summary: 'Create, freeze, and quick-sign a document in one call'
+      description: 'Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.'
+      operationId: PrepareAndQuickSignAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                signingCertificateId:
+                  type: string
+                signingProfileId:
+                  type: string
+                providerName:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              signingCertificateId:
+                style: form
+              signingProfileId:
+                style: form
+              providerName:
+                style: form
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                signingCertificateId:
+                  type: string
+                signingProfileId:
+                  type: string
+                providerName:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              signingCertificateId:
+                style: form
+              signingProfileId:
+                style: form
+              providerName:
+                style: form
+          application/xml:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                signingCertificateId:
+                  type: string
+                signingProfileId:
+                  type: string
+                providerName:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              signingCertificateId:
+                style: form
+              signingProfileId:
+                style: form
+              providerName:
+                style: form
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedDocumentDto'
+  '/api/v2/TrustService/SignedDocuments/{id}/verify-signature':
+    get:
+      tags:
+        - SignedDocuments
+      summary: Verify a signed document's signature
+      description: Re-verifies the document's signature against its stored signed artifact (bytes intact + signed by the embedded certificate; certificate trust is a separate concern).
+      operationId: VerifySignedDocumentSignatureAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureVerificationDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignatureVerificationDto'
+  /api/v2/TrustService/SigningCertificates:
+    get:
+      tags:
+        - SigningCertificates
+      summary: Get all signing certificates
+      description: Retrieves all signing certificates for the specified tenant.
+      operationId: GetSigningCertificatesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningCertificateDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningCertificateDtoListEnvelope'
+    post:
+      tags:
+        - SigningCertificates
+      summary: Create a new signing certificate
+      description: Creates a new signing certificate for the specified tenant.
+      operationId: CreateSigningCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningCertificateCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningCertificateCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningCertificates/Count:
+    get:
+      tags:
+        - SigningCertificates
+      summary: Get signing certificates count
+      description: Returns the count of signing certificates for the specified tenant.
+      operationId: GetSigningCertificatesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningCertificates/{id}':
+    get:
+      tags:
+        - SigningCertificates
+      summary: Get signing certificate by ID
+      description: Retrieves a specific signing certificate by its identifier.
+      operationId: GetSigningCertificateByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningCertificateDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningCertificateDto'
+    put:
+      tags:
+        - SigningCertificates
+      summary: Update a signing certificate
+      description: Updates an existing signing certificate for the specified tenant.
+      operationId: UpdateSigningCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningCertificateUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningCertificateUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - SigningCertificates
+      summary: Patch a signing certificate
+      description: Patch a signing certificate
+      operationId: PatchSigningCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SigningCertificates
+      summary: Delete a signing certificate
+      description: Deletes a signing certificate for the specified tenant.
+      operationId: DeleteSigningCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningCertificates/Import:
+    post:
+      tags:
+        - SigningCertificates
+      summary: Import a PFX/P12 signing certificate into custody
+      description: 'Parses the uploaded PFX/P12, imports the private material into the configured signing custody, and creates the certificate metadata record. The PFX and password are used only for the request — never returned or stored.'
+      operationId: ImportSigningCertificateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+                title:
+                  type: string
+                contactId:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              password:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+                title:
+                  type: string
+                contactId:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              password:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+          application/xml:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+                title:
+                  type: string
+                contactId:
+                  type: string
+            encoding:
+              id:
+                style: form
+              file:
+                style: form
+              password:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningEngine/Providers:
+    get:
+      tags:
+        - SigningEngine
+      summary: List signing providers
+      description: Returns the registered alpha signing providers (Noop / Manual / External). OData-queryable.
+      operationId: GetProvidersAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustSigningProviderDescriptorDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TrustSigningProviderDescriptorDtoListEnvelope'
+  /api/v2/TrustService/SigningEngine/Providers/Count:
+    get:
+      tags:
+        - SigningEngine
+      summary: Count signing providers
+      description: Returns the count of registered alpha signing providers. OData-queryable.
+      operationId: GetProvidersCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/TrustService/SigningEngine/Preview:
+    post:
+      tags:
+        - SigningEngine
+      summary: Preview signing readiness
+      description: 'Side-effect-free: validates a signing request and reports whether it can proceed and with what policy.'
+      operationId: PreviewAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrustSigningRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TrustSigningRequestDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustSigningReadinessDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TrustSigningReadinessDtoEnvelope'
+  /api/v2/TrustService/SigningLogs:
+    get:
+      tags:
+        - SigningLogs
+      summary: Get all signing logs
+      description: Retrieves all signing logs for the specified tenant.
+      operationId: GetSigningLogsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningLogDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningLogDtoListEnvelope'
+  /api/v2/TrustService/SigningLogs/Count:
+    get:
+      tags:
+        - SigningLogs
+      summary: Get signing logs count
+      description: Returns the count of signing logs for the specified tenant.
+      operationId: GetSigningLogsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningLogs/{id}':
+    get:
+      tags:
+        - SigningLogs
+      summary: Get signing log by ID
+      description: Retrieves a specific signing log by its identifier.
+      operationId: GetSigningLogByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningLogDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningLogDto'
+  /api/v2/TrustService/SigningParticipants:
+    get:
+      tags:
+        - SigningParticipants
+      summary: Get all signing participants
+      operationId: GetSigningParticipantsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDtoListEnvelope'
+  /api/v2/TrustService/SigningParticipants/Count:
+    get:
+      tags:
+        - SigningParticipants
+      summary: Get signing participants count
+      operationId: GetSigningParticipantsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningParticipants/{id}':
+    get:
+      tags:
+        - SigningParticipants
+      summary: Get signing participant by ID
+      operationId: GetSigningParticipantByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDto'
+  '/api/v2/TrustService/SigningParticipants/{id}/viewed':
+    post:
+      tags:
+        - SigningParticipants
+      summary: Mark a participant as having viewed the request
+      operationId: MarkViewedAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/v2/TrustService/SigningParticipants/{id}/outcome':
+    post:
+      tags:
+        - SigningParticipants
+      summary: Record a manual/external participant outcome
+      operationId: RecordOutcomeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordSigningParticipantOutcomeDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RecordSigningParticipantOutcomeDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningProfileGraphicalRepresentations:
+    get:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Get all signature representations
+      description: Retrieves all reusable signature representations for the specified tenant.
+      operationId: GetSigningProfileGraphicalRepresentationsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDtoListEnvelope'
+    post:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Create a new signature representation
+      description: Creates a new reusable signature representation for the specified tenant.
+      operationId: CreateSigningProfileGraphicalRepresentationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningProfileGraphicalRepresentationCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningProfileGraphicalRepresentationCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningProfileGraphicalRepresentations/Count:
+    get:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Get signature representations count
+      description: Returns the count of signature representations for the specified tenant.
+      operationId: GetSigningProfileGraphicalRepresentationsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}':
+    get:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Get signature representation by ID
+      description: Retrieves a specific signature representation by its identifier.
+      operationId: GetSigningProfileGraphicalRepresentationByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDto'
+    put:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Update a signature representation
+      description: Updates an existing signature representation for the specified tenant.
+      operationId: UpdateSigningProfileGraphicalRepresentationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningProfileGraphicalRepresentationUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningProfileGraphicalRepresentationUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Patch a signature representation
+      description: Patch a signature representation
+      operationId: PatchSigningProfileGraphicalRepresentationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SigningProfileGraphicalRepresentations
+      summary: Delete a signature representation
+      description: Deletes a signature representation for the specified tenant.
+      operationId: DeleteSigningProfileGraphicalRepresentationAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningProfiles:
+    get:
+      tags:
+        - SigningProfiles
+      summary: Get all signing profiles
+      description: Retrieves all signing profiles for the specified tenant.
+      operationId: GetSigningProfilesAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningProfileDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningProfileDtoListEnvelope'
+    post:
+      tags:
+        - SigningProfiles
+      summary: Create a new signing profile
+      description: Creates a new signing profile for the specified tenant (supports inline contact creation).
+      operationId: CreateSigningProfileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningProfileCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningProfileCreateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningProfiles/Count:
+    get:
+      tags:
+        - SigningProfiles
+      summary: Get signing profiles count
+      description: Returns the count of signing profiles for the specified tenant.
+      operationId: GetSigningProfilesCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningProfiles/{id}':
+    get:
+      tags:
+        - SigningProfiles
+      summary: Get signing profile by ID
+      description: Retrieves a specific signing profile by its identifier.
+      operationId: GetSigningProfileByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningProfileDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningProfileDto'
+    put:
+      tags:
+        - SigningProfiles
+      summary: Update a signing profile
+      description: Updates an existing signing profile for the specified tenant.
+      operationId: UpdateSigningProfileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningProfileUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SigningProfileUpdateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+    patch:
+      tags:
+        - SigningProfiles
+      summary: Patch a signing profile
+      description: Patch a signing profile
+      operationId: PatchSigningProfileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - SigningProfiles
+      summary: Delete a signing profile
+      description: Deletes a signing profile for the specified tenant.
+      operationId: DeleteSigningProfileAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  /api/v2/TrustService/SigningRequests:
+    get:
+      tags:
+        - SigningRequests
+      summary: Get all signing requests
+      operationId: GetSigningRequestsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDtoListEnvelope'
+  /api/v2/TrustService/SigningRequests/Count:
+    get:
+      tags:
+        - SigningRequests
+      summary: Get signing requests count
+      operationId: GetSigningRequestsCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/TrustService/SigningRequests/{id}':
+    get:
+      tags:
+        - SigningRequests
+      summary: Get signing request by ID
+      operationId: GetSigningRequestByIdAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+  '/api/v2/TrustService/SigningRequests/{id}/Participants':
+    get:
+      tags:
+        - SigningRequests
+      summary: Get participants of a signing request
+      operationId: GetSigningRequestParticipantsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDtoListEnvelope'
+  '/api/v2/TrustService/SigningRequests/from-document/{signedDocumentId}':
+    post:
+      tags:
+        - SigningRequests
+      summary: Create a signing request from a frozen document
+      operationId: CreateFromDocumentAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: signedDocumentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSigningRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateSigningRequestDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+  /api/v2/TrustService/SigningRequests/prepare-and-create:
+    post:
+      tags:
+        - SigningRequests
+      summary: 'Create, store, freeze a document and open a signing request in one call'
+      description: 'Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.'
+      operationId: PrepareAndCreateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                routingMode:
+                  enum:
+                    - Parallel
+                    - Sequential
+                  type: string
+                expiresAtUtc:
+                  type: string
+                  format: date-time
+                message:
+                  type: string
+                correlationId:
+                  type: string
+                externalReference:
+                  type: string
+                signers:
+                  type: string
+            encoding:
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              routingMode:
+                style: form
+              expiresAtUtc:
+                style: form
+              message:
+                style: form
+              correlationId:
+                style: form
+              externalReference:
+                style: form
+              signers:
+                style: form
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                routingMode:
+                  enum:
+                    - Parallel
+                    - Sequential
+                  type: string
+                expiresAtUtc:
+                  type: string
+                  format: date-time
+                message:
+                  type: string
+                correlationId:
+                  type: string
+                externalReference:
+                  type: string
+                signers:
+                  type: string
+            encoding:
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              routingMode:
+                style: form
+              expiresAtUtc:
+                style: form
+              message:
+                style: form
+              correlationId:
+                style: form
+              externalReference:
+                style: form
+              signers:
+                style: form
+          application/xml:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                contactId:
+                  type: string
+                routingMode:
+                  enum:
+                    - Parallel
+                    - Sequential
+                  type: string
+                expiresAtUtc:
+                  type: string
+                  format: date-time
+                message:
+                  type: string
+                correlationId:
+                  type: string
+                externalReference:
+                  type: string
+                signers:
+                  type: string
+            encoding:
+              file:
+                style: form
+              title:
+                style: form
+              contactId:
+                style: form
+              routingMode:
+                style: form
+              expiresAtUtc:
+                style: form
+              message:
+                style: form
+              correlationId:
+                style: form
+              externalReference:
+                style: form
+              signers:
+                style: form
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningRequestDto'
+  '/api/v2/TrustService/SigningRequests/{id}/participants':
+    post:
+      tags:
+        - SigningRequests
+      summary: Add a participant to a signing request
+      operationId: AddParticipantAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSigningParticipantDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateSigningParticipantDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SigningParticipantDto'
+  '/api/v2/TrustService/SigningRequests/{id}/send':
+    post:
+      tags:
+        - SigningRequests
+      summary: Send a signing request
+      operationId: SendAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/v2/TrustService/SigningRequests/{id}/void':
+    post:
+      tags:
+        - SigningRequests
+      summary: Void a signing request
+      operationId: VoidAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoidSigningRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VoidSigningRequestDto'
+      responses:
+        '200':
+          description: OK
+  '/api/v2/TrustService/SigningRequests/{id}/expire':
+    post:
+      tags:
+        - SigningRequests
+      summary: Expire a signing request
+      operationId: ExpireAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/v2/TrustService/SigningRequests/{id}/finalize':
+    post:
+      tags:
+        - SigningRequests
+      summary: Finalize a completed request into a signed artifact
+      operationId: FinalizeAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinalizeSigningRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FinalizeSigningRequestDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+  '/api/v2/TrustService/SigningRequests/{id}/execute-provider':
+    post:
+      tags:
+        - SigningRequests
+      summary: Run a signing provider to produce + finalize the signed artifact
+      operationId: ExecuteProviderAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteSigningRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExecuteSigningRequestDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BooleanEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: boolean
+      additionalProperties: false
+    ContactCreateDto:
+      required:
+        - email
+        - firstName
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          enum:
+            - Individual
+            - Organization
+          type: string
+        firstName:
+          maxLength: 50
+          minLength: 1
+          type: string
+        lastName:
+          maxLength: 50
+          type: string
+          nullable: true
+        email:
+          minLength: 1
+          type: string
+          format: email
+        taxId:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        primaryContactId:
+          maxLength: 36
+          minLength: 0
+          type: string
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        about:
+          maxLength: 500
+          type: string
+          nullable: true
+        countryId:
+          maxLength: 3
+          minLength: 0
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        mobilePhone:
+          type: string
+          format: tel
+          nullable: true
+        businessPhone:
+          type: string
+          format: tel
+          nullable: true
+        postalCode:
+          pattern: '^[\w\s-]{3,10}$'
+          type: string
+          nullable: true
+        duns:
+          maxLength: 9
+          minLength: 0
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        streetLine1:
+          type: string
+          nullable: true
+        streetLine2:
+          type: string
+          nullable: true
+        gitHubUrl:
+          type: string
+          nullable: true
+        twitchUrl:
+          type: string
+          nullable: true
+        redditUrl:
+          type: string
+          nullable: true
+        tikTokUrl:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        twitterUrl:
+          type: string
+          nullable: true
+        facebookUrl:
+          type: string
+          nullable: true
+        youTubeUrl:
+          type: string
+          nullable: true
+        linkedInUrl:
+          type: string
+          nullable: true
+        instagramUrl:
+          type: string
+          nullable: true
+        githubUsername:
+          type: string
+          nullable: true
+        instagramUsername:
+          type: string
+          nullable: true
+        tikTokUsername:
+          type: string
+          nullable: true
+        stackExchangeUrl:
+          type: string
+          nullable: true
+        stackOverflowUrl:
+          type: string
+          nullable: true
+        parentContactId:
+          type: string
+          nullable: true
+        faxNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        tenantId:
+          type: string
+          nullable: true
+        type:
+          enum:
+            - Individual
+            - Organization
+          type: string
+        email:
+          type: string
+          format: email
+          nullable: true
+        phone:
+          type: string
+          format: tel
+          nullable: true
+        publicName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        coverUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          nullable: true
+        timezoneId:
+          type: string
+          nullable: true
+        languageId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        webUrl:
+          type: string
+          format: uri
+          nullable: true
+        gitHubUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitchUrl:
+          type: string
+          format: uri
+          nullable: true
+        redditUrl:
+          type: string
+          format: uri
+          nullable: true
+        tikTokUrl:
+          type: string
+          format: uri
+          nullable: true
+        websiteUrl:
+          type: string
+          format: uri
+          nullable: true
+        twitterUrl:
+          type: string
+          format: uri
+          nullable: true
+        facebookUrl:
+          type: string
+          format: uri
+          nullable: true
+        youTubeUrl:
+          type: string
+          format: uri
+          nullable: true
+        linkedInUrl:
+          type: string
+          format: uri
+          nullable: true
+        instagramUrl:
+          type: string
+          format: uri
+          nullable: true
+        githubUsername:
+          type: string
+          nullable: true
+        duns:
+          type: string
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        street:
+          type: string
+          nullable: true
+        cartId:
+          type: string
+          nullable: true
+        cityId:
+          type: string
+          nullable: true
+        zipCode:
+          type: string
+          nullable: true
+        stateId:
+          type: string
+          nullable: true
+        walletId:
+          type: string
+          nullable: true
+        faxNumber:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        streetLine1:
+          type: string
+          nullable: true
+        streetLine2:
+          type: string
+          nullable: true
+        territoryId:
+          type: string
+          nullable: true
+        mobilePhone:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        annualRevenue:
+          type: string
+          nullable: true
+        relatedUserId:
+          type: string
+          nullable: true
+        businessPhone:
+          type: string
+          nullable: true
+        ownerContactId:
+          type: string
+          nullable: true
+        relatedTenantId:
+          type: string
+          nullable: true
+        activityFeedId:
+          type: string
+          nullable: true
+        parentContactId:
+          type: string
+          nullable: true
+        identityProvider:
+          type: string
+          nullable: true
+        partnerProfileId:
+          type: string
+          nullable: true
+        primaryContactId:
+          type: string
+          nullable: true
+        activeDirectoryId:
+          type: string
+          nullable: true
+        identityProviderAccessToken:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CreateSigningParticipantDto:
+      required:
+        - contactId
+      type: object
+      properties:
+        contactId:
+          minLength: 1
+          type: string
+        role:
+          enum:
+            - Signer
+            - Approver
+            - Viewer
+            - Witness
+            - CarbonCopy
+            - System
+          type: string
+        routingOrder:
+          type: integer
+          format: int32
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateSigningRequestDto:
+      type: object
+      properties:
+        routingMode:
+          enum:
+            - Parallel
+            - Sequential
+          type: string
+        expiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ExecuteSigningRequestDto:
+      required:
+        - providerName
+      type: object
+      properties:
+        providerName:
+          minLength: 1
+          type: string
+        providerMode:
+          type: string
+          nullable: true
+        signingProfileId:
+          type: string
+          nullable: true
+        signingCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FinalizeSigningRequestDto:
+      required:
+        - signedFileUploadId
+      type: object
+      properties:
+        signedFileUploadId:
+          minLength: 1
+          type: string
+        evidenceFileUploadId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+        providerName:
+          type: string
+          nullable: true
+        outcomeNotes:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          enum:
+            - Add
+            - Remove
+            - Replace
+            - Move
+            - Copy
+            - Test
+            - Invalid
+          type: string
+          readOnly: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    QuickSignSignedDocumentDto:
+      required:
+        - providerName
+        - signingCertificateId
+      type: object
+      properties:
+        providerName:
+          minLength: 1
+          type: string
+        signingCertificateId:
+          minLength: 1
+          type: string
+        signingProfileId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RecordSigningParticipantOutcomeDto:
+      required:
+        - outcome
+      type: object
+      properties:
+        outcome:
+          enum:
+            - Pending
+            - Sent
+            - Viewed
+            - Signed
+            - Approved
+            - Declined
+            - Skipped
+            - Expired
+            - Failed
+          type: string
+        outcomeAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        declineReason:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        validationCode:
+          type: string
+          nullable: true
+        signatureImage:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        signingProfileId:
+          type: string
+          nullable: true
+        signingCertificateId:
+          type: string
+          nullable: true
+        signedDocumentId:
+          type: string
+          nullable: true
+        signedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        signingStatus:
+          enum:
+            - Unknown
+            - Draft
+            - Signed
+            - Failed
+            - Revoked
+          type: string
+          nullable: true
+        verificationStatus:
+          enum:
+            - Unknown
+            - NotVerified
+            - Valid
+            - Invalid
+            - Expired
+          type: string
+          nullable: true
+        signatureFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        digestAlgorithm:
+          type: string
+          nullable: true
+        signatureAlgorithm:
+          type: string
+          nullable: true
+        canonicalizationAlgorithm:
+          type: string
+          nullable: true
+        policyIdentifier:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        digestValue:
+          type: string
+          nullable: true
+        signatureValueHash:
+          type: string
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+        signingProfileDisplayName:
+          type: string
+          nullable: true
+        signingCertificateTitle:
+          type: string
+          nullable: true
+        signedDocumentTitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignatureDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureDto'
+          nullable: true
+      additionalProperties: false
+    SignatureVerificationDto:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+        method:
+          type: string
+          nullable: true
+        signerSubject:
+          type: string
+          nullable: true
+        signerThumbprint:
+          type: string
+          nullable: true
+        issues:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentAttachmentCreateDto:
+      required:
+        - signedDocumentId
+        - storageKey
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        signedDocumentId:
+          minLength: 1
+          type: string
+        title:
+          minLength: 1
+          type: string
+        fileName:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        fileLength:
+          type: integer
+          format: int64
+        hash:
+          type: string
+          nullable: true
+        fileUploadUrl:
+          type: string
+          nullable: true
+        storageKey:
+          minLength: 1
+          type: string
+        storageProviderKey:
+          type: string
+          nullable: true
+        attachmentRole:
+          enum:
+            - Unknown
+            - Source
+            - SupportingEvidence
+            - AuthorityResponse
+            - HumanReadablePdf
+            - XmlPayload
+            - ValidationReport
+            - Other
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentAttachmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        signedDocumentId:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        fileName:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        fileLength:
+          type: integer
+          format: int64
+        hash:
+          type: string
+          nullable: true
+        fileUploadUrl:
+          type: string
+          nullable: true
+        storageKey:
+          type: string
+          nullable: true
+        storageProviderKey:
+          type: string
+          nullable: true
+        scanStatus:
+          enum:
+            - NotRequired
+            - Pending
+            - Clean
+            - Infected
+            - Failed
+            - Quarantined
+          type: string
+        mutability:
+          enum:
+            - Editable
+            - Managed
+            - SealedEvidence
+          type: string
+        attachmentRole:
+          enum:
+            - Unknown
+            - Source
+            - SupportingEvidence
+            - AuthorityResponse
+            - HumanReadablePdf
+            - XmlPayload
+            - ValidationReport
+            - Other
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        signedDocumentTitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentAttachmentDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignedDocumentAttachmentDto'
+          nullable: true
+      additionalProperties: false
+    SignedDocumentAttachmentUpdateDto:
+      required:
+        - title
+      type: object
+      properties:
+        title:
+          minLength: 1
+          type: string
+        attachmentRole:
+          enum:
+            - Unknown
+            - Source
+            - SupportingEvidence
+            - AuthorityResponse
+            - HumanReadablePdf
+            - XmlPayload
+            - ValidationReport
+            - Other
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentCreateDto:
+      required:
+        - contactId
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        url:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        title:
+          minLength: 1
+          type: string
+        contentType:
+          type: string
+          nullable: true
+        contactId:
+          minLength: 1
+          type: string
+        documentStandard:
+          enum:
+            - None
+            - Ubl
+            - Pdf
+            - Xml
+            - Email
+            - Json
+            - Other
+          type: string
+          nullable: true
+        trustDocumentType:
+          enum:
+            - Unknown
+            - Invoice
+            - CreditNote
+            - DebitNote
+            - Contract
+            - Certificate
+            - Email
+            - AuthorityResponse
+            - Other
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        signed:
+          type: boolean
+        url:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        fileLengthInBits:
+          type: integer
+          format: int64
+        tenantId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        documentStandard:
+          enum:
+            - None
+            - Ubl
+            - Pdf
+            - Xml
+            - Email
+            - Json
+            - Other
+          type: string
+          nullable: true
+        trustDocumentType:
+          enum:
+            - Unknown
+            - Invoice
+            - CreditNote
+            - DebitNote
+            - Contract
+            - Certificate
+            - Email
+            - AuthorityResponse
+            - Other
+          type: string
+          nullable: true
+        signingStatus:
+          enum:
+            - Unknown
+            - Draft
+            - Signed
+            - Failed
+            - Revoked
+          type: string
+          nullable: true
+        verificationStatus:
+          enum:
+            - Unknown
+            - NotVerified
+            - Valid
+            - Invalid
+            - Expired
+          type: string
+          nullable: true
+        signedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+        sourceStorageObjectId:
+          type: string
+          nullable: true
+        sourceSha256:
+          type: string
+          nullable: true
+        signedStorageObjectId:
+          type: string
+          nullable: true
+        signedSha256:
+          type: string
+          nullable: true
+        evidenceStorageObjectId:
+          type: string
+          nullable: true
+        evidenceSha256:
+          type: string
+          nullable: true
+        primaryFileUploadId:
+          type: string
+          nullable: true
+        frozenSourceFileUploadId:
+          type: string
+          nullable: true
+        signedFileUploadId:
+          type: string
+          nullable: true
+        evidenceFileUploadId:
+          type: string
+          nullable: true
+        lockState:
+          enum:
+            - Draft
+            - Editable
+            - FrozenForSignature
+            - SigningInProgress
+            - Sealed
+            - Voided
+            - Superseded
+          type: string
+          nullable: true
+        graphicalRepresentationFileUploadId:
+          type: string
+          nullable: true
+        graphicalRepresentationStorageObjectId:
+          type: string
+          nullable: true
+        graphicalRepresentationSha256:
+          type: string
+          nullable: true
+        graphicalRepresentationContentType:
+          type: string
+          nullable: true
+        graphicalRepresentationGeneratedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SignedDocumentDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignedDocumentDto'
+          nullable: true
+      additionalProperties: false
+    SignedDocumentUpdateDto:
+      required:
+        - contactId
+        - title
+      type: object
+      properties:
+        url:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        title:
+          minLength: 1
+          type: string
+        contentType:
+          type: string
+          nullable: true
+        contactId:
+          minLength: 1
+          type: string
+        documentStandard:
+          enum:
+            - None
+            - Ubl
+            - Pdf
+            - Xml
+            - Email
+            - Json
+            - Other
+          type: string
+          nullable: true
+        trustDocumentType:
+          enum:
+            - Unknown
+            - Invoice
+            - CreditNote
+            - DebitNote
+            - Contract
+            - Certificate
+            - Email
+            - AuthorityResponse
+            - Other
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningCertificateCreateDto:
+      required:
+        - contactId
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          minLength: 1
+          type: string
+        type:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        csr:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        certificateType:
+          enum:
+            - AuthSignedCertificate
+            - SelfSignedCertificate
+            - AllianceSignedCertificate
+          type: string
+        contactId:
+          minLength: 1
+          type: string
+        securityCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningCertificateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        csr:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        signature:
+          type: string
+          nullable: true
+        fileLengthInBits:
+          type: integer
+          format: int64
+        certificateType:
+          enum:
+            - AuthSignedCertificate
+            - SelfSignedCertificate
+            - AllianceSignedCertificate
+          type: string
+        contactId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        securityCertificateId:
+          type: string
+          nullable: true
+        certificateStatus:
+          enum:
+            - Unknown
+            - Active
+            - Expiring
+            - Expired
+            - Revoked
+            - Disabled
+          type: string
+          nullable: true
+        thumbprint:
+          type: string
+          nullable: true
+        subjectName:
+          type: string
+          nullable: true
+        issuerName:
+          type: string
+          nullable: true
+        serialNumber:
+          type: string
+          nullable: true
+        notBeforeUtc:
+          type: string
+          format: date-time
+          nullable: true
+        notAfterUtc:
+          type: string
+          format: date-time
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningCertificateDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningCertificateDto'
+          nullable: true
+      additionalProperties: false
+    SigningCertificateUpdateDto:
+      required:
+        - contactId
+        - title
+      type: object
+      properties:
+        title:
+          minLength: 1
+          type: string
+        type:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        csr:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        certificateType:
+          enum:
+            - AuthSignedCertificate
+            - SelfSignedCertificate
+            - AllianceSignedCertificate
+          type: string
+        contactId:
+          minLength: 1
+          type: string
+        securityCertificateId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningLogDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        logType:
+          enum:
+            - Continue
+            - SwitchingProtocols
+            - Processing
+            - EarlyHints
+            - OK
+            - Created
+            - Accepted
+            - NonAuthoritativeInformation
+            - NoContent
+            - ResetContent
+            - PartialContent
+            - MultiStatus
+            - AlreadyReported
+            - IMUsed
+            - MultipleChoices
+            - MovedPermanently
+            - Found
+            - SeeOther
+            - NotModified
+            - UseProxy
+            - Unused
+            - TemporaryRedirect
+            - PermanentRedirect
+            - BadRequest
+            - Unauthorized
+            - PaymentRequired
+            - Forbidden
+            - NotFound
+            - MethodNotAllowed
+            - NotAcceptable
+            - ProxyAuthenticationRequired
+            - RequestTimeout
+            - Conflict
+            - Gone
+            - LengthRequired
+            - PreconditionFailed
+            - RequestEntityTooLarge
+            - RequestUriTooLong
+            - UnsupportedMediaType
+            - RequestedRangeNotSatisfiable
+            - ExpectationFailed
+            - MisdirectedRequest
+            - UnprocessableEntity
+            - Locked
+            - FailedDependency
+            - UpgradeRequired
+            - PreconditionRequired
+            - TooManyRequests
+            - RequestHeaderFieldsTooLarge
+            - UnavailableForLegalReasons
+            - InternalServerError
+            - NotImplemented
+            - BadGateway
+            - ServiceUnavailable
+            - GatewayTimeout
+            - HttpVersionNotSupported
+            - VariantAlsoNegotiates
+            - InsufficientStorage
+            - LoopDetected
+            - NotExtended
+            - NetworkAuthenticationRequired
+          type: string
+        securityEvent:
+          type: string
+          nullable: true
+        requiresAttention:
+          type: boolean
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        signingProfileId:
+          type: string
+          nullable: true
+        signingCertificateId:
+          type: string
+          nullable: true
+        signedDocumentId:
+          type: string
+          nullable: true
+        operationType:
+          enum:
+            - Unknown
+            - Sign
+            - Verify
+            - Seal
+            - RotateCredential
+            - ResolveCredential
+            - SubmitToAuthority
+            - ReceiveAuthorityResponse
+            - Freeze
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        inputHash:
+          type: string
+          nullable: true
+        outputHash:
+          type: string
+          nullable: true
+        providerName:
+          type: string
+          nullable: true
+        resultCode:
+          type: string
+          nullable: true
+        signingProfileDisplayName:
+          type: string
+          nullable: true
+        signingCertificateTitle:
+          type: string
+          nullable: true
+        signedDocumentTitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningLogDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningLogDto'
+          nullable: true
+      additionalProperties: false
+    SigningParticipantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        signingRequestId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+        role:
+          enum:
+            - Signer
+            - Approver
+            - Viewer
+            - Witness
+            - CarbonCopy
+            - System
+          type: string
+        status:
+          enum:
+            - Pending
+            - Sent
+            - Viewed
+            - Signed
+            - Approved
+            - Declined
+            - Skipped
+            - Expired
+            - Failed
+          type: string
+        routingOrder:
+          type: integer
+          format: int32
+        sentAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        viewedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        signedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        approvedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        declinedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        declineReason:
+          type: string
+          nullable: true
+        signatureId:
+          type: string
+          nullable: true
+        accessTokenExpiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningParticipantDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningParticipantDto'
+          nullable: true
+      additionalProperties: false
+    SigningProfileCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        contact:
+          $ref: '#/components/schemas/ContactCreateDto'
+        about:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        signatureFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        signaturePurpose:
+          enum:
+            - Unknown
+            - RegulatorySubmission
+            - ContractExecution
+            - EmailSigning
+            - InternalApproval
+            - EvidenceSealing
+            - AgentCredential
+            - Other
+          type: string
+          nullable: true
+        digestAlgorithm:
+          type: string
+          nullable: true
+        signatureAlgorithm:
+          type: string
+          nullable: true
+        canonicalizationAlgorithm:
+          type: string
+          nullable: true
+        policyIdentifier:
+          type: string
+          nullable: true
+        policyUri:
+          type: string
+          nullable: true
+        authorityProfile:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        defaultForDocumentType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningProfileDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        submitted:
+          type: boolean
+        avatarUrl:
+          type: string
+          nullable: true
+        contact:
+          $ref: '#/components/schemas/ContactDto'
+        qualifiedName:
+          type: string
+          nullable: true
+          readOnly: true
+        verificationTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+        signatureFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        signaturePurpose:
+          enum:
+            - Unknown
+            - RegulatorySubmission
+            - ContractExecution
+            - EmailSigning
+            - InternalApproval
+            - EvidenceSealing
+            - AgentCredential
+            - Other
+          type: string
+          nullable: true
+        digestAlgorithm:
+          type: string
+          nullable: true
+        signatureAlgorithm:
+          type: string
+          nullable: true
+        canonicalizationAlgorithm:
+          type: string
+          nullable: true
+        policyIdentifier:
+          type: string
+          nullable: true
+        policyUri:
+          type: string
+          nullable: true
+        authorityProfile:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        defaultForDocumentType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningProfileDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningProfileDto'
+          nullable: true
+      additionalProperties: false
+    SigningProfileGraphicalRepresentationCreateDto:
+      required:
+        - kind
+        - signingProfileId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        signingProfileId:
+          minLength: 1
+          type: string
+        kind:
+          enum:
+            - Drawn
+            - UploadedImage
+            - Typed
+            - Initials
+            - Seal
+            - Stamp
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        fileUploadId:
+          type: string
+          nullable: true
+        sha256:
+          type: string
+          nullable: true
+        vectorDataJson:
+          type: string
+          nullable: true
+        textValue:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        isDefault:
+          type: boolean
+        isActive:
+          type: boolean
+      additionalProperties: false
+    SigningProfileGraphicalRepresentationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        signingProfileId:
+          type: string
+          nullable: true
+        kind:
+          enum:
+            - Drawn
+            - UploadedImage
+            - Typed
+            - Initials
+            - Seal
+            - Stamp
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        fileUploadId:
+          type: string
+          nullable: true
+        sha256:
+          type: string
+          nullable: true
+        vectorDataJson:
+          type: string
+          nullable: true
+        textValue:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        isDefault:
+          type: boolean
+        isActive:
+          type: boolean
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        createdById:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        signingProfileName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningProfileGraphicalRepresentationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDto'
+          nullable: true
+      additionalProperties: false
+    SigningProfileGraphicalRepresentationUpdateDto:
+      type: object
+      properties:
+        kind:
+          enum:
+            - Drawn
+            - UploadedImage
+            - Typed
+            - Initials
+            - Seal
+            - Stamp
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        fileUploadId:
+          type: string
+          nullable: true
+        sha256:
+          type: string
+          nullable: true
+        vectorDataJson:
+          type: string
+          nullable: true
+        textValue:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        isDefault:
+          type: boolean
+        isActive:
+          type: boolean
+      additionalProperties: false
+    SigningProfileUpdateDto:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        dataLabel:
+          type: string
+          nullable: true
+        data1:
+          type: string
+          nullable: true
+        data1Label:
+          type: string
+          nullable: true
+        data2:
+          type: string
+          nullable: true
+        data2Label:
+          type: string
+          nullable: true
+        data3:
+          type: string
+          nullable: true
+        data3Label:
+          type: string
+          nullable: true
+        data4:
+          type: string
+          nullable: true
+        data4Label:
+          type: string
+          nullable: true
+        data5:
+          type: string
+          nullable: true
+        data5Label:
+          type: string
+          nullable: true
+        data6:
+          type: string
+          nullable: true
+        data6Label:
+          type: string
+          nullable: true
+        data7:
+          type: string
+          nullable: true
+        data7Label:
+          type: string
+          nullable: true
+        data8:
+          type: string
+          nullable: true
+        data8Label:
+          type: string
+          nullable: true
+        data9:
+          type: string
+          nullable: true
+        data9Label:
+          type: string
+          nullable: true
+        signatureFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        signaturePurpose:
+          enum:
+            - Unknown
+            - RegulatorySubmission
+            - ContractExecution
+            - EmailSigning
+            - InternalApproval
+            - EvidenceSealing
+            - AgentCredential
+            - Other
+          type: string
+          nullable: true
+        digestAlgorithm:
+          type: string
+          nullable: true
+        signatureAlgorithm:
+          type: string
+          nullable: true
+        canonicalizationAlgorithm:
+          type: string
+          nullable: true
+        policyIdentifier:
+          type: string
+          nullable: true
+        policyUri:
+          type: string
+          nullable: true
+        authorityProfile:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        defaultForDocumentType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningRequestDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        signedDocumentId:
+          type: string
+          nullable: true
+        signedDocumentTitle:
+          type: string
+          nullable: true
+        frozenSourceFileUploadId:
+          type: string
+          nullable: true
+        sourceSha256:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Draft
+            - Ready
+            - Sent
+            - InProgress
+            - Completed
+            - Declined
+            - Voided
+            - Expired
+            - Failed
+          type: string
+        routingMode:
+          enum:
+            - Parallel
+            - Sequential
+          type: string
+        createdAtUtc:
+          type: string
+          format: date-time
+        sentAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        completedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        expiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        voidedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        voidedReason:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SigningRequestDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningRequestDto'
+          nullable: true
+      additionalProperties: false
+    TrustArtifactReferenceDto:
+      type: object
+      properties:
+        storageObjectId:
+          type: string
+          nullable: true
+        storageKey:
+          type: string
+          nullable: true
+        storageProviderKey:
+          type: string
+          nullable: true
+        sha256:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        length:
+          type: integer
+          format: int64
+          nullable: true
+        mutability:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TrustArtifactReferenceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TrustArtifactReferenceDto'
+      additionalProperties: false
+    TrustSigningProviderDescriptorDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        mode:
+          type: string
+          nullable: true
+        canRecordOutcome:
+          type: boolean
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TrustSigningProviderDescriptorDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrustSigningProviderDescriptorDto'
+          nullable: true
+      additionalProperties: false
+    TrustSigningReadinessDto:
+      type: object
+      properties:
+        canProceed:
+          type: boolean
+        blockingReasons:
+          type: array
+          items:
+            type: string
+          nullable: true
+        warnings:
+          type: array
+          items:
+            type: string
+          nullable: true
+        resolvedDocumentTitle:
+          type: string
+          nullable: true
+        resolvedProfileDisplayName:
+          type: string
+          nullable: true
+        resolvedCertificateTitle:
+          type: string
+          nullable: true
+        expectedSignatureFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        expectedSignaturePurpose:
+          enum:
+            - Unknown
+            - RegulatorySubmission
+            - ContractExecution
+            - EmailSigning
+            - InternalApproval
+            - EvidenceSealing
+            - AgentCredential
+            - Other
+          type: string
+          nullable: true
+        expectedDigestAlgorithm:
+          type: string
+          nullable: true
+        expectedSignatureAlgorithm:
+          type: string
+          nullable: true
+        expectedCanonicalizationAlgorithm:
+          type: string
+          nullable: true
+        policyIdentifier:
+          type: string
+          nullable: true
+        authorityProfile:
+          type: string
+          nullable: true
+        requiresCustodyProvider:
+          type: boolean
+        requiresSourceArtifact:
+          type: boolean
+        requiresCertificate:
+          type: boolean
+        correlationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TrustSigningReadinessDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TrustSigningReadinessDto'
+      additionalProperties: false
+    TrustSigningRequestDto:
+      type: object
+      properties:
+        signedDocumentId:
+          type: string
+          nullable: true
+        signingProfileId:
+          type: string
+          nullable: true
+        signingCertificateId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        requestedFormat:
+          enum:
+            - Unknown
+            - XAdES
+            - PAdES
+            - CAdES
+            - SMIME
+            - DetachedXmlDSig
+            - Enveloped
+            - Other
+          type: string
+          nullable: true
+        requestedPurpose:
+          enum:
+            - Unknown
+            - RegulatorySubmission
+            - ContractExecution
+            - EmailSigning
+            - InternalApproval
+            - EvidenceSealing
+            - AgentCredential
+            - Other
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        sourceStorageObjectId:
+          type: string
+          nullable: true
+        sourceSha256:
+          type: string
+          nullable: true
+        externalReference:
+          type: string
+          nullable: true
+        dryRun:
+          type: boolean
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+    VoidSigningRequestDto:
+      type: object
+      properties:
+        voidedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+tags:
+  - name: FenixAlliance.ABS.Web
+  - name: Signatures
+  - name: SignedDocumentArtifacts
+  - name: SignedDocumentAttachments
+  - name: SignedDocuments
+  - name: SigningCertificates
+  - name: SigningEngine
+  - name: SigningLogs
+  - name: SigningParticipants
+  - name: SigningProfileGraphicalRepresentations
+  - name: SigningProfiles
+  - name: SigningRequests

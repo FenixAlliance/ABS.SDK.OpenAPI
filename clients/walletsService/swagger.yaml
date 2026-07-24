@@ -37,6 +37,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -807,7 +820,7 @@ paths:
         - Wallets
       summary: Get Wallet Locations
       description: Get locations of a specific wallet by ID.
-      operationId: GetWalletLocationsAsync
+      operationId: GetLocationsForWalletAsync
       parameters:
         - name: walletId
           in: path
@@ -856,7 +869,7 @@ paths:
         - Wallets
       summary: Create Wallet Location
       description: Create a new location for a specific wallet by ID.
-      operationId: CreateWalletLocationAsync
+      operationId: CreateLocationForWalletAsync
       parameters:
         - name: walletId
           in: path
@@ -914,7 +927,7 @@ paths:
         - Wallets
       summary: Get Wallet Locations Count
       description: Get locations count of a specific wallet by ID.
-      operationId: GetWalletLocationsCountAsync
+      operationId: GetLocationsForWalletCountAsync
       parameters:
         - name: walletId
           in: path
@@ -964,7 +977,7 @@ paths:
         - Wallets
       summary: Get Wallet Location
       description: Get a specific location of a specific wallet by ID.
-      operationId: GetWalletLocationAsync
+      operationId: GetLocationForWalletAsync
       parameters:
         - name: walletId
           in: path
@@ -1019,7 +1032,7 @@ paths:
         - Wallets
       summary: Update Wallet Location
       description: Update a specific location of a specific wallet by ID.
-      operationId: UpdateWalletLocationAsync
+      operationId: UpdateLocationForWalletAsync
       parameters:
         - name: walletId
           in: path
@@ -1082,7 +1095,7 @@ paths:
         - Wallets
       summary: Delete Wallet Location
       description: Delete a specific location of a specific wallet by ID.
-      operationId: DeleteWalletLocationAsync
+      operationId: DeleteLocationForWalletAsync
       parameters:
         - name: walletId
           in: path

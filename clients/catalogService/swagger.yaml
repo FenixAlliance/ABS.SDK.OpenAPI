@@ -37,6 +37,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -9350,7 +9363,7 @@ paths:
         - ItemShippingPolicies
       summary: Get item shipping policies
       description: Retrieves all shipping policies for a specific item.
-      operationId: GetItemShippingPoliciesAsync
+      operationId: GetCatalogItemShippingPoliciesAsync
       parameters:
         - name: tenantId
           in: query
@@ -9512,7 +9525,7 @@ paths:
         - ItemShippingPolicies
       summary: Get item shipping policy by ID
       description: Retrieves a specific shipping policy for an item.
-      operationId: GetItemShippingPolicyByIdAsync
+      operationId: GetCatalogItemShippingPolicyByIdAsync
       parameters:
         - name: tenantId
           in: query

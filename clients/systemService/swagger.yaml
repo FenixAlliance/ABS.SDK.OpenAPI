@@ -1005,6 +1005,19 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/v2/AIService/Agents/{agentId}/agui':
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /hello:
     get:
       tags:
@@ -2341,7 +2354,7 @@ paths:
         - Licensing
       summary: Retrieve license attributes
       description: Retrieves all additional attributes for a given license.
-      operationId: GetLicenseAttributesAsync
+      operationId: GetAttributesForLicenseAsync
       parameters:
         - name: tenantId
           in: query
@@ -2622,7 +2635,7 @@ paths:
         - Licensing
       summary: Retrieve license features
       description: Retrieves all features for a given license.
-      operationId: GetLicenseFeaturesAsync
+      operationId: GetFeaturesForLicenseAsync
       parameters:
         - name: tenantId
           in: query
@@ -4168,10 +4181,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ModuleListEnvelope'
+                $ref: '#/components/schemas/SuiteModuleListEnvelope'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ModuleListEnvelope'
+                $ref: '#/components/schemas/SuiteModuleListEnvelope'
   /api/v2/SystemService/Options:
     get:
       tags:
@@ -7774,6 +7787,68 @@ components:
               type: string
           nullable: true
       additionalProperties: { }
+    IOpenApiContact:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IOpenApiDefinitionSpec:
+      type: object
+      properties:
+        enable:
+          type: boolean
+        name:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        termsOfService:
+          type: string
+          nullable: true
+        openApiEndpoint:
+          $ref: '#/components/schemas/IOpenApiEndpoint'
+        openApiContact:
+          $ref: '#/components/schemas/IOpenApiContact'
+        license:
+          $ref: '#/components/schemas/IOpenApiLicense'
+      additionalProperties: false
+    IOpenApiEndpoint:
+      type: object
+      properties:
+        enable:
+          type: boolean
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IOpenApiLicense:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
     IPLookupDto:
       type: object
       properties:
@@ -7842,68 +7917,6 @@ components:
           items:
             $ref: '#/components/schemas/IPLookupDto'
           nullable: true
-      additionalProperties: false
-    ISwaggerContact:
-      type: object
-      properties:
-        name:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
-        url:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ISwaggerEndpoint:
-      type: object
-      properties:
-        enable:
-          type: boolean
-        name:
-          type: string
-          nullable: true
-        url:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ISwaggerLicense:
-      type: object
-      properties:
-        name:
-          type: string
-          nullable: true
-        url:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ISwaggerSpec:
-      type: object
-      properties:
-        enable:
-          type: boolean
-        name:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        version:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        termsOfService:
-          type: string
-          nullable: true
-        swaggerEndpoint:
-          $ref: '#/components/schemas/ISwaggerEndpoint'
-        openApiContact:
-          $ref: '#/components/schemas/ISwaggerContact'
-        license:
-          $ref: '#/components/schemas/ISwaggerLicense'
       additionalProperties: false
     IValidationFailure:
       type: object
@@ -8017,132 +8030,6 @@ components:
           nullable: true
         twoFactorRecoveryCode:
           type: string
-          nullable: true
-      additionalProperties: false
-    Module:
-      type: object
-      properties:
-        enable:
-          type: boolean
-        active:
-          type: boolean
-          readOnly: true
-        order:
-          type: integer
-          format: int32
-        id:
-          type: string
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        fullName:
-          type: string
-          nullable: true
-          readOnly: true
-        description:
-          type: string
-          nullable: true
-        type:
-          enum:
-            - Module
-            - Integration
-            - StudioModule
-            - StudioIntegration
-          type: string
-        configuration:
-          type: string
-          nullable: true
-        author:
-          type: string
-          nullable: true
-        authorUrl:
-          type: string
-          nullable: true
-        license:
-          type: string
-          nullable: true
-        requireLicenseAcceptance:
-          type: boolean
-          nullable: true
-        repository:
-          type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
-        icon:
-          type: string
-          nullable: true
-        image:
-          type: string
-          nullable: true
-        nuSpecPath:
-          type: string
-          nullable: true
-        manifest:
-          type: string
-          nullable: true
-        documentation:
-          type: string
-          nullable: true
-        website:
-          type: string
-          nullable: true
-        logo:
-          type: string
-          nullable: true
-        swaggerSpec:
-          $ref: '#/components/schemas/ISwaggerSpec'
-        swaggerSpecs:
-          type: array
-          items:
-            $ref: '#/components/schemas/ISwaggerSpec'
-          nullable: true
-        url:
-          type: string
-          nullable: true
-        assemblyPaths:
-          type: array
-          items:
-            type: string
-          nullable: true
-        requiredPermissions:
-          type: array
-          items:
-            type: string
-          nullable: true
-          readOnly: true
-        markedForDeletion:
-          type: boolean
-        version:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ModuleListEnvelope:
-      type: object
-      properties:
-        isSuccess:
-          type: boolean
-          readOnly: true
-        errorMessage:
-          type: string
-          nullable: true
-        correlationId:
-          type: string
-          nullable: true
-        timestamp:
-          type: string
-          format: date-time
-          readOnly: true
-        activityId:
-          type: string
-          nullable: true
-          readOnly: true
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Module'
           nullable: true
       additionalProperties: false
     ObjectEmailDispatchRequest:
@@ -8714,6 +8601,154 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SuiteLicenseDto'
+          nullable: true
+      additionalProperties: false
+    SuiteModule:
+      type: object
+      properties:
+        enable:
+          type: boolean
+        markedForDeletion:
+          type: boolean
+        active:
+          type: boolean
+          readOnly: true
+        order:
+          type: integer
+          format: int32
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+          readOnly: true
+        description:
+          type: string
+          nullable: true
+        type:
+          enum:
+            - Module
+            - Integration
+            - StudioModule
+            - StudioIntegration
+            - WasmModule
+            - WasmIntegration
+          type: string
+        category:
+          enum:
+            - Other
+            - FinanceAndAccounting
+            - SalesAndCommerce
+            - MarketingAndEngagement
+            - CustomerRelations
+            - OperationsAndSupplyChain
+            - ProjectsAndProductivity
+            - PeopleAndWorkforce
+            - LearningAndEducation
+            - ContentAndWeb
+            - DataAndAnalytics
+            - ArtificialIntelligence
+            - SecurityAndIdentity
+            - TrustAndCompliance
+            - Communication
+            - DeveloperAndPlatform
+            - IndustrySolutions
+          type: string
+        configuration:
+          type: string
+          nullable: true
+        author:
+          type: string
+          nullable: true
+        authorUrl:
+          type: string
+          nullable: true
+        license:
+          type: string
+          nullable: true
+        requireLicenseAcceptance:
+          type: boolean
+          nullable: true
+        repository:
+          type: string
+          nullable: true
+        icon:
+          type: string
+          nullable: true
+        image:
+          type: string
+          nullable: true
+        nuSpecPath:
+          type: string
+          nullable: true
+        manifest:
+          type: string
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        documentation:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        openApiDefinitionSpec:
+          $ref: '#/components/schemas/IOpenApiDefinitionSpec'
+        swaggerSpecs:
+          type: array
+          items:
+            $ref: '#/components/schemas/IOpenApiDefinitionSpec'
+          nullable: true
+        assemblyPaths:
+          type: array
+          items:
+            type: string
+          nullable: true
+        requiredPermissions:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+        version:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SuiteModuleListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuiteModule'
           nullable: true
       additionalProperties: false
     SystemOverviewDto:
