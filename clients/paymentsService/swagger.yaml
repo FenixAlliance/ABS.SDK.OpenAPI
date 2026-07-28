@@ -1153,6 +1153,205 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/PaymentsService/PaymentProviderRegistrations:
+    post:
+      tags:
+        - PaymentProviderRegistrations
+      summary: Provisions a provider webhook registration
+      description: 'Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.'
+      operationId: CreateAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProviderWebhookRegistrationRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateProviderWebhookRegistrationRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderWebhookRegistrationCreatedDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProviderWebhookRegistrationCreatedDtoEnvelope'
+    get:
+      tags:
+        - PaymentProviderRegistrations
+      summary: Lists the tenant's provider registrations
+      description: Gets all provider registrations for the current tenant with OData support (no secret is ever returned).
+      operationId: GetAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentProviderRegistrationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PaymentProviderRegistrationDtoListEnvelope'
+  /api/v2/PaymentsService/PaymentProviderRegistrations/Count:
+    get:
+      tags:
+        - PaymentProviderRegistrations
+      summary: Counts the tenant's provider registrations
+      description: Gets the count of provider registrations for the current tenant (OData sibling of the list).
+      operationId: GetCountAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/RotateKey':
+    post:
+      tags:
+        - PaymentProviderRegistrations
+      summary: Rotates a registration's webhook key
+      description: 'Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.'
+      operationId: RotateKeyAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: registrationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderWebhookRegistrationCreatedDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProviderWebhookRegistrationCreatedDtoEnvelope'
   '/api/v2/PaymentsService/Payments/{paymentId}/Details':
     get:
       tags:
@@ -1959,6 +2158,25 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    CreateProviderWebhookRegistrationRequest:
+      type: object
+      properties:
+        providerCode:
+          type: string
+          nullable: true
+        externalAccountId:
+          type: string
+          nullable: true
+        webhookSigningSecret:
+          type: string
+          nullable: true
+        credentialMode:
+          enum:
+            - TenantManaged
+            - PlatformManaged
+            - ExternalReference
+          type: string
+      additionalProperties: false
     EmptyEnvelope:
       type: object
       properties:
@@ -1975,6 +2193,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -1996,6 +2229,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2078,6 +2326,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2568,6 +2831,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2638,6 +2916,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2661,6 +2954,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2751,6 +3059,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2774,6 +3097,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2799,6 +3137,105 @@ components:
           nullable: true
         paymentMeansCode:
           type: string
+          nullable: true
+      additionalProperties: false
+    PaymentProviderRegistrationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        lastModifiedUtc:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        providerCode:
+          type: string
+          nullable: true
+        credentialSetReference:
+          type: string
+          nullable: true
+        hasCredential:
+          type: boolean
+        credentialMode:
+          enum:
+            - TenantManaged
+            - PlatformManaged
+            - ExternalReference
+          type: string
+        externalAccountId:
+          type: string
+          nullable: true
+        enabledCapabilities:
+          enum:
+            - None
+            - Collection
+            - Authorization
+            - Capture
+            - Refund
+            - Void
+            - SplitPayment
+            - Transfer
+            - Payout
+            - RecipientOnboarding
+            - BalanceInquiry
+          type: string
+        status:
+          enum:
+            - Draft
+            - Active
+            - Disabled
+            - Suspended
+          type: string
+      additionalProperties: false
+    PaymentProviderRegistrationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentProviderRegistrationDto'
           nullable: true
       additionalProperties: false
     PaymentTermCreateDto:
@@ -2903,6 +3340,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -2926,6 +3378,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -3193,6 +3660,67 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ProviderWebhookRegistrationCreatedDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        providerCode:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Draft
+            - Active
+            - Disabled
+            - Suspended
+          type: string
+        webhookRegistrationKey:
+          type: string
+          nullable: true
+        webhookUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProviderWebhookRegistrationCreatedDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ProviderWebhookRegistrationCreatedDto'
+      additionalProperties: false
     RefreshRequest:
       required:
         - refreshToken
@@ -3285,5 +3813,6 @@ tags:
   - name: FenixAlliance.ABS.Web
   - name: PaymentMethods
   - name: PaymentModes
+  - name: PaymentProviderRegistrations
   - name: Payments
   - name: PaymentTerms

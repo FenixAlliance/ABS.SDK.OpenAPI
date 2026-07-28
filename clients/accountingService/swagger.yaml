@@ -15382,6 +15382,79 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/AccountingService/Journals/{journalId}/AssignToBook':
+    post:
+      tags:
+        - Journals
+      summary: Bind a journal to a financial book
+      description: 'Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.'
+      operationId: AssignJournalToBookAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: journalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignJournalToBookRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AssignJournalToBookRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
   '/api/v2/AccountingService/Journals/{journalId}/Entries':
     get:
       tags:
@@ -18371,6 +18444,106 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/AccountingService/PostingExecutions:
+    get:
+      tags:
+        - PostingExecutions
+      summary: List posting executions
+      description: 'Lists the tenant''s posting-inbox executions (the durable evidence of every posting intent). Use OData to scope to a state — e.g. $filter=Status eq ''Rejected'' for rejected intents, or Status eq ''PendingMapping''/''PendingPeriod''/''PendingRate'' for the retryable pending set — and to page/order. Requires journals_read.'
+      operationId: GetPostingExecutionsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostingExecutionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostingExecutionDtoIReadOnlyListEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/AccountingService/PostingExecutions/Count:
+    get:
+      tags:
+        - PostingExecutions
+      summary: Count posting executions
+      description: Returns the count of the tenant's posting-inbox executions under the same OData shaping as the list read (e.g. $filter=Status eq 'Rejected' to count rejected intents). Requires journals_read.
+      operationId: CountPostingExecutionsAsync
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
         '401':
           description: Unauthorized
           content:
@@ -23653,6 +23826,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23676,6 +23864,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23753,6 +23956,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23776,6 +23994,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23862,6 +24095,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23943,6 +24191,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -23966,6 +24229,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24179,6 +24457,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24202,6 +24495,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24303,6 +24611,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24326,6 +24649,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24438,6 +24776,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24557,6 +24910,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24580,6 +24948,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24614,6 +24997,21 @@ components:
         taxBaseAmountInUSD:
           type: number
           format: double
+      additionalProperties: false
+    AssignJournalToBookRequest:
+      required:
+        - code
+        - financialBookId
+      type: object
+      properties:
+        financialBookId:
+          maxLength: 36
+          minLength: 0
+          type: string
+        code:
+          maxLength: 64
+          minLength: 1
+          type: string
       additionalProperties: false
     BankAccountCreateDto:
       type: object
@@ -24715,6 +25113,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24738,6 +25151,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24841,6 +25269,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -24864,6 +25307,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25027,6 +25485,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25050,6 +25523,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25249,6 +25737,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25394,6 +25897,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25417,6 +25935,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25810,6 +26343,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -25833,6 +26381,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26017,6 +26580,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26040,6 +26618,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26126,6 +26719,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26149,6 +26757,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26202,6 +26825,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26335,6 +26973,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26358,6 +27011,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26678,6 +27346,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26701,6 +27384,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26812,6 +27510,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26835,6 +27548,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26913,6 +27641,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -26936,6 +27679,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27056,6 +27814,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27080,6 +27853,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27101,6 +27889,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27157,6 +27960,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27180,6 +27998,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27254,6 +28087,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27277,6 +28125,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27355,6 +28218,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27378,6 +28256,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27475,6 +28368,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27498,6 +28406,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27592,6 +28515,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27615,6 +28553,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27697,6 +28650,12 @@ components:
         fiscalYearId:
           type: string
           nullable: true
+        status:
+          enum:
+            - Open
+            - Closed
+            - Locked
+          type: string
       additionalProperties: false
     FiscalPeriodDtoEnvelope:
       type: object
@@ -27714,6 +28673,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27737,6 +28711,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27833,6 +28822,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27856,6 +28860,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27948,6 +28967,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -27971,6 +29005,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28040,6 +29089,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28063,6 +29127,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28184,6 +29263,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28207,6 +29301,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28233,6 +29342,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28319,6 +29443,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28342,6 +29481,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28423,6 +29577,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28549,6 +29718,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28572,6 +29756,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28689,6 +29888,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28712,6 +29926,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28779,6 +30008,16 @@ components:
           minLength: 0
           type: string
           nullable: true
+        financialBookId:
+          maxLength: 36
+          minLength: 0
+          type: string
+          nullable: true
+        code:
+          maxLength: 64
+          minLength: 1
+          type: string
+          nullable: true
       additionalProperties: false
     JournalDto:
       type: object
@@ -28814,6 +30053,12 @@ components:
         parentJournalId:
           type: string
           nullable: true
+        financialBookId:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
       additionalProperties: false
     JournalDtoEnvelope:
       type: object
@@ -28831,6 +30076,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -28854,6 +30114,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29009,6 +30284,10 @@ components:
           $ref: '#/components/schemas/Money'
         totalCreditAmount:
           $ref: '#/components/schemas/Money'
+        debitInUsdAmount:
+          $ref: '#/components/schemas/Money'
+        creditInUsdAmount:
+          $ref: '#/components/schemas/Money'
       additionalProperties: false
     JournalEntryDtoEnvelope:
       type: object
@@ -29026,6 +30305,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29049,6 +30343,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29134,6 +30443,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29157,6 +30481,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29251,6 +30590,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29274,6 +30628,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29352,6 +30721,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29375,6 +30759,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29446,6 +30845,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29469,6 +30883,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29565,6 +30994,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29588,6 +31032,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29658,6 +31117,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29681,6 +31155,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29774,6 +31263,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29891,6 +31395,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29914,6 +31433,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -29978,6 +31512,174 @@ components:
           maxLength: 36
           minLength: 0
           type: string
+          nullable: true
+      additionalProperties: false
+    PostingBookResultDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        financialBookId:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Posted
+            - Duplicate
+            - Rejected
+          type: string
+        journalEntryId:
+          type: string
+          nullable: true
+        failureCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostingExecutionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        postingIntentId:
+          type: string
+          nullable: true
+        postingIdempotencyKey:
+          type: string
+          nullable: true
+        intentType:
+          type: string
+          nullable: true
+        postingOperation:
+          type: string
+          nullable: true
+        sourceDocumentType:
+          type: string
+          nullable: true
+        sourceDocumentId:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Received
+            - Processing
+            - Posted
+            - Duplicate
+            - PendingMapping
+            - PendingPeriod
+            - PendingRate
+            - Rejected
+          type: string
+        failureKind:
+          enum:
+            - UnknownOperation
+            - UnknownRole
+            - AmbiguousPolicy
+            - MissingAccountMapping
+            - MissingFinancialBook
+            - MissingJournal
+            - ClosedPeriod
+            - MissingFxRate
+            - InvalidFxEvidence
+            - UnbalancedPlan
+            - DuplicateIntent
+            - DuplicateBookPosting
+            - InvalidPartyReference
+            - InvalidCustodyContext
+            - PolicyConfigurationError
+          type: string
+          nullable: true
+        failureCode:
+          type: string
+          nullable: true
+        retryable:
+          type: boolean
+        correlationId:
+          type: string
+          nullable: true
+        causationId:
+          type: string
+          nullable: true
+        receivedAtUtc:
+          type: string
+          format: date-time
+        processingStartedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        completedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        bookResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostingBookResultDto'
+          nullable: true
+        failureClass:
+          enum:
+            - Retryable
+            - OperatorActionRequired
+            - ConfigurationError
+            - ProducerError
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    PostingExecutionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostingExecutionDto'
           nullable: true
       additionalProperties: false
     ReceiptCreateDto:
@@ -30209,6 +31911,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30232,6 +31949,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30411,6 +32143,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30434,6 +32181,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30529,6 +32291,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30552,6 +32329,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30658,6 +32450,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30681,6 +32488,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30750,6 +32572,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30773,6 +32610,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30893,6 +32745,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -30916,6 +32783,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31144,6 +33026,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31167,6 +33064,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31423,6 +33335,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31446,6 +33373,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31584,6 +33526,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31607,6 +33564,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31750,6 +33722,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31773,6 +33760,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31872,6 +33874,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -31994,6 +34011,7 @@ tags:
   - name: Ledgers
   - name: LedgerTypes
   - name: Loans
+  - name: PostingExecutions
   - name: Receipts
   - name: Reports
   - name: Shares

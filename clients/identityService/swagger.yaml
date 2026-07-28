@@ -939,6 +939,23 @@ components:
         error:
           type: string
           nullable: true
+        runAs:
+          enum:
+            - Invoker
+            - Application
+            - System
+            - Service
+          type: string
+        principalKind:
+          enum:
+            - Human
+            - Agent
+            - Application
+            - Service
+            - System
+          type: string
+        provenance:
+          $ref: '#/components/schemas/ExecutionProvenance'
       additionalProperties: false
     AuthResultEnvelope:
       type: object
@@ -956,6 +973,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -983,10 +1015,52 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
           readOnly: true
+      additionalProperties: false
+    ExecutionProvenance:
+      type: object
+      properties:
+        initiation:
+          enum:
+            - Unknown
+            - Http
+            - Workflow
+            - ScheduledJob
+            - Event
+            - AiTool
+            - Mcp
+            - Integration
+            - System
+          type: string
+        onBehalfOfActorId:
+          $ref: '#/components/schemas/UserId'
+        onBehalfOfActorKind:
+          enum:
+            - Human
+            - Agent
+            - Application
+            - Service
+            - System
+          type: string
+          nullable: true
       additionalProperties: false
     ForgotPasswordRequest:
       required:
@@ -1096,6 +1170,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -1139,6 +1228,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -1306,6 +1410,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -1391,6 +1510,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true
@@ -1550,6 +1684,21 @@ components:
           type: string
           format: date-time
           readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
         activityId:
           type: string
           nullable: true

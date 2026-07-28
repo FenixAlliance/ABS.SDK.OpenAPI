@@ -33,6 +33,941 @@
     }
   ],
   "paths": {
+    "/api/v2/SecurityService/ApplicationPrincipals": {
+      "get": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Get all application principals",
+        "description": "Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).",
+        "operationId": "GetApplicationPrincipalsAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/Count": {
+      "get": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Get application principals count",
+        "description": "Retrieves the count of application principals enrolled in the specified tenant.",
+        "operationId": "GetApplicationPrincipalsCountAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}": {
+      "get": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Get application principal by ID",
+        "description": "Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.",
+        "operationId": "GetApplicationPrincipalAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalDetailDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalDetailDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/Provision": {
+      "post": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Provision an application principal",
+        "description": "Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.",
+        "operationId": "ProvisionApplicationPrincipalAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalProvisionRequestDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalProvisionRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalProvisioningResultDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPrincipalProvisioningResultDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions": {
+      "post": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Grant a permission to an application principal",
+        "description": "Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.",
+        "operationId": "GrantPermissionAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalPermissionRequestDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalPermissionRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions/{permission}": {
+      "delete": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Revoke a permission from an application principal",
+        "description": "Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.",
+        "operationId": "RevokePermissionAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "permission",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Enable": {
+      "post": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Enable an application principal",
+        "description": "Reinstates the application principal to the Active lifecycle state.",
+        "operationId": "EnableApplicationPrincipalAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Suspend": {
+      "post": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Suspend an application principal",
+        "description": "Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.",
+        "operationId": "SuspendApplicationPrincipalAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Disable": {
+      "post": {
+        "tags": [
+          "ApplicationPrincipals"
+        ],
+        "summary": "Disable an application principal",
+        "description": "Disables the application principal; dependent unattended execution fails closed.",
+        "operationId": "DisableApplicationPrincipalAsync",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "principalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/SecurityService/Applications": {
       "get": {
         "tags": [
@@ -6634,6 +7569,349 @@
         },
         "additionalProperties": false
       },
+      "ApplicationPrincipalDetailDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalKind": {
+            "enum": [
+              "Human",
+              "Agent",
+              "Application",
+              "Service",
+              "System"
+            ],
+            "type": "string"
+          },
+          "principalStatus": {
+            "enum": [
+              "Active",
+              "Suspended",
+              "Disabled"
+            ],
+            "type": "string"
+          },
+          "businessApplicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessApplicationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessApplicationNamespace": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessApplicationDisabled": {
+            "type": "boolean"
+          },
+          "systemLocked": {
+            "type": "boolean"
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentDisabled": {
+            "type": "boolean"
+          },
+          "grantedPermissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalDetailDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/ApplicationPrincipalDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalKind": {
+            "enum": [
+              "Human",
+              "Agent",
+              "Application",
+              "Service",
+              "System"
+            ],
+            "type": "string"
+          },
+          "principalStatus": {
+            "enum": [
+              "Active",
+              "Suspended",
+              "Disabled"
+            ],
+            "type": "string"
+          },
+          "businessApplicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessApplicationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemLocked": {
+            "type": "boolean"
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentDisabled": {
+            "type": "boolean"
+          },
+          "grantedPermissionsCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationPrincipalDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalPermissionRequestDto": {
+        "required": [
+          "permission"
+        ],
+        "type": "object",
+        "properties": {
+          "permission": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalProvisionRequestDto": {
+        "required": [
+          "businessApplicationId"
+        ],
+        "type": "object",
+        "properties": {
+          "businessApplicationId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalProvisioningResultDto": {
+        "type": "object",
+        "properties": {
+          "principalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCreated": {
+            "type": "boolean"
+          },
+          "enrollmentCreated": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationPrincipalProvisioningResultDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/ApplicationPrincipalProvisioningResultDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "BusinessApplicationCreateDto": {
         "required": [
           "name"
@@ -6941,6 +8219,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -6971,6 +8269,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7025,6 +8343,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7244,6 +8582,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -7279,6 +8637,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -7306,6 +8684,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7419,6 +8817,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7544,6 +8962,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7750,6 +9188,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -7780,6 +9238,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -7906,6 +9384,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -7936,6 +9434,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -8110,6 +9628,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -8201,6 +9739,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -8231,6 +9789,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -8341,6 +9919,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -8371,6 +9969,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -8459,6 +10077,26 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
           },
           "activityId": {
             "type": "string",
@@ -8582,6 +10220,26 @@
             "format": "date-time",
             "readOnly": true
           },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
           "activityId": {
             "type": "string",
             "nullable": true,
@@ -8600,6 +10258,9 @@
     }
   },
   "tags": [
+    {
+      "name": "ApplicationPrincipals"
+    },
     {
       "name": "Applications"
     },
