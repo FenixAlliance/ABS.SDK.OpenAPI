@@ -37,19 +37,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -378,6 +365,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InquiryRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InquiryRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -447,6 +442,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InquiryRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InquiryRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -571,12 +574,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -662,6 +665,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArticleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArticleDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -731,6 +742,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArticleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArticleDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -855,12 +874,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -946,6 +965,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceVisitDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MaintenanceVisitDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1015,6 +1042,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceVisitDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MaintenanceVisitDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1139,12 +1174,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1230,6 +1265,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRefundPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRefundPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1335,6 +1378,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRefundPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRefundPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1513,12 +1564,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1622,6 +1673,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RefundRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1691,6 +1750,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RefundRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1815,12 +1882,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1906,6 +1973,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemReturnPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemReturnPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2011,6 +2086,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemReturnPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemReturnPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2189,12 +2272,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2298,6 +2381,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReturnRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2367,6 +2458,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReturnRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2491,12 +2590,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2583,6 +2682,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportEntitlementDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportEntitlementDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2690,6 +2797,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportEntitlementDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportEntitlementDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2870,12 +2985,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2981,6 +3096,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3088,6 +3211,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3268,12 +3399,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -3379,6 +3510,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3486,6 +3625,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3666,12 +3813,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -3783,6 +3930,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3902,6 +4057,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3958,6 +4121,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportRequestAttachmentDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4070,6 +4241,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketPriorityDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketPriorityDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4177,6 +4356,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketPriorityDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketPriorityDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4357,12 +4544,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -4468,6 +4655,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4575,6 +4770,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4755,12 +4958,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -4935,6 +5138,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketConversationDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketConversationDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5184,6 +5395,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketTypeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketTypeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5291,6 +5510,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketTypeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupportTicketTypeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5471,12 +5698,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -5581,6 +5808,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemWarrantyPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemWarrantyPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5686,6 +5921,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemWarrantyPolicyDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemWarrantyPolicyDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5864,12 +6107,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -5973,6 +6216,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarrantyRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WarrantyRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -6042,6 +6293,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarrantyRequestDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WarrantyRequestDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -6166,12 +6425,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -6496,6 +6755,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    InquiryRequestDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     InquiryRequestDtoEnvelope:
       type: object
       properties:
@@ -6802,6 +7093,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemRefundPolicyDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemRefundPolicyDtoEnvelope:
       type: object
       properties:
@@ -7097,6 +7420,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    ItemReturnPolicyDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ItemReturnPolicyDtoEnvelope:
       type: object
@@ -7425,6 +7780,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemWarrantyPolicyDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemWarrantyPolicyDtoEnvelope:
       type: object
       properties:
@@ -7622,6 +8009,7 @@ components:
         timestamp:
           type: string
           format: date-time
+          nullable: true
         title:
           type: string
           nullable: true
@@ -7665,6 +8053,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    KnowledgeArticleDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     KnowledgeArticleDtoEnvelope:
       type: object
@@ -7826,6 +8246,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    MaintenanceVisitDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     MaintenanceVisitDtoEnvelope:
       type: object
       properties:
@@ -7908,24 +8360,13 @@ components:
     MaintenanceVisitUpdateDto:
       type: object
       additionalProperties: false
-    Operation:
+    PatchOperation:
       type: object
       properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
+        op:
           type: string
           nullable: true
-        op:
+        path:
           type: string
           nullable: true
         from:
@@ -8081,6 +8522,7 @@ components:
         timestamp:
           type: string
           format: date-time
+          nullable: true
         title:
           type: string
           nullable: true
@@ -8113,6 +8555,38 @@ components:
         paymentId:
           type: string
           nullable: true
+      additionalProperties: false
+    RefundRequestDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     RefundRequestDtoEnvelope:
       type: object
@@ -8300,6 +8774,7 @@ components:
         timestamp:
           type: string
           format: date-time
+          nullable: true
         title:
           type: string
           nullable: true
@@ -8329,6 +8804,38 @@ components:
         returnPolicyId:
           type: string
           nullable: true
+      additionalProperties: false
+    ReturnRequestDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ReturnRequestDtoEnvelope:
       type: object
@@ -8731,6 +9238,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupportEntitlementDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     SupportEntitlementDtoEnvelope:
       type: object
       properties:
@@ -9109,6 +9648,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupportRequestAttachmentDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     SupportRequestAttachmentDtoEnvelope:
       type: object
       properties:
@@ -9298,6 +9869,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupportRequestDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     SupportRequestDtoEnvelope:
       type: object
       properties:
@@ -9442,6 +10045,38 @@ components:
         socialProfileId:
           type: string
           nullable: true
+      additionalProperties: false
+    SupportTicketConversationDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     SupportTicketConversationDtoEnvelope:
       type: object
@@ -9614,6 +10249,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupportTicketDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     SupportTicketDtoEnvelope:
       type: object
       properties:
@@ -9740,6 +10407,38 @@ components:
         supportEntitlementId:
           type: string
           nullable: true
+      additionalProperties: false
+    SupportTicketPriorityDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     SupportTicketPriorityDtoEnvelope:
       type: object
@@ -9872,6 +10571,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    SupportTicketTypeDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     SupportTicketTypeDtoEnvelope:
       type: object
@@ -10086,6 +10817,7 @@ components:
         timestamp:
           type: string
           format: date-time
+          nullable: true
         title:
           type: string
           nullable: true
@@ -10115,6 +10847,38 @@ components:
         warrantyPolicyId:
           type: string
           nullable: true
+      additionalProperties: false
+    WarrantyRequestDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     WarrantyRequestDtoEnvelope:
       type: object

@@ -324,28 +324,6 @@
         }
       }
     },
-    "/api/v2/AIService/Agents/{agentId}/agui": {
-      "post": {
-        "tags": [
-          "FenixAlliance.ABS.Web"
-        ],
-        "parameters": [
-          {
-            "name": "agentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/hello": {
       "get": {
         "tags": [
@@ -1686,7 +1664,8 @@
               "AiTool",
               "Mcp",
               "Integration",
-              "System"
+              "System",
+              "Manual"
             ],
             "type": "string"
           },
@@ -1703,6 +1682,19 @@
             ],
             "type": "string",
             "nullable": true
+          },
+          "causationId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "originatingWorkflowInstanceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventDepth": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

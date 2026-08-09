@@ -57,28 +57,6 @@
         }
       }
     },
-    "/api/v2/AIService/Agents/{agentId}/agui": {
-      "post": {
-        "tags": [
-          "FenixAlliance.ABS.Web"
-        ],
-        "parameters": [
-          {
-            "name": "agentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/hello": {
       "get": {
         "tags": [
@@ -669,6 +647,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "description": "Not Found",
@@ -787,6 +779,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedOrderDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedOrderDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "description": "Not Found",
@@ -840,6 +846,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "description": "Not Found",
@@ -1042,7 +1062,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -1050,7 +1070,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -1248,6 +1268,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "description": "Not Found",
@@ -1384,6 +1418,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderLineDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "description": "Not Found",
@@ -1613,7 +1661,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -1621,7 +1669,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -2531,6 +2579,13 @@
             ],
             "type": "string"
           },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
+            ],
+            "type": "string"
+          },
           "forexRate": {
             "type": "number",
             "format": "double"
@@ -2731,13 +2786,6 @@
             "type": "string",
             "nullable": true
           },
-          "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
-          },
           "freightTerms": {
             "enum": [
               "FOB",
@@ -2817,6 +2865,49 @@
           },
           "enrollment": {
             "$ref": "#/components/schemas/TenantEnrollmentDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtendedOrderDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -3039,40 +3130,6 @@
         },
         "additionalProperties": false
       },
-      "Operation": {
-        "type": "object",
-        "properties": {
-          "operationType": {
-            "enum": [
-              "Add",
-              "Remove",
-              "Replace",
-              "Move",
-              "Copy",
-              "Test",
-              "Invalid"
-            ],
-            "type": "string",
-            "readOnly": true
-          },
-          "path": {
-            "type": "string",
-            "nullable": true
-          },
-          "op": {
-            "type": "string",
-            "nullable": true
-          },
-          "from": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "OrderCreateDto": {
         "type": "object",
         "properties": {
@@ -3108,6 +3165,10 @@
             "nullable": true
           },
           "organizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverTenantId": {
             "type": "string",
             "nullable": true
           },
@@ -3329,10 +3390,6 @@
             ],
             "type": "string"
           },
-          "receiverTenantId": {
-            "type": "string",
-            "nullable": true
-          },
           "shippingLocationId": {
             "type": "string",
             "nullable": true
@@ -3488,6 +3545,13 @@
             "enum": [
               "Included",
               "Excluded"
+            ],
+            "type": "string"
+          },
+          "costCalculationMethod": {
+            "enum": [
+              "Automatic",
+              "Custom"
             ],
             "type": "string"
           },
@@ -3691,13 +3755,6 @@
             "type": "string",
             "nullable": true
           },
-          "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
-          },
           "freightTerms": {
             "enum": [
               "FOB",
@@ -3759,6 +3816,49 @@
           "customWithholdingTaxAmount": {
             "type": "number",
             "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -4197,10 +4297,6 @@
             "nullable": true
           },
           "unitGroupId": {
-            "type": "string",
-            "nullable": true
-          },
-          "forexRatesSnapshot": {
             "type": "string",
             "nullable": true
           },
@@ -4786,6 +4882,49 @@
         },
         "additionalProperties": false
       },
+      "OrderLineDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "OrderLineDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -5231,10 +5370,6 @@
             "type": "string",
             "nullable": true
           },
-          "forexRatesSnapshot": {
-            "type": "string",
-            "nullable": true
-          },
           "totalBaseAmountInUsd": {
             "type": "number",
             "format": "double"
@@ -5578,6 +5713,27 @@
           "effectiveFrom": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatchOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
             "nullable": true
           }
         },

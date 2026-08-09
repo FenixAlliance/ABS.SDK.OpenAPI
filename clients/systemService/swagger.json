@@ -119,6 +119,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -192,6 +206,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationPrincipalDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1160,6 +1188,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessDomainDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessDomainDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -1233,6 +1275,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessDomainDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessDomainDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -1565,6 +1621,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -1638,6 +1708,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -1849,6 +1933,79 @@
         }
       }
     },
+    "/api/v2/SystemService/Carts/Guests": {
+      "delete": {
+        "tags": [
+          "Carts"
+        ],
+        "summary": "Purge all guest carts",
+        "description": "Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.",
+        "operationId": "PurgeSystemGuestCarts",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuestCartPurgeResultDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuestCartPurgeResultDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/SystemService/Contacts/{contactId}/Options": {
       "get": {
         "tags": [
@@ -1890,6 +2047,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -2090,6 +2261,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -2379,7 +2564,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -2387,7 +2572,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -2679,28 +2864,6 @@
       "get": {
         "tags": [
           "FenixAlliance.ABS.Web"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v2/AIService/Agents/{agentId}/agui": {
-      "post": {
-        "tags": [
-          "FenixAlliance.ABS.Web"
-        ],
-        "parameters": [
-          {
-            "name": "agentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -3324,6 +3487,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -3397,6 +3574,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -3663,6 +3854,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -3736,6 +3941,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/InboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -4537,6 +4756,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IPLookupDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/IPLookupDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -4610,6 +4843,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IPLookupDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/IPLookupDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -9294,6 +9541,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -9477,6 +9738,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -9739,7 +10014,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -9747,7 +10022,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -10172,6 +10447,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OutboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OutboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -10245,6 +10534,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OutboxMessageDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OutboxMessageDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -11172,6 +11475,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebPortalDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/WebPortalDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -11330,6 +11647,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebPortalDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/WebPortalDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -11592,7 +11923,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -11600,7 +11931,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -11776,6 +12107,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -11976,6 +12321,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -12265,7 +12624,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -12273,7 +12632,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -12441,6 +12800,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -12599,6 +12972,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -12672,6 +13059,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedTenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedTenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -12745,6 +13146,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedTenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedTenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -13007,7 +13422,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -13015,7 +13430,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -13134,6 +13549,188 @@
           },
           "204": {
             "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get the per-tenant admin module grants for a specific tenant.",
+        "description": "This action is only available for global administrators.",
+        "operationId": "GetTenantModuleGrants",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleGrantDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleGrantDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Replace the per-tenant admin module grants for a specific tenant.",
+        "description": "This action is only available for global administrators. Grants supplement licensing.",
+        "operationId": "SetTenantModuleGrants",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ModuleGrantDto"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ModuleGrantDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -13299,6 +13896,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -13499,6 +14110,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -13788,7 +14413,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -13796,7 +14421,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -13964,6 +14589,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -14122,6 +14761,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -14195,6 +14848,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedUserDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedUserDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -14268,6 +14935,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedUserDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedUserDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -14529,7 +15210,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -14537,7 +15218,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -14746,6 +15427,303 @@
               "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ExtendedUserDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SystemService/Users/{userId}/AdminDetail": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieve the admin detail aggregate for a user",
+        "description": "Returns the user's orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.",
+        "operationId": "GetUserAdminDetailAsync",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAdminDetailDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAdminDetailDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SystemService/Users/{userId}/Password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Set a user's password",
+        "description": "Replaces the user's password with the supplied value. Global administrators only.",
+        "operationId": "SetUserPasswordAsync",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetUserPasswordDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SetUserPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/SystemService/Users/{userId}/AdminProfile": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a user's admin-managed profile",
+        "description": "Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.",
+        "operationId": "UpdateAccountHolderAdminProfileAsync",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAdminUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAdminUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
                 }
               }
             }
@@ -15148,6 +16126,49 @@
         },
         "additionalProperties": false
       },
+      "ApplicationPrincipalDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ApplicationPrincipalDtoIReadOnlyListEnvelope": {
         "type": "object",
         "properties": {
@@ -15385,6 +16406,49 @@
         },
         "additionalProperties": false
       },
+      "BusinessDomainDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BusinessDomainDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -15544,6 +16608,49 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CartDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -16075,6 +17182,49 @@
         },
         "additionalProperties": false
       },
+      "ExtendedTenantDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ExtendedTenantDtoListEnvelope": {
         "type": "object",
         "properties": {
@@ -16356,6 +17506,49 @@
         },
         "additionalProperties": false
       },
+      "ExtendedUserDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ExtendedUserDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -16471,6 +17664,75 @@
           "email": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuestCartPurgeResultDto": {
+        "type": "object",
+        "properties": {
+          "guestCartsDeleted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "itemCartRecordsDeleted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wishListsDeleted": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuestCartPurgeResultDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/GuestCartPurgeResultDto"
           }
         },
         "additionalProperties": false
@@ -16622,6 +17884,49 @@
           "city": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IPLookupDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -17094,6 +18399,49 @@
         },
         "additionalProperties": false
       },
+      "InboxMessageDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InboxMessageDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -17396,6 +18744,88 @@
         },
         "additionalProperties": false
       },
+      "ModuleGrantDto": {
+        "type": "object",
+        "properties": {
+          "module": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "grantedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grantedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModuleGrantDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModuleGrantDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ObjectEmailDispatchRequest": {
         "required": [
           "culture",
@@ -17495,40 +18925,6 @@
         },
         "additionalProperties": false
       },
-      "Operation": {
-        "type": "object",
-        "properties": {
-          "operationType": {
-            "enum": [
-              "Add",
-              "Remove",
-              "Replace",
-              "Move",
-              "Copy",
-              "Test",
-              "Invalid"
-            ],
-            "type": "string",
-            "readOnly": true
-          },
-          "path": {
-            "type": "string",
-            "nullable": true
-          },
-          "op": {
-            "type": "string",
-            "nullable": true
-          },
-          "from": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "OptionCreateDto": {
         "required": [
           "key",
@@ -17608,6 +19004,49 @@
           "expiration": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptionDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -17949,6 +19388,49 @@
         },
         "additionalProperties": false
       },
+      "OutboxMessageDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "OutboxMessageDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -18055,6 +19537,27 @@
         },
         "additionalProperties": false
       },
+      "PatchOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -18118,6 +19621,83 @@
           "newPassword": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SecurityPermissionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSystemPermission": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SecurityRoleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSystemRole": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetUserPasswordDto": {
+        "required": [
+          "newPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -19245,6 +20825,49 @@
         },
         "additionalProperties": false
       },
+      "TenantDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TenantDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -19347,6 +20970,41 @@
               "$ref": "#/components/schemas/TenantDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantEnrollmentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRoot": {
+            "type": "boolean"
+          },
+          "isOwner": {
+            "type": "boolean"
+          },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -19542,6 +21200,153 @@
           },
           "isMachineRemembered": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserAdminDetailDto": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserOrderSummaryDto"
+            },
+            "nullable": true
+          },
+          "logins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserExternalLoginDto"
+            },
+            "nullable": true
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/TenantEnrollmentDto"
+          },
+          "grantedRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecurityRoleDto"
+            },
+            "nullable": true
+          },
+          "grantedPermissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecurityPermissionDto"
+            },
+            "nullable": true
+          },
+          "roleCatalog": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecurityRoleDto"
+            },
+            "nullable": true
+          },
+          "permissionCatalog": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecurityPermissionDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserAdminDetailDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/UserAdminDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserAdminUpdateDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "handler": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -19879,6 +21684,49 @@
         },
         "additionalProperties": false
       },
+      "UserDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserDtoEnvelope": {
         "type": "object",
         "properties": {
@@ -19981,6 +21829,56 @@
               "$ref": "#/components/schemas/UserDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserExternalLoginDto": {
+        "type": "object",
+        "properties": {
+          "loginProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerDisplayName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserOrderSummaryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderType": {
+            "enum": [
+              "SalesOrder",
+              "PurchaseOrder"
+            ],
+            "type": "string"
+          },
+          "orderStatus": {
+            "enum": [
+              "New",
+              "Processing",
+              "Accepted",
+              "Declined",
+              "Shipped",
+              "Delivered",
+              "OnHold",
+              "Failed",
+              "Fulfilled",
+              "Cancelled"
+            ],
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -20304,6 +22202,49 @@
           "businessPortalApplicationId": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebPortalDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false

@@ -45,6 +45,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AirwayBillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AirwayBillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -143,6 +151,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AirwayBillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AirwayBillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -296,12 +312,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -630,6 +646,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -731,6 +755,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -850,12 +882,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -949,6 +981,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryNoteDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeliveryNoteDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1047,6 +1087,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryNoteDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeliveryNoteDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1215,19 +1263,6 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      responses:
-        '200':
-          description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -1560,6 +1595,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1658,6 +1701,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1848,12 +1899,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -1901,6 +1952,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1993,6 +2052,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPackingSlipEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2207,12 +2274,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -2254,6 +2321,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPickListDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPickListDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2352,6 +2427,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPickListDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPickListDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2542,12 +2625,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -2595,6 +2678,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPickListEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPickListEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2687,6 +2778,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPickListEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemPickListEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2901,12 +3000,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -2948,6 +3047,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRestockDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRestockDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3046,6 +3153,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRestockDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRestockDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -3236,12 +3351,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -3289,6 +3404,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRestockEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRestockEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -3381,6 +3504,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRestockEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRestockEntryDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -3595,12 +3726,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -3642,6 +3773,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRetainSampleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRetainSampleDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3740,6 +3879,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRetainSampleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ItemRetainSampleDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -3930,12 +4077,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -3977,6 +4124,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PortDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4075,6 +4230,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PortDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4228,12 +4391,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -4339,6 +4502,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4437,6 +4608,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4590,12 +4769,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -4872,6 +5051,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -4973,6 +5160,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProofOfDeliveryLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5092,12 +5287,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -5408,6 +5603,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RailWaybillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RailWaybillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5506,6 +5709,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RailWaybillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RailWaybillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -5659,12 +5870,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -5946,6 +6157,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -6047,6 +6266,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -6166,12 +6393,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -6265,6 +6492,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadWaybillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RoadWaybillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -6363,6 +6598,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadWaybillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RoadWaybillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -6516,12 +6759,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -6850,6 +7093,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -6951,6 +7202,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -7070,12 +7329,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -7169,6 +7428,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeawayBillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SeawayBillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -7267,6 +7534,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeawayBillDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SeawayBillDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -7420,12 +7695,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -7754,6 +8029,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -7855,6 +8138,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WaybillLineDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -7974,12 +8265,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -8073,6 +8364,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierProfileDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupplierProfileDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -8171,6 +8470,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierProfileDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SupplierProfileDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -8370,12 +8677,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -8417,6 +8724,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckDriverDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckDriverDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -8515,6 +8830,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckDriverDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckDriverDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -8668,12 +8991,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -8873,6 +9196,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -8971,6 +9302,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -9124,12 +9463,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -9241,6 +9580,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckTripDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckTripDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -9342,6 +9689,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TruckTripDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TruckTripDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -9461,12 +9816,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -9843,6 +10198,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VesselDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VesselDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -9941,6 +10304,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VesselDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VesselDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -10094,12 +10465,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -10205,6 +10576,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyageDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VoyageDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -10303,6 +10682,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyageDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VoyageDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -10456,12 +10843,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -10714,6 +11101,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyagePortCallDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VoyagePortCallDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -10815,6 +11210,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyagePortCallDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VoyagePortCallDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -10934,12 +11337,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -11051,6 +11454,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarehouseDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WarehouseDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -11149,6 +11560,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarehouseDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WarehouseDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -11293,12 +11712,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -11633,6 +12052,38 @@ components:
           items:
             $ref: '#/components/schemas/WaybillLineDto'
           nullable: true
+      additionalProperties: false
+    AirwayBillDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     AirwayBillDtoEnvelope:
       type: object
@@ -12212,6 +12663,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    DeliveryNoteDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     DeliveryNoteDtoEnvelope:
       type: object
       properties:
@@ -12528,6 +13011,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemPackingSlipDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemPackingSlipDtoEnvelope:
       type: object
       properties:
@@ -12652,6 +13167,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    ItemPackingSlipEntryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ItemPackingSlipEntryDtoEnvelope:
       type: object
@@ -12799,6 +13346,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemPickListDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemPickListDtoEnvelope:
       type: object
       properties:
@@ -12937,6 +13516,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    ItemPickListEntryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ItemPickListEntryDtoEnvelope:
       type: object
@@ -13091,6 +13702,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemRestockDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemRestockDtoEnvelope:
       type: object
       properties:
@@ -13229,6 +13872,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    ItemRestockEntryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ItemRestockEntryDtoEnvelope:
       type: object
@@ -13374,6 +14049,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ItemRetainSampleDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ItemRetainSampleDtoEnvelope:
       type: object
       properties:
@@ -13482,24 +14189,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    Operation:
+    PatchOperation:
       type: object
       properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
+        op:
           type: string
           nullable: true
-        op:
+        path:
           type: string
           nullable: true
         from:
@@ -13681,6 +14377,38 @@ components:
         parentPortId:
           type: string
           nullable: true
+      additionalProperties: false
+    PortDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     PortDtoEnvelope:
       type: object
@@ -13995,6 +14723,38 @@ components:
             type: string
           nullable: true
       additionalProperties: false
+    ProofOfDeliveryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ProofOfDeliveryDtoEnvelope:
       type: object
       properties:
@@ -14151,6 +14911,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    ProofOfDeliveryLineDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ProofOfDeliveryLineDtoListEnvelope:
       type: object
@@ -14471,6 +15263,38 @@ components:
           items:
             $ref: '#/components/schemas/WaybillLineDto'
           nullable: true
+      additionalProperties: false
+    RailWaybillDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     RailWaybillDtoEnvelope:
       type: object
@@ -14900,6 +15724,38 @@ components:
             $ref: '#/components/schemas/WaybillLineDto'
           nullable: true
       additionalProperties: false
+    RoadWaybillDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     RoadWaybillDtoEnvelope:
       type: object
       properties:
@@ -15244,6 +16100,38 @@ components:
           items:
             $ref: '#/components/schemas/WaybillLineDto'
           nullable: true
+      additionalProperties: false
+    SeawayBillDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     SeawayBillDtoEnvelope:
       type: object
@@ -15593,6 +16481,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupplierProfileDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     SupplierProfileDtoEnvelope:
       type: object
       properties:
@@ -15898,6 +16818,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    TruckDriverDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     TruckDriverDtoEnvelope:
       type: object
       properties:
@@ -16068,6 +17020,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    TruckDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     TruckDtoEnvelope:
       type: object
@@ -16272,6 +17256,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    TruckTripDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     TruckTripDtoListEnvelope:
       type: object
@@ -16568,6 +17584,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    VesselDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     VesselDtoEnvelope:
       type: object
       properties:
@@ -16787,6 +17835,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    VoyageDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     VoyageDtoEnvelope:
       type: object
       properties:
@@ -16946,6 +18026,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    VoyagePortCallDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     VoyagePortCallDtoListEnvelope:
       type: object
@@ -17146,6 +18258,38 @@ components:
         parentWarehouseId:
           type: string
           nullable: true
+      additionalProperties: false
+    WarehouseDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     WarehouseDtoEnvelope:
       type: object
@@ -17436,6 +18580,38 @@ components:
         tenantId:
           type: string
           nullable: true
+      additionalProperties: false
+    WaybillLineDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     WaybillLineDtoListEnvelope:
       type: object

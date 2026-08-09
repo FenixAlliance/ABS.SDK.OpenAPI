@@ -37,19 +37,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -404,6 +391,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -477,6 +472,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -510,6 +513,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -639,12 +650,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -766,6 +777,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -851,6 +870,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -998,12 +1025,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -1647,6 +1674,11 @@ components:
             - Included
             - Excluded
           type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
+          type: string
         forexRate:
           type: number
           format: double
@@ -1797,11 +1829,6 @@ components:
         buyerBillingProfileId:
           type: string
           nullable: true
-        costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
         freightTerms:
           enum:
             - FOB
@@ -1862,6 +1889,38 @@ components:
           $ref: '#/components/schemas/TenantDto'
         enrollment:
           $ref: '#/components/schemas/TenantEnrollmentDto'
+      additionalProperties: false
+    ExtendedOrderDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ExtendedOrderDtoListEnvelope:
       type: object
@@ -2023,32 +2082,6 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    Operation:
-      type: object
-      properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
-          type: string
-          nullable: true
-        op:
-          type: string
-          nullable: true
-        from:
-          type: string
-          nullable: true
-        value:
-          nullable: true
-      additionalProperties: false
     OrderCreateDto:
       type: object
       properties:
@@ -2076,6 +2109,9 @@ components:
           type: string
           nullable: true
         organizationId:
+          type: string
+          nullable: true
+        receiverTenantId:
           type: string
           nullable: true
         firstName:
@@ -2243,9 +2279,6 @@ components:
             - FOB
             - NoCharge
           type: string
-        receiverTenantId:
-          type: string
-          nullable: true
         shippingLocationId:
           type: string
           nullable: true
@@ -2363,6 +2396,11 @@ components:
           enum:
             - Included
             - Excluded
+          type: string
+        costCalculationMethod:
+          enum:
+            - Automatic
+            - Custom
           type: string
         forexRate:
           type: number
@@ -2514,11 +2552,6 @@ components:
         buyerBillingProfileId:
           type: string
           nullable: true
-        costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
         freightTerms:
           enum:
             - FOB
@@ -2567,6 +2600,38 @@ components:
         customWithholdingTaxAmount:
           type: number
           format: double
+      additionalProperties: false
+    OrderDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     OrderDtoEnvelope:
       type: object
@@ -2893,9 +2958,6 @@ components:
           type: string
           nullable: true
         unitGroupId:
-          type: string
-          nullable: true
-        forexRatesSnapshot:
           type: string
           nullable: true
         totalBaseAmountInUsd:
@@ -3332,6 +3394,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    OrderLineDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     OrderLineDtoEnvelope:
       type: object
       properties:
@@ -3665,9 +3759,6 @@ components:
         unitGroupId:
           type: string
           nullable: true
-        forexRatesSnapshot:
-          type: string
-          nullable: true
         totalBaseAmountInUsd:
           type: number
           format: double
@@ -3925,6 +4016,21 @@ components:
         effectiveFrom:
           type: string
           format: date-time
+          nullable: true
+      additionalProperties: false
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
           nullable: true
       additionalProperties: false
     RefreshRequest:

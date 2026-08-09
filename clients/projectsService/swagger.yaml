@@ -37,19 +37,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -371,6 +358,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -462,6 +457,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -618,12 +621,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -895,12 +898,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1002,6 +1005,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1050,6 +1061,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1098,6 +1117,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1201,6 +1228,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1322,12 +1357,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1429,6 +1464,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1477,6 +1520,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1527,6 +1578,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1625,6 +1684,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1769,12 +1836,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '400':
           description: Bad Request
@@ -1854,6 +1921,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1945,6 +2020,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskCategoryDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2101,12 +2184,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2358,12 +2441,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2682,6 +2765,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2788,6 +2879,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProjectTimeLogDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -3129,12 +3228,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '200':
           description: OK
@@ -3418,24 +3517,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    Operation:
+    PatchOperation:
       type: object
       properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
+        op:
           type: string
           nullable: true
-        op:
+        path:
           type: string
           nullable: true
         from:
@@ -3506,6 +3594,38 @@ components:
         projectEndDate:
           type: string
           format: date-time
+      additionalProperties: false
+    ProjectDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ProjectDtoEnvelope:
       type: object
@@ -3784,6 +3904,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ProjectTaskDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ProjectTaskDtoEnvelope:
       type: object
       properties:
@@ -3962,6 +4114,38 @@ components:
         type:
           type: string
           nullable: true
+      additionalProperties: false
+    ProjectTimeLogDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     ProjectTimeLogDtoEnvelope:
       type: object
@@ -4175,6 +4359,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    TaskCategoryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     TaskCategoryDtoListEnvelope:
       type: object

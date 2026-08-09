@@ -823,19 +823,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -1162,6 +1149,11 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -1434,6 +1426,11 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadDtoCollectionQueryParameters'
       responses:
         '200':
           description: OK
@@ -2742,6 +2739,38 @@ components:
             - Blob
             - Unknown
           type: string
+      additionalProperties: false
+    FileUploadDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     FileUploadDtoEnvelope:
       type: object

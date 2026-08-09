@@ -246,7 +246,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -254,7 +254,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -4264,28 +4264,6 @@
         }
       }
     },
-    "/api/v2/AIService/Agents/{agentId}/agui": {
-      "post": {
-        "tags": [
-          "FenixAlliance.ABS.Web"
-        ],
-        "parameters": [
-          {
-            "name": "agentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/hello": {
       "get": {
         "tags": [
@@ -5545,7 +5523,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -5553,7 +5531,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -6189,7 +6167,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -6197,7 +6175,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -7969,27 +7947,14 @@
         },
         "additionalProperties": false
       },
-      "Operation": {
+      "PatchOperation": {
         "type": "object",
         "properties": {
-          "operationType": {
-            "enum": [
-              "Add",
-              "Remove",
-              "Replace",
-              "Move",
-              "Copy",
-              "Test",
-              "Invalid"
-            ],
-            "type": "string",
-            "readOnly": true
-          },
-          "path": {
+          "op": {
             "type": "string",
             "nullable": true
           },
-          "op": {
+          "path": {
             "type": "string",
             "nullable": true
           },

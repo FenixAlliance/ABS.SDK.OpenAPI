@@ -37,6 +37,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -110,6 +118,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -239,12 +255,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -322,6 +338,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -407,6 +431,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitFlowStageDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -554,12 +586,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -637,6 +669,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -710,6 +750,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -743,6 +791,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDealUnitDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedDealUnitDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -872,12 +928,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -1038,6 +1094,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -1123,6 +1187,14 @@ paths:
           schema:
             type: string
             format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DealUnitLineDtoCollectionQueryParameters'
       responses:
         '404':
           description: Not Found
@@ -1270,12 +1342,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '404':
           description: Not Found
@@ -1395,19 +1467,6 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      responses:
-        '200':
-          description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -2469,6 +2528,38 @@ components:
           type: number
           format: double
       additionalProperties: false
+    DealUnitDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     DealUnitDtoEnvelope:
       type: object
       properties:
@@ -2598,6 +2689,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    DealUnitFlowDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     DealUnitFlowDtoEnvelope:
       type: object
@@ -2734,6 +2857,38 @@ components:
         parentBusinessProcessStageId:
           type: string
           nullable: true
+      additionalProperties: false
+    DealUnitFlowStageDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     DealUnitFlowStageDtoEnvelope:
       type: object
@@ -3098,9 +3253,6 @@ components:
           type: string
           nullable: true
         unitGroupId:
-          type: string
-          nullable: true
-        forexRatesSnapshot:
           type: string
           nullable: true
         totalBaseAmountInUsd:
@@ -3537,6 +3689,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    DealUnitLineDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     DealUnitLineDtoEnvelope:
       type: object
       properties:
@@ -3868,9 +4052,6 @@ components:
           type: string
           nullable: true
         unitGroupId:
-          type: string
-          nullable: true
-        forexRatesSnapshot:
           type: string
           nullable: true
         totalBaseAmountInUsd:
@@ -4577,6 +4758,38 @@ components:
         enrollment:
           $ref: '#/components/schemas/TenantEnrollmentDto'
       additionalProperties: false
+    ExtendedDealUnitDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     ExtendedDealUnitDtoEnvelope:
       type: object
       properties:
@@ -4775,24 +4988,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    Operation:
+    PatchOperation:
       type: object
       properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
+        op:
           type: string
           nullable: true
-        op:
+        path:
           type: string
           nullable: true
         from:

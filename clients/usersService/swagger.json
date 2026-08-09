@@ -57,28 +57,6 @@
         }
       }
     },
-    "/api/v2/AIService/Agents/{agentId}/agui": {
-      "post": {
-        "tags": [
-          "FenixAlliance.ABS.Web"
-        ],
-        "parameters": [
-          {
-            "name": "agentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/hello": {
       "get": {
         "tags": [
@@ -629,6 +607,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -811,6 +803,20 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -1073,7 +1079,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -1081,7 +1087,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -1589,7 +1595,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -1597,7 +1603,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             },
@@ -1605,7 +1611,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Operation"
+                  "$ref": "#/components/schemas/PatchOperation"
                 }
               }
             }
@@ -1976,6 +1982,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2044,6 +2069,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2112,6 +2156,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2180,6 +2243,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowRecordDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2248,6 +2330,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -2336,6 +2437,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "403": {
             "description": "Forbidden",
@@ -2929,6 +3049,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2997,6 +3136,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -3218,6 +3376,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressDtoCollectionQueryParameters"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -3461,6 +3638,49 @@
           "enrollmentId": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -4359,6 +4579,49 @@
         },
         "additionalProperties": false
       },
+      "FollowRecordDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FollowRecordDtoListEnvelope": {
         "type": "object",
         "properties": {
@@ -4631,6 +4894,49 @@
         },
         "additionalProperties": false
       },
+      "NotificationDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "NotificationDtoListEnvelope": {
         "type": "object",
         "properties": {
@@ -4681,40 +4987,6 @@
             "items": {
               "$ref": "#/components/schemas/NotificationDto"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Operation": {
-        "type": "object",
-        "properties": {
-          "operationType": {
-            "enum": [
-              "Add",
-              "Remove",
-              "Replace",
-              "Move",
-              "Copy",
-              "Test",
-              "Invalid"
-            ],
-            "type": "string",
-            "readOnly": true
-          },
-          "path": {
-            "type": "string",
-            "nullable": true
-          },
-          "op": {
-            "type": "string",
-            "nullable": true
-          },
-          "from": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
             "nullable": true
           }
         },
@@ -4799,6 +5071,49 @@
           "expiration": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptionDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -4936,6 +5251,27 @@
           "expiration": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatchOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5344,6 +5680,49 @@
           "twitterUsername": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
           }
         },
         "additionalProperties": false

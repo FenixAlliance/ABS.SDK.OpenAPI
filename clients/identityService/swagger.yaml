@@ -200,19 +200,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -1049,6 +1036,7 @@ components:
             - Mcp
             - Integration
             - System
+            - Manual
           type: string
         onBehalfOfActorId:
           $ref: '#/components/schemas/UserId'
@@ -1061,6 +1049,16 @@ components:
             - System
           type: string
           nullable: true
+        causationId:
+          type: string
+          format: uuid
+          nullable: true
+        originatingWorkflowInstanceId:
+          type: string
+          nullable: true
+        eventDepth:
+          type: integer
+          format: int32
       additionalProperties: false
     ForgotPasswordRequest:
       required:

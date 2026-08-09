@@ -37,19 +37,6 @@ paths:
       responses:
         '200':
           description: OK
-  '/api/v2/AIService/Agents/{agentId}/agui':
-    post:
-      tags:
-        - FenixAlliance.ABS.Web
-      parameters:
-        - name: agentId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /hello:
     get:
       tags:
@@ -379,6 +366,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -470,6 +465,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseAttributeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -634,12 +637,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -738,6 +741,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -829,6 +840,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseFeatureDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -993,12 +1012,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1097,6 +1116,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1188,6 +1215,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1389,6 +1424,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1480,6 +1523,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicenseTypeDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1644,12 +1695,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -1748,6 +1799,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -1839,6 +1898,14 @@ paths:
           in: header
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LicensingCertificateDtoCollectionQueryParameters'
       responses:
         '403':
           description: Forbidden
@@ -2003,12 +2070,12 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
           application/xml:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Operation'
+                $ref: '#/components/schemas/PatchOperation'
       responses:
         '403':
           description: Forbidden
@@ -2338,6 +2405,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    LicenseAttributeDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     LicenseAttributeDtoListEnvelope:
       type: object
       properties:
@@ -2450,6 +2549,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    LicenseDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     LicenseDtoListEnvelope:
       type: object
@@ -2565,6 +2696,38 @@ components:
         enrollmentId:
           type: string
           nullable: true
+      additionalProperties: false
+    LicenseFeatureDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     LicenseFeatureDtoListEnvelope:
       type: object
@@ -2708,6 +2871,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    LicenseTypeDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     LicenseTypeDtoListEnvelope:
       type: object
       properties:
@@ -2850,6 +3045,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    LicensingCertificateDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
     LicensingCertificateDtoListEnvelope:
       type: object
       properties:
@@ -2920,24 +3147,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    Operation:
+    PatchOperation:
       type: object
       properties:
-        operationType:
-          enum:
-            - Add
-            - Remove
-            - Replace
-            - Move
-            - Copy
-            - Test
-            - Invalid
-          type: string
-          readOnly: true
-        path:
+        op:
           type: string
           nullable: true
-        op:
+        path:
           type: string
           nullable: true
         from:
