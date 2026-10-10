@@ -29,7 +29,7 @@ paths:
         - Applications
       summary: Get application by ID
       description: Retrieves an application by its unique identifier.
-      operationId: GetApplication
+      operationId: Applications_GetApplication
       parameters:
         - name: appId
           in: path
@@ -53,7 +53,7 @@ paths:
         - Applications
       summary: Get required permissions for an application
       description: Retrieves the list of permissions required by the specified application.
-      operationId: GetRequiredPermissions
+      operationId: Applications_GetRequiredPermissions
       parameters:
         - name: appId
           in: path
@@ -77,7 +77,7 @@ paths:
         - Applications
       summary: Get granted tenant permissions for an application
       description: Retrieves the list of permissions granted to the specified application within a tenant context.
-      operationId: GetGrantedTenantPermissions
+      operationId: Applications_GetGrantedTenantPermissions
       parameters:
         - name: appId
           in: path
@@ -105,7 +105,7 @@ paths:
         - Applications
       summary: Get granted tenant roles for an application
       description: Retrieves the list of security roles granted to the specified application within a tenant context.
-      operationId: GetGrantedTenantRoles
+      operationId: Applications_GetGrantedTenantRoles
       parameters:
         - name: appId
           in: path
@@ -133,7 +133,7 @@ paths:
         - Applications
       summary: Get granted permissions for an application role
       description: Retrieves the list of permissions granted through a specific security role for the specified application.
-      operationId: GetGrantedEnrollmentPermissions
+      operationId: Applications_GetGrantedEnrollmentPermissions
       parameters:
         - name: appId
           in: path
@@ -166,7 +166,7 @@ paths:
         - Checker
       summary: Check if user is authenticated
       description: Returns whether the current user is authenticated.
-      operationId: IsAuthenticated
+      operationId: Checker_IsAuthenticated
       parameters:
         - name: api-version
           in: query
@@ -190,6 +190,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -197,6 +198,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -204,6 +206,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -211,6 +214,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -230,6 +234,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -256,6 +261,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -273,7 +279,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -296,6 +302,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -309,6 +316,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -328,6 +336,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -347,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -372,6 +382,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -390,6 +401,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -415,6 +427,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -450,6 +463,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -477,6 +491,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -504,6 +519,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -513,7 +529,7 @@ paths:
         - OAuth
       summary: Get current user identity
       description: 'Returns the authorization result for the authenticated user, including identity and tenant context.'
-      operationId: Get
+      operationId: OAuth_Get
       parameters:
         - name: tenantId
           in: query
@@ -562,7 +578,7 @@ paths:
         - OAuth
       summary: Get OAuth token
       description: Generates an OAuth token based on the provided credentials or grant type.
-      operationId: Token
+      operationId: OAuth_Token
       parameters:
         - name: api-version
           in: query
@@ -614,7 +630,7 @@ paths:
         - OAuth
       summary: Get user permissions
       description: Retrieves the list of permission identifiers for a specific user within a tenant context.
-      operationId: GetPermissions
+      operationId: OAuth_GetPermissions
       parameters:
         - name: tenantId
           in: query
@@ -668,7 +684,7 @@ paths:
         - OAuth
       summary: Sign in with password
       description: Authenticates a user using email and password credentials.
-      operationId: PasswordSignInAsync
+      operationId: OAuth_PasswordSignIn
       parameters:
         - name: api-version
           in: query
@@ -719,7 +735,7 @@ paths:
         - OAuth
       summary: Check password sign-in
       description: Verifies sign-in credentials and returns user details without creating a session.
-      operationId: CheckPasswordSignInAsync
+      operationId: OAuth_CheckPasswordSignIn
       parameters:
         - name: api-version
           in: query
@@ -763,7 +779,7 @@ paths:
         - OAuth
       summary: Get JSON Web Key Set
       description: Retrieves the signing keys (JWKS) for a specific application.
-      operationId: GetJwKs
+      operationId: OAuth_GetJwKs
       parameters:
         - name: applicationId
           in: path
@@ -794,7 +810,7 @@ paths:
         - OAuth
       summary: Get OpenID configuration
       description: Retrieves the OpenID Connect discovery document for a specific application within a tenant.
-      operationId: GetOpenIdConfiguration
+      operationId: OAuth_GetOpenIdConfiguration
       parameters:
         - name: tenantId
           in: path
@@ -831,7 +847,7 @@ paths:
         - Resource
       summary: Get authenticated resource message
       description: Returns a message confirming the authenticated user's identity. Requires the 'abs_api' scope.
-      operationId: GetMessage
+      operationId: Resource_GetMessage
       parameters:
         - name: api-version
           in: query
@@ -848,6 +864,7 @@ paths:
     get:
       tags:
         - UserInfo
+      operationId: UserInfo_GetConnectUserinfo
       parameters:
         - name: api-version
           in: query
@@ -863,6 +880,7 @@ paths:
     post:
       tags:
         - UserInfo
+      operationId: UserInfo_PostConnectUserinfo
       parameters:
         - name: api-version
           in: query
@@ -943,6 +961,15 @@ components:
           type: string
         provenance:
           $ref: '#/components/schemas/ExecutionProvenance'
+        executionPrincipalId:
+          $ref: '#/components/schemas/UserId'
+        executionPrincipalEnrollmentId:
+          $ref: '#/components/schemas/EnrollmentId'
+        executionPrincipalScopes:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: false
     AuthResultEnvelope:
       type: object

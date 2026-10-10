@@ -23,13 +23,819 @@ servers:
           - https://dev.absuite.net
           - https://localhost:44388
 paths:
+  /api/v2/IntelligenceService/AgentExecutionDiagnostics:
+    get:
+      tags:
+        - AgentExecutionDiagnostics
+      summary: Get agent execution diagnostics
+      description: 'Retrieves the tenant''s own agent runtime work orders classified into an operator anomaly code and a recommended recovery action (read-only, tenant-scoped).'
+      operationId: AgentExecutionDiagnostics_GetDiagnostics
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentExecutionDiagnosticDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AgentExecutionDiagnosticDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentExecutionDiagnosticDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentExecutionDiagnosticDtoListEnvelope'
+  /api/v2/IntelligenceService/AgentExecutionDiagnostics/Count:
+    get:
+      tags:
+        - AgentExecutionDiagnostics
+      summary: Get agent execution diagnostics count
+      description: Returns the count of the tenant's own agent runtime work orders.
+      operationId: AgentExecutionDiagnostics_GetDiagnosticsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentExecutionDiagnosticDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AgentExecutionDiagnosticDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/IntelligenceService/AgentExecutionDiagnostics/{id}':
+    get:
+      tags:
+        - AgentExecutionDiagnostics
+      summary: Get agent execution diagnostic by ID
+      description: 'Retrieves a specific agent runtime work order''s diagnostic classification by id (tenant-scoped, fail-closed).'
+      operationId: AgentExecutionDiagnostics_GetDiagnosticById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentExecutionDiagnosticDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentExecutionDiagnosticDtoEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Pools:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Provision an agent runtime pool
+      description: 'Find-or-creates the operator''s tenant-owned routing pool (the fabric-bootstrap coordinate a worker then registers into) and returns its id. The owning tenant is resolved server-side from the authorization context, never from the request body. Idempotent on the tenant + name coordinate. The pool is routing substrate only — it confers no capability authority. Gated on bots_manage.'
+      operationId: AgentRuntimeFabric_CreatePool
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRuntimePoolRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRuntimePoolRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentRuntimePoolCreationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentRuntimePoolCreationDtoEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Register:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Register an agent runtime worker
+      description: Enrolls a worker (machine identity + declared capabilities + concurrency ceiling) into a pool; returns its id. Gated on bots_manage.
+      operationId: AgentRuntimeFabric_Register
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterAgentRuntimeWorkerRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RegisterAgentRuntimeWorkerRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentRuntimeWorkerRegistrationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentRuntimeWorkerRegistrationDtoEnvelope'
+  '/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Activate':
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Activate an agent runtime worker
+      description: Transitions a registered/draining worker to Active (idempotent). Gated on bots_manage.
+      operationId: AgentRuntimeFabric_Activate
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Heartbeat':
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Heartbeat an agent runtime worker
+      description: Records a worker heartbeat — the liveness signal a stale worker's leases are reclaimed against. Gated on bots_manage.
+      operationId: AgentRuntimeFabric_Heartbeat
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Claim:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Claim the next eligible work order
+      description: 'Atomically leases the next eligible work order for the worker under the generation fence, or returns null when nothing is claimable. Gated on bots_manage.'
+      operationId: AgentRuntimeFabric_Claim
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClaimNextAgentWorkerRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ClaimNextAgentWorkerRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentWorkAssignmentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentWorkAssignmentDtoEnvelope'
+  '/api/v2/IntelligenceService/AgentRuntimeFabric/WorkOrders/{workOrderId}/Cancelled':
+    get:
+      tags:
+        - AgentRuntimeFabric
+      summary: Read a work order's cancel state
+      description: The worker's courtesy short-circuit — whether the order was cancelled server-side before the effect runs (the authoritative cancel guard is the effect boundary). Gated on bots_read.
+      operationId: AgentRuntimeFabric_GetCancellation
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: workOrderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderCancellationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderCancellationDtoEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Execute:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Request a work order's governed effect
+      description: 'Runs the proposed governed capability at the server-authoritative effect boundary under the order''s re-resolved executor identity. Returns the governed verdict (a denial/no-op/approval-suspend/in-doubt is a first-class outcome, never a silent success). Gated on bots_manage.'
+      operationId: AgentRuntimeFabric_Execute
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteAgentWorkOrderEffectRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExecuteAgentWorkOrderEffectRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GovernedAgentEffectDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GovernedAgentEffectDtoEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Complete:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Complete a leased work order
+      description: Records the fenced terminal completion of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+      operationId: AgentRuntimeFabric_Complete
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteAgentWorkOrderRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CompleteAgentWorkOrderRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeFabric/Fault:
+    post:
+      tags:
+        - AgentRuntimeFabric
+      summary: Fault a leased work order
+      description: Records the fenced terminal failure of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+      operationId: AgentRuntimeFabric_Fault
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaultAgentWorkOrderRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FaultAgentWorkOrderRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders:
+    get:
+      tags:
+        - AgentRuntimeStatus
+      summary: Get agent runtime work orders
+      description: 'Retrieves the tenant''s own agent runtime work orders with their current-lease state (read-only, tenant-scoped).'
+      operationId: AgentRuntimeStatus_GetWorkOrders
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentWorkOrderStatusDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AgentWorkOrderStatusDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderStatusDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderStatusDtoListEnvelope'
+  /api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/Count:
+    get:
+      tags:
+        - AgentRuntimeStatus
+      summary: Get agent runtime work orders count
+      description: Returns the count of the tenant's own agent runtime work orders.
+      operationId: AgentRuntimeStatus_GetWorkOrdersCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentWorkOrderStatusDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AgentWorkOrderStatusDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/{id}':
+    get:
+      tags:
+        - AgentRuntimeStatus
+      summary: Get agent runtime work order by ID
+      description: 'Retrieves a specific agent runtime work order and its current lease by id (tenant-scoped, fail-closed).'
+      operationId: AgentRuntimeStatus_GetWorkOrderById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderStatusDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentWorkOrderStatusDtoEnvelope'
   /api/v2/IntelligenceService/AiProviders:
     get:
       tags:
         - AiProviders
       summary: Get the available AI providers
       description: 'Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.'
-      operationId: GetAiProvidersAsync
+      operationId: AiProviders_GetAiProviders
       parameters:
         - name: api-version
           in: query
@@ -58,13 +864,552 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/AiProviderDtoListEnvelope'
+  /api/v2/IntelligenceService/AiProviders/Availability:
+    get:
+      tags:
+        - AiProviders
+      summary: Get AI provider/model availability for a tenant
+      description: 'Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned.'
+      operationId: AiProviders_GetAiProviderAvailability
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiProviderAvailabilityDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiProviderAvailabilityDtoListEnvelope'
+  /api/v2/IntelligenceService/AiRuns:
+    get:
+      tags:
+        - AiRuns
+      summary: Get all AI runs
+      description: 'Retrieves the durable AI run evidence rows for the specified tenant (read-only, tenant-scoped).'
+      operationId: AiRuns_GetAiRuns
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiRunDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AiRunDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiRunDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiRunDtoListEnvelope'
+  /api/v2/IntelligenceService/AiRuns/Count:
+    get:
+      tags:
+        - AiRuns
+      summary: Get AI runs count
+      description: Returns the count of durable AI run evidence rows for the specified tenant.
+      operationId: AiRuns_GetAiRunsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiRunDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AiRunDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/IntelligenceService/AiRuns/{id}':
+    get:
+      tags:
+        - AiRuns
+      summary: Get AI run by ID
+      description: 'Retrieves a specific durable AI run evidence row by its identifier (tenant-scoped, fail-closed).'
+      operationId: AiRuns_GetAiRunById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiRunDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiRunDtoEnvelope'
+  /api/v2/IntelligenceService/AiUsageObservations:
+    get:
+      tags:
+        - AiUsageObservations
+      summary: Get all AI usage observations
+      description: 'Retrieves the per-run AI consumption observations for the specified tenant (read-only, tenant-scoped).'
+      operationId: AiUsageObservations_GetAiUsageObservations
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiUsageObservationDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AiUsageObservationDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiUsageObservationDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiUsageObservationDtoListEnvelope'
+  /api/v2/IntelligenceService/AiUsageObservations/Count:
+    get:
+      tags:
+        - AiUsageObservations
+      summary: Get AI usage observations count
+      description: Returns the count of per-run AI consumption observations for the specified tenant.
+      operationId: AiUsageObservations_GetAiUsageObservationsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiUsageObservationDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AiUsageObservationDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/IntelligenceService/AiUsageObservations/{id}':
+    get:
+      tags:
+        - AiUsageObservations
+      summary: Get AI usage observation by ID
+      description: 'Retrieves a specific AI consumption observation by its identifier (tenant-scoped, fail-closed).'
+      operationId: AiUsageObservations_GetAiUsageObservationById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiUsageObservationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiUsageObservationDtoEnvelope'
+  /api/v2/IntelligenceService/ApprovalAdvice/Disclosure:
+    get:
+      tags:
+        - ApprovalAdvice
+      summary: Get the AI approval advice disclosure
+      description: 'Returns what AI approval advice would do for the specified tenant, built from live configuration: the provider and model, the connection scope, each advisor''s question and the exact fields sent, what is never sent, and the disclosure fingerprint an opt-in must confirm.'
+      operationId: ApprovalAdvice_GetApprovalAdviceDisclosure
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceDisclosureDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceDisclosureDtoEnvelope'
+  /api/v2/IntelligenceService/ApprovalAdvice/Consent:
+    get:
+      tags:
+        - ApprovalAdvice
+      summary: Get the tenant's AI approval advice consent
+      description: 'Returns the tenant''s consent (never decided, opted in or opted out) and whether the disclosure it named is still the current one. ReconfirmationRequired is true when it changed since.'
+      operationId: ApprovalAdvice_GetApprovalAdviceConsent
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
+  /api/v2/IntelligenceService/ApprovalAdvice/OptIn:
+    post:
+      tags:
+        - ApprovalAdvice
+      summary: Opt the tenant in to AI approval advice
+      description: 'Opts the tenant in to the CURRENT disclosure, named by the fingerprint the admin was shown. Refused when the instance switch is off (approval_advice.instance_disabled) or the disclosure changed since it was shown (approval_advice.disclosure_stale). Provisions the least-privilege advisor identity and writes a security-log audit entry.'
+      operationId: ApprovalAdvice_OptInApprovalAdvice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalAdviceOptInRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ApprovalAdviceOptInRequestDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
+  /api/v2/IntelligenceService/ApprovalAdvice/OptOut:
+    post:
+      tags:
+        - ApprovalAdvice
+      summary: Opt the tenant out of AI approval advice
+      description: 'Opts the tenant out: advice stops and stored advice is hidden at once. Writes a security-log audit entry.'
+      operationId: ApprovalAdvice_OptOutApprovalAdvice
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApprovalAdviceConsentDtoEnvelope'
   /api/v2/IntelligenceService/Capabilities:
     get:
       tags:
         - Capabilities
       summary: Get the annotated capability catalog
       description: 'Retrieves the full governed-capability catalog for the specified tenant, optionally narrowed to a single execution surface. Every capability is returned with an Available flag (and a DeniedReason when not available) so callers render disabled-with-reason instead of hiding; entitlement is computed server-side.'
-      operationId: GetCapabilitiesAsync
+      operationId: Capabilities_GetCapabilities
       parameters:
         - name: tenantId
           in: query
@@ -118,7 +1463,7 @@ paths:
         - Capabilities
       summary: Get the capability catalog count
       description: 'Returns the number of governed capabilities in the catalog for the specified tenant — the surface-matching total that mirrors the list route''s returned-set size (entitled or not), honouring the same optional surface narrowing.'
-      operationId: GetCapabilitiesCountAsync
+      operationId: Capabilities_GetCapabilitiesCount
       parameters:
         - name: tenantId
           in: query
@@ -172,7 +1517,7 @@ paths:
         - Capabilities
       summary: Get a capability by key
       description: 'Retrieves a single governed capability by its stable, dotted key, stamped with the Available / DeniedReason entitlement flag. Returns 404 only when the capability does not exist; an existing capability the actor is not entitled to run is returned annotated as unavailable, not hidden.'
-      operationId: GetCapabilityByKeyAsync
+      operationId: Capabilities_GetCapabilityByKey
       parameters:
         - name: tenantId
           in: query
@@ -227,7 +1572,7 @@ paths:
         - CognitiveAgentConversationAttachments
       summary: Upload an attachment to a cognitive agent conversation
       description: 'Uploads a file into the acting user''s OWN conversation attachment store, scanned and catalogued through the storage spine. A conversation the caller does not own returns 404. The response carries the new file''s id, name, content type and length; the chat UI passes that id as an AttachmentFileIds entry when it sends the referencing user turn.'
-      operationId: UploadCognitiveAgentConversationAttachmentAsync
+      operationId: CognitiveAgentConversationAttachments_UploadCognitiveAgentConversationAttachment
       parameters:
         - name: tenantId
           in: query
@@ -309,8 +1654,8 @@ paths:
       tags:
         - CognitiveAgentConversations
       summary: Get all conversations for a cognitive agent
-      description: Retrieves all managed conversations for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentConversationsAsync
+      description: Retrieves the CALLER'S OWN conversations with the specified cognitive agent. Pass scope=AllUsers to list every user's conversations (oversight; requires bots_manage).
+      operationId: CognitiveAgentConversations_GetCognitiveAgentConversations
       parameters:
         - name: tenantId
           in: query
@@ -324,6 +1669,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -364,7 +1717,7 @@ paths:
         - CognitiveAgentConversations
       summary: Create a new cognitive agent conversation
       description: Creates a new managed conversation for the specified cognitive agent and tenant.
-      operationId: CreateCognitiveAgentConversationAsync
+      operationId: CognitiveAgentConversations_CreateCognitiveAgentConversation
       parameters:
         - name: tenantId
           in: query
@@ -421,7 +1774,7 @@ paths:
         - CognitiveAgentConversations
       summary: Get conversation count for a cognitive agent
       description: Returns the count of managed conversations for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentConversationsCountAsync
+      operationId: CognitiveAgentConversations_GetCognitiveAgentConversationsCount
       parameters:
         - name: tenantId
           in: query
@@ -435,6 +1788,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -476,7 +1837,7 @@ paths:
         - CognitiveAgentConversations
       summary: Get a cognitive agent conversation by ID
       description: Retrieves a specific managed conversation of a cognitive agent by its identifier.
-      operationId: GetCognitiveAgentConversationByIdAsync
+      operationId: CognitiveAgentConversations_GetCognitiveAgentConversationById
       parameters:
         - name: tenantId
           in: query
@@ -496,6 +1857,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -537,7 +1906,7 @@ paths:
         - CognitiveAgentConversations
       summary: Update a cognitive agent conversation
       description: Updates an existing managed conversation for the specified cognitive agent and tenant.
-      operationId: UpdateCognitiveAgentConversationAsync
+      operationId: CognitiveAgentConversations_UpdateCognitiveAgentConversation
       parameters:
         - name: tenantId
           in: query
@@ -557,6 +1926,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -599,7 +1976,7 @@ paths:
         - CognitiveAgentConversations
       summary: Delete a cognitive agent conversation
       description: Deletes a managed conversation for the specified cognitive agent and tenant.
-      operationId: DeleteCognitiveAgentConversationAsync
+      operationId: CognitiveAgentConversations_DeleteCognitiveAgentConversation
       parameters:
         - name: tenantId
           in: query
@@ -619,6 +1996,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -654,7 +2039,7 @@ paths:
         - CognitiveAgentMessages
       summary: Get all messages for a cognitive agent conversation
       description: 'Retrieves all durable messages for the specified conversation, agent and tenant.'
-      operationId: GetCognitiveAgentMessagesAsync
+      operationId: CognitiveAgentMessages_GetCognitiveAgentMessages
       parameters:
         - name: tenantId
           in: query
@@ -674,6 +2059,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -715,7 +2108,7 @@ paths:
         - CognitiveAgentMessages
       summary: Get message count for a cognitive agent conversation
       description: 'Returns the count of durable messages for the specified conversation, agent and tenant.'
-      operationId: GetCognitiveAgentMessagesCountAsync
+      operationId: CognitiveAgentMessages_GetCognitiveAgentMessagesCount
       parameters:
         - name: tenantId
           in: query
@@ -735,6 +2128,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -776,7 +2177,7 @@ paths:
         - CognitiveAgentMessages
       summary: Get a cognitive agent conversation message by ID
       description: Retrieves a specific durable message of a conversation by its identifier.
-      operationId: GetCognitiveAgentMessageByIdAsync
+      operationId: CognitiveAgentMessages_GetCognitiveAgentMessageById
       parameters:
         - name: tenantId
           in: query
@@ -802,6 +2203,14 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
         - name: api-version
           in: query
           schema:
@@ -838,13 +2247,74 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/CognitiveAgentMessageDtoEnvelope'
+  '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/PendingApprovals':
+    get:
+      tags:
+        - CognitiveAgentMessages
+      summary: Get unresolved approvals for a cognitive agent conversation
+      description: 'Reconstructs the durable, unresolved (AwaitingApproval) approval cards for the specified conversation, agent and tenant from AiRun suspend-state — the durable counterpart to the live SSE approval frame. Read-only; empty when the conversation has no unresolved approvals.'
+      operationId: CognitiveAgentMessages_GetConversationPendingApprovals
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: conversationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scope
+          in: query
+          schema:
+            enum:
+              - Mine
+              - AllUsers
+            type: string
+            default: Mine
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationPendingApprovalDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConversationPendingApprovalDtoListEnvelope'
   /api/v2/IntelligenceService/CognitiveAgents:
     get:
       tags:
         - CognitiveAgents
       summary: Get all cognitive agents
       description: Retrieves all managed cognitive agents for the specified tenant.
-      operationId: GetCognitiveAgentsAsync
+      operationId: CognitiveAgents_GetCognitiveAgents
       parameters:
         - name: tenantId
           in: query
@@ -892,7 +2362,7 @@ paths:
         - CognitiveAgents
       summary: Create a new cognitive agent
       description: Creates a new managed cognitive agent for the specified tenant.
-      operationId: CreateCognitiveAgentAsync
+      operationId: CognitiveAgents_CreateCognitiveAgent
       parameters:
         - name: tenantId
           in: query
@@ -943,7 +2413,7 @@ paths:
         - CognitiveAgents
       summary: Get cognitive agents count
       description: Returns the count of managed cognitive agents for the specified tenant.
-      operationId: GetCognitiveAgentsCountAsync
+      operationId: CognitiveAgents_GetCognitiveAgentsCount
       parameters:
         - name: tenantId
           in: query
@@ -992,7 +2462,7 @@ paths:
         - CognitiveAgents
       summary: Get cognitive agent by ID
       description: Retrieves a specific managed cognitive agent by its identifier.
-      operationId: GetCognitiveAgentByIdAsync
+      operationId: CognitiveAgents_GetCognitiveAgentById
       parameters:
         - name: tenantId
           in: query
@@ -1047,7 +2517,7 @@ paths:
         - CognitiveAgents
       summary: Update a cognitive agent
       description: Updates an existing managed cognitive agent for the specified tenant.
-      operationId: UpdateCognitiveAgentAsync
+      operationId: CognitiveAgents_UpdateCognitiveAgent
       parameters:
         - name: tenantId
           in: query
@@ -1103,7 +2573,7 @@ paths:
         - CognitiveAgents
       summary: Delete a cognitive agent
       description: Deletes a managed cognitive agent for the specified tenant.
-      operationId: DeleteCognitiveAgentAsync
+      operationId: CognitiveAgents_DeleteCognitiveAgent
       parameters:
         - name: tenantId
           in: query
@@ -1146,13 +2616,256 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
+  '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/PermissionReadiness':
+    get:
+      tags:
+        - CognitiveAgents
+      summary: Get a cognitive agent's permission readiness
+      description: 'Reports the permissions the agent''s enabled skills'' tools require, which its execution principal holds, and the missing gaps that would cause the governed tool executor to deny a tool at run time.'
+      operationId: CognitiveAgents_GetAgentPermissionReadiness
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
+  /api/v2/IntelligenceService/CognitiveAgents/BuiltInCapabilities:
+    get:
+      tags:
+        - CognitiveAgents
+      summary: Get the intrinsic built-in capabilities every agent possesses
+      description: 'Returns the code-authoritative INTRINSIC baseline capability set every agent has by virtue of being an agent — durable memory plus the trusted current-conversation / current-project reads — composed the same way the runtime composes it, so the editor''s read-only ''Built-in capabilities'' section can never drift from the shipping set. Agent-independent (the same set for every agent in the environment); it grants nothing and is rendered read-only.'
+      operationId: CognitiveAgents_GetBuiltInAgentCapabilities
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuiltInAgentCapabilityDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BuiltInAgentCapabilityDtoListEnvelope'
+  '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Grant':
+    post:
+      tags:
+        - CognitiveAgents
+      summary: Grant required tool permissions to a cognitive agent
+      description: 'Grants the supplied permissions to the agent''s OWN execution enrollment, closing real tool gaps. Only permissions required by the agent''s tools may be granted; already-held permissions are skipped. Returns the updated readiness.'
+      operationId: CognitiveAgents_GrantAgentToolPermissions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantAgentToolPermissionsRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GrantAgentToolPermissionsRequestDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
+  '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Revoke':
+    post:
+      tags:
+        - CognitiveAgents
+      summary: Revoke orphaned tool permissions from a cognitive agent
+      description: 'Revokes the supplied ORPHANED permissions from the agent''s OWN execution enrollment - the symmetric inverse of the grant. Only permissions no remaining tool requires (after hierarchy expansion) that are direct, revocable grants may be revoked; still-required and role-derived permissions are rejected; already-removed grants are skipped. Returns the updated readiness.'
+      operationId: CognitiveAgents_RevokeAgentToolPermissions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevokeAgentToolPermissionsRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RevokeAgentToolPermissionsRequestDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AgentPermissionReadinessDtoEnvelope'
   '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills':
     get:
       tags:
         - CognitiveAgentSkills
       summary: Get all skill assignments for a cognitive agent
       description: Retrieves all skill assignments for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentSkillsAsync
+      operationId: CognitiveAgentSkills_GetCognitiveAgentSkills
       parameters:
         - name: tenantId
           in: query
@@ -1206,7 +2919,7 @@ paths:
         - CognitiveAgentSkills
       summary: Assign a skill to a cognitive agent
       description: Assigns a reusable catalog skill to the specified cognitive agent and tenant.
-      operationId: CreateCognitiveAgentSkillAsync
+      operationId: CognitiveAgentSkills_CreateCognitiveAgentSkill
       parameters:
         - name: tenantId
           in: query
@@ -1263,7 +2976,7 @@ paths:
         - CognitiveAgentSkills
       summary: Get skill assignment count for a cognitive agent
       description: Returns the count of skill assignments for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentSkillsCountAsync
+      operationId: CognitiveAgentSkills_GetCognitiveAgentSkillsCount
       parameters:
         - name: tenantId
           in: query
@@ -1318,7 +3031,7 @@ paths:
         - CognitiveAgentSkills
       summary: Get a cognitive agent skill assignment by ID
       description: Retrieves a specific skill assignment of a cognitive agent by its identifier.
-      operationId: GetCognitiveAgentSkillByIdAsync
+      operationId: CognitiveAgentSkills_GetCognitiveAgentSkillById
       parameters:
         - name: tenantId
           in: query
@@ -1379,7 +3092,7 @@ paths:
         - CognitiveAgentSkills
       summary: Update a cognitive agent skill assignment
       description: Updates the per-assignment overrides of a skill assignment for the specified agent and tenant.
-      operationId: UpdateCognitiveAgentSkillAsync
+      operationId: CognitiveAgentSkills_UpdateCognitiveAgentSkill
       parameters:
         - name: tenantId
           in: query
@@ -1441,7 +3154,7 @@ paths:
         - CognitiveAgentSkills
       summary: Remove a skill assignment from a cognitive agent
       description: Removes a skill assignment from the specified cognitive agent and tenant.
-      operationId: DeleteCognitiveAgentSkillAsync
+      operationId: CognitiveAgentSkills_DeleteCognitiveAgentSkill
       parameters:
         - name: tenantId
           in: query
@@ -1496,7 +3209,7 @@ paths:
         - CognitiveAgentVariables
       summary: Get all variables for a cognitive agent
       description: Retrieves all key/value variables for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentVariablesAsync
+      operationId: CognitiveAgentVariables_GetCognitiveAgentVariables
       parameters:
         - name: tenantId
           in: query
@@ -1550,7 +3263,7 @@ paths:
         - CognitiveAgentVariables
       summary: Add a variable to a cognitive agent
       description: Adds a key/value variable to the specified cognitive agent and tenant.
-      operationId: CreateCognitiveAgentVariableAsync
+      operationId: CognitiveAgentVariables_CreateCognitiveAgentVariable
       parameters:
         - name: tenantId
           in: query
@@ -1607,7 +3320,7 @@ paths:
         - CognitiveAgentVariables
       summary: Get variable count for a cognitive agent
       description: Returns the count of variables for the specified cognitive agent and tenant.
-      operationId: GetCognitiveAgentVariablesCountAsync
+      operationId: CognitiveAgentVariables_GetCognitiveAgentVariablesCount
       parameters:
         - name: tenantId
           in: query
@@ -1662,7 +3375,7 @@ paths:
         - CognitiveAgentVariables
       summary: Get a cognitive agent variable by ID
       description: Retrieves a specific variable of a cognitive agent by its identifier.
-      operationId: GetCognitiveAgentVariableByIdAsync
+      operationId: CognitiveAgentVariables_GetCognitiveAgentVariableById
       parameters:
         - name: tenantId
           in: query
@@ -1723,7 +3436,7 @@ paths:
         - CognitiveAgentVariables
       summary: Update a cognitive agent variable
       description: Updates the value of a variable for the specified agent and tenant.
-      operationId: UpdateCognitiveAgentVariableAsync
+      operationId: CognitiveAgentVariables_UpdateCognitiveAgentVariable
       parameters:
         - name: tenantId
           in: query
@@ -1785,7 +3498,7 @@ paths:
         - CognitiveAgentVariables
       summary: Remove a variable from a cognitive agent
       description: Removes a variable from the specified cognitive agent and tenant.
-      operationId: DeleteCognitiveAgentVariableAsync
+      operationId: CognitiveAgentVariables_DeleteCognitiveAgentVariable
       parameters:
         - name: tenantId
           in: query
@@ -1840,7 +3553,7 @@ paths:
         - CognitiveSkills
       summary: Get all cognitive skills
       description: Retrieves all reusable cognitive skills for the specified tenant.
-      operationId: GetCognitiveSkillsAsync
+      operationId: CognitiveSkills_GetCognitiveSkills
       parameters:
         - name: tenantId
           in: query
@@ -1888,7 +3601,7 @@ paths:
         - CognitiveSkills
       summary: Create a new cognitive skill
       description: Creates a new reusable cognitive skill for the specified tenant.
-      operationId: CreateCognitiveSkillAsync
+      operationId: CognitiveSkills_CreateCognitiveSkill
       parameters:
         - name: tenantId
           in: query
@@ -1939,7 +3652,7 @@ paths:
         - CognitiveSkills
       summary: Get cognitive skills count
       description: Returns the count of reusable cognitive skills for the specified tenant.
-      operationId: GetCognitiveSkillsCountAsync
+      operationId: CognitiveSkills_GetCognitiveSkillsCount
       parameters:
         - name: tenantId
           in: query
@@ -1988,7 +3701,7 @@ paths:
         - CognitiveSkills
       summary: Get cognitive skill by ID
       description: Retrieves a specific reusable cognitive skill by its identifier.
-      operationId: GetCognitiveSkillByIdAsync
+      operationId: CognitiveSkills_GetCognitiveSkillById
       parameters:
         - name: tenantId
           in: query
@@ -2043,7 +3756,7 @@ paths:
         - CognitiveSkills
       summary: Update a cognitive skill
       description: Updates an existing reusable cognitive skill for the specified tenant.
-      operationId: UpdateCognitiveSkillAsync
+      operationId: CognitiveSkills_UpdateCognitiveSkill
       parameters:
         - name: tenantId
           in: query
@@ -2099,7 +3812,7 @@ paths:
         - CognitiveSkills
       summary: Delete a cognitive skill
       description: Deletes a reusable cognitive skill for the specified tenant.
-      operationId: DeleteCognitiveSkillAsync
+      operationId: CognitiveSkills_DeleteCognitiveSkill
       parameters:
         - name: tenantId
           in: query
@@ -2142,10 +3855,355 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
+  /api/v2/IntelligenceService/DefinitionDistribution/Validate:
+    post:
+      tags:
+        - DefinitionDistribution
+      summary: Validate a repository-backed definition
+      description: 'Re-fetches and re-verifies the exact content at the pinned coordinate, re-parses it, resolves its dependencies/capabilities, and enforces release immutability — without materializing anything. The server never trusts a client''s parse.'
+      operationId: DefinitionDistribution_ValidateDefinition
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefinitionValidationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DefinitionValidationDtoEnvelope'
+  /api/v2/IntelligenceService/DefinitionDistribution/Install:
+    post:
+      tags:
+        - DefinitionDistribution
+      summary: Install a repository-backed definition
+      description: 'Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, resolves dependencies/capabilities, then materializes the definition into its canonical owner and records pinned provenance. Idempotent by the deterministic canonical id.'
+      operationId: DefinitionDistribution_InstallDefinition
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoEnvelope'
+  /api/v2/IntelligenceService/DefinitionDistribution/Update:
+    post:
+      tags:
+        - DefinitionDistribution
+      summary: Update an installed repository-backed definition
+      description: 'Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, enforces release immutability, then re-materializes an ALREADY-installed definition to the new content and reconciles its pinned provenance — for an agent, reconciling its declared skill assignments. A definition not installed in this tenant fails closed as NotFound. Same request/response shape as Install.'
+      operationId: DefinitionDistribution_UpdateDefinition
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DefinitionCoordinateRequest'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoEnvelope'
+  /api/v2/IntelligenceService/DefinitionDistribution/Uninstall:
+    post:
+      tags:
+        - DefinitionDistribution
+      summary: Uninstall a Gallery-installed definition
+      description: 'Explicitly removes an installed definition and its pinned provenance from the acting tenant, and — for an agent — revokes the lingering direct grants on its execution principal, in one commit. A REAL delete: distinct from the non-destructive MissingFromSource state-flip, nothing is ever auto-deleted. The reference is either the canonical id or the (sourceKey, kind, key) triple; an incomplete or not-installed reference fails closed.'
+      operationId: DefinitionDistribution_UninstallDefinition
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UninstallDefinitionRequestDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UninstallDefinitionRequestDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/IntelligenceService/DefinitionDistribution/InstalledState:
+    get:
+      tags:
+        - DefinitionDistribution
+      summary: Get the installed-definition state for a tenant
+      description: 'Returns the acting tenant''s installed-definition provenance rows (Installed / UpdateAvailable / MissingFromSource), optionally narrowed to a single kind. Tenant-scoped and read-only: it never returns another tenant''s provenance.'
+      operationId: DefinitionDistribution_GetInstalledDefinitionState
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: kind
+          in: query
+          schema:
+            enum:
+              - Agent
+              - Skill
+              - Workflow
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InstalledDefinitionDtoIReadOnlyListEnvelope'
   /version:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -2153,6 +4211,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -2160,6 +4219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -2167,6 +4227,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -2186,6 +4247,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -2212,6 +4274,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -2229,7 +4292,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -2252,6 +4315,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -2265,6 +4329,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -2284,6 +4349,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -2303,6 +4369,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -2328,6 +4395,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -2346,6 +4414,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -2371,6 +4440,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -2406,6 +4476,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -2433,6 +4504,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -2460,6 +4532,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -2469,7 +4542,7 @@ paths:
         - IntelligenceService
       summary: Run a governed agent over the AG-UI protocol
       description: 'Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved. An optional ?projectId= binds the run to a project (resolved tenant-scoped): the project id + name are surfaced to the model as context so it can call the governed project-storage tools; it is never auto-filled into a tool''s arguments.'
-      operationId: InvokeAgentSurfaceAsync
+      operationId: Platform_InvokeAgentSurface
       parameters:
         - name: agentId
           in: path
@@ -2500,6 +4573,770 @@ components:
           format: int64
         refreshToken:
           type: string
+          nullable: true
+      additionalProperties: false
+    AgentExecutionDiagnosticDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Pending
+            - Claimed
+            - Completed
+            - Failed
+            - Cancelled
+          type: string
+        statusName:
+          type: string
+          nullable: true
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+        currentLeaseGeneration:
+          type: integer
+          format: int32
+          nullable: true
+        currentLeaseStatus:
+          enum:
+            - Claimed
+            - Completed
+            - Failed
+          type: string
+          nullable: true
+        currentLeaseStatusName:
+          type: string
+          nullable: true
+          readOnly: true
+        currentLeaseClaimedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        leaseCount:
+          type: integer
+          format: int32
+        observedAtUtc:
+          type: string
+          format: date-time
+        anomalyCode:
+          enum:
+            - None
+            - WaitingForApproval
+            - RetryableInfrastructure
+            - StaleFence
+            - OutcomeUnknown
+            - AlreadyFinalized
+            - ClaimNotFound
+            - StuckOrphaned
+          type: string
+        anomalyCodeName:
+          type: string
+          nullable: true
+          readOnly: true
+        recommendedAction:
+          enum:
+            - Wait
+            - Retry
+            - Reconcile
+            - Completed
+            - ManualAction
+          type: string
+        recommendedActionName:
+          type: string
+          nullable: true
+          readOnly: true
+        diagnosticSummary:
+          type: string
+          nullable: true
+        claimObserved:
+          type: boolean
+          nullable: true
+        claimState:
+          enum:
+            - Pending
+            - Claimed
+            - Executing
+            - Finalized
+            - Failed
+            - OutcomeUnknown
+          type: string
+          nullable: true
+        claimFingerprintRecorded:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    AgentExecutionDiagnosticDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    AgentExecutionDiagnosticDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentExecutionDiagnosticDto'
+      additionalProperties: false
+    AgentExecutionDiagnosticDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentExecutionDiagnosticDto'
+          nullable: true
+      additionalProperties: false
+    AgentPermissionReadinessDto:
+      type: object
+      properties:
+        agentId:
+          type: string
+          nullable: true
+        executionEnrollmentId:
+          type: string
+          nullable: true
+        required:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentRequiredPermissionDto'
+          nullable: true
+        missing:
+          type: array
+          items:
+            type: string
+          nullable: true
+        orphaned:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    AgentPermissionReadinessDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentPermissionReadinessDto'
+      additionalProperties: false
+    AgentRequiredPermissionDto:
+      type: object
+      properties:
+        permission:
+          type: string
+          nullable: true
+        toolKeys:
+          type: array
+          items:
+            type: string
+          nullable: true
+        skillNames:
+          type: array
+          items:
+            type: string
+          nullable: true
+        held:
+          type: boolean
+      additionalProperties: false
+    AgentRuntimePoolCreationDto:
+      type: object
+      properties:
+        poolId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AgentRuntimePoolCreationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentRuntimePoolCreationDto'
+      additionalProperties: false
+    AgentRuntimeWorkerRegistrationDto:
+      type: object
+      properties:
+        workerId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AgentRuntimeWorkerRegistrationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentRuntimeWorkerRegistrationDto'
+      additionalProperties: false
+    AgentWorkAssignmentDto:
+      type: object
+      properties:
+        workOrderId:
+          type: string
+          nullable: true
+        leaseGeneration:
+          type: integer
+          format: int32
+        requiredCapabilities:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AgentWorkAssignmentDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentWorkAssignmentDto'
+      additionalProperties: false
+    AgentWorkOrderCancellationDto:
+      type: object
+      properties:
+        cancelled:
+          type: boolean
+      additionalProperties: false
+    AgentWorkOrderCancellationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentWorkOrderCancellationDto'
+      additionalProperties: false
+    AgentWorkOrderStatusDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        requiredCapabilities:
+          type: string
+          nullable: true
+        preferredPoolId:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Pending
+            - Claimed
+            - Completed
+            - Failed
+            - Cancelled
+          type: string
+        statusName:
+          type: string
+          nullable: true
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+        tenantId:
+          type: string
+          nullable: true
+        currentLeaseGeneration:
+          type: integer
+          format: int32
+          nullable: true
+        currentLeaseStatus:
+          enum:
+            - Claimed
+            - Completed
+            - Failed
+          type: string
+          nullable: true
+        currentLeaseStatusName:
+          type: string
+          nullable: true
+          readOnly: true
+        leaseCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AgentWorkOrderStatusDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    AgentWorkOrderStatusDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AgentWorkOrderStatusDto'
+      additionalProperties: false
+    AgentWorkOrderStatusDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentWorkOrderStatusDto'
+          nullable: true
+      additionalProperties: false
+    AiModelAvailabilityDto:
+      type: object
+      properties:
+        modelId:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        family:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        supportsTools:
+          type: boolean
+        supportsReasoning:
+          type: boolean
+        supportsVision:
+          type: boolean
+        supportsStreaming:
+          type: boolean
+        profileKey:
+          type: string
+          nullable: true
+        specialized:
+          type: boolean
+        jurisdiction:
+          type: string
+          nullable: true
+        available:
+          type: boolean
+        connectionScope:
+          enum:
+            - Instance
+            - Tenant
+          type: string
+          nullable: true
+      additionalProperties: false
+    AiModelCategoryDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiModelAvailabilityDto'
+          nullable: true
+      additionalProperties: false
+    AiProviderAvailabilityDto:
+      type: object
+      properties:
+        providerKey:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        available:
+          type: boolean
+        connectionScope:
+          enum:
+            - Instance
+            - Tenant
+          type: string
+          nullable: true
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiModelCategoryDto'
+          nullable: true
+      additionalProperties: false
+    AiProviderAvailabilityDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiProviderAvailabilityDto'
           nullable: true
       additionalProperties: false
     AiProviderDto:
@@ -2548,6 +5385,709 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AiProviderDto'
+          nullable: true
+      additionalProperties: false
+    AiRunDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        conversationId:
+          type: string
+          nullable: true
+        agentKey:
+          type: string
+          nullable: true
+        providerKey:
+          type: string
+          nullable: true
+        modelId:
+          type: string
+          nullable: true
+        engineKey:
+          type: string
+          nullable: true
+        fundingScope:
+          enum:
+            - Instance
+            - Tenant
+          type: string
+          nullable: true
+        fundingScopeName:
+          type: string
+          nullable: true
+          readOnly: true
+        remoteIdentifier:
+          type: string
+          nullable: true
+        endpoint:
+          type: string
+          nullable: true
+        credentialRef:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Started
+            - Succeeded
+            - Failed
+            - Rejected
+            - AwaitingApproval
+            - InDoubt
+          type: string
+        statusName:
+          type: string
+          nullable: true
+          readOnly: true
+        kind:
+          enum:
+            - Chat
+            - ToolAugmented
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        errorDetail:
+          type: string
+          nullable: true
+        approvalGranted:
+          type: boolean
+          nullable: true
+        resultMutationRef:
+          type: string
+          nullable: true
+        pendingApprovalTicketId:
+          type: string
+          nullable: true
+        pendingCallId:
+          type: string
+          nullable: true
+        pendingToolKey:
+          type: string
+          nullable: true
+        parentRunId:
+          type: string
+          nullable: true
+        promptTokens:
+          type: integer
+          format: int64
+          nullable: true
+        completionTokens:
+          type: integer
+          format: int64
+          nullable: true
+        runAs:
+          enum:
+            - Invoker
+            - Application
+            - System
+            - Service
+          type: string
+        principalKind:
+          enum:
+            - Human
+            - Agent
+            - Application
+            - Service
+            - System
+          type: string
+        tenantId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AiRunDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    AiRunDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AiRunDto'
+      additionalProperties: false
+    AiRunDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiRunDto'
+          nullable: true
+      additionalProperties: false
+    AiUsageObservationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        aiRunId:
+          type: string
+          nullable: true
+        providerKey:
+          type: string
+          nullable: true
+        modelKey:
+          type: string
+          nullable: true
+        connectionScope:
+          enum:
+            - Instance
+            - Tenant
+          type: string
+          nullable: true
+        connectionScopeName:
+          type: string
+          nullable: true
+          readOnly: true
+        promptUnits:
+          type: integer
+          format: int64
+          nullable: true
+        completionUnits:
+          type: integer
+          format: int64
+          nullable: true
+        reasoningUnits:
+          type: integer
+          format: int64
+          nullable: true
+        observedAt:
+          type: string
+          format: date-time
+        usageState:
+          enum:
+            - Measured
+            - Unknown
+            - LateMeasured
+          type: string
+        usageStateName:
+          type: string
+          nullable: true
+          readOnly: true
+        unitsAttachedAt:
+          type: string
+          format: date-time
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AiUsageObservationDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    AiUsageObservationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AiUsageObservationDto'
+      additionalProperties: false
+    AiUsageObservationDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiUsageObservationDto'
+          nullable: true
+      additionalProperties: false
+    ApprovalAdviceAdvisorDisclosureDto:
+      type: object
+      properties:
+        templateId:
+          type: string
+          nullable: true
+        templateVersion:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        purpose:
+          type: string
+          nullable: true
+        questionKind:
+          type: string
+          nullable: true
+        question:
+          type: string
+          nullable: true
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalAdviceAnswerDisclosureDto'
+          nullable: true
+        inputSet:
+          type: string
+          nullable: true
+        snapshotSchemaVersion:
+          type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    ApprovalAdviceAnswerDisclosureDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApprovalAdviceConsentDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        state:
+          enum:
+            - OptedIn
+            - OptedOut
+          type: string
+          nullable: true
+        isOptedIn:
+          type: boolean
+        disclosureFingerprint:
+          type: string
+          nullable: true
+        currentDisclosureFingerprint:
+          type: string
+          nullable: true
+        isDisclosureCurrent:
+          type: boolean
+        reconfirmationRequired:
+          type: boolean
+        instanceEnabled:
+          type: boolean
+        adviceActive:
+          type: boolean
+        providerKey:
+          type: string
+          nullable: true
+        modelSelector:
+          type: string
+          nullable: true
+        inputSetSchemaVersions:
+          type: string
+          nullable: true
+        optedInByEnrollmentId:
+          type: string
+          nullable: true
+        optedInAt:
+          type: string
+          format: date-time
+          nullable: true
+        optedOutByEnrollmentId:
+          type: string
+          nullable: true
+        optedOutAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ApprovalAdviceConsentDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ApprovalAdviceConsentDto'
+      additionalProperties: false
+    ApprovalAdviceDisclosureDto:
+      type: object
+      properties:
+        formatVersion:
+          type: string
+          nullable: true
+        instanceEnabled:
+          type: boolean
+        providerKey:
+          type: string
+          nullable: true
+        providerDisplayName:
+          type: string
+          nullable: true
+        modelSelector:
+          type: string
+          nullable: true
+        connectionScope:
+          type: string
+          nullable: true
+        advisors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalAdviceAdvisorDisclosureDto'
+          nullable: true
+        neverSent:
+          type: array
+          items:
+            type: string
+          nullable: true
+        assurances:
+          type: array
+          items:
+            type: string
+          nullable: true
+        recordKeeping:
+          type: string
+          nullable: true
+        fingerprint:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApprovalAdviceDisclosureDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ApprovalAdviceDisclosureDto'
+      additionalProperties: false
+    ApprovalAdviceOptInRequestDto:
+      type: object
+      properties:
+        disclosureFingerprint:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BuiltInAgentCapabilityDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        kind:
+          enum:
+            - SelfState
+            - CurrentContext
+          type: string
+      additionalProperties: false
+    BuiltInAgentCapabilityDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuiltInAgentCapabilityDto'
           nullable: true
       additionalProperties: false
     CapabilityDto:
@@ -2694,6 +6234,13 @@ components:
           items:
             $ref: '#/components/schemas/CapabilityDto'
           nullable: true
+      additionalProperties: false
+    ClaimNextAgentWorkerRequest:
+      type: object
+      properties:
+        workerId:
+          type: string
+          format: uuid
       additionalProperties: false
     CognitiveAgentConversationCreateDto:
       type: object
@@ -3873,6 +7420,19 @@ components:
             $ref: '#/components/schemas/CognitiveSkillToolDto'
           nullable: true
       additionalProperties: false
+    CompleteAgentWorkOrderRequest:
+      type: object
+      properties:
+        workerId:
+          type: string
+          format: uuid
+        workOrderId:
+          type: string
+          format: uuid
+        leaseGeneration:
+          type: integer
+          format: int32
+      additionalProperties: false
     ConversationAttachmentUploadResultDto:
       type: object
       properties:
@@ -3927,6 +7487,251 @@ components:
         result:
           $ref: '#/components/schemas/ConversationAttachmentUploadResultDto'
       additionalProperties: false
+    ConversationPendingApprovalDto:
+      type: object
+      properties:
+        approvalRequestId:
+          type: string
+          nullable: true
+        toolKey:
+          type: string
+          nullable: true
+        toolCallId:
+          type: string
+          nullable: true
+        agentId:
+          type: string
+          nullable: true
+        governedInvocationId:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ConversationPendingApprovalDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationPendingApprovalDto'
+          nullable: true
+      additionalProperties: false
+    CreateAgentRuntimePoolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DefinitionCoordinateRequest:
+      required:
+        - key
+        - kind
+        - path
+        - sourceKey
+      type: object
+      properties:
+        sourceKey:
+          minLength: 1
+          type: string
+        kind:
+          enum:
+            - Agent
+            - Skill
+            - Workflow
+          type: string
+        key:
+          minLength: 1
+          type: string
+        commitSha:
+          type: string
+          nullable: true
+        path:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    DefinitionSkillReferenceDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        versionRange:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DefinitionValidationDto:
+      type: object
+      properties:
+        kind:
+          enum:
+            - Agent
+            - Skill
+            - Workflow
+          type: string
+        key:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+        sourceKey:
+          type: string
+          nullable: true
+        sourcePath:
+          type: string
+          nullable: true
+        commitSha:
+          type: string
+          nullable: true
+        contentDigest:
+          type: string
+          nullable: true
+        canonicalId:
+          type: string
+          nullable: true
+        requiredCapabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        optionalCapabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefinitionSkillReferenceDto'
+          nullable: true
+        alreadyInstalled:
+          type: boolean
+        installedStatus:
+          enum:
+            - Installed
+            - UpdateAvailable
+            - MissingFromSource
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DefinitionValidationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DefinitionValidationDto'
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
     ErrorEnvelope:
       type: object
       properties:
@@ -3963,6 +7768,41 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
+    ExecuteAgentWorkOrderEffectRequest:
+      type: object
+      properties:
+        workerId:
+          type: string
+          format: uuid
+        workOrderId:
+          type: string
+          format: uuid
+        leaseGeneration:
+          type: integer
+          format: int32
+        effectToolKey:
+          type: string
+          nullable: true
+        effectArgumentsJson:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FaultAgentWorkOrderRequest:
+      type: object
+      properties:
+        workerId:
+          type: string
+          format: uuid
+        workOrderId:
+          type: string
+          format: uuid
+        leaseGeneration:
+          type: integer
+          format: int32
+        reason:
+          type: string
+          nullable: true
+      additionalProperties: false
     ForgotPasswordRequest:
       required:
         - email
@@ -3970,6 +7810,69 @@ components:
       properties:
         email:
           type: string
+          nullable: true
+      additionalProperties: false
+    GovernedAgentEffectDto:
+      type: object
+      properties:
+        disposition:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        effectContentJson:
+          type: string
+          nullable: true
+        executionPrincipalId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GovernedAgentEffectDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/GovernedAgentEffectDto'
+      additionalProperties: false
+    GrantAgentToolPermissionsRequestDto:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: false
     HttpValidationProblemDetails:
@@ -4023,6 +7926,133 @@ components:
           nullable: true
         isEmailConfirmed:
           type: boolean
+      additionalProperties: false
+    InstalledDefinitionDto:
+      type: object
+      properties:
+        canonicalId:
+          type: string
+          nullable: true
+        kind:
+          enum:
+            - Agent
+            - Skill
+            - Workflow
+          type: string
+        definitionKey:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+        sourceKey:
+          type: string
+          nullable: true
+        sourcePath:
+          type: string
+          nullable: true
+        commitSha:
+          type: string
+          nullable: true
+        contentDigest:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Installed
+            - UpdateAvailable
+            - MissingFromSource
+          type: string
+        installedAt:
+          type: string
+          format: date-time
+        executionIdentityProvisioned:
+          type: boolean
+        note:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InstalledDefinitionDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/InstalledDefinitionDto'
+      additionalProperties: false
+    InstalledDefinitionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstalledDefinitionDto'
+          nullable: true
       additionalProperties: false
     Int32Envelope:
       type: object
@@ -4091,6 +8121,19 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    RegisterAgentRuntimeWorkerRequest:
+      type: object
+      properties:
+        poolId:
+          type: string
+          nullable: true
+        capabilities:
+          type: string
+          nullable: true
+        maxConcurrency:
+          type: integer
+          format: int32
+      additionalProperties: false
     RegisterRequest:
       required:
         - email
@@ -4128,6 +8171,15 @@ components:
           nullable: true
         newPassword:
           type: string
+          nullable: true
+      additionalProperties: false
+    RevokeAgentToolPermissionsRequestDto:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: false
     TwoFactorRequest:
@@ -4170,8 +8222,34 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UninstallDefinitionRequestDto:
+      type: object
+      properties:
+        canonicalId:
+          type: string
+          nullable: true
+        sourceKey:
+          type: string
+          nullable: true
+        kind:
+          enum:
+            - Agent
+            - Skill
+            - Workflow
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+      additionalProperties: false
 tags:
+  - name: AgentExecutionDiagnostics
+  - name: AgentRuntimeFabric
+  - name: AgentRuntimeStatus
   - name: AiProviders
+  - name: AiRuns
+  - name: AiUsageObservations
+  - name: ApprovalAdvice
   - name: Capabilities
   - name: CognitiveAgentConversationAttachments
   - name: CognitiveAgentConversations
@@ -4180,5 +8258,6 @@ tags:
   - name: CognitiveAgentSkills
   - name: CognitiveAgentVariables
   - name: CognitiveSkills
+  - name: DefinitionDistribution
   - name: FenixAlliance.ABS.Web
   - name: IntelligenceService

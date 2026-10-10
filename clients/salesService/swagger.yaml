@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - LoyaltyPrograms
       summary: Get loyalty programs count
       description: Returns the total count of loyalty programs for the specified tenant with OData filter support.
-      operationId: CountLoyaltyProgramsAsync
+      operationId: LoyaltyPrograms_CountLoyaltyPrograms
       parameters:
         - name: tenantId
           in: query
@@ -391,7 +407,7 @@ paths:
         - LoyaltyPrograms
       summary: Get loyalty programs
       description: Retrieves a list of loyalty programs for the specified tenant with OData query support.
-      operationId: GetLoyaltyProgramsAsync
+      operationId: LoyaltyPrograms_GetLoyaltyPrograms
       parameters:
         - name: tenantId
           in: query
@@ -431,7 +447,7 @@ paths:
         - LoyaltyPrograms
       summary: Create a loyalty program
       description: Creates a new loyalty program for the specified tenant.
-      operationId: CreateLoyaltyProgramAsync
+      operationId: LoyaltyPrograms_CreateLoyaltyProgram
       parameters:
         - name: tenantId
           in: query
@@ -472,7 +488,7 @@ paths:
         - LoyaltyPrograms
       summary: Get loyalty program by ID
       description: Retrieves a single loyalty program by its unique identifier.
-      operationId: GetLoyaltyProgramAsync
+      operationId: LoyaltyPrograms_GetLoyaltyProgram
       parameters:
         - name: tenantId
           in: query
@@ -510,7 +526,7 @@ paths:
         - LoyaltyPrograms
       summary: Update a loyalty program
       description: Updates an existing loyalty program by its unique identifier.
-      operationId: UpdateLoyaltyProgramAsync
+      operationId: LoyaltyPrograms_UpdateLoyaltyProgram
       parameters:
         - name: tenantId
           in: query
@@ -556,7 +572,7 @@ paths:
         - LoyaltyPrograms
       summary: Patch a loyalty program
       description: Partially updates an existing loyalty program using a JSON Patch document.
-      operationId: PatchLoyaltyProgramAsync
+      operationId: LoyaltyPrograms_PatchLoyaltyProgram
       parameters:
         - name: tenantId
           in: query
@@ -606,7 +622,7 @@ paths:
         - LoyaltyPrograms
       summary: Delete a loyalty program
       description: Deletes an existing loyalty program by its unique identifier.
-      operationId: DeleteLoyaltyProgramAsync
+      operationId: LoyaltyPrograms_DeleteLoyaltyProgram
       parameters:
         - name: tenantId
           in: query
@@ -645,7 +661,7 @@ paths:
         - Margins
       summary: Get margin details by ID
       description: Retrieves the details of a specific sales margin by its ID.
-      operationId: GetQuoteAsync
+      operationId: Margins_GetQuote
       parameters:
         - name: marginId
           in: path
@@ -670,7 +686,7 @@ paths:
         - PointOfSales
       summary: Get point of sales count
       description: Returns the total count of point of sales for the specified tenant with OData filter support.
-      operationId: CountPointOfSalesAsync
+      operationId: PointOfSales_CountPointOfSales
       parameters:
         - name: tenantId
           in: query
@@ -711,7 +727,7 @@ paths:
         - PointOfSales
       summary: Get point of sales
       description: Retrieves a list of point of sales for the specified tenant with OData query support.
-      operationId: GetPointOfSalesAsync
+      operationId: PointOfSales_GetPointOfSales
       parameters:
         - name: tenantId
           in: query
@@ -751,7 +767,7 @@ paths:
         - PointOfSales
       summary: Create a point of sale
       description: Creates a new point of sale for the specified tenant.
-      operationId: CreatePointOfSaleAsync
+      operationId: PointOfSales_CreatePointOfSale
       parameters:
         - name: tenantId
           in: query
@@ -792,7 +808,7 @@ paths:
         - PointOfSales
       summary: Get point of sale by ID
       description: Retrieves a single point of sale by its unique identifier.
-      operationId: GetPointOfSaleAsync
+      operationId: PointOfSales_GetPointOfSale
       parameters:
         - name: tenantId
           in: query
@@ -830,7 +846,7 @@ paths:
         - PointOfSales
       summary: Update a point of sale
       description: Updates an existing point of sale by its unique identifier.
-      operationId: UpdatePointOfSaleAsync
+      operationId: PointOfSales_UpdatePointOfSale
       parameters:
         - name: tenantId
           in: query
@@ -876,7 +892,7 @@ paths:
         - PointOfSales
       summary: Patch a point of sale
       description: Partially updates an existing point of sale using a JSON Patch document.
-      operationId: PatchPointOfSaleAsync
+      operationId: PointOfSales_PatchPointOfSale
       parameters:
         - name: tenantId
           in: query
@@ -926,7 +942,7 @@ paths:
         - PointOfSales
       summary: Delete a point of sale
       description: Deletes an existing point of sale by its unique identifier.
-      operationId: DeletePointOfSaleAsync
+      operationId: PointOfSales_DeletePointOfSale
       parameters:
         - name: tenantId
           in: query
@@ -965,7 +981,7 @@ paths:
         - SalesLiteratures
       summary: Get sales literatures count
       description: Returns the total count of sales literatures for the specified tenant with OData filter support.
-      operationId: CountSalesLiteraturesAsync
+      operationId: SalesLiteratures_CountSalesLiteratures
       parameters:
         - name: tenantId
           in: query
@@ -1006,7 +1022,7 @@ paths:
         - SalesLiteratures
       summary: Get sales literatures
       description: Retrieves a list of sales literatures for the specified tenant with OData query support.
-      operationId: GetSalesLiteraturesAsync
+      operationId: SalesLiteratures_GetSalesLiteratures
       parameters:
         - name: tenantId
           in: query
@@ -1046,7 +1062,7 @@ paths:
         - SalesLiteratures
       summary: Create a sales literature
       description: Creates a new sales literature for the specified tenant.
-      operationId: CreateSalesLiteratureAsync
+      operationId: SalesLiteratures_CreateSalesLiterature
       parameters:
         - name: tenantId
           in: query
@@ -1087,7 +1103,7 @@ paths:
         - SalesLiteratures
       summary: Get extended sales literatures
       description: Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
-      operationId: GetExtendedSalesLiteraturesAsync
+      operationId: SalesLiteratures_GetExtendedSalesLiteratures
       parameters:
         - name: tenantId
           in: query
@@ -1128,7 +1144,7 @@ paths:
         - SalesLiteratures
       summary: Get sales literature by ID
       description: Retrieves a single sales literature by its unique identifier.
-      operationId: GetSalesLiteratureAsync
+      operationId: SalesLiteratures_GetSalesLiterature
       parameters:
         - name: tenantId
           in: query
@@ -1166,7 +1182,7 @@ paths:
         - SalesLiteratures
       summary: Update a sales literature
       description: Updates an existing sales literature by its unique identifier.
-      operationId: UpdateSalesLiteratureAsync
+      operationId: SalesLiteratures_UpdateSalesLiterature
       parameters:
         - name: tenantId
           in: query
@@ -1212,7 +1228,7 @@ paths:
         - SalesLiteratures
       summary: Patch a sales literature
       description: Partially updates an existing sales literature using a JSON Patch document.
-      operationId: PatchSalesLiteratureAsync
+      operationId: SalesLiteratures_PatchSalesLiterature
       parameters:
         - name: tenantId
           in: query
@@ -1262,7 +1278,7 @@ paths:
         - SalesLiteratures
       summary: Delete a sales literature
       description: Deletes an existing sales literature by its unique identifier.
-      operationId: DeleteSalesLiteratureAsync
+      operationId: SalesLiteratures_DeleteSalesLiterature
       parameters:
         - name: tenantId
           in: query
@@ -1301,7 +1317,7 @@ paths:
         - Stores
       summary: Get stores count
       description: Returns the total count of stores for the specified tenant with OData filter support.
-      operationId: CountStoresAsync
+      operationId: Stores_CountStores
       parameters:
         - name: tenantId
           in: query
@@ -1342,7 +1358,7 @@ paths:
         - Stores
       summary: Get stores
       description: Retrieves a list of stores for the specified tenant with OData query support.
-      operationId: GetStoresAsync
+      operationId: Stores_GetStores
       parameters:
         - name: tenantId
           in: query
@@ -1382,7 +1398,7 @@ paths:
         - Stores
       summary: Create a store
       description: Creates a new store for the specified tenant.
-      operationId: CreateStoreAsync
+      operationId: Stores_CreateStore
       parameters:
         - name: tenantId
           in: query
@@ -1423,7 +1439,7 @@ paths:
         - Stores
       summary: Get store by ID
       description: Retrieves a single store by its unique identifier.
-      operationId: GetStoreAsync
+      operationId: Stores_GetStore
       parameters:
         - name: tenantId
           in: query
@@ -1461,7 +1477,7 @@ paths:
         - Stores
       summary: Update a store
       description: Updates an existing store by its unique identifier.
-      operationId: UpdateStoreAsync
+      operationId: Stores_UpdateStore
       parameters:
         - name: tenantId
           in: query
@@ -1507,7 +1523,7 @@ paths:
         - Stores
       summary: Patch a store
       description: Partially updates an existing store using a JSON Patch document.
-      operationId: PatchStoreAsync
+      operationId: Stores_PatchStore
       parameters:
         - name: tenantId
           in: query
@@ -1557,7 +1573,7 @@ paths:
         - Stores
       summary: Delete a store
       description: Deletes an existing store by its unique identifier.
-      operationId: DeleteStoreAsync
+      operationId: Stores_DeleteStore
       parameters:
         - name: tenantId
           in: query
@@ -2099,8 +2115,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     PointOfSaleCreateDto:
       required:

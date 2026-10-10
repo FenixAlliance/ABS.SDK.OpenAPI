@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - Locations
       summary: Get Locations
       description: Get all locations with OData query support.
-      operationId: GetLocationsAsync
+      operationId: Locations_GetLocations
       parameters:
         - name: tenantId
           in: query
@@ -399,7 +415,7 @@ paths:
         - Locations
       summary: Create Location
       description: Create a new location.
-      operationId: CreateLocationAsync
+      operationId: Locations_CreateLocation
       parameters:
         - name: tenantId
           in: query
@@ -449,7 +465,7 @@ paths:
         - Locations
       summary: Get Locations Count
       description: Get the count of locations with OData query support.
-      operationId: GetLocationsCountAsync
+      operationId: Locations_GetLocationsCount
       parameters:
         - name: tenantId
           in: query
@@ -499,7 +515,7 @@ paths:
         - Locations
       summary: Get Location
       description: Get details of a specific location by ID.
-      operationId: GetLocationAsync
+      operationId: Locations_GetLocation
       parameters:
         - name: tenantId
           in: query
@@ -546,7 +562,7 @@ paths:
         - Locations
       summary: Update Location
       description: Update a specific location by ID.
-      operationId: UpdateLocationAsync
+      operationId: Locations_UpdateLocation
       parameters:
         - name: tenantId
           in: query
@@ -601,7 +617,7 @@ paths:
         - Locations
       summary: Patch a location
       description: Patch a location
-      operationId: PatchLocationAsync
+      operationId: Locations_PatchLocation
       parameters:
         - name: tenantId
           in: query
@@ -660,7 +676,7 @@ paths:
         - Locations
       summary: Delete Location
       description: Delete a specific location by ID.
-      operationId: DeleteLocationAsync
+      operationId: Locations_DeleteLocation
       parameters:
         - name: tenantId
           in: query
@@ -708,8 +724,13 @@ paths:
         - Locations
       summary: Get Wallet Locations
       description: Get locations for a specific wallet by ID.
-      operationId: GetWalletLocationsAsync
+      operationId: Locations_GetWalletLocations
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -757,8 +778,13 @@ paths:
         - Locations
       summary: Create Wallet Location
       description: Create a new location for a specific wallet.
-      operationId: CreateWalletLocationAsync
+      operationId: Locations_CreateWalletLocation
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -807,8 +833,13 @@ paths:
         - Locations
       summary: Get Wallet Locations Count
       description: Get the count of locations for a specific wallet by ID.
-      operationId: GetWalletLocationsCountAsync
+      operationId: Locations_GetWalletLocationsCount
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -857,8 +888,13 @@ paths:
         - Locations
       summary: Get Wallet Location
       description: Get a specific location of a wallet by ID.
-      operationId: GetWalletLocationAsync
+      operationId: Locations_GetWalletLocation
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -904,8 +940,13 @@ paths:
         - Locations
       summary: Update Wallet Location
       description: Update a specific location of a wallet.
-      operationId: UpdateWalletLocationAsync
+      operationId: Locations_UpdateWalletLocation
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -959,8 +1000,13 @@ paths:
         - Locations
       summary: Patch a wallet location
       description: Patch a wallet location
-      operationId: PatchWalletLocationAsync
+      operationId: Locations_PatchWalletLocation
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -1018,8 +1064,13 @@ paths:
         - Locations
       summary: Delete Wallet Location
       description: Delete a specific location of a wallet.
-      operationId: DeleteWalletLocationAsync
+      operationId: Locations_DeleteWalletLocation
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: walletId
           in: path
           required: true
@@ -1599,8 +1650,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:

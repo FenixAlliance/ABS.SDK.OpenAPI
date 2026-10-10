@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - Orders
       summary: Submits a cart and creates an order.
       description: Submits the specified cart and creates an order for the authenticated user.
-      operationId: SubmitCart
+      operationId: Orders_SubmitCart
       parameters:
         - name: cartId
           in: query
@@ -383,7 +399,7 @@ paths:
         - Orders
       summary: Gets a list of orders for a tenant.
       description: Retrieves a list of orders for the specified tenant.
-      operationId: GetOrders
+      operationId: Orders_GetOrders
       parameters:
         - name: tenantId
           in: query
@@ -423,7 +439,7 @@ paths:
         - Orders
       summary: Creates a new order.
       description: Creates a new order for the specified tenant.
-      operationId: CreateOrder
+      operationId: Orders_CreateOrder
       parameters:
         - name: tenantId
           in: query
@@ -464,7 +480,7 @@ paths:
         - Orders
       summary: Gets a list of extended orders for a tenant.
       description: Retrieves a list of extended order details for the specified tenant.
-      operationId: GetExtendedOrders
+      operationId: Orders_GetExtendedOrders
       parameters:
         - name: tenantId
           in: query
@@ -505,7 +521,7 @@ paths:
         - Orders
       summary: Gets the count of orders for a tenant.
       description: Retrieves the total number of orders for the specified tenant.
-      operationId: GetOrdersCount
+      operationId: Orders_GetOrdersCount
       parameters:
         - name: tenantId
           in: query
@@ -546,7 +562,7 @@ paths:
         - Orders
       summary: Gets a specific order by ID.
       description: Retrieves the details of a specific order by its ID.
-      operationId: GetOrder
+      operationId: Orders_GetOrder
       parameters:
         - name: tenantId
           in: query
@@ -584,7 +600,7 @@ paths:
         - Orders
       summary: Updates an existing order.
       description: Updates the details of an existing order.
-      operationId: UpdateOrder
+      operationId: Orders_UpdateOrder
       parameters:
         - name: tenantId
           in: query
@@ -630,7 +646,7 @@ paths:
         - Orders
       summary: Partially updates an existing order.
       description: Applies a JSON Patch document to partially update an existing order.
-      operationId: PatchOrder
+      operationId: Orders_PatchOrder
       parameters:
         - name: tenantId
           in: query
@@ -680,7 +696,7 @@ paths:
         - Orders
       summary: Deletes an order.
       description: Deletes the specified order.
-      operationId: DeleteOrder
+      operationId: Orders_DeleteOrder
       parameters:
         - name: tenantId
           in: query
@@ -719,7 +735,7 @@ paths:
         - Orders
       summary: Calculates totals for an order.
       description: Performs calculation of totals and taxes for the specified order.
-      operationId: CalculateOrder
+      operationId: Orders_CalculateOrder
       parameters:
         - name: tenantId
           in: query
@@ -758,7 +774,7 @@ paths:
         - Orders
       summary: Gets order lines for an order.
       description: Retrieves the lines (items) for the specified order.
-      operationId: GetOrderLines
+      operationId: Orders_GetOrderLines
       parameters:
         - name: tenantId
           in: query
@@ -809,7 +825,7 @@ paths:
         - Orders
       summary: Creates a new order line.
       description: Creates a new line (item) for the specified order.
-      operationId: CreateOrderLine
+      operationId: Orders_CreateOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -856,7 +872,7 @@ paths:
         - Orders
       summary: Gets the count of order lines for an order.
       description: Retrieves the total number of lines for the specified order.
-      operationId: GetOrderLinesCount
+      operationId: Orders_GetOrderLinesCount
       parameters:
         - name: tenantId
           in: query
@@ -903,7 +919,7 @@ paths:
         - Orders
       summary: Gets a specific order line.
       description: Retrieves the details of a specific order line by its ID.
-      operationId: GetOrderLine
+      operationId: Orders_GetOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -947,7 +963,7 @@ paths:
         - Orders
       summary: Updates an order line.
       description: Updates the details of a specific order line.
-      operationId: UpdateOrderLine
+      operationId: Orders_UpdateOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -999,7 +1015,7 @@ paths:
         - Orders
       summary: Partially updates an order line.
       description: Applies a JSON Patch document to partially update a specific order line.
-      operationId: PatchOrderLine
+      operationId: Orders_PatchOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -1055,7 +1071,7 @@ paths:
         - Orders
       summary: Deletes an order line.
       description: Deletes the specified order line.
-      operationId: DeleteOrderLine
+      operationId: Orders_DeleteOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -1100,7 +1116,7 @@ paths:
         - Orders
       summary: Calculates totals for an order line.
       description: Performs calculation of totals and taxes for the specified order line.
-      operationId: CalculateOrderLine
+      operationId: Orders_CalculateOrderLine
       parameters:
         - name: tenantId
           in: query
@@ -1145,7 +1161,7 @@ paths:
         - Orders
       summary: Send a transactional email for an order.
       description: Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.
-      operationId: SendOrderEmail
+      operationId: Orders_SendOrderEmail
       parameters:
         - name: tenantId
           in: query
@@ -1201,7 +1217,7 @@ paths:
         - Orders
       summary: Preview the rendered email for an Order.
       description: Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.
-      operationId: PreviewOrderEmailTemplate
+      operationId: Orders_PreviewOrderEmailTemplate
       parameters:
         - name: orderId
           in: path
@@ -1443,9 +1459,16 @@ components:
         identityProviderAccessToken:
           type: string
           nullable: true
+          deprecated: true
         birthday:
           type: string
           format: date-time
+          nullable: true
+        tikTokUsername:
+          type: string
+          nullable: true
+        instagramUsername:
+          type: string
           nullable: true
       additionalProperties: false
     EmailDispatchRequest:
@@ -4030,8 +4053,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:

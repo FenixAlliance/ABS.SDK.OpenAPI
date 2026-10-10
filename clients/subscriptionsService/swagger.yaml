@@ -23,10 +23,352 @@ servers:
           - https://dev.absuite.net
           - https://localhost:44388
 paths:
+  /api/v2/SubscriptionsService/CommercialSubscriptions:
+    post:
+      tags:
+        - CommercialSubscriptions
+      summary: Establish (purchase) a commercial subscription
+      description: 'Establishes a commercial subscription from a catalog plan and stages its first period charge. This is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. A positive-price establishment stays Pending, awaiting asynchronous payment finality; a zero-price establishment is satisfied on the platform''s durable path. The payable obligation (invoice) is materialized ASYNCHRONOUSLY by the Billing lane, so no pay-link is returned here. Returns 200 with the new subscription id (the durable purchase coordinate): poll the commercial-subscriptions read for current LifecycleState, resolve this subscription''s payable obligation via GET {subscriptionId}/PayableObligation, then obtain the pay-link via the Payments obligation-access-handle step once the obligation is materialized. The first billing period is built from the supplied UTC bounds and timezone. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.'
+      operationId: CommercialSubscriptions_EstablishCommercialSubscription
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstablishCommercialSubscriptionRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EstablishCommercialSubscriptionRequest'
+      responses:
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionEstablishedDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionEstablishedDtoEnvelope'
+    get:
+      tags:
+        - CommercialSubscriptions
+      summary: List commercial subscriptions
+      description: 'Retrieves the acting tenant''s commercial subscriptions, with optional OData filtering and paging.'
+      operationId: CommercialSubscriptions_GetCommercialSubscriptions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommercialSubscriptionDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CommercialSubscriptionDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionDtoIReadOnlyListEnvelope'
+  /api/v2/SubscriptionsService/CommercialSubscriptions/Purchase:
+    post:
+      tags:
+        - CommercialSubscriptions
+      summary: Purchase a platform-published offering
+      description: 'Purchases a platform-published offering on behalf of the acting BUYER tenant, where the seller (Fenix) is a DISTINCT tenant. The public contract starts from an opaque OFFERING token (never a raw plan id): the platform seller and the concrete plan are resolved SERVER-SIDE (the platform seller authority + the offer registry), so a buyer cannot purchase an arbitrary tenant''s plan. An offering that is not a registered platform offering, or a platform seller that is not configured, fails closed. Like establishment, this is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. Returns 200 with the new subscription id (the durable purchase coordinate); the invoice materializes under the SELLER asynchronously. The BillingCycle selects the plan; the price is computed server-side from the plan, the seller''s price policy and forex to the buyer''s cart currency (a cross-currency price on stale forex rates is a 503), and the first billing period is the plan''s own period from the purchase time. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.'
+      operationId: CommercialSubscriptions_PurchaseOffering
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOfferingRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PurchaseOfferingRequest'
+      responses:
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionEstablishedDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionEstablishedDtoEnvelope'
+  /api/v2/SubscriptionsService/CommercialSubscriptions/Count:
+    get:
+      tags:
+        - CommercialSubscriptions
+      summary: Count commercial subscriptions
+      description: Returns the count of the acting tenant's commercial subscriptions.
+      operationId: CommercialSubscriptions_GetCommercialSubscriptionsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommercialSubscriptionDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CommercialSubscriptionDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/SubscriptionsService/CommercialSubscriptions/{subscriptionId}/PayableObligation':
+    get:
+      tags:
+        - CommercialSubscriptions
+      summary: Get a commercial subscription's current payable obligation
+      description: 'Resolves the CURRENT payable obligation coordinate for one of the acting tenant''s commercial subscriptions so the purchase UI can hand it to the Payments pay-link mint. Returns the obligation reference (the materialized invoice id) with status Payable once the Billing lane has materialized the invoice; otherwise reports PendingMaterialization (charge staged, invoice not yet materialized), Satisfied (nothing outstanding) or NoOpenObligation. Fail-closed and tenant-scoped: a subscription the acting tenant does not own resolves to 404. This read NEVER mints a pay-link and NEVER calls a payment provider.'
+      operationId: CommercialSubscriptions_GetSubscriptionPayableObligation
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionPayableObligationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CommercialSubscriptionPayableObligationDtoEnvelope'
   /version:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +376,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +384,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +392,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +412,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +439,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +457,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +480,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +494,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +514,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +534,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +560,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +579,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +605,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +641,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +669,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,16 +697,65 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
+  /api/v2/SubscriptionsService/PlatformPricing:
+    get:
+      tags:
+        - PlatformPricing
+      summary: Get the platform plans priced in a currency
+      description: 'Returns the platform''s purchasable plans (one per offering and billing cycle) priced in the requested currency, computed exactly as a purchase computes them: the plan''s price, then the seller''s price list in that currency, else forex conversion. Anonymous. A plan that cannot be priced in the currency right now (for example a conversion while the forex rates are stale) is listed with no amount and its reason. The response is sent with Cache-Control: no-cache, because a converted price moves with the rates.'
+      operationId: PlatformPricing_GetPlatformPricing
+      parameters:
+        - name: currencyId
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformPricingDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PlatformPricingDtoEnvelope'
   /api/v2/SubscriptionsService/SubscriptionPlans:
     get:
       tags:
         - SubscriptionPlans
       summary: Get all subscription plans
       description: Retrieves all subscription plans for the specified tenant.
-      operationId: GetSubscriptionPlansAsync
+      operationId: SubscriptionPlans_GetSubscriptionPlans
       parameters:
         - name: tenantId
           in: query
@@ -407,7 +812,7 @@ paths:
         - SubscriptionPlans
       summary: Create a subscription plan
       description: Creates a new subscription plan for the specified tenant.
-      operationId: CreateSubscriptionPlanAsync
+      operationId: SubscriptionPlans_CreateSubscriptionPlan
       parameters:
         - name: tenantId
           in: query
@@ -465,7 +870,7 @@ paths:
         - SubscriptionPlans
       summary: Get subscription plans count
       description: Returns the count of subscription plans for the specified tenant.
-      operationId: GetSubscriptionPlansCountAsync
+      operationId: SubscriptionPlans_GetSubscriptionPlansCount
       parameters:
         - name: tenantId
           in: query
@@ -523,7 +928,7 @@ paths:
         - SubscriptionPlans
       summary: Get a subscription plan by ID
       description: Retrieves a subscription plan by its identifier.
-      operationId: GetSubscriptionPlanByIdAsync
+      operationId: SubscriptionPlans_GetSubscriptionPlanById
       parameters:
         - name: tenantId
           in: query
@@ -578,7 +983,7 @@ paths:
         - SubscriptionPlans
       summary: Update a subscription plan
       description: Updates an existing subscription plan.
-      operationId: UpdateSubscriptionPlanAsync
+      operationId: SubscriptionPlans_UpdateSubscriptionPlan
       parameters:
         - name: tenantId
           in: query
@@ -641,7 +1046,7 @@ paths:
         - SubscriptionPlans
       summary: Patch a subscription plan
       description: Patch a subscription plan
-      operationId: PatchSubscriptionPlanAsync
+      operationId: SubscriptionPlans_PatchSubscriptionPlan
       parameters:
         - name: tenantId
           in: query
@@ -708,7 +1113,7 @@ paths:
         - SubscriptionPlans
       summary: Delete a subscription plan
       description: Deletes a subscription plan by its identifier.
-      operationId: DeleteSubscriptionPlanAsync
+      operationId: SubscriptionPlans_DeleteSubscriptionPlan
       parameters:
         - name: tenantId
           in: query
@@ -764,7 +1169,7 @@ paths:
         - Subscriptions
       summary: Get all subscriptions
       description: Retrieves all subscriptions for the specified tenant.
-      operationId: GetSubscriptionsAsync
+      operationId: Subscriptions_GetSubscriptions
       parameters:
         - name: tenantId
           in: query
@@ -821,7 +1226,7 @@ paths:
         - Subscriptions
       summary: Create a subscription
       description: Creates a new subscription for the specified tenant.
-      operationId: CreateSubscriptionAsync
+      operationId: Subscriptions_CreateSubscription
       parameters:
         - name: tenantId
           in: query
@@ -879,7 +1284,7 @@ paths:
         - Subscriptions
       summary: Get subscriptions count
       description: Returns the count of subscriptions for the specified tenant.
-      operationId: GetSubscriptionsCountAsync
+      operationId: Subscriptions_GetSubscriptionsCount
       parameters:
         - name: tenantId
           in: query
@@ -937,7 +1342,7 @@ paths:
         - Subscriptions
       summary: Get a subscription by ID
       description: Retrieves a subscription by its identifier.
-      operationId: GetSubscriptionByIdAsync
+      operationId: Subscriptions_GetSubscriptionById
       parameters:
         - name: tenantId
           in: query
@@ -992,7 +1397,7 @@ paths:
         - Subscriptions
       summary: Update a subscription
       description: Updates an existing subscription.
-      operationId: UpdateSubscriptionAsync
+      operationId: Subscriptions_UpdateSubscription
       parameters:
         - name: tenantId
           in: query
@@ -1055,7 +1460,7 @@ paths:
         - Subscriptions
       summary: Patch a subscription
       description: Patch a subscription
-      operationId: PatchSubscriptionAsync
+      operationId: Subscriptions_PatchSubscription
       parameters:
         - name: tenantId
           in: query
@@ -1122,7 +1527,7 @@ paths:
         - Subscriptions
       summary: Delete a subscription
       description: Deletes a subscription by its identifier.
-      operationId: DeleteSubscriptionAsync
+      operationId: Subscriptions_DeleteSubscription
       parameters:
         - name: tenantId
           in: query
@@ -1194,6 +1599,237 @@ components:
         refreshToken:
           type: string
           nullable: true
+      additionalProperties: false
+    CommercialSubscriptionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        subscriptionPlanId:
+          type: string
+          nullable: true
+        lifecycleState:
+          enum:
+            - Pending
+            - Active
+            - Suspended
+            - Ended
+          type: string
+          nullable: true
+        quantity:
+          type: integer
+          format: int32
+        activeCommercialTermsVersion:
+          type: integer
+          format: int32
+          nullable: true
+        receiverBusinessId:
+          type: string
+          nullable: true
+        organizationId:
+          type: string
+          nullable: true
+        individualId:
+          type: string
+          nullable: true
+        accountHolderId:
+          type: string
+          nullable: true
+        startDateTime:
+          type: string
+          format: date-time
+        endDateTime:
+          type: string
+          format: date-time
+        nextInvoiceDateTime:
+          type: string
+          format: date-time
+      additionalProperties: false
+    CommercialSubscriptionDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    CommercialSubscriptionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommercialSubscriptionDto'
+          nullable: true
+      additionalProperties: false
+    CommercialSubscriptionEstablishedDto:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CommercialSubscriptionEstablishedDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/CommercialSubscriptionEstablishedDto'
+      additionalProperties: false
+    CommercialSubscriptionPayableObligationDto:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Payable
+            - PendingMaterialization
+            - Satisfied
+            - NoOpenObligation
+          type: string
+        obligationType:
+          enum:
+            - Invoice
+          type: string
+        obligationReference:
+          type: string
+          nullable: true
+        periodSequenceNumber:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    CommercialSubscriptionPayableObligationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/CommercialSubscriptionPayableObligationDto'
       additionalProperties: false
     EmptyEnvelope:
       type: object
@@ -1305,6 +1941,48 @@ components:
           type: string
           nullable: true
           readOnly: true
+      additionalProperties: false
+    EstablishCommercialSubscriptionRequest:
+      required:
+        - billToMode
+        - billToReference
+        - periodEndUtc
+        - periodStartUtc
+        - subscriptionPlanId
+      type: object
+      properties:
+        subscriptionPlanId:
+          type: string
+          format: uuid
+        billToMode:
+          enum:
+            - Unknown
+            - BusinessToConsumer
+            - BusinessToBusiness
+            - TenantToTenant
+          type: string
+        billToReference:
+          minLength: 1
+          type: string
+        periodStartUtc:
+          type: string
+          format: date-time
+        periodEndUtc:
+          type: string
+          format: date-time
+        timezoneId:
+          type: string
+          nullable: true
+        quantity:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+        idempotencyKey:
+          maxLength: 128
+          minLength: 1
+          type: string
+          nullable: true
       additionalProperties: false
     ForgotPasswordRequest:
       required:
@@ -1437,7 +2115,133 @@ components:
         from:
           type: string
           nullable: true
-        value:
+        value: { }
+      additionalProperties: false
+    PlatformPlanPriceDto:
+      type: object
+      properties:
+        offeringKey:
+          type: string
+          nullable: true
+        billingCycle:
+          enum:
+            - Monthly
+            - Annual
+          type: string
+        planSku:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        periodDays:
+          type: integer
+          format: int32
+        amount:
+          type: number
+          format: double
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        pricedFromAmount:
+          type: number
+          format: double
+          nullable: true
+        pricedFromCurrencyId:
+          type: string
+          nullable: true
+        converted:
+          type: boolean
+        forexRatesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        unavailable:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PlatformPricingDto:
+      type: object
+      properties:
+        currencyId:
+          type: string
+          nullable: true
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlatformPlanPriceDto'
+          nullable: true
+      additionalProperties: false
+    PlatformPricingDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/PlatformPricingDto'
+      additionalProperties: false
+    PurchaseOfferingRequest:
+      required:
+        - offeringKey
+      type: object
+      properties:
+        offeringKey:
+          minLength: 1
+          type: string
+        billingCycle:
+          enum:
+            - Monthly
+            - Annual
+          type: string
+        periodStartUtc:
+          type: string
+          format: date-time
+        periodEndUtc:
+          type: string
+          format: date-time
+        timezoneId:
+          type: string
+          nullable: true
+        quantity:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+        idempotencyKey:
+          maxLength: 128
+          minLength: 1
+          type: string
           nullable: true
       additionalProperties: false
     RefreshRequest:
@@ -3352,6 +4156,8 @@ components:
           type: boolean
       additionalProperties: false
 tags:
+  - name: CommercialSubscriptions
   - name: FenixAlliance.ABS.Web
+  - name: PlatformPricing
   - name: SubscriptionPlans
   - name: Subscriptions

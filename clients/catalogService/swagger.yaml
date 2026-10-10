@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - ItemAttachments
       summary: Get all item attachments
       description: Retrieves all item attachments for the specified tenant using OData query options.
-      operationId: GetItemAttachmentsAsync
+      operationId: ItemAttachments_GetItemAttachments
       parameters:
         - name: tenantId
           in: query
@@ -406,7 +422,7 @@ paths:
         - ItemAttachments
       summary: Create a new item attachment
       description: Creates a new item attachment for the specified tenant.
-      operationId: CreateItemAttachmentAsync
+      operationId: ItemAttachments_CreateItemAttachment
       parameters:
         - name: tenantId
           in: query
@@ -464,7 +480,7 @@ paths:
         - ItemAttachments
       summary: Get item attachment by ID
       description: Retrieves a specific item attachment by its ID.
-      operationId: GetItemAttachmentByIdAsync
+      operationId: ItemAttachments_GetItemAttachmentById
       parameters:
         - name: tenantId
           in: query
@@ -518,7 +534,7 @@ paths:
         - ItemAttachments
       summary: Update an item attachment
       description: Updates an existing item attachment for the specified tenant.
-      operationId: UpdateItemAttachmentAsync
+      operationId: ItemAttachments_UpdateItemAttachment
       parameters:
         - name: tenantId
           in: query
@@ -581,7 +597,7 @@ paths:
         - ItemAttachments
       summary: Patch an item attachment
       description: Partially updates an existing item attachment for the specified tenant using a JSON Patch document.
-      operationId: PatchItemAttachmentAsync
+      operationId: ItemAttachments_PatchItemAttachment
       parameters:
         - name: tenantId
           in: query
@@ -648,7 +664,7 @@ paths:
         - ItemAttachments
       summary: Delete an item attachment
       description: Deletes an item attachment for the specified tenant.
-      operationId: DeleteItemAttachmentAsync
+      operationId: ItemAttachments_DeleteItemAttachment
       parameters:
         - name: tenantId
           in: query
@@ -704,7 +720,7 @@ paths:
         - ItemAttributeOptions
       summary: Get all item attribute options
       description: Retrieves all item attribute options for the specified tenant using OData query options.
-      operationId: GetItemAttributeOptionsAsync
+      operationId: ItemAttributeOptions_GetItemAttributeOptions
       parameters:
         - name: tenantId
           in: query
@@ -760,7 +776,7 @@ paths:
         - ItemAttributeOptions
       summary: Create a new item attribute option
       description: Creates a new item attribute option for the specified tenant.
-      operationId: CreateItemAttributeOptionAsync
+      operationId: ItemAttributeOptions_CreateItemAttributeOption
       parameters:
         - name: tenantId
           in: query
@@ -818,7 +834,7 @@ paths:
         - ItemAttributeOptions
       summary: Get item attribute options count
       description: Returns the count of item attribute options for the specified tenant.
-      operationId: GetItemAttributeOptionsCountAsync
+      operationId: ItemAttributeOptions_GetItemAttributeOptionsCount
       parameters:
         - name: tenantId
           in: query
@@ -875,7 +891,7 @@ paths:
         - ItemAttributeOptions
       summary: Get item attribute option by ID
       description: Retrieves a specific item attribute option by its ID.
-      operationId: GetItemAttributeOptionByIdAsync
+      operationId: ItemAttributeOptions_GetItemAttributeOptionById
       parameters:
         - name: tenantId
           in: query
@@ -929,7 +945,7 @@ paths:
         - ItemAttributeOptions
       summary: Update an item attribute option
       description: Updates an existing item attribute option for the specified tenant.
-      operationId: UpdateItemAttributeOptionAsync
+      operationId: ItemAttributeOptions_UpdateItemAttributeOption
       parameters:
         - name: tenantId
           in: query
@@ -992,7 +1008,7 @@ paths:
         - ItemAttributeOptions
       summary: Patch an item attribute option
       description: Partially updates an existing item attribute option for the specified tenant using a JSON Patch document.
-      operationId: PatchItemAttributeOptionAsync
+      operationId: ItemAttributeOptions_PatchItemAttributeOption
       parameters:
         - name: tenantId
           in: query
@@ -1059,7 +1075,7 @@ paths:
         - ItemAttributeOptions
       summary: Delete an item attribute option
       description: Deletes an item attribute option for the specified tenant.
-      operationId: DeleteItemAttributeOptionAsync
+      operationId: ItemAttributeOptions_DeleteItemAttributeOption
       parameters:
         - name: tenantId
           in: query
@@ -1108,7 +1124,7 @@ paths:
         - ItemAttributes
       summary: Count item attributes
       description: Counts all item attributes for the specified tenant.
-      operationId: CountItemAttributesAsync
+      operationId: ItemAttributes_CountItemAttributes
       parameters:
         - name: tenantId
           in: query
@@ -1165,7 +1181,7 @@ paths:
         - ItemAttributes
       summary: Create a new item attribute
       description: Creates a new item attribute for the specified tenant.
-      operationId: CreateItemAttributeAsync
+      operationId: ItemAttributes_CreateItemAttribute
       parameters:
         - name: tenantId
           in: query
@@ -1222,7 +1238,7 @@ paths:
         - ItemAttributes
       summary: Get all item attributes
       description: Retrieves all item attributes for the specified tenant using OData query options.
-      operationId: GetItemAttributesAsync
+      operationId: ItemAttributes_GetItemAttributes
       parameters:
         - name: tenantId
           in: query
@@ -1279,7 +1295,7 @@ paths:
         - ItemAttributes
       summary: Get item attribute by ID
       description: Retrieves a specific item attribute by its ID.
-      operationId: GetItemAttributeByIdAsync
+      operationId: ItemAttributes_GetItemAttributeById
       parameters:
         - name: tenantId
           in: query
@@ -1333,7 +1349,7 @@ paths:
         - ItemAttributes
       summary: Update an item attribute
       description: Updates an existing item attribute for the specified tenant.
-      operationId: UpdateItemAttributeAsync
+      operationId: ItemAttributes_UpdateItemAttribute
       parameters:
         - name: tenantId
           in: query
@@ -1389,7 +1405,7 @@ paths:
         - ItemAttributes
       summary: Patch an item attribute
       description: Partially updates an existing item attribute for the specified tenant.
-      operationId: PatchItemAttributeAsync
+      operationId: ItemAttributes_PatchItemAttribute
       parameters:
         - name: tenantId
           in: query
@@ -1449,7 +1465,7 @@ paths:
         - ItemAttributes
       summary: Delete an item attribute
       description: Deletes an item attribute for the specified tenant.
-      operationId: DeleteItemAttributeAsync
+      operationId: ItemAttributes_DeleteItemAttribute
       parameters:
         - name: tenantId
           in: query
@@ -1498,7 +1514,7 @@ paths:
         - ItemBrands
       summary: Create a new item brand
       description: Creates a new item brand for the specified tenant.
-      operationId: CreateItemBrandAsync
+      operationId: ItemBrands_CreateItemBrand
       parameters:
         - name: tenantId
           in: query
@@ -1555,7 +1571,7 @@ paths:
         - ItemBrands
       summary: Get all item brands
       description: Retrieves all item brands for the specified tenant using OData query options.
-      operationId: GetItemBrandsAsync
+      operationId: ItemBrands_GetItemBrands
       parameters:
         - name: tenantId
           in: query
@@ -1612,7 +1628,7 @@ paths:
         - ItemBrands
       summary: Get item brand by ID
       description: Retrieves a specific item brand by its ID.
-      operationId: GetItemBrandByIdAsync
+      operationId: ItemBrands_GetItemBrandById
       parameters:
         - name: tenantId
           in: query
@@ -1666,7 +1682,7 @@ paths:
         - ItemBrands
       summary: Update an item brand
       description: Updates an existing item brand for the specified tenant.
-      operationId: UpdateItemBrandAsync
+      operationId: ItemBrands_UpdateItemBrand
       parameters:
         - name: tenantId
           in: query
@@ -1729,7 +1745,7 @@ paths:
         - ItemBrands
       summary: Patch an item brand
       description: Partially updates an existing item brand for the specified tenant.
-      operationId: PatchItemBrandAsync
+      operationId: ItemBrands_PatchItemBrand
       parameters:
         - name: tenantId
           in: query
@@ -1789,7 +1805,7 @@ paths:
         - ItemBrands
       summary: Delete an item brand
       description: Deletes an item brand for the specified tenant.
-      operationId: DeleteItemBrandAsync
+      operationId: ItemBrands_DeleteItemBrand
       parameters:
         - name: tenantId
           in: query
@@ -1838,7 +1854,7 @@ paths:
         - ItemBundles
       summary: Get all item bundles
       description: Retrieves all item bundles for the specified tenant using OData query options.
-      operationId: GetItemBundlesAsync
+      operationId: ItemBundles_GetItemBundles
       parameters:
         - name: tenantId
           in: query
@@ -1894,7 +1910,7 @@ paths:
         - ItemBundles
       summary: Create a new item bundle
       description: Creates a new item bundle for the specified tenant.
-      operationId: CreateItemBundleAsync
+      operationId: ItemBundles_CreateItemBundle
       parameters:
         - name: tenantId
           in: query
@@ -1952,7 +1968,7 @@ paths:
         - ItemBundles
       summary: Get item bundles count
       description: Returns the count of item bundles for the specified tenant.
-      operationId: GetItemBundlesCountAsync
+      operationId: ItemBundles_GetItemBundlesCount
       parameters:
         - name: tenantId
           in: query
@@ -2009,7 +2025,7 @@ paths:
         - ItemBundles
       summary: Get item bundle by ID
       description: Retrieves a specific item bundle by its ID.
-      operationId: GetItemBundleByIdAsync
+      operationId: ItemBundles_GetItemBundleById
       parameters:
         - name: tenantId
           in: query
@@ -2063,7 +2079,7 @@ paths:
         - ItemBundles
       summary: Update an item bundle
       description: Updates an existing item bundle for the specified tenant.
-      operationId: UpdateItemBundleAsync
+      operationId: ItemBundles_UpdateItemBundle
       parameters:
         - name: tenantId
           in: query
@@ -2126,7 +2142,7 @@ paths:
         - ItemBundles
       summary: Patch an item bundle
       description: Partially updates an existing item bundle for the specified tenant using a JSON Patch document.
-      operationId: PatchItemBundleAsync
+      operationId: ItemBundles_PatchItemBundle
       parameters:
         - name: tenantId
           in: query
@@ -2193,7 +2209,7 @@ paths:
         - ItemBundles
       summary: Delete an item bundle
       description: Deletes an item bundle for the specified tenant.
-      operationId: DeleteItemBundleAsync
+      operationId: ItemBundles_DeleteItemBundle
       parameters:
         - name: tenantId
           in: query
@@ -2242,7 +2258,7 @@ paths:
         - ItemCategories
       summary: Count item categories
       description: Counts all item categories for the specified tenant.
-      operationId: CountItemCategoriesAsync
+      operationId: ItemCategories_CountItemCategories
       parameters:
         - name: tenantId
           in: query
@@ -2299,7 +2315,7 @@ paths:
         - ItemCategories
       summary: Get item category by ID
       description: Retrieves a specific item category by its ID.
-      operationId: GetItemCategoryByIdAsync
+      operationId: ItemCategories_GetItemCategoryById
       parameters:
         - name: tenantId
           in: query
@@ -2353,7 +2369,7 @@ paths:
         - ItemCategories
       summary: Update an item category
       description: Updates an existing item category for the specified tenant.
-      operationId: UpdateItemCategoryAsync
+      operationId: ItemCategories_UpdateItemCategory
       parameters:
         - name: tenantId
           in: query
@@ -2409,7 +2425,7 @@ paths:
         - ItemCategories
       summary: Patch an item category
       description: Partially updates an existing item category for the specified tenant.
-      operationId: PatchItemCategoryAsync
+      operationId: ItemCategories_PatchItemCategory
       parameters:
         - name: tenantId
           in: query
@@ -2469,7 +2485,7 @@ paths:
         - ItemCategories
       summary: Delete an item category
       description: Deletes an item category for the specified tenant.
-      operationId: DeleteItemCategoryAsync
+      operationId: ItemCategories_DeleteItemCategory
       parameters:
         - name: tenantId
           in: query
@@ -2518,7 +2534,7 @@ paths:
         - ItemCategories
       summary: Get all item categories
       description: Retrieves all item categories for the specified tenant using OData query options.
-      operationId: GetItemCategoriesAsync
+      operationId: ItemCategories_GetItemCategories
       parameters:
         - name: tenantId
           in: query
@@ -2574,7 +2590,7 @@ paths:
         - ItemCategories
       summary: Create a new item category
       description: Creates a new item category for the specified tenant.
-      operationId: CreateItemCategoryAsync
+      operationId: ItemCategories_CreateItemCategory
       parameters:
         - name: tenantId
           in: query
@@ -2632,7 +2648,7 @@ paths:
         - ItemFamilies
       summary: Get all item families
       description: Retrieves all item families for the specified tenant using OData query options.
-      operationId: GetItemFamiliesAsync
+      operationId: ItemFamilies_GetItemFamilies
       parameters:
         - name: tenantId
           in: query
@@ -2688,7 +2704,7 @@ paths:
         - ItemFamilies
       summary: Create a new item family
       description: Creates a new item family for the specified tenant.
-      operationId: CreateItemFamilyAsync
+      operationId: ItemFamilies_CreateItemFamily
       parameters:
         - name: tenantId
           in: query
@@ -2746,7 +2762,7 @@ paths:
         - ItemFamilies
       summary: Get item families count
       description: Returns the count of item families for the specified tenant.
-      operationId: GetItemFamiliesCountAsync
+      operationId: ItemFamilies_GetItemFamiliesCount
       parameters:
         - name: tenantId
           in: query
@@ -2803,7 +2819,7 @@ paths:
         - ItemFamilies
       summary: Get item family by ID
       description: Retrieves a specific item family by its ID.
-      operationId: GetItemFamilyByIdAsync
+      operationId: ItemFamilies_GetItemFamilyById
       parameters:
         - name: tenantId
           in: query
@@ -2857,7 +2873,7 @@ paths:
         - ItemFamilies
       summary: Update an item family
       description: Updates an existing item family for the specified tenant.
-      operationId: UpdateItemFamilyAsync
+      operationId: ItemFamilies_UpdateItemFamily
       parameters:
         - name: tenantId
           in: query
@@ -2920,7 +2936,7 @@ paths:
         - ItemFamilies
       summary: Patch an item family
       description: Partially updates an existing item family for the specified tenant using a JSON Patch document.
-      operationId: PatchItemFamilyAsync
+      operationId: ItemFamilies_PatchItemFamily
       parameters:
         - name: tenantId
           in: query
@@ -2987,7 +3003,7 @@ paths:
         - ItemFamilies
       summary: Delete an item family
       description: Deletes an item family for the specified tenant.
-      operationId: DeleteItemFamilyAsync
+      operationId: ItemFamilies_DeleteItemFamily
       parameters:
         - name: tenantId
           in: query
@@ -3036,7 +3052,7 @@ paths:
         - ItemGoogleCategories
       summary: Get all Google item categories
       description: Retrieves all Google item categories using OData query options.
-      operationId: GetItemGoogleCategoriesAsync
+      operationId: ItemGoogleCategories_GetItemGoogleCategories
       parameters:
         - name: api-version
           in: query
@@ -3088,7 +3104,7 @@ paths:
         - ItemGoogleCategories
       summary: Get Google item categories count
       description: Retrieves the count of Google item categories using OData query options.
-      operationId: GetItemGoogleCategoriesCountAsync
+      operationId: ItemGoogleCategories_GetItemGoogleCategoriesCount
       parameters:
         - name: api-version
           in: query
@@ -3140,7 +3156,7 @@ paths:
         - ItemGoogleCategories
       summary: Get all Google item categories (all)
       description: Retrieves all Google item categories (all) without OData query options.
-      operationId: GetAllItemGoogleCategoriesAsync
+      operationId: ItemGoogleCategories_GetAllItemGoogleCategories
       parameters:
         - name: api-version
           in: query
@@ -3184,7 +3200,7 @@ paths:
         - ItemGoogleCategories
       summary: Get root Google item categories
       description: Retrieves root Google item categories.
-      operationId: GetRootItemGoogleCategoriesAsync
+      operationId: ItemGoogleCategories_GetRootItemGoogleCategories
       parameters:
         - name: api-version
           in: query
@@ -3228,7 +3244,7 @@ paths:
         - ItemGoogleCategories
       summary: Get Google item category by ID
       description: Retrieves a specific Google item category by its ID.
-      operationId: GetItemGoogleCategoryByIdAsync
+      operationId: ItemGoogleCategories_GetItemGoogleCategoryById
       parameters:
         - name: itemCategoryId
           in: path
@@ -3277,7 +3293,7 @@ paths:
         - ItemGoogleCategories
       summary: Get children Google item categories by ID
       description: Retrieves children Google item categories for a given ID.
-      operationId: GetChildrenItemGoogleCategoriesByIdAsync
+      operationId: ItemGoogleCategories_GetChildrenItemGoogleCategoriesById
       parameters:
         - name: itemCategoryId
           in: path
@@ -3326,7 +3342,7 @@ paths:
         - ItemGoogleCategories
       summary: Get Google item categories tree
       description: Retrieves the Google item categories tree.
-      operationId: GetItemGoogleCategoriesTreeAsync
+      operationId: ItemGoogleCategories_GetItemGoogleCategoriesTree
       parameters:
         - name: api-version
           in: query
@@ -3369,7 +3385,7 @@ paths:
         - ItemGoogleCategories
       summary: Map Google item categories tree
       description: Maps the Google item categories tree.
-      operationId: MapItemGoogleCategoriesTreeAsync
+      operationId: ItemGoogleCategories_MapItemGoogleCategoriesTree
       parameters:
         - name: tenantId
           in: query
@@ -3419,7 +3435,7 @@ paths:
         - ItemImages
       summary: Create a new item image
       description: Creates a new item image for the specified tenant.
-      operationId: CreateItemImageAsync
+      operationId: ItemImages_CreateItemImage
       parameters:
         - name: tenantId
           in: query
@@ -3476,7 +3492,7 @@ paths:
         - ItemImages
       summary: Get all item images
       description: Retrieves all item images for the specified tenant using OData query options.
-      operationId: GetItemImagesAsync
+      operationId: ItemImages_GetItemImages
       parameters:
         - name: tenantId
           in: query
@@ -3533,7 +3549,7 @@ paths:
         - ItemImages
       summary: Get item image by ID
       description: Retrieves a specific item image by its ID.
-      operationId: GetItemImageByIdAsync
+      operationId: ItemImages_GetItemImageById
       parameters:
         - name: tenantId
           in: query
@@ -3587,7 +3603,7 @@ paths:
         - ItemImages
       summary: Update an item image
       description: Updates an existing item image for the specified tenant.
-      operationId: UpdateItemImageAsync
+      operationId: ItemImages_UpdateItemImage
       parameters:
         - name: tenantId
           in: query
@@ -3643,7 +3659,7 @@ paths:
         - ItemImages
       summary: Patch an item image
       description: Partially updates an existing item image for the specified tenant using a JSON Patch document.
-      operationId: PatchItemImageAsync
+      operationId: ItemImages_PatchItemImage
       parameters:
         - name: tenantId
           in: query
@@ -3703,7 +3719,7 @@ paths:
         - ItemImages
       summary: Delete an item image
       description: Deletes an item image for the specified tenant.
-      operationId: DeleteItemImageAsync
+      operationId: ItemImages_DeleteItemImage
       parameters:
         - name: tenantId
           in: query
@@ -3752,7 +3768,7 @@ paths:
         - ItemQuestions
       summary: Create a new item question
       description: Creates a new item question for the specified tenant.
-      operationId: CreateItemQuestionAsync
+      operationId: ItemQuestions_CreateItemQuestion
       parameters:
         - name: tenantId
           in: query
@@ -3809,7 +3825,7 @@ paths:
         - ItemQuestions
       summary: Get all item questions
       description: Retrieves all item questions for the specified tenant using OData query options.
-      operationId: GetItemQuestionsAsync
+      operationId: ItemQuestions_GetItemQuestions
       parameters:
         - name: tenantId
           in: query
@@ -3866,7 +3882,7 @@ paths:
         - ItemQuestions
       summary: Get item question by ID
       description: Retrieves a specific item question by its ID.
-      operationId: GetItemQuestionByIdAsync
+      operationId: ItemQuestions_GetItemQuestionById
       parameters:
         - name: tenantId
           in: query
@@ -3920,7 +3936,7 @@ paths:
         - ItemQuestions
       summary: Delete an item question
       description: Deletes an item question for the specified tenant.
-      operationId: DeleteItemQuestionAsync
+      operationId: ItemQuestions_DeleteItemQuestion
       parameters:
         - name: tenantId
           in: query
@@ -3968,7 +3984,7 @@ paths:
         - ItemQuestions
       summary: Update an item question
       description: Updates an existing item question for the specified tenant.
-      operationId: UpdateItemQuestionAsync
+      operationId: ItemQuestions_UpdateItemQuestion
       parameters:
         - name: tenantId
           in: query
@@ -4024,7 +4040,7 @@ paths:
         - ItemQuestions
       summary: Patch an item question
       description: Partially updates an existing item question for the specified tenant using a JSON Patch document.
-      operationId: PatchItemQuestionAsync
+      operationId: ItemQuestions_PatchItemQuestion
       parameters:
         - name: tenantId
           in: query
@@ -4085,7 +4101,7 @@ paths:
         - ItemRefundPolicies
       summary: Get item refund policies
       description: Retrieves all refund policies for a specific item.
-      operationId: GetItemRefundPoliciesAsync
+      operationId: ItemRefundPolicies_GetItemRefundPolicies
       parameters:
         - name: tenantId
           in: query
@@ -4146,7 +4162,7 @@ paths:
         - ItemRefundPolicies
       summary: Relate item to refund policy
       description: Relates an item to an existing refund policy.
-      operationId: RelateItemToRefundPolicyAsync
+      operationId: ItemRefundPolicies_RelateItemToRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -4201,7 +4217,7 @@ paths:
         - ItemRefundPolicies
       summary: Count item refund policies
       description: Counts all refund policies for a specific item.
-      operationId: CountItemRefundPoliciesAsync
+      operationId: ItemRefundPolicies_CountItemRefundPolicies
       parameters:
         - name: tenantId
           in: query
@@ -4263,7 +4279,7 @@ paths:
         - ItemRefundPolicies
       summary: Get item refund policy by ID
       description: Retrieves a specific refund policy for an item.
-      operationId: GetItemRefundPolicyByIdAsync
+      operationId: ItemRefundPolicies_GetItemRefundPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -4322,7 +4338,7 @@ paths:
         - ItemRefundPolicies
       summary: Remove refund policy from item
       description: Removes a refund policy from an item.
-      operationId: RemoveRefundPolicyFromItemAsync
+      operationId: ItemRefundPolicies_RemoveRefundPolicyFromItem
       parameters:
         - name: tenantId
           in: query
@@ -4377,7 +4393,7 @@ paths:
         - ItemReturnPolicies
       summary: Get item return policies
       description: Retrieves all return policies for a specific item.
-      operationId: GetItemReturnPoliciesAsync
+      operationId: ItemReturnPolicies_GetItemReturnPolicies
       parameters:
         - name: tenantId
           in: query
@@ -4438,7 +4454,7 @@ paths:
         - ItemReturnPolicies
       summary: Relate item to return policy
       description: Relates an item to an existing return policy.
-      operationId: RelateItemToReturnPolicyAsync
+      operationId: ItemReturnPolicies_RelateItemToReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -4493,7 +4509,7 @@ paths:
         - ItemReturnPolicies
       summary: Count item return policies
       description: Counts all return policies for a specific item.
-      operationId: CountItemReturnPoliciesAsync
+      operationId: ItemReturnPolicies_CountItemReturnPolicies
       parameters:
         - name: tenantId
           in: query
@@ -4555,7 +4571,7 @@ paths:
         - ItemReturnPolicies
       summary: Get item return policy by ID
       description: Retrieves a specific return policy for an item.
-      operationId: GetItemReturnPolicyByIdAsync
+      operationId: ItemReturnPolicies_GetItemReturnPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -4614,7 +4630,7 @@ paths:
         - ItemReturnPolicies
       summary: Remove return policy from item
       description: Removes a return policy from an item.
-      operationId: RemoveReturnPolicyFromItemAsync
+      operationId: ItemReturnPolicies_RemoveReturnPolicyFromItem
       parameters:
         - name: tenantId
           in: query
@@ -4669,7 +4685,7 @@ paths:
         - ItemReviews
       summary: Create a new item review
       description: Creates a new item review for the specified tenant.
-      operationId: CreateItemReviewAsync
+      operationId: ItemReviews_CreateItemReview
       parameters:
         - name: tenantId
           in: query
@@ -4726,7 +4742,7 @@ paths:
         - ItemReviews
       summary: Get all item reviews
       description: Retrieves all item reviews for the specified item using OData query options.
-      operationId: GetItemReviewsAsync
+      operationId: ItemReviews_GetItemReviews
       parameters:
         - name: itemId
           in: query
@@ -4784,7 +4800,7 @@ paths:
         - ItemReviews
       summary: Get item review by ID
       description: Retrieves a specific item review by its ID.
-      operationId: GetItemReviewByIdAsync
+      operationId: ItemReviews_GetItemReviewById
       parameters:
         - name: tenantId
           in: query
@@ -4838,7 +4854,7 @@ paths:
         - ItemReviews
       summary: Update an item review
       description: Updates an existing item review for the specified tenant.
-      operationId: UpdateItemReviewAsync
+      operationId: ItemReviews_UpdateItemReview
       parameters:
         - name: tenantId
           in: query
@@ -4894,7 +4910,7 @@ paths:
         - ItemReviews
       summary: Patch an item review
       description: Partially updates an existing item review for the specified tenant.
-      operationId: PatchItemReviewAsync
+      operationId: ItemReviews_PatchItemReview
       parameters:
         - name: tenantId
           in: query
@@ -4954,7 +4970,7 @@ paths:
         - ItemReviews
       summary: Delete an item review
       description: Deletes an item review for the specified tenant.
-      operationId: DeleteItemReviewAsync
+      operationId: ItemReviews_DeleteItemReview
       parameters:
         - name: tenantId
           in: query
@@ -5003,7 +5019,7 @@ paths:
         - Items
       summary: Get all stock items
       description: 'Retrieves all stock items, optionally filtered by tenant and OData query options.'
-      operationId: GetStockItemsQuery
+      operationId: Items_GetStockItemsQuery
       parameters:
         - name: tenantId
           in: query
@@ -5059,7 +5075,7 @@ paths:
         - Items
       summary: Create a new stock item
       description: Creates a new stock item for the specified tenant.
-      operationId: CreateStockItem
+      operationId: Items_CreateStockItem
       parameters:
         - name: tenantId
           in: query
@@ -5110,7 +5126,7 @@ paths:
         - Items
       summary: Get max price of stock items
       description: 'Retrieves the maximum price among all stock items, optionally filtered by tenant and OData query options.'
-      operationId: GetStockItemsOdataMaxPrice
+      operationId: Items_GetStockItemsOdataMaxPrice
       parameters:
         - name: tenantId
           in: query
@@ -5167,7 +5183,7 @@ paths:
         - Items
       summary: Get min price of stock items
       description: 'Retrieves the minimum price among all stock items, optionally filtered by tenant and OData query options.'
-      operationId: GetStockItemsOdataMinPrice
+      operationId: Items_GetStockItemsOdataMinPrice
       parameters:
         - name: tenantId
           in: query
@@ -5224,7 +5240,7 @@ paths:
         - Items
       summary: Count stock items by business
       description: 'Counts the number of stock items for a business, optionally filtered by tenant and OData query options.'
-      operationId: CountStockItemsByBusiness
+      operationId: Items_CountStockItemsByBusiness
       parameters:
         - name: tenantId
           in: query
@@ -5281,8 +5297,13 @@ paths:
         - Items
       summary: Get stock item by ID
       description: Retrieves a stock item by its unique identifier.
-      operationId: GetStockItemById
+      operationId: Items_GetStockItemById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -5316,6 +5337,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
           content:
@@ -5330,7 +5360,7 @@ paths:
         - Items
       summary: Update a stock item
       description: Updates an existing stock item for the specified tenant and item ID.
-      operationId: UpdateStockItem
+      operationId: Items_UpdateStockItem
       parameters:
         - name: tenantId
           in: query
@@ -5386,7 +5416,7 @@ paths:
         - Items
       summary: Patch a stock item
       description: Partially updates an existing stock item for the specified tenant and item ID.
-      operationId: PatchStockItem
+      operationId: Items_PatchStockItem
       parameters:
         - name: tenantId
           in: query
@@ -5446,7 +5476,7 @@ paths:
         - Items
       summary: Delete a stock item
       description: Deletes a stock item for the specified tenant and item ID.
-      operationId: DeleteStockItem
+      operationId: Items_DeleteStockItem
       parameters:
         - name: tenantId
           in: query
@@ -5495,8 +5525,13 @@ paths:
         - Items
       summary: Get extended stock item by ID
       description: Retrieves extended information for a stock item by its unique identifier.
-      operationId: GetExtendedStockItemById
+      operationId: Items_GetExtendedStockItemById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -5530,6 +5565,151 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItemDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CatalogItemDtoEnvelope'
+  /api/v2/CatalogService/Items/Public:
+    get:
+      tags:
+        - Items
+      summary: Get public stock items
+      description: 'Retrieves the publicly-visible catalog: published, non-deleted items. Anonymous.'
+      operationId: Items_GetPublicStockItems
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItemDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CatalogItemDtoCollectionQueryParameters'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItemDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CatalogItemDtoListEnvelope'
+  /api/v2/CatalogService/Items/Public/Count:
+    get:
+      tags:
+        - Items
+      summary: Count public stock items
+      description: 'Counts the publicly-visible catalog: published, non-deleted items. Anonymous.'
+      operationId: Items_GetPublicStockItemsCount
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItemDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CatalogItemDtoCollectionQueryParameters'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/CatalogService/Items/Public/{itemId}':
+    get:
+      tags:
+        - Items
+      summary: Get public stock item by ID
+      description: Retrieves a publicly-visible stock item by its identifier. An unpublished or deleted item is not found. Anonymous.
+      operationId: Items_GetPublicStockItemById
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
           content:
@@ -5545,7 +5725,7 @@ paths:
         - Items
       summary: Bulk-update stock items
       description: 'Applies a targeted bulk operation (set flags, add/remove tax policies) to many items atomically.'
-      operationId: BatchUpdateStockItems
+      operationId: Items_BatchUpdateStockItems
       parameters:
         - name: tenantId
           in: query
@@ -5596,7 +5776,7 @@ paths:
         - Items
       summary: Bulk upsert stock items from rows
       description: 'Updates scalar fields of matching tenant-owned items or creates new ones, all in one transaction.'
-      operationId: BulkUpsertStockItems
+      operationId: Items_BulkUpsertStockItems
       parameters:
         - name: tenantId
           in: query
@@ -5651,7 +5831,7 @@ paths:
         - Items
       summary: Recalculate stock item prices
       description: 'Recomputes derived prices for the given tenant-owned items via the pricing service, atomically.'
-      operationId: RecalculateStockItemPrices
+      operationId: Items_RecalculateStockItemPrices
       parameters:
         - name: tenantId
           in: query
@@ -5708,11 +5888,10 @@ paths:
         - Items
       summary: Get tags for a stock item
       description: Retrieves all tags associated with a specific stock item.
-      operationId: GetStockItemTagsByItemId
+      operationId: Items_GetStockItemTagsByItemId
       parameters:
         - name: tenantId
           in: query
-          required: true
           schema:
             type: string
             format: uuid
@@ -5772,11 +5951,10 @@ paths:
         - Items
       summary: Count tags for a stock item
       description: Counts the number of tags associated with a specific stock item.
-      operationId: CountStockItemTagsByItemId
+      operationId: Items_CountStockItemTagsByItemId
       parameters:
         - name: tenantId
           in: query
-          required: true
           schema:
             type: string
             format: uuid
@@ -5836,11 +6014,10 @@ paths:
         - Items
       summary: Get tag by ID for a stock item
       description: Retrieves a specific tag by ID for a stock item.
-      operationId: GetStockItemTagById
+      operationId: Items_GetStockItemTagById
       parameters:
         - name: tenantId
           in: query
-          required: true
           schema:
             type: string
             format: uuid
@@ -5897,7 +6074,7 @@ paths:
         - Items
       summary: Relate tag to stock item
       description: Associates a tag with a stock item.
-      operationId: RelateTagToStockItem
+      operationId: Items_RelateTagToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -5958,7 +6135,7 @@ paths:
         - Items
       summary: Remove tag from stock item
       description: Removes a tag association from a stock item.
-      operationId: RemoveTagFromStockItem
+      operationId: Items_RemoveTagFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6020,11 +6197,10 @@ paths:
         - Items
       summary: Get types for a stock item
       description: Retrieves all types associated with a specific stock item.
-      operationId: GetStockItemTypesByItemId
+      operationId: Items_GetStockItemTypesByItemId
       parameters:
         - name: tenantId
           in: query
-          required: true
           schema:
             type: string
             format: uuid
@@ -6084,11 +6260,10 @@ paths:
         - Items
       summary: Get type by ID for a stock item
       description: Retrieves a specific type by ID for a stock item.
-      operationId: GetStockItemTypeById
+      operationId: Items_GetStockItemTypeById
       parameters:
         - name: tenantId
           in: query
-          required: true
           schema:
             type: string
             format: uuid
@@ -6145,7 +6320,7 @@ paths:
         - Items
       summary: Relate type to stock item
       description: Associates a type with a stock item.
-      operationId: RelateTypeToStockItem
+      operationId: Items_RelateTypeToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6206,7 +6381,7 @@ paths:
         - Items
       summary: Remove type from stock item
       description: Removes a type association from a stock item.
-      operationId: RemoveTypeFromStockItem
+      operationId: Items_RemoveTypeFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6268,8 +6443,13 @@ paths:
         - Items
       summary: Get item primary image
       description: Retrieves the primary image for a specific catalog item.
-      operationId: GetProductPrimaryImageAsync
+      operationId: Items_GetProductPrimaryImage
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -6308,7 +6488,7 @@ paths:
         - Items
       summary: Update item primary image
       description: Updates the primary image for a specific catalog item.
-      operationId: UpdateProductPrimaryImageAsync
+      operationId: Items_UpdateProductPrimaryImage
       parameters:
         - name: itemId
           in: path
@@ -6395,8 +6575,13 @@ paths:
         - Items
       summary: Get images for a stock item
       description: Retrieves all images associated with a specific stock item.
-      operationId: GetStockItemImagesByItemId
+      operationId: Items_GetStockItemImagesByItemId
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -6453,8 +6638,13 @@ paths:
         - Items
       summary: Get image by ID for a stock item
       description: Retrieves a specific image by ID for a stock item.
-      operationId: GetStockItemImageById
+      operationId: Items_GetStockItemImageById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -6508,7 +6698,7 @@ paths:
         - Items
       summary: Relate image to stock item
       description: Associates an image with a stock item.
-      operationId: RelateImageToStockItem
+      operationId: Items_RelateImageToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6569,7 +6759,7 @@ paths:
         - Items
       summary: Remove image from stock item
       description: Removes an image association from a stock item.
-      operationId: RemoveImageFromStockItem
+      operationId: Items_RemoveImageFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6631,8 +6821,13 @@ paths:
         - Items
       summary: Get brands for a stock item
       description: Retrieves all brands associated with a specific stock item.
-      operationId: GetStockItemBrandsByItemId
+      operationId: Items_GetStockItemBrandsByItemId
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -6689,8 +6884,13 @@ paths:
         - Items
       summary: Get brand by ID for a stock item
       description: Retrieves a specific brand by ID for a stock item.
-      operationId: GetStockItemBrandById
+      operationId: Items_GetStockItemBrandById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -6744,7 +6944,7 @@ paths:
         - Items
       summary: Relate brand to stock item
       description: Associates a brand with a stock item.
-      operationId: RelateBrandToStockItem
+      operationId: Items_RelateBrandToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6805,7 +7005,7 @@ paths:
         - Items
       summary: Remove brand from stock item
       description: Removes a brand association from a stock item.
-      operationId: RemoveBrandFromStockItem
+      operationId: Items_RemoveBrandFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6867,7 +7067,7 @@ paths:
         - Items
       summary: Get reviews for a stock item
       description: Retrieves all reviews associated with a specific stock item.
-      operationId: GetStockItemReviewsByItemId
+      operationId: Items_GetStockItemReviewsByItemId
       parameters:
         - name: itemId
           in: path
@@ -6924,7 +7124,7 @@ paths:
         - Items
       summary: Create review for stock item
       description: Creates a new review for a stock item.
-      operationId: RelateReviewToStockItem
+      operationId: Items_RelateReviewToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -6988,7 +7188,7 @@ paths:
         - Items
       summary: Get review by ID for a stock item
       description: Retrieves a specific review by ID for a stock item.
-      operationId: GetStockItemReviewById
+      operationId: Items_GetStockItemReviewById
       parameters:
         - name: itemId
           in: path
@@ -7043,7 +7243,7 @@ paths:
         - Items
       summary: Remove review from stock item
       description: Removes a review from a stock item.
-      operationId: RemoveReviewFromStockItem
+      operationId: Items_RemoveReviewFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7105,8 +7305,13 @@ paths:
         - Items
       summary: Get questions for a stock item
       description: Retrieves all questions associated with a specific stock item.
-      operationId: GetStockItemQuestionsByItemId
+      operationId: Items_GetStockItemQuestionsByItemId
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -7162,7 +7367,7 @@ paths:
         - Items
       summary: Create question for stock item
       description: Creates a new question for a stock item.
-      operationId: RelateQuestionToStockItem
+      operationId: Items_RelateQuestionToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7226,8 +7431,13 @@ paths:
         - Items
       summary: Get question by ID for a stock item
       description: Retrieves a specific question by ID for a stock item.
-      operationId: GetStockItemQuestionById
+      operationId: Items_GetStockItemQuestionById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -7281,7 +7491,7 @@ paths:
         - Items
       summary: Remove question from stock item
       description: Removes a question from a stock item.
-      operationId: RemoveQuestionFromStockItem
+      operationId: Items_RemoveQuestionFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7343,7 +7553,7 @@ paths:
         - Items
       summary: Get categories for a stock item
       description: Retrieves all categories associated with a specific stock item.
-      operationId: GetStockItemCategoriesByItemId
+      operationId: Items_GetStockItemCategoriesByItemId
       parameters:
         - name: itemId
           in: path
@@ -7401,8 +7611,13 @@ paths:
         - Items
       summary: Get category by ID for a stock item
       description: Retrieves a specific category by ID for a stock item.
-      operationId: GetStockItemCategoryById
+      operationId: Items_GetStockItemCategoryById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -7456,7 +7671,7 @@ paths:
         - Items
       summary: Relate category to stock item
       description: Associates a category with a stock item.
-      operationId: RelateCategoryToStockItem
+      operationId: Items_RelateCategoryToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7517,7 +7732,7 @@ paths:
         - Items
       summary: Remove category from stock item
       description: Removes a category association from a stock item.
-      operationId: RemoveCategoryFromStockItem
+      operationId: Items_RemoveCategoryFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7579,8 +7794,13 @@ paths:
         - Items
       summary: Get attachments for a stock item
       description: Retrieves all attachments associated with a specific stock item.
-      operationId: GetStockItemAttachmentsByItemId
+      operationId: Items_GetStockItemAttachmentsByItemId
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -7637,8 +7857,13 @@ paths:
         - Items
       summary: Get attachment by ID for a stock item
       description: Retrieves a specific attachment by ID for a stock item.
-      operationId: GetStockItemAttachmentById
+      operationId: Items_GetStockItemAttachmentById
       parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
         - name: itemId
           in: path
           required: true
@@ -7692,7 +7917,7 @@ paths:
         - Items
       summary: Relate attachment to stock item
       description: Associates an attachment with a stock item.
-      operationId: RelateAttachmentToStockItem
+      operationId: Items_RelateAttachmentToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7760,7 +7985,7 @@ paths:
         - Items
       summary: Remove attachment from stock item
       description: Removes an attachment from a stock item.
-      operationId: RemoveAttachmentFromStockItem
+      operationId: Items_RemoveAttachmentFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7822,7 +8047,7 @@ paths:
         - Items
       summary: Get tax policies for a stock item
       description: Retrieves all tax policies associated with a specific stock item.
-      operationId: GetStockItemTaxPoliciesByItemId
+      operationId: Items_GetStockItemTaxPoliciesByItemId
       parameters:
         - name: itemId
           in: path
@@ -7880,7 +8105,7 @@ paths:
         - Items
       summary: Get tax policy by ID for a stock item
       description: Retrieves a specific tax policy by ID for a stock item.
-      operationId: GetStockItemTaxPolicyById
+      operationId: Items_GetStockItemTaxPolicyById
       parameters:
         - name: itemId
           in: path
@@ -7935,7 +8160,7 @@ paths:
         - Items
       summary: Relate tax policy to stock item
       description: Associates a tax policy with a stock item.
-      operationId: RelateTaxPolicyToStockItem
+      operationId: Items_RelateTaxPolicyToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -7996,7 +8221,7 @@ paths:
         - Items
       summary: Remove tax policy from stock item
       description: Removes a tax policy from a stock item.
-      operationId: RemoveTaxPolicyFromStockItem
+      operationId: Items_RemoveTaxPolicyFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8058,7 +8283,7 @@ paths:
         - Items
       summary: Get price rules for a stock item
       description: Retrieves all pricing rules associated with a specific stock item.
-      operationId: GetStockItemPriceRulesByItemId
+      operationId: Items_GetStockItemPriceRulesByItemId
       parameters:
         - name: itemId
           in: path
@@ -8108,7 +8333,7 @@ paths:
         - Items
       summary: Get price rule by ID for a stock item
       description: Retrieves a specific pricing rule by ID for a stock item.
-      operationId: GetStockItemPriceRuleById
+      operationId: Items_GetStockItemPriceRuleById
       parameters:
         - name: itemId
           in: path
@@ -8163,7 +8388,7 @@ paths:
         - Items
       summary: Relate price rule to stock item
       description: Associates a pricing rule with a stock item.
-      operationId: RelatePriceRuleToStockItem
+      operationId: Items_RelatePriceRuleToStockItem
       parameters:
         - name: itemId
           in: path
@@ -8218,7 +8443,7 @@ paths:
         - Items
       summary: Remove price rule from stock item
       description: Removes a pricing rule from a stock item.
-      operationId: RemovePriceRuleFromStockItem
+      operationId: Items_RemovePriceRuleFromStockItem
       parameters:
         - name: itemId
           in: path
@@ -8274,7 +8499,7 @@ paths:
         - Items
       summary: Get return policies for a stock item
       description: Retrieves all return policies associated with a specific stock item.
-      operationId: GetStockItemReturnPoliciesByItemId
+      operationId: Items_GetStockItemReturnPoliciesByItemId
       parameters:
         - name: itemId
           in: path
@@ -8332,7 +8557,7 @@ paths:
         - Items
       summary: Get return policy by ID for a stock item
       description: Retrieves a specific return policy by ID for a stock item.
-      operationId: GetStockItemReturnPolicyById
+      operationId: Items_GetStockItemReturnPolicyById
       parameters:
         - name: itemId
           in: path
@@ -8387,7 +8612,7 @@ paths:
         - Items
       summary: Relate return policy to stock item
       description: Associates a return policy with a stock item.
-      operationId: RelateReturnPolicyToStockItem
+      operationId: Items_RelateReturnPolicyToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8448,7 +8673,7 @@ paths:
         - Items
       summary: Remove return policy from stock item
       description: Removes a return policy from a stock item.
-      operationId: RemoveReturnPolicyFromStockItem
+      operationId: Items_RemoveReturnPolicyFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8510,7 +8735,7 @@ paths:
         - Items
       summary: Get refund policies for a stock item
       description: Retrieves all refund policies associated with a specific stock item.
-      operationId: GetStockItemRefundPoliciesByItemId
+      operationId: Items_GetStockItemRefundPoliciesByItemId
       parameters:
         - name: itemId
           in: path
@@ -8568,7 +8793,7 @@ paths:
         - Items
       summary: Get refund policy by ID for a stock item
       description: Retrieves a specific refund policy by ID for a stock item.
-      operationId: GetStockItemRefundPolicyById
+      operationId: Items_GetStockItemRefundPolicyById
       parameters:
         - name: itemId
           in: path
@@ -8623,7 +8848,7 @@ paths:
         - Items
       summary: Relate refund policy to stock item
       description: Associates a refund policy with a stock item.
-      operationId: RelateRefundPolicyToStockItem
+      operationId: Items_RelateRefundPolicyToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8684,7 +8909,7 @@ paths:
         - Items
       summary: Remove refund policy from stock item
       description: Removes a refund policy from a stock item.
-      operationId: RemoveRefundPolicyFromStockItem
+      operationId: Items_RemoveRefundPolicyFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8746,7 +8971,7 @@ paths:
         - Items
       summary: Get shipping policies for a stock item
       description: Retrieves all shipping policies associated with a specific stock item.
-      operationId: GetStockItemShippingPoliciesByItemId
+      operationId: Items_GetStockItemShippingPoliciesByItemId
       parameters:
         - name: itemId
           in: path
@@ -8804,7 +9029,7 @@ paths:
         - Items
       summary: Get shipping policy by ID for a stock item
       description: Retrieves a specific shipping policy by ID for a stock item.
-      operationId: GetStockItemShippingPolicyById
+      operationId: Items_GetStockItemShippingPolicyById
       parameters:
         - name: itemId
           in: path
@@ -8859,7 +9084,7 @@ paths:
         - Items
       summary: Relate shipping policy to stock item
       description: Associates a shipping policy with a stock item.
-      operationId: RelateShippingPolicyToStockItem
+      operationId: Items_RelateShippingPolicyToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8920,7 +9145,7 @@ paths:
         - Items
       summary: Remove shipping policy from stock item
       description: Removes a shipping policy from a stock item.
-      operationId: RemoveShippingPolicyFromStockItem
+      operationId: Items_RemoveShippingPolicyFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -8982,7 +9207,7 @@ paths:
         - Items
       summary: Get warranty policies for a stock item
       description: Retrieves all warranty policies associated with a specific stock item.
-      operationId: GetStockItemWarrantyPoliciesByItemId
+      operationId: Items_GetStockItemWarrantyPoliciesByItemId
       parameters:
         - name: itemId
           in: path
@@ -9040,7 +9265,7 @@ paths:
         - Items
       summary: Get warranty policy by ID for a stock item
       description: Retrieves a specific warranty policy by ID for a stock item.
-      operationId: GetStockItemWarrantyPolicyById
+      operationId: Items_GetStockItemWarrantyPolicyById
       parameters:
         - name: itemId
           in: path
@@ -9095,7 +9320,7 @@ paths:
         - Items
       summary: Relate warranty policy to stock item
       description: Associates a warranty policy with a stock item.
-      operationId: RelateWarrantyPolicyToStockItem
+      operationId: Items_RelateWarrantyPolicyToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -9156,7 +9381,7 @@ paths:
         - Items
       summary: Remove warranty policy from stock item
       description: Removes a warranty policy from a stock item.
-      operationId: RemoveWarrantyPolicyFromStockItem
+      operationId: Items_RemoveWarrantyPolicyFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -9218,7 +9443,7 @@ paths:
         - Items
       summary: Get attribute options for a stock item
       description: Retrieves all attribute options associated with a specific stock item.
-      operationId: GetStockItemAttributeOptionsByItemId
+      operationId: Items_GetStockItemAttributeOptionsByItemId
       parameters:
         - name: itemId
           in: path
@@ -9268,7 +9493,7 @@ paths:
         - Items
       summary: Get attribute option by ID for a stock item
       description: Retrieves a specific attribute option by ID for a stock item.
-      operationId: GetStockItemAttributeOptionById
+      operationId: Items_GetStockItemAttributeOptionById
       parameters:
         - name: itemId
           in: path
@@ -9323,7 +9548,7 @@ paths:
         - Items
       summary: Relate attribute option to stock item
       description: Associates an attribute option with a stock item.
-      operationId: RelateAttributeOptionToStockItem
+      operationId: Items_RelateAttributeOptionToStockItem
       parameters:
         - name: itemId
           in: path
@@ -9378,7 +9603,7 @@ paths:
         - Items
       summary: Remove attribute option from stock item
       description: Removes an attribute option from a stock item.
-      operationId: RemoveAttributeOptionFromStockItem
+      operationId: Items_RemoveAttributeOptionFromStockItem
       parameters:
         - name: itemId
           in: path
@@ -9434,7 +9659,7 @@ paths:
         - Items
       summary: Get Google categories for a stock item
       description: Retrieves all Google categories associated with a specific stock item.
-      operationId: GetStockItemGoogleCategoriesByItemId
+      operationId: Items_GetStockItemGoogleCategoriesByItemId
       parameters:
         - name: itemId
           in: path
@@ -9492,7 +9717,7 @@ paths:
         - Items
       summary: Get Google category by ID for a stock item
       description: Retrieves a specific Google category by ID for a stock item.
-      operationId: GetStockItemGoogleCategoryById
+      operationId: Items_GetStockItemGoogleCategoryById
       parameters:
         - name: itemId
           in: path
@@ -9547,7 +9772,7 @@ paths:
         - Items
       summary: Relate Google category to stock item
       description: Associates a Google category with a stock item.
-      operationId: RelateGoogleCategoryToStockItem
+      operationId: Items_RelateGoogleCategoryToStockItem
       parameters:
         - name: tenantId
           in: query
@@ -9608,7 +9833,7 @@ paths:
         - Items
       summary: Remove Google category from stock item
       description: Removes a Google category from a stock item.
-      operationId: RemoveGoogleCategoryFromStockItem
+      operationId: Items_RemoveGoogleCategoryFromStockItem
       parameters:
         - name: tenantId
           in: query
@@ -9670,7 +9895,7 @@ paths:
         - ItemShippingPolicies
       summary: Get item shipping policies
       description: Retrieves all shipping policies for a specific item.
-      operationId: GetCatalogItemShippingPoliciesAsync
+      operationId: ItemShippingPolicies_GetCatalogItemShippingPolicies
       parameters:
         - name: tenantId
           in: query
@@ -9731,7 +9956,7 @@ paths:
         - ItemShippingPolicies
       summary: Relate item to shipping policy
       description: Relates an item to an existing shipping policy.
-      operationId: RelateItemToShippingPolicyAsync
+      operationId: ItemShippingPolicies_RelateItemToShippingPolicy
       parameters:
         - name: tenantId
           in: query
@@ -9786,7 +10011,7 @@ paths:
         - ItemShippingPolicies
       summary: Count item shipping policies
       description: Counts all shipping policies for a specific item.
-      operationId: CountItemShippingPoliciesAsync
+      operationId: ItemShippingPolicies_CountItemShippingPolicies
       parameters:
         - name: tenantId
           in: query
@@ -9848,7 +10073,7 @@ paths:
         - ItemShippingPolicies
       summary: Get item shipping policy by ID
       description: Retrieves a specific shipping policy for an item.
-      operationId: GetCatalogItemShippingPolicyByIdAsync
+      operationId: ItemShippingPolicies_GetCatalogItemShippingPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -9907,7 +10132,7 @@ paths:
         - ItemShippingPolicies
       summary: Remove shipping policy from item
       description: Removes a shipping policy from an item.
-      operationId: RemoveShippingPolicyFromItemAsync
+      operationId: ItemShippingPolicies_RemoveShippingPolicyFromItem
       parameters:
         - name: tenantId
           in: query
@@ -9962,7 +10187,7 @@ paths:
         - ItemTags
       summary: Create a new item tag
       description: Creates a new item tag for the specified tenant.
-      operationId: CreateItemTagAsync
+      operationId: ItemTags_CreateItemTag
       parameters:
         - name: tenantId
           in: query
@@ -10019,7 +10244,7 @@ paths:
         - ItemTags
       summary: Get all item tags
       description: Retrieves all item tags for the specified tenant using OData query options.
-      operationId: GetItemTagsAsync
+      operationId: ItemTags_GetItemTags
       parameters:
         - name: tenantId
           in: query
@@ -10076,7 +10301,7 @@ paths:
         - ItemTags
       summary: Get item tag by ID
       description: Retrieves a specific item tag by its ID.
-      operationId: GetItemTagByIdAsync
+      operationId: ItemTags_GetItemTagById
       parameters:
         - name: tenantId
           in: query
@@ -10130,7 +10355,7 @@ paths:
         - ItemTags
       summary: Delete an item tag
       description: Deletes an item tag for the specified tenant.
-      operationId: DeleteItemTagAsync
+      operationId: ItemTags_DeleteItemTag
       parameters:
         - name: tenantId
           in: query
@@ -10178,7 +10403,7 @@ paths:
         - ItemTags
       summary: Update an item tag
       description: Updates an existing item tag for the specified tenant.
-      operationId: UpdateItemTagAsync
+      operationId: ItemTags_UpdateItemTag
       parameters:
         - name: tenantId
           in: query
@@ -10234,7 +10459,7 @@ paths:
         - ItemTags
       summary: Patch an item tag
       description: Partially updates an existing item tag for the specified tenant.
-      operationId: PatchItemTagAsync
+      operationId: ItemTags_PatchItemTag
       parameters:
         - name: tenantId
           in: query
@@ -10295,7 +10520,7 @@ paths:
         - ItemTaxPolicies
       summary: Get item tax policies
       description: Retrieves all tax policies for a specific item.
-      operationId: GetItemTaxPoliciesAsync
+      operationId: ItemTaxPolicies_GetItemTaxPolicies
       parameters:
         - name: tenantId
           in: query
@@ -10356,7 +10581,7 @@ paths:
         - ItemTaxPolicies
       summary: Relate item to tax policy
       description: Relates an item to an existing tax policy.
-      operationId: RelateItemToTaxPolicyAsync
+      operationId: ItemTaxPolicies_RelateItemToTaxPolicy
       parameters:
         - name: tenantId
           in: query
@@ -10411,7 +10636,7 @@ paths:
         - ItemTaxPolicies
       summary: Count item tax policies
       description: Counts all tax policies for a specific item.
-      operationId: CountItemTaxPoliciesAsync
+      operationId: ItemTaxPolicies_CountItemTaxPolicies
       parameters:
         - name: tenantId
           in: query
@@ -10473,7 +10698,7 @@ paths:
         - ItemTaxPolicies
       summary: Get item tax policy by ID
       description: Retrieves a specific tax policy for an item.
-      operationId: GetItemTaxPolicyByIdAsync
+      operationId: ItemTaxPolicies_GetItemTaxPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -10532,7 +10757,7 @@ paths:
         - ItemTaxPolicies
       summary: Remove tax policy from item
       description: Removes a tax policy from an item.
-      operationId: RemoveTaxPolicyFromItemAsync
+      operationId: ItemTaxPolicies_RemoveTaxPolicyFromItem
       parameters:
         - name: tenantId
           in: query
@@ -10587,7 +10812,7 @@ paths:
         - ItemTypes
       summary: Count item types
       description: Counts all item types for the specified tenant.
-      operationId: CountItemTypesAsync
+      operationId: ItemTypes_CountItemTypes
       parameters:
         - name: tenantId
           in: query
@@ -10644,7 +10869,7 @@ paths:
         - ItemTypes
       summary: Create a new item type
       description: Creates a new item type for the specified tenant.
-      operationId: CreateItemTypeAsync
+      operationId: ItemTypes_CreateItemType
       parameters:
         - name: tenantId
           in: query
@@ -10701,7 +10926,7 @@ paths:
         - ItemTypes
       summary: Get all item types
       description: Retrieves all item types for the specified tenant using OData query options.
-      operationId: GetItemTypesAsync
+      operationId: ItemTypes_GetItemTypes
       parameters:
         - name: tenantId
           in: query
@@ -10758,7 +10983,7 @@ paths:
         - ItemTypes
       summary: Delete an item type
       description: Deletes an item type for the specified tenant.
-      operationId: DeleteItemTypeAsync
+      operationId: ItemTypes_DeleteItemType
       parameters:
         - name: tenantId
           in: query
@@ -10813,7 +11038,7 @@ paths:
         - ItemTypes
       summary: Get item type by ID
       description: Retrieves a specific item type by its ID.
-      operationId: GetItemTypeByIdAsync
+      operationId: ItemTypes_GetItemTypeById
       parameters:
         - name: tenantId
           in: query
@@ -10867,7 +11092,7 @@ paths:
         - ItemTypes
       summary: Update an item type
       description: Updates an existing item type for the specified tenant.
-      operationId: UpdateItemTypeAsync
+      operationId: ItemTypes_UpdateItemType
       parameters:
         - name: tenantId
           in: query
@@ -10923,7 +11148,7 @@ paths:
         - ItemTypes
       summary: Patch an item type
       description: Partially updates an existing item type for the specified tenant.
-      operationId: PatchItemTypeAsync
+      operationId: ItemTypes_PatchItemType
       parameters:
         - name: tenantId
           in: query
@@ -10984,7 +11209,7 @@ paths:
         - ItemWarrantyPolicies
       summary: Get item warranty policies
       description: Retrieves all warranty policies for a specific item.
-      operationId: GetItemWarrantyPoliciesAsync
+      operationId: ItemWarrantyPolicies_GetItemWarrantyPolicies
       parameters:
         - name: tenantId
           in: query
@@ -11045,7 +11270,7 @@ paths:
         - ItemWarrantyPolicies
       summary: Relate item to warranty policy
       description: Relates an item to an existing warranty policy.
-      operationId: RelateItemToWarrantyPolicyAsync
+      operationId: ItemWarrantyPolicies_RelateItemToWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -11100,7 +11325,7 @@ paths:
         - ItemWarrantyPolicies
       summary: Count item warranty policies
       description: Counts all warranty policies for a specific item.
-      operationId: CountItemWarrantyPoliciesAsync
+      operationId: ItemWarrantyPolicies_CountItemWarrantyPolicies
       parameters:
         - name: tenantId
           in: query
@@ -11162,7 +11387,7 @@ paths:
         - ItemWarrantyPolicies
       summary: Get item warranty policy by ID
       description: Retrieves a specific warranty policy for an item.
-      operationId: GetItemWarrantyPolicyByIdAsync
+      operationId: ItemWarrantyPolicies_GetItemWarrantyPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -11221,7 +11446,7 @@ paths:
         - ItemWarrantyPolicies
       summary: Remove warranty policy from item
       description: Removes a warranty policy from an item.
-      operationId: RemoveWarrantyPolicyFromItemAsync
+      operationId: ItemWarrantyPolicies_RemoveWarrantyPolicyFromItem
       parameters:
         - name: tenantId
           in: query
@@ -11276,7 +11501,7 @@ paths:
         - Merchants
       summary: Get all merchants
       description: 'Retrieves all merchants, optionally filtered by OData query options.'
-      operationId: GetMerchants
+      operationId: Merchants_GetMerchants
       parameters:
         - name: api-version
           in: query
@@ -11328,7 +11553,7 @@ paths:
         - Merchants
       summary: Count merchants
       description: 'Counts the number of merchants, optionally filtered by OData query options.'
-      operationId: GetMerchantsCount
+      operationId: Merchants_GetMerchantsCount
       parameters:
         - name: api-version
           in: query
@@ -11380,7 +11605,7 @@ paths:
         - Merchants
       summary: Get merchant by ID
       description: Retrieves a merchant by its unique identifier.
-      operationId: GetMerchantById
+      operationId: Merchants_GetMerchantById
       parameters:
         - name: merchantId
           in: path
@@ -11408,6 +11633,15 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
           content:
             application/json:
               schema:
@@ -17479,8 +17713,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     PricingRuleDto:
       type: object

@@ -29,7 +29,7 @@ paths:
         - Antiforgery
       summary: Get and store antiforgery tokens
       description: Generates antiforgery tokens and stores them in the current HTTP context.
-      operationId: GetAndStoreTokens
+      operationId: Antiforgery_GetAndStoreTokens
       parameters:
         - name: api-version
           in: query
@@ -48,7 +48,7 @@ paths:
         - Antiforgery
       summary: Validate antiforgery request
       description: Validates whether the current HTTP request contains a valid antiforgery token.
-      operationId: IsRequestValidAsync
+      operationId: Antiforgery_IsRequestValid
       parameters:
         - name: api-version
           in: query
@@ -67,7 +67,7 @@ paths:
         - ApplicationPrincipals
       summary: List application principals across all tenants
       description: 'Lists every non-human application principal enrollment across ALL tenants (payload-safe fields only), including the platform-managed (system-locked) connectors. Use OData to scope — e.g. $filter=SystemLocked eq true for the platform connectors or TenantId eq ''{guid}'' for one tenant — and to page/order. Global-administrator only.'
-      operationId: GetGlobalApplicationPrincipals
+      operationId: ApplicationPrincipals_GetGlobalApplicationPrincipals
       parameters:
         - name: api-version
           in: query
@@ -119,7 +119,7 @@ paths:
         - ApplicationPrincipals
       summary: Count application principals across all tenants
       description: Returns the count of application principal enrollments across ALL tenants under the same OData shaping as the list read (e.g. $filter=SystemLocked eq true). Global-administrator only.
-      operationId: GetGlobalApplicationPrincipalsCount
+      operationId: ApplicationPrincipals_GetGlobalApplicationPrincipalsCount
       parameters:
         - name: api-version
           in: query
@@ -171,7 +171,7 @@ paths:
         - ApplicationPrincipals
       summary: Get one application principal (any tenant)
       description: 'Returns one application principal''s detail by id: owning application, an enrollment, the system-locked flag, lifecycle status, and that enrollment''s explicit least-privilege grants. Pass tenantId to select the enrollment for a multi-tenant principal; when omitted the principal''s first enrollment is used. Global-administrator only.'
-      operationId: GetGlobalApplicationPrincipal
+      operationId: ApplicationPrincipals_GetGlobalApplicationPrincipal
       parameters:
         - name: principalId
           in: path
@@ -235,7 +235,7 @@ paths:
         - ApplicationPrincipals
       summary: 'Provision an application principal (any tenant, incl. system-locked)'
       description: 'Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application. tenantId selects the target tenant (defaults to the platform/root tenant). Unlike the per-tenant lane, a system-locked platform application is provisionable here. Global-administrator only.'
-      operationId: ProvisionGlobalApplicationPrincipal
+      operationId: ApplicationPrincipals_ProvisionGlobalApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -311,7 +311,7 @@ paths:
         - ApplicationPrincipals
       summary: Provision the platform payments-connector identity
       description: 'Idempotently stands up the platform payments-connector identity — its well-known business application, its application principal, and its own least-privilege enrollment (payments_create/payments_update/journals_post). tenantId selects the target tenant (defaults to the platform/root tenant). The provisioned connector then appears in this global list and (for its tenant) the per-tenant list. Global-administrator only.'
-      operationId: ProvisionPaymentsConnector
+      operationId: ApplicationPrincipals_ProvisionPaymentsConnector
       parameters:
         - name: tenantId
           in: query
@@ -369,7 +369,7 @@ paths:
         - ApplicationPrincipals
       summary: Grant a permission to an application principal (any tenant)
       description: 'Grants a single least-privilege permission to the application principal''s enrollment in the tenantId tenant (grants are per-tenant, so tenantId is required). Owner/admin/wildcard/*_manage permissions are rejected even for a global admin (least-privilege by construction). Global-administrator only.'
-      operationId: GrantGlobalApplicationPrincipalPermission
+      operationId: ApplicationPrincipals_GrantGlobalApplicationPrincipalPermission
       parameters:
         - name: principalId
           in: path
@@ -452,7 +452,7 @@ paths:
         - ApplicationPrincipals
       summary: Revoke a permission from an application principal (any tenant)
       description: Revokes a direct permission grant from the application principal's enrollment in the tenantId tenant (required). Idempotent. Global-administrator only.
-      operationId: RevokeGlobalApplicationPrincipalPermission
+      operationId: ApplicationPrincipals_RevokeGlobalApplicationPrincipalPermission
       parameters:
         - name: principalId
           in: path
@@ -522,7 +522,7 @@ paths:
         - ApplicationPrincipals
       summary: Enable an application principal (global)
       description: Reinstates the application principal to the Active lifecycle state (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
-      operationId: EnableGlobalApplicationPrincipal
+      operationId: ApplicationPrincipals_EnableGlobalApplicationPrincipal
       parameters:
         - name: principalId
           in: path
@@ -587,7 +587,7 @@ paths:
         - ApplicationPrincipals
       summary: Suspend an application principal (global)
       description: Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
-      operationId: SuspendGlobalApplicationPrincipal
+      operationId: ApplicationPrincipals_SuspendGlobalApplicationPrincipal
       parameters:
         - name: principalId
           in: path
@@ -652,7 +652,7 @@ paths:
         - ApplicationPrincipals
       summary: Disable an application principal (global)
       description: Disables the application principal; dependent unattended execution fails closed (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
-      operationId: DisableGlobalApplicationPrincipal
+      operationId: ApplicationPrincipals_DisableGlobalApplicationPrincipal
       parameters:
         - name: principalId
           in: path
@@ -717,7 +717,7 @@ paths:
         - BusinessDomains
       summary: Retrieve all business domains in the system
       description: Retrieve all registered business domains across every tenant (global administrators only).
-      operationId: GetSystemBusinessDomains
+      operationId: BusinessDomains_GetSystemBusinessDomains
       parameters:
         - name: api-version
           in: query
@@ -769,7 +769,7 @@ paths:
         - BusinessDomains
       summary: Get the count of all business domains in the system
       description: Get the count of all registered business domains across every tenant.
-      operationId: GetSystemBusinessDomainsCount
+      operationId: BusinessDomains_GetSystemBusinessDomainsCount
       parameters:
         - name: api-version
           in: query
@@ -821,7 +821,7 @@ paths:
         - BusinessDomains
       summary: Retrieve a business domain by its ID
       description: 'Retrieve any business domain by its ID, regardless of owning tenant.'
-      operationId: GetSystemBusinessDomainById
+      operationId: BusinessDomains_GetSystemBusinessDomainById
       parameters:
         - name: businessDomainId
           in: path
@@ -870,7 +870,7 @@ paths:
         - BusinessDomains
       summary: Delete a business domain
       description: 'Removes any business domain from the system, regardless of owning tenant.'
-      operationId: DeleteSystemBusinessDomain
+      operationId: BusinessDomains_DeleteSystemBusinessDomain
       parameters:
         - name: businessDomainId
           in: path
@@ -920,7 +920,7 @@ paths:
         - BusinessDomains
       summary: Verify a business domain
       description: Checks the domain's DNS TXT records for the verification token and marks it verified.
-      operationId: VerifySystemBusinessDomain
+      operationId: BusinessDomains_VerifySystemBusinessDomain
       parameters:
         - name: businessDomainId
           in: path
@@ -979,7 +979,7 @@ paths:
         - Carts
       summary: Retrieve a list of system carts
       description: Retrieve a list of all carts in the system
-      operationId: GetSystemCarts
+      operationId: Carts_GetSystemCarts
       parameters:
         - name: api-version
           in: query
@@ -1031,7 +1031,7 @@ paths:
         - Carts
       summary: Get the count of system carts
       description: Get the count of all carts in the system
-      operationId: GetSystemCartsCount
+      operationId: Carts_GetSystemCartsCount
       parameters:
         - name: api-version
           in: query
@@ -1083,7 +1083,7 @@ paths:
         - Carts
       summary: Retrieve a single system cart by its ID
       description: Retrieve a single system cart by its ID
-      operationId: GetSystemCartById
+      operationId: Carts_GetSystemCartById
       parameters:
         - name: cartId
           in: path
@@ -1132,7 +1132,7 @@ paths:
         - Carts
       summary: Delete a system cart
       description: Delete a system cart by its ID
-      operationId: DeleteSystemCart
+      operationId: Carts_DeleteSystemCart
       parameters:
         - name: cartId
           in: path
@@ -1182,7 +1182,7 @@ paths:
         - Carts
       summary: Purge all guest carts
       description: 'Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.'
-      operationId: PurgeSystemGuestCarts
+      operationId: Carts_PurgeSystemGuestCarts
       parameters:
         - name: api-version
           in: query
@@ -1226,7 +1226,7 @@ paths:
         - ContactOptions
       summary: Retrieve a list of contact options (admin)
       description: Admin endpoint to retrieve options for any contact
-      operationId: GetSystemContactOptions
+      operationId: ContactOptions_GetSystemContactOptions
       parameters:
         - name: contactId
           in: path
@@ -1288,7 +1288,7 @@ paths:
         - ContactOptions
       summary: Create a new contact option (admin)
       description: Admin endpoint to create an option for any contact
-      operationId: CreateSystemContactOption
+      operationId: ContactOptions_CreateSystemContactOption
       parameters:
         - name: contactId
           in: path
@@ -1356,7 +1356,7 @@ paths:
         - ContactOptions
       summary: Get the count of contact options (admin)
       description: Admin endpoint to get the count of options for any contact
-      operationId: GetSystemContactOptionsCount
+      operationId: ContactOptions_GetSystemContactOptionsCount
       parameters:
         - name: contactId
           in: path
@@ -1419,7 +1419,7 @@ paths:
         - ContactOptions
       summary: Retrieve a single contact option by its ID (admin)
       description: Admin endpoint to retrieve a single option for any contact
-      operationId: GetSystemContactOptionById
+      operationId: ContactOptions_GetSystemContactOptionById
       parameters:
         - name: contactId
           in: path
@@ -1474,7 +1474,7 @@ paths:
         - ContactOptions
       summary: Update a contact option (admin)
       description: Admin endpoint to update an option for any contact
-      operationId: UpdateSystemContactOption
+      operationId: ContactOptions_UpdateSystemContactOption
       parameters:
         - name: contactId
           in: path
@@ -1537,7 +1537,7 @@ paths:
         - ContactOptions
       summary: Partially update a contact option (admin)
       description: Admin endpoint to partially update an option for any contact using a JSON Patch document
-      operationId: PatchSystemContactOption
+      operationId: ContactOptions_PatchSystemContactOption
       parameters:
         - name: contactId
           in: path
@@ -1604,7 +1604,7 @@ paths:
         - ContactOptions
       summary: Delete a contact option (admin)
       description: Admin endpoint to delete an option for any contact
-      operationId: DeleteSystemContactOption
+      operationId: ContactOptions_DeleteSystemContactOption
       parameters:
         - name: contactId
           in: path
@@ -1660,7 +1660,7 @@ paths:
         - Emails
       summary: Send a basic transactional email to recipients.
       description: This action is only available for global administrators (business_owner role).
-      operationId: AdminSendBasicEmail
+      operationId: Emails_AdminSendBasicEmail
       parameters:
         - name: api-version
           in: query
@@ -1712,7 +1712,7 @@ paths:
         - Emails
       summary: Preview a rendered basic email template.
       description: This action is only available for global administrators (business_owner role).
-      operationId: AdminPreviewBasicEmailTemplate
+      operationId: Emails_AdminPreviewBasicEmailTemplate
       parameters:
         - name: api-version
           in: query
@@ -1737,6 +1737,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -1744,6 +1745,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -1751,6 +1753,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -1758,6 +1761,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -1777,6 +1781,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -1803,6 +1808,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -1820,7 +1826,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -1843,6 +1849,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -1856,6 +1863,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -1875,6 +1883,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -1894,6 +1903,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -1919,6 +1929,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -1937,6 +1948,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -1962,6 +1974,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1997,6 +2010,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -2024,6 +2038,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -2051,6 +2066,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -2060,7 +2076,7 @@ paths:
         - Inbox
       summary: Get durable-inbox processor health
       description: 'Returns a single snapshot of the durable-inbox processor: whether it is enabled, the per-status counts (received/accepted/processing/retry-scheduled/rejected/quarantined/dead-lettered/cancelled), the age of the oldest accepted message, and the last successful processing instant. Global-administrator only.'
-      operationId: GetInboxHealth
+      operationId: Inbox_GetInboxHealth
       parameters:
         - name: api-version
           in: query
@@ -2104,7 +2120,7 @@ paths:
         - Inbox
       summary: List inbox messages
       description: 'Lists durable-inbox messages (payload-safe fields only). Use OData to scope by any projected field — e.g. $filter=Status eq ''Quarantined'' for the quarantine review, Status eq ''DeadLettered'' for terminal failures, VerificationStatus eq ''Failed'' for forged/untrusted callbacks, SourceSystem eq ''stripe'', or a ReceivedAtUtc range — and to page/order. Global-administrator only.'
-      operationId: GetInboxMessages
+      operationId: Inbox_GetInboxMessages
       parameters:
         - name: api-version
           in: query
@@ -2156,7 +2172,7 @@ paths:
         - Inbox
       summary: Count inbox messages
       description: Returns the count of durable-inbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'Quarantined'). Global-administrator only.
-      operationId: GetInboxMessagesCount
+      operationId: Inbox_GetInboxMessagesCount
       parameters:
         - name: api-version
           in: query
@@ -2208,7 +2224,7 @@ paths:
         - Inbox
       summary: Get one inbox message
       description: 'Returns one inbox message''s payload-safe detail by id — both lifecycle axes (processing status + independent verification status), the dedup lineage, attempt/generation counters, the recorded failure, and the timestamps. Global-administrator only.'
-      operationId: GetInboxMessage
+      operationId: Inbox_GetInboxMessage
       parameters:
         - name: id
           in: path
@@ -2267,7 +2283,7 @@ paths:
         - Inbox
       summary: Get an inbox correlation chain
       description: 'Returns every inbox message that shares a correlation id — one logical inbound interaction end-to-end, including its replay generations — oldest-received first. Global-administrator only.'
-      operationId: GetInboxCorrelationChain
+      operationId: Inbox_GetInboxCorrelationChain
       parameters:
         - name: correlationId
           in: path
@@ -2325,7 +2341,7 @@ paths:
         - Inbox
       summary: List duplicate-bearing inbox messages
       description: 'Lists inbox messages that have observed a re-delivery (DeliveryCount > 1) — durable evidence that a source is re-sending, surfaced with DeliveryCount / LastDuplicateReceivedAtUtc. Further OData filtering/paging applies. Global-administrator only.'
-      operationId: GetDuplicateInboxMessages
+      operationId: Inbox_GetDuplicateInboxMessages
       parameters:
         - name: api-version
           in: query
@@ -2377,7 +2393,7 @@ paths:
         - Inbox
       summary: Count duplicate-bearing inbox messages
       description: Returns the count of duplicate-bearing inbox messages under the same OData shaping as the duplicates list. Global-administrator only.
-      operationId: GetDuplicateInboxMessagesCount
+      operationId: Inbox_GetDuplicateInboxMessagesCount
       parameters:
         - name: api-version
           in: query
@@ -2429,7 +2445,7 @@ paths:
         - Inbox
       summary: Expedite a retry-scheduled inbox message
       description: 'Pulls a RetryScheduled message''s scheduled instant forward to now so the processor claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched. Only a RetryScheduled message can be expedited. Global-administrator only.'
-      operationId: ExpediteInboxMessage
+      operationId: Inbox_ExpediteInboxMessage
       parameters:
         - name: id
           in: path
@@ -2497,7 +2513,7 @@ paths:
         - Inbox
       summary: Cancel a scheduled inbox retry
       description: 'Stops a RetryScheduled message from retrying by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. Only a RetryScheduled message can be cancelled. Global-administrator only.'
-      operationId: CancelInboxMessageRetry
+      operationId: Inbox_CancelInboxMessageRetry
       parameters:
         - name: id
           in: path
@@ -2573,7 +2589,7 @@ paths:
         - Inbox
       summary: Release a stuck inbox lease
       description: 'Force-releases the lease on a message wedged in Processing (a crashed/hung processor) and returns it to the claimable Accepted state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. Only a Processing message can have its lease released. Global-administrator only.'
-      operationId: ReleaseInboxMessageLease
+      operationId: Inbox_ReleaseInboxMessageLease
       parameters:
         - name: id
           in: path
@@ -2641,7 +2657,7 @@ paths:
         - Inbox
       summary: Manually dead-letter an inbox message
       description: Manually moves a non-terminal message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
-      operationId: DeadLetterInboxMessage
+      operationId: Inbox_DeadLetterInboxMessage
       parameters:
         - name: id
           in: path
@@ -2717,7 +2733,7 @@ paths:
         - Inbox
       summary: Manually quarantine an inbox message
       description: Manually holds a non-terminal message for review in the terminal Quarantined state (e.g. an operator judges it suspicious). The reason is audit-critical. Global-administrator only.
-      operationId: QuarantineInboxMessage
+      operationId: Inbox_QuarantineInboxMessage
       parameters:
         - name: id
           in: path
@@ -2793,7 +2809,7 @@ paths:
         - Inbox
       summary: Replay a terminal inbox message as a new generation
       description: 'Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox''s recovery lever (distinct from the outbox''s same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root''s evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation''s identity. The reason is audit-critical. Global-administrator only.'
-      operationId: ReplayInboxMessage
+      operationId: Inbox_ReplayInboxMessage
       parameters:
         - name: id
           in: path
@@ -2869,7 +2885,7 @@ paths:
         - IPLookups
       summary: Retrieve a list of system IP lookups
       description: Retrieve a list of all IP lookups in the system
-      operationId: GetSystemIPLookups
+      operationId: IPLookups_GetSystemIPLookups
       parameters:
         - name: api-version
           in: query
@@ -2921,7 +2937,7 @@ paths:
         - IPLookups
       summary: Get the count of system IP lookups
       description: Get the count of all IP lookups in the system
-      operationId: GetSystemIPLookupsCount
+      operationId: IPLookups_GetSystemIPLookupsCount
       parameters:
         - name: api-version
           in: query
@@ -2973,7 +2989,7 @@ paths:
         - IPLookups
       summary: Retrieve a single system IP lookup by its ID
       description: Retrieve a single system IP lookup by its ID
-      operationId: GetSystemIPLookupById
+      operationId: IPLookups_GetSystemIPLookupById
       parameters:
         - name: ipLookupId
           in: path
@@ -3022,7 +3038,7 @@ paths:
         - IPLookups
       summary: Delete a system IP lookup
       description: Delete a system IP lookup by its ID
-      operationId: DeleteSystemIPLookup
+      operationId: IPLookups_DeleteSystemIPLookup
       parameters:
         - name: ipLookupId
           in: path
@@ -3066,16 +3082,1244 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/SystemService/LicenseAssignments/{licenseId}':
+    get:
+      tags:
+        - LicenseAssignments
+      summary: List license seat assignments
+      description: Lists the seats currently assigned on a pooled suite license for the acting tenant.
+      operationId: LicenseAssignments_GetLicenseAssignments
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/SuiteLicenseAssignmentDtoListEnvelope'
+  /api/v2/SystemService/LicenseAssignments:
+    post:
+      tags:
+        - LicenseAssignments
+      summary: Assign a license seat
+      description: Assigns a seat on a pooled suite license to a current member of the acting tenant. Idempotent.
+      operationId: LicenseAssignments_AssignLicense
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json;odata.metadata=minimal;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=minimal;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=full;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.metadata=none;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/*+xml:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SuiteLicenseAssignmentCreateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+  '/api/v2/SystemService/LicenseAssignments/{licenseId}/{enrollmentId}':
+    delete:
+      tags:
+        - LicenseAssignments
+      summary: Revoke a license seat
+      description: Revokes a member's seat on a pooled suite license owned by the acting tenant. Idempotent.
+      operationId: LicenseAssignments_RevokeLicense
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: enrollmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BooleanEnvelope'
   /api/v2/SystemService/Licensing/Licenses:
     get:
       tags:
         - Licensing
       summary: Retrieve a list of licenses
-      description: 'Retrieves a list of suite licenses, optionally filtered by tenant.'
-      operationId: GetLicensesAsync
+      description: Retrieves the suite licenses owned by the acting tenant.
+      operationId: Licensing_GetLicenses
       parameters:
         - name: tenantId
           in: query
+          required: true
           schema:
             type: string
             format: uuid
@@ -3346,7 +4590,7 @@ paths:
         - Licensing
       summary: Retrieve a license by ID
       description: Retrieves a single suite license by its unique identifier.
-      operationId: GetLicenseByIdAsync
+      operationId: Licensing_GetLicenseById
       parameters:
         - name: tenantId
           in: query
@@ -3627,7 +4871,7 @@ paths:
         - Licensing
       summary: Retrieve license assignments
       description: Retrieves all license assignments for a given license.
-      operationId: GetLicenseAssignmentsAsync
+      operationId: Licensing_GetLicenseAssignments
       parameters:
         - name: tenantId
           in: query
@@ -3908,7 +5152,7 @@ paths:
         - Licensing
       summary: Retrieve license attributes
       description: Retrieves all additional attributes for a given license.
-      operationId: GetAttributesForLicenseAsync
+      operationId: Licensing_GetAttributesForLicense
       parameters:
         - name: tenantId
           in: query
@@ -4189,7 +5433,7 @@ paths:
         - Licensing
       summary: Retrieve license features
       description: Retrieves all features for a given license.
-      operationId: GetFeaturesForLicenseAsync
+      operationId: Licensing_GetFeaturesForLicense
       parameters:
         - name: tenantId
           in: query
@@ -4470,7 +5714,7 @@ paths:
         - Licensing
       summary: Retrieve license record quota
       description: Retrieves the record quota for a given license.
-      operationId: GetLicenseRecordsQuotaAsync
+      operationId: Licensing_GetLicenseRecordsQuota
       parameters:
         - name: tenantId
           in: query
@@ -4751,7 +5995,7 @@ paths:
         - Licensing
       summary: Redeem a license
       description: Redeems a license for the current tenant user.
-      operationId: RedeemLicenseAsync
+      operationId: Licensing_RedeemLicense
       parameters:
         - name: tenantId
           in: query
@@ -5158,7 +6402,7 @@ paths:
         - Licensing
       summary: Validate a license
       description: Validates a license key and returns validation failures if any.
-      operationId: ValidateLicenseAsync
+      operationId: Licensing_ValidateLicense
       parameters:
         - name: api-version
           in: query
@@ -5555,8 +6799,8 @@ paths:
       tags:
         - Migrations
       summary: Retrieve database migrations
-      description: Retrieves the list of applied or pending database migrations.
-      operationId: Migrations
+      description: Retrieves the list of applied or pending database migrations. This action is only available for instance administrators.
+      operationId: Migrations_Migrations
       parameters:
         - name: pending
           in: query
@@ -5603,8 +6847,8 @@ paths:
       tags:
         - Migrations
       summary: Apply pending database migrations
-      description: Applies all pending database migrations and returns the list of migrations that were applied.
-      operationId: Migrate
+      description: Applies all pending database migrations and returns the list of migrations that were applied. This action is only available for instance administrators.
+      operationId: Migrations_Migrate
       parameters:
         - name: api-version
           in: query
@@ -5647,7 +6891,7 @@ paths:
       tags:
         - Modules
       summary: Get all modules available on this suite server instance.
-      operationId: GetAllModules
+      operationId: Modules_GetAllModules
       parameters:
         - name: tenantId
           in: query
@@ -5696,7 +6940,7 @@ paths:
       tags:
         - Modules
       summary: Get all modules available to a tenant user.
-      operationId: GetAvailableModules
+      operationId: Modules_GetAvailableModules
       parameters:
         - name: tenantId
           in: query
@@ -5745,7 +6989,7 @@ paths:
         - Options
       summary: Retrieve a list of system options
       description: Retrieve a list of system options for a portal
-      operationId: GetSystemOptions
+      operationId: Options_GetSystemOptions
       parameters:
         - name: portalId
           in: query
@@ -5802,7 +7046,7 @@ paths:
         - Options
       summary: Create a new system option
       description: Create a new system option
-      operationId: CreateSystemOption
+      operationId: Options_CreateSystemOption
       parameters:
         - name: key
           in: query
@@ -5864,7 +7108,7 @@ paths:
         - Options
       summary: Get the count of system options
       description: Get the count of system options for a portal
-      operationId: GetSystemOptionsCount
+      operationId: Options_GetSystemOptionsCount
       parameters:
         - name: portalId
           in: query
@@ -5922,7 +7166,7 @@ paths:
         - Options
       summary: Retrieve a single system option by its ID
       description: Retrieve a single system option by its ID
-      operationId: GetSystemOptionById
+      operationId: Options_GetSystemOptionById
       parameters:
         - name: optionId
           in: path
@@ -5971,7 +7215,7 @@ paths:
         - Options
       summary: Update a system option
       description: Update a system option
-      operationId: UpdateSystemOption
+      operationId: Options_UpdateSystemOption
       parameters:
         - name: optionId
           in: path
@@ -6028,7 +7272,7 @@ paths:
         - Options
       summary: Partially update a system option
       description: Partially update a system option using a JSON Patch document
-      operationId: PatchSystemOption
+      operationId: Options_PatchSystemOption
       parameters:
         - name: optionId
           in: path
@@ -6089,7 +7333,7 @@ paths:
         - Options
       summary: Delete a system option
       description: Delete a system option
-      operationId: DeleteSystemOption
+      operationId: Options_DeleteSystemOption
       parameters:
         - name: optionId
           in: path
@@ -6139,7 +7383,7 @@ paths:
         - Options
       summary: Retrieve a single system option by its key
       description: Retrieve a single system option by its key
-      operationId: GetSystemOptionByKey
+      operationId: Options_GetSystemOptionByKey
       parameters:
         - name: portalId
           in: query
@@ -6194,7 +7438,7 @@ paths:
         - Options
       summary: Create or update a system option by key
       description: Create or update a system option by key
-      operationId: UpsertSystemOption
+      operationId: Options_UpsertSystemOption
       parameters:
         - name: key
           in: path
@@ -6256,7 +7500,7 @@ paths:
         - Outbox
       summary: Get durable-outbox relay health
       description: 'Returns a single snapshot of the durable-outbox relay: whether it is enabled, the per-status counts (pending/processing/failed/dead-lettered), the age of the oldest pending message, and the last successful dispatch instant. Global-administrator only.'
-      operationId: GetOutboxHealth
+      operationId: Outbox_GetOutboxHealth
       parameters:
         - name: api-version
           in: query
@@ -6300,7 +7544,7 @@ paths:
         - Outbox
       summary: List outbox messages
       description: Lists durable-outbox messages (payload-safe fields only). Use OData to scope to a state — e.g. $filter=Status eq 'DeadLettered' for the dead-letter set or Status eq 'Failed' for retry-eligible rows — and to page/order. Global-administrator only.
-      operationId: GetOutboxMessages
+      operationId: Outbox_GetOutboxMessages
       parameters:
         - name: api-version
           in: query
@@ -6352,7 +7596,7 @@ paths:
         - Outbox
       summary: Count outbox messages
       description: Returns the count of durable-outbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'DeadLettered'). Global-administrator only.
-      operationId: GetOutboxMessagesCount
+      operationId: Outbox_GetOutboxMessagesCount
       parameters:
         - name: api-version
           in: query
@@ -6404,7 +7648,7 @@ paths:
         - Outbox
       summary: Get one outbox message
       description: 'Returns one outbox message''s payload-safe detail by id — its lifecycle status, the two classification axes (kind + message type), the attempt/ceiling budget, the recorded failure, the idempotency + correlation lineage, and the timestamps. Global-administrator only.'
-      operationId: GetOutboxMessage
+      operationId: Outbox_GetOutboxMessage
       parameters:
         - name: id
           in: path
@@ -6463,7 +7707,7 @@ paths:
         - Outbox
       summary: Get an outbox correlation chain
       description: Returns every outbox message that shares a correlation id — one logical unit of async work end-to-end (e.g. a command and the events its handler in turn staged) — oldest-created first. Global-administrator only.
-      operationId: GetOutboxCorrelationChain
+      operationId: Outbox_GetOutboxCorrelationChain
       parameters:
         - name: correlationId
           in: path
@@ -6521,7 +7765,7 @@ paths:
         - Outbox
       summary: Replay a dead-lettered or failed outbox message
       description: 'Requeues a DeadLettered or Failed message back to Pending so the relay re-drives it immediately (clearing the lease and recorded error, and bypassing the remaining backoff). The attempt budget is preserved — a replay grants one more pass, not a fresh budget. Replaying a message that is already Pending/Processing or is Succeeded/Cancelled is rejected. Global-administrator only.'
-      operationId: ReplayOutboxMessage
+      operationId: Outbox_ReplayOutboxMessage
       parameters:
         - name: id
           in: path
@@ -6589,7 +7833,7 @@ paths:
         - Outbox
       summary: Expedite a failed (retry-eligible) outbox message
       description: 'Pulls a Failed message''s scheduled instant forward to now so the relay claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched (the lighter-touch counterpart to Replay, which also clears the recorded error). Only a Failed message can be expedited. Global-administrator only.'
-      operationId: ExpediteOutboxMessage
+      operationId: Outbox_ExpediteOutboxMessage
       parameters:
         - name: id
           in: path
@@ -6657,7 +7901,7 @@ paths:
         - Outbox
       summary: Cancel an outbox message
       description: 'Stops a Pending or Failed message by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. An in-flight (Processing) or already-terminal message is rejected. Global-administrator only.'
-      operationId: CancelOutboxMessage
+      operationId: Outbox_CancelOutboxMessage
       parameters:
         - name: id
           in: path
@@ -6733,7 +7977,7 @@ paths:
         - Outbox
       summary: Manually dead-letter an outbox message
       description: Manually moves a Processing or Failed message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
-      operationId: DeadLetterOutboxMessage
+      operationId: Outbox_DeadLetterOutboxMessage
       parameters:
         - name: id
           in: path
@@ -6809,7 +8053,7 @@ paths:
         - Outbox
       summary: Release a stuck outbox lease
       description: 'Force-releases the lease on a message wedged in Processing (a crashed/hung relay) and returns it to the claimable Pending state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. The relay auto-reclaims a crashed row once its lease expires; this manual lever forces the release immediately. Only a Processing message can have its lease released. Global-administrator only.'
-      operationId: ReleaseOutboxMessageLease
+      operationId: Outbox_ReleaseOutboxMessageLease
       parameters:
         - name: id
           in: path
@@ -6871,13 +8115,308 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/SystemService/Outbox/Poison:
+    get:
+      tags:
+        - Outbox
+      summary: List unresolved consumer poison on a partition
+      description: 'Returns the unresolved dead-lettered (poison) positions consumers hold on one partition, ordered by sequence, each with its evidence: the consumer, the message id and type, when and why it was dead-lettered, and the outbox message''s error, correlation and causation ids while that message is still retained (MessageRetained=false once retention has purged it). consumerKey and throughSequence are optional. Global-administrator only.'
+      operationId: Outbox_GetOutboxPoisonPositions
+      parameters:
+        - name: partitionKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: consumerKey
+          in: query
+          schema:
+            type: string
+        - name: throughSequence
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutboxPoisonPositionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OutboxPoisonPositionDtoIReadOnlyListEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/SystemService/Outbox/Poison/Resolve:
+    post:
+      tags:
+        - Outbox
+      summary: Resolve a consumer poison position
+      description: 'Records a governed resolution of one dead-lettered (poison) position so it stops blocking certification. The dead-lettered receipt is never altered. Superseded records that the position will never be applied. Replayed is accepted only when replacementSequence names a later position on the same partition at which the consumer already holds an Applied receipt. An omitted consumerKey resolves the position for every consumer holding poison there. Idempotent, and audited. Global-administrator only.'
+      operationId: Outbox_ResolveOutboxPoison
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveOutboxPoisonRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ResolveOutboxPoisonRequest'
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison':
+    get:
+      tags:
+        - Outbox
+      summary: List unresolved consumer poison on a tenant's own partition
+      description: 'Returns the unresolved poison positions, with evidence, that one consumer holds on the tenant''s own partition. partitionKey must be the tenant''s own partition and consumerKey is required and must be a consumer a tenant may resolve. Any other partition reads as not found. Tenant business owner only.'
+      operationId: Outbox_GetTenantOutboxPoisonPositions
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partitionKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: consumerKey
+          in: query
+          schema:
+            type: string
+        - name: throughSequence
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutboxPoisonPositionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OutboxPoisonPositionDtoIReadOnlyListEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  '/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison/Resolve':
+    post:
+      tags:
+        - Outbox
+      summary: Resolve a consumer poison position on a tenant's own partition
+      description: 'Records a governed resolution of one poison position on the tenant''s own partition, for one consumer a tenant may resolve (derived-state consumers such as Search). consumerKey is required. Money and effect consumers are resolved by the platform operator only. Any other partition reads as not found. Same Superseded and Replayed rules as the platform route. Idempotent, and audited. Tenant business owner only.'
+      operationId: Outbox_ResolveTenantOutboxPoison
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveOutboxPoisonRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ResolveOutboxPoisonRequest'
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
   /api/v2/SystemService/Overview:
     get:
       tags:
         - Overview
       summary: Get system overview information
       description: 'Returns runtime, memory, and entity count information for the system'
-      operationId: GetSystemOverview
+      operationId: Overview_GetSystemOverview
       parameters:
         - name: api-version
           in: query
@@ -6921,7 +8460,7 @@ paths:
         - Portals
       summary: Retrieve a list of system portals
       description: Retrieve a list of all web portals in the system
-      operationId: GetSystemPortals
+      operationId: Portals_GetSystemPortals
       parameters:
         - name: api-version
           in: query
@@ -6972,7 +8511,7 @@ paths:
         - Portals
       summary: Create a new system portal
       description: Create a new web portal in the system
-      operationId: CreateSystemPortal
+      operationId: Portals_CreateSystemPortal
       parameters:
         - name: api-version
           in: query
@@ -7024,7 +8563,7 @@ paths:
         - Portals
       summary: Get the count of system portals
       description: Get the count of all web portals in the system
-      operationId: GetSystemPortalsCount
+      operationId: Portals_GetSystemPortalsCount
       parameters:
         - name: api-version
           in: query
@@ -7076,7 +8615,7 @@ paths:
         - Portals
       summary: Retrieve a single system portal by its ID
       description: Retrieve a single system portal by its ID
-      operationId: GetSystemPortalById
+      operationId: Portals_GetSystemPortalById
       parameters:
         - name: portalId
           in: path
@@ -7125,7 +8664,7 @@ paths:
         - Portals
       summary: Update a system portal
       description: Update an existing web portal in the system
-      operationId: UpdateSystemPortal
+      operationId: Portals_UpdateSystemPortal
       parameters:
         - name: portalId
           in: path
@@ -7182,7 +8721,7 @@ paths:
         - Portals
       summary: Partially update a system portal
       description: Partially update an existing web portal in the system using a JSON Patch document
-      operationId: PatchSystemPortal
+      operationId: Portals_PatchSystemPortal
       parameters:
         - name: portalId
           in: path
@@ -7243,7 +8782,7 @@ paths:
         - Portals
       summary: Delete a system portal
       description: Delete a web portal from the system
-      operationId: DeleteSystemPortal
+      operationId: Portals_DeleteSystemPortal
       parameters:
         - name: portalId
           in: path
@@ -7293,7 +8832,7 @@ paths:
         - TenantOptions
       summary: Retrieve a list of tenant options (admin)
       description: Admin endpoint to retrieve options for any tenant
-      operationId: GetSystemTenantOptions
+      operationId: TenantOptions_GetSystemTenantOptions
       parameters:
         - name: tenantId
           in: path
@@ -7355,7 +8894,7 @@ paths:
         - TenantOptions
       summary: Create a new tenant option (admin)
       description: Admin endpoint to create an option for any tenant
-      operationId: CreateSystemTenantOption
+      operationId: TenantOptions_CreateSystemTenantOption
       parameters:
         - name: tenantId
           in: path
@@ -7423,7 +8962,7 @@ paths:
         - TenantOptions
       summary: Get the count of tenant options (admin)
       description: Admin endpoint to get the count of options for any tenant
-      operationId: GetSystemTenantOptionsCount
+      operationId: TenantOptions_GetSystemTenantOptionsCount
       parameters:
         - name: tenantId
           in: path
@@ -7486,7 +9025,7 @@ paths:
         - TenantOptions
       summary: Retrieve a single tenant option by its ID (admin)
       description: Admin endpoint to retrieve a single option for any tenant
-      operationId: GetSystemTenantOptionById
+      operationId: TenantOptions_GetSystemTenantOptionById
       parameters:
         - name: tenantId
           in: path
@@ -7541,7 +9080,7 @@ paths:
         - TenantOptions
       summary: Update a tenant option (admin)
       description: Admin endpoint to update an option for any tenant
-      operationId: UpdateSystemTenantOption
+      operationId: TenantOptions_UpdateSystemTenantOption
       parameters:
         - name: tenantId
           in: path
@@ -7604,7 +9143,7 @@ paths:
         - TenantOptions
       summary: Partially update a tenant option (admin)
       description: Admin endpoint to partially update an option for any tenant using a JSON Patch document
-      operationId: PatchSystemTenantOption
+      operationId: TenantOptions_PatchSystemTenantOption
       parameters:
         - name: tenantId
           in: path
@@ -7671,7 +9210,7 @@ paths:
         - TenantOptions
       summary: Delete a tenant option (admin)
       description: Admin endpoint to delete an option for any tenant
-      operationId: DeleteSystemTenantOption
+      operationId: TenantOptions_DeleteSystemTenantOption
       parameters:
         - name: tenantId
           in: path
@@ -7727,7 +9266,7 @@ paths:
         - Tenants
       summary: Get all tenants available on this suite server instance.
       description: This action is only available for global administrators.
-      operationId: GetAllTenants
+      operationId: Tenants_GetAllTenants
       parameters:
         - name: api-version
           in: query
@@ -7778,7 +9317,7 @@ paths:
         - Tenants
       summary: Create a new tenant.
       description: This action is only available for global administrators.
-      operationId: CreateTenant
+      operationId: Tenants_CreateTenant
       parameters:
         - name: api-version
           in: query
@@ -7830,7 +9369,7 @@ paths:
         - Tenants
       summary: Get the total count of tenants available on this suite server instance.
       description: This action is only available for global administrators.
-      operationId: GetTenantsCount
+      operationId: Tenants_GetTenantsCount
       parameters:
         - name: api-version
           in: query
@@ -7882,7 +9421,7 @@ paths:
         - Tenants
       summary: Get all extended tenants available on this suite server instance.
       description: This action is only available for global administrators.
-      operationId: GetAllExtendedTenants
+      operationId: Tenants_GetAllExtendedTenants
       parameters:
         - name: api-version
           in: query
@@ -7934,7 +9473,7 @@ paths:
         - Tenants
       summary: Get the total count of extended tenants available on this suite server instance.
       description: This action is only available for global administrators.
-      operationId: GetExtendedTenantsCount
+      operationId: Tenants_GetExtendedTenantsCount
       parameters:
         - name: api-version
           in: query
@@ -7986,7 +9525,7 @@ paths:
         - Tenants
       summary: Get a specific tenant by ID.
       description: This action is only available for global administrators.
-      operationId: GetTenant
+      operationId: Tenants_GetTenant
       parameters:
         - name: tenantId
           in: path
@@ -8035,7 +9574,7 @@ paths:
         - Tenants
       summary: Update a specific tenant by ID.
       description: This action is only available for global administrators.
-      operationId: UpdateTenant
+      operationId: Tenants_UpdateTenant
       parameters:
         - name: tenantId
           in: path
@@ -8092,7 +9631,7 @@ paths:
         - Tenants
       summary: Partially update a specific tenant by ID.
       description: This action is only available for global administrators.
-      operationId: PatchTenant
+      operationId: Tenants_PatchTenant
       parameters:
         - name: tenantId
           in: path
@@ -8153,7 +9692,7 @@ paths:
         - Tenants
       summary: Delete a specific tenant by ID.
       description: This action is only available for global administrators.
-      operationId: DeleteTenant
+      operationId: Tenants_DeleteTenant
       parameters:
         - name: tenantId
           in: path
@@ -8203,7 +9742,7 @@ paths:
         - Tenants
       summary: Get the per-tenant admin module grants for a specific tenant.
       description: This action is only available for global administrators.
-      operationId: GetTenantModuleGrants
+      operationId: Tenants_GetTenantModuleGrants
       parameters:
         - name: tenantId
           in: path
@@ -8252,7 +9791,7 @@ paths:
         - Tenants
       summary: Replace the per-tenant admin module grants for a specific tenant.
       description: This action is only available for global administrators. Grants supplement licensing.
-      operationId: SetTenantModuleGrants
+      operationId: Tenants_SetTenantModuleGrants
       parameters:
         - name: tenantId
           in: path
@@ -8314,7 +9853,7 @@ paths:
         - Tenants
       summary: Preview the rendered email for a tenant.
       description: This action is only available for global administrators.
-      operationId: AdminPreviewTenantEmail
+      operationId: Tenants_AdminPreviewTenantEmail
       parameters:
         - name: tenantId
           in: path
@@ -8347,7 +9886,7 @@ paths:
         - Tenants
       summary: Send an email to a tenant.
       description: This action is only available for global administrators.
-      operationId: AdminSendTenantEmail
+      operationId: Tenants_AdminSendTenantEmail
       parameters:
         - name: tenantId
           in: path
@@ -8380,7 +9919,7 @@ paths:
         - UserOptions
       summary: Retrieve a list of user options (admin)
       description: Admin endpoint to retrieve options for any user
-      operationId: GetSystemUserOptions
+      operationId: UserOptions_GetSystemUserOptions
       parameters:
         - name: userId
           in: path
@@ -8442,7 +9981,7 @@ paths:
         - UserOptions
       summary: Create a new user option (admin)
       description: Admin endpoint to create an option for any user
-      operationId: CreateSystemUserOption
+      operationId: UserOptions_CreateSystemUserOption
       parameters:
         - name: userId
           in: path
@@ -8510,7 +10049,7 @@ paths:
         - UserOptions
       summary: Get the count of user options (admin)
       description: Admin endpoint to get the count of options for any user
-      operationId: GetSystemUserOptionsCount
+      operationId: UserOptions_GetSystemUserOptionsCount
       parameters:
         - name: userId
           in: path
@@ -8573,7 +10112,7 @@ paths:
         - UserOptions
       summary: Retrieve a single user option by its ID (admin)
       description: Admin endpoint to retrieve a single option for any user
-      operationId: GetSystemUserOptionById
+      operationId: UserOptions_GetSystemUserOptionById
       parameters:
         - name: userId
           in: path
@@ -8628,7 +10167,7 @@ paths:
         - UserOptions
       summary: Update a user option (admin)
       description: Admin endpoint to update an option for any user
-      operationId: UpdateSystemUserOption
+      operationId: UserOptions_UpdateSystemUserOption
       parameters:
         - name: userId
           in: path
@@ -8691,7 +10230,7 @@ paths:
         - UserOptions
       summary: Partially update a user option (admin)
       description: Admin endpoint to partially update an option for any user using a JSON Patch document
-      operationId: PatchSystemUserOption
+      operationId: UserOptions_PatchSystemUserOption
       parameters:
         - name: userId
           in: path
@@ -8758,7 +10297,7 @@ paths:
         - UserOptions
       summary: Delete a user option (admin)
       description: Admin endpoint to delete an option for any user
-      operationId: DeleteSystemUserOption
+      operationId: UserOptions_DeleteSystemUserOption
       parameters:
         - name: userId
           in: path
@@ -8814,7 +10353,7 @@ paths:
         - Users
       summary: Retrieve a list of users
       description: This action is only available for global administrators.
-      operationId: GetUsersAsync
+      operationId: Users_GetUsers
       parameters:
         - name: api-version
           in: query
@@ -8865,7 +10404,7 @@ paths:
         - Users
       summary: Create a new user
       description: This action is only available for global administrators.
-      operationId: CreateAccountHolderAsync
+      operationId: Users_CreateAccountHolder
       parameters:
         - name: api-version
           in: query
@@ -8917,7 +10456,7 @@ paths:
         - Users
       summary: Get the count of users
       description: This action is only available for global administrators.
-      operationId: GetUsersCountAsync
+      operationId: Users_GetUsersCount
       parameters:
         - name: api-version
           in: query
@@ -8969,7 +10508,7 @@ paths:
         - Users
       summary: Retrieve a list of extended users
       description: This action is only available for global administrators.
-      operationId: GetExtendedUsersAsync
+      operationId: Users_GetExtendedUsers
       parameters:
         - name: api-version
           in: query
@@ -9021,7 +10560,7 @@ paths:
         - Users
       summary: Get the count of extended users
       description: This action is only available for global administrators.
-      operationId: GetExtendedUsersCountAsync
+      operationId: Users_GetExtendedUsersCount
       parameters:
         - name: api-version
           in: query
@@ -9073,7 +10612,7 @@ paths:
         - Users
       summary: Retrieve a user by ID
       description: This action is only available for global administrators.
-      operationId: GetUserAsync
+      operationId: Users_GetUser
       parameters:
         - name: userId
           in: path
@@ -9121,7 +10660,7 @@ paths:
         - Users
       summary: Update a user
       description: This action is only available for global administrators.
-      operationId: UpdateAccountHolderAsync
+      operationId: Users_UpdateAccountHolder
       parameters:
         - name: userId
           in: path
@@ -9178,7 +10717,7 @@ paths:
         - Users
       summary: Partially update a user
       description: This action is only available for global administrators.
-      operationId: PatchAccountHolderAsync
+      operationId: Users_PatchAccountHolder
       parameters:
         - name: userId
           in: path
@@ -9239,7 +10778,7 @@ paths:
         - Users
       summary: Delete a user
       description: This action is only available for global administrators.
-      operationId: DeleteAccountHolderAsync
+      operationId: Users_DeleteAccountHolder
       parameters:
         - name: userId
           in: path
@@ -9289,7 +10828,7 @@ paths:
         - Users
       summary: Retrieve an extended user by ID
       description: This action is only available for global administrators.
-      operationId: GetExtendedAccountHolderAsync
+      operationId: Users_GetExtendedAccountHolder
       parameters:
         - name: userId
           in: path
@@ -9338,7 +10877,7 @@ paths:
         - Users
       summary: Retrieve the admin detail aggregate for a user
       description: 'Returns the user''s orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.'
-      operationId: GetUserAdminDetailAsync
+      operationId: Users_GetUserAdminDetail
       parameters:
         - name: userId
           in: path
@@ -9393,7 +10932,7 @@ paths:
         - Users
       summary: Set a user's password
       description: Replaces the user's password with the supplied value. Global administrators only.
-      operationId: SetUserPasswordAsync
+      operationId: Users_SetUserPassword
       parameters:
         - name: userId
           in: path
@@ -9454,13 +10993,72 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/SystemService/Users/{userId}/Email/Confirm':
+    post:
+      tags:
+        - Users
+      summary: Confirm a user's email
+      description: 'Marks the user''s email as confirmed without the emailed verification token, and records the action in the security log. Idempotent. Global administrators only.'
+      operationId: Users_ConfirmUserEmail
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
   '/api/v2/SystemService/Users/{userId}/AdminProfile':
     put:
       tags:
         - Users
       summary: Update a user's admin-managed profile
       description: 'Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.'
-      operationId: UpdateAccountHolderAdminProfileAsync
+      operationId: Users_UpdateAccountHolderAdminProfile
       parameters:
         - name: userId
           in: path
@@ -9518,7 +11116,7 @@ paths:
         - Users
       summary: Preview the rendered email for a user.
       description: This action is only available for global administrators.
-      operationId: AdminPreviewUserEmailTemplate
+      operationId: Users_AdminPreviewUserEmailTemplate
       parameters:
         - name: userId
           in: path
@@ -9567,7 +11165,7 @@ paths:
         - Users
       summary: Send an email to a user.
       description: This action is only available for global administrators.
-      operationId: AdminSendUserEmail
+      operationId: Users_AdminSendUserEmail
       parameters:
         - name: userId
           in: path
@@ -10811,6 +12409,8 @@ components:
           $ref: '#/components/schemas/SocialProfileDto'
         settings:
           $ref: '#/components/schemas/UserSettingsDto'
+        twoFactorEnabled:
+          type: boolean
       additionalProperties: false
     ExtendedUserDtoCollectionQueryParameters:
       type: object
@@ -11272,6 +12872,9 @@ components:
         receivedCount:
           type: integer
           format: int32
+        authenticityPendingCount:
+          type: integer
+          format: int32
         acceptedCount:
           type: integer
           format: int32
@@ -11303,6 +12906,15 @@ components:
           nullable: true
         successfulProcessingTracked:
           type: boolean
+        verificationAdvancerComposed:
+          type: boolean
+        ready:
+          type: boolean
+        readinessIssues:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: false
     InboxHealthDtoEnvelope:
       type: object
@@ -11865,8 +13477,7 @@ components:
         emailTemplateId:
           type: string
           nullable: true
-        payload:
-          nullable: true
+        payload: { }
       additionalProperties: false
     OptionCreateDto:
       required:
@@ -12098,6 +13709,10 @@ components:
           nullable: true
         successfulDispatchTracked:
           type: boolean
+        unresolvedPoisonCount:
+          type: integer
+          format: int32
+          nullable: true
       additionalProperties: false
     OutboxHealthDtoEnvelope:
       type: object
@@ -12322,6 +13937,86 @@ components:
             $ref: '#/components/schemas/OutboxMessageDto'
           nullable: true
       additionalProperties: false
+    OutboxPoisonPositionDto:
+      type: object
+      properties:
+        consumerKey:
+          type: string
+          nullable: true
+        partitionKey:
+          type: string
+          nullable: true
+        sequence:
+          type: integer
+          format: int64
+        messageId:
+          type: string
+          nullable: true
+        messageType:
+          type: string
+          nullable: true
+        deadLetteredAtUtc:
+          type: string
+          format: date-time
+        deadLetterDetail:
+          type: string
+          nullable: true
+        messageRetained:
+          type: boolean
+        errorCode:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        causationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OutboxPoisonPositionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutboxPoisonPositionDto'
+          nullable: true
+      additionalProperties: false
     PatchOperation:
       type: object
       properties:
@@ -12334,8 +14029,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:
@@ -12383,6 +14077,43 @@ components:
           nullable: true
         newPassword:
           type: string
+          nullable: true
+      additionalProperties: false
+    ResolveOutboxPoisonRequest:
+      required:
+        - kind
+        - partitionKey
+        - reason
+      type: object
+      properties:
+        consumerKey:
+          maxLength: 128
+          minLength: 0
+          type: string
+          nullable: true
+        partitionKey:
+          maxLength: 256
+          minLength: 1
+          type: string
+        sequence:
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+          format: int64
+        kind:
+          enum:
+            - Replayed
+            - Superseded
+          type: string
+        reason:
+          maxLength: 1024
+          minLength: 1
+          type: string
+        replacementSequence:
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+          format: int64
           nullable: true
       additionalProperties: false
     SecurityPermissionDto:
@@ -12624,6 +14355,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StudioModule'
+          nullable: true
+      additionalProperties: false
+    SuiteLicenseAssignmentCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        suiteLicenseId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
           nullable: true
       additionalProperties: false
     SuiteLicenseAssignmentDto:
@@ -13066,7 +14813,6 @@ components:
     TenantCreateDto:
       required:
         - countryId
-        - currencyId
         - email
         - name
       type: object
@@ -13117,9 +14863,9 @@ components:
           type: string
           nullable: true
         currencyId:
-          minLength: 1
           pattern: '^[A-Z]{3}\.[A-Z]{3}$'
           type: string
+          nullable: true
         duns:
           pattern: '^\d{9}$'
           type: string
@@ -13671,8 +15417,10 @@ components:
           nullable: true
         twoFactorEnabled:
           type: boolean
+          nullable: true
         lockoutEnabled:
           type: boolean
+          nullable: true
         lockoutEnd:
           type: string
           format: date-time
@@ -14077,6 +15825,21 @@ components:
             - Fulfilled
             - Cancelled
           type: string
+        tenantId:
+          type: string
+          nullable: true
+        receiverTenantId:
+          type: string
+          nullable: true
+        total:
+          type: number
+          format: double
+        totalCurrencyId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
       additionalProperties: false
     UserSettingsDto:
       type: object
@@ -14243,6 +16006,7 @@ components:
         ethereumPrivateKey:
           type: string
           nullable: true
+          deprecated: true
         rollingReservePercent:
           type: number
           format: double
@@ -14465,6 +16229,7 @@ tags:
   - name: FenixAlliance.ABS.Web
   - name: Inbox
   - name: IPLookups
+  - name: LicenseAssignments
   - name: Licensing
   - name: Migrations
   - name: Modules

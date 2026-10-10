@@ -23,13 +23,65 @@ servers:
           - https://dev.absuite.net
           - https://localhost:44388
 paths:
+  /api/v2/ForexService/Documents/Reprice:
+    post:
+      tags:
+        - Documents
+      summary: Re-price unissued documents (root-only)
+      description: Re-prices unissued invoices and quotes whose rates snapshot is frozen. Dry run unless Apply is true.
+      operationId: Documents_RepriceUnissuedDocuments
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepriceUnissuedDocumentsCommand'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RepriceUnissuedDocumentsCommand'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentRepriceReportEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DocumentRepriceReportEnvelope'
   /api/v2/ForexService/Exchange/Latest:
     get:
       tags:
         - Exchange
       summary: Exchange currency at latest rates
       description: Exchange an amount of money from one currency to another using the latest available exchange rates.
-      operationId: ExchangeAmountAsync
+      operationId: Exchange_ExchangeAmount
       parameters:
         - name: amount
           in: query
@@ -81,7 +133,7 @@ paths:
         - Exchange
       summary: Exchange currency at historical rates
       description: Exchange an amount of money from one currency to another using exchange rates from a specific historical date.
-      operationId: ExchangeAmountHistoricalAsync
+      operationId: Exchange_ExchangeAmountHistorical
       parameters:
         - name: amount
           in: query
@@ -139,7 +191,7 @@ paths:
         - ExchangeV
       summary: Exchange currency at latest rates (v3)
       description: Exchange an amount of money from one currency to another using the latest available exchange rates. Returns the full ExchangeRate details.
-      operationId: ExchangeAmountV3Async
+      operationId: ExchangeV_ExchangeAmountV3
       parameters:
         - name: amount
           in: query
@@ -191,7 +243,7 @@ paths:
         - ExchangeV
       summary: Exchange currency at historical rates (v3)
       description: Exchange an amount of money from one currency to another using exchange rates from a specific historical date. Returns the full ExchangeRate details.
-      operationId: ExchangeAmountHistoricalV3Async
+      operationId: ExchangeV_ExchangeAmountHistoricalV3
       parameters:
         - name: amount
           in: query
@@ -247,6 +299,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -254,6 +307,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -261,6 +315,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -268,6 +323,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -287,6 +343,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -313,6 +370,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -330,7 +388,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -353,6 +411,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -366,6 +425,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -385,6 +445,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -404,6 +465,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -429,6 +491,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -447,6 +510,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -472,6 +536,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -507,6 +572,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -534,6 +600,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -561,6 +628,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -570,7 +638,7 @@ paths:
         - Rates
       summary: Get latest currency rates
       description: Retrieves the latest exchange rates for all supported currencies.
-      operationId: GetLatestCurrencyRatesModelAsync
+      operationId: Rates_GetLatestCurrencyRatesModel
       parameters:
         - name: api-version
           in: query
@@ -614,7 +682,7 @@ paths:
         - Rates
       summary: Get latest rate for a currency
       description: Retrieves the latest exchange rate for a specific currency by its identifier.
-      operationId: GetLatestCurrencyRateAsync
+      operationId: Rates_GetLatestCurrencyRate
       parameters:
         - name: currencyId
           in: path
@@ -663,7 +731,7 @@ paths:
         - Rates
       summary: Get historical currency rates
       description: Retrieves exchange rates for all supported currencies as of a specific historical date.
-      operationId: GetHistoricalCurrencyRatesAsync
+      operationId: Rates_GetHistoricalCurrencyRates
       parameters:
         - name: date
           in: query
@@ -712,7 +780,7 @@ paths:
         - Rates
       summary: Get historical rate for a currency
       description: Retrieves the exchange rate for a specific currency as of a specific historical date.
-      operationId: GetHistoricalCurrencyRateAsync
+      operationId: Rates_GetHistoricalCurrencyRate
       parameters:
         - name: currencyId
           in: path
@@ -760,6 +828,108 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ExchangeRateEnvelope'
+  '/api/v2/ForexService/Rates/History/{currencyId}/Series':
+    get:
+      tags:
+        - Rates
+      summary: Get a currency's daily rate series
+      description: Retrieves a currency's stored daily exchange rates (units per USD) for a date range of at most 400 days.
+      operationId: Rates_GetForexRateSeries
+      parameters:
+        - name: currencyId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForexRateSeriesEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ForexRateSeriesEnvelope'
+  /api/v2/ForexService/Sets/Repair:
+    post:
+      tags:
+        - Sets
+      summary: Repair stored forex sets (root-only)
+      description: Rebuilds the stored daily forex sets from the rates feed's history. Dry run unless Apply is true.
+      operationId: Sets_RepairForeignExchangeSets
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepairForeignExchangeSetsCommand'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RepairForeignExchangeSetsCommand'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForexSetRepairReportEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ForexSetRepairReportEnvelope'
 components:
   schemas:
     AccessTokenResponse:
@@ -796,6 +966,111 @@ components:
         country:
           type: string
           nullable: true
+      additionalProperties: false
+    DocumentRepriceItem:
+      type: object
+      properties:
+        documentType:
+          type: string
+          nullable: true
+        documentId:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        oldTotal:
+          type: number
+          format: double
+        newTotal:
+          type: number
+          format: double
+          nullable: true
+        oldRatesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        oldRate:
+          type: number
+          format: double
+          nullable: true
+        newRate:
+          type: number
+          format: double
+          nullable: true
+        skippedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DocumentRepriceReport:
+      type: object
+      properties:
+        applied:
+          type: boolean
+        since:
+          type: string
+          format: date-time
+        currentRatesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentRepriceItem'
+          nullable: true
+        invoices:
+          type: integer
+          format: int32
+          readOnly: true
+        quotes:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    DocumentRepriceReportEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/DocumentRepriceReport'
       additionalProperties: false
     ErrorEnvelope:
       type: object
@@ -881,6 +1156,84 @@ components:
         result:
           $ref: '#/components/schemas/ExchangeRate'
       additionalProperties: false
+    ForexRateChange:
+      type: object
+      properties:
+        currency:
+          type: string
+          nullable: true
+        old:
+          type: number
+          format: double
+          nullable: true
+        new:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    ForexRatePoint:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        rate:
+          type: number
+          format: double
+      additionalProperties: false
+    ForexRateSeries:
+      type: object
+      properties:
+        currencyId:
+          type: string
+          nullable: true
+        base:
+          type: string
+          nullable: true
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForexRatePoint'
+          nullable: true
+      additionalProperties: false
+    ForexRateSeriesEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ForexRateSeries'
+      additionalProperties: false
     ForexRatesDto:
       type: object
       properties:
@@ -895,6 +1248,13 @@ components:
         timestamp:
           type: integer
           format: int64
+        ratesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        isStale:
+          type: boolean
         requestTimestamp:
           type: string
           format: date-time
@@ -942,6 +1302,120 @@ components:
           readOnly: true
         result:
           $ref: '#/components/schemas/ForexRatesDto'
+      additionalProperties: false
+    ForexSetRepairDay:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        action:
+          enum:
+            - Create
+            - Replace
+            - Unchanged
+            - NoSnapshot
+          type: string
+        snapshotRevision:
+          type: string
+          nullable: true
+        snapshotCommittedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        oldRatesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        ratesAsOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        majors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForexRateChange'
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        storedRows:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ForexSetRepairReport:
+      type: object
+      properties:
+        applied:
+          type: boolean
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        canonicalTime:
+          type: string
+          nullable: true
+        days:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForexSetRepairDay'
+          nullable: true
+        created:
+          type: integer
+          format: int32
+          readOnly: true
+        replaced:
+          type: integer
+          format: int32
+          readOnly: true
+        unchanged:
+          type: integer
+          format: int32
+          readOnly: true
+        withoutSnapshot:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    ForexSetRepairReportEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ForexSetRepairReport'
       additionalProperties: false
     ForgotPasswordRequest:
       required:
@@ -1092,6 +1566,27 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    RepairForeignExchangeSetsCommand:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        apply:
+          type: boolean
+      additionalProperties: false
+    RepriceUnissuedDocumentsCommand:
+      type: object
+      properties:
+        since:
+          type: string
+          format: date-time
+        apply:
+          type: boolean
+      additionalProperties: false
     ResendConfirmationEmailRequest:
       required:
         - email
@@ -1159,7 +1654,9 @@ components:
           type: boolean
       additionalProperties: false
 tags:
+  - name: Documents
   - name: Exchange
   - name: ExchangeV
   - name: FenixAlliance.ABS.Web
   - name: Rates
+  - name: Sets

@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - ProductionPlans
       summary: Get all production plans
       description: Retrieves all production plans for the specified tenant.
-      operationId: GetProductionPlansAsync
+      operationId: ProductionPlans_GetProductionPlans
       parameters:
         - name: tenantId
           in: query
@@ -398,7 +414,7 @@ paths:
         - ProductionPlans
       summary: Create a new production plan
       description: Creates a new production plan for the specified tenant.
-      operationId: CreateProductionPlanAsync
+      operationId: ProductionPlans_CreateProductionPlan
       parameters:
         - name: tenantId
           in: query
@@ -449,7 +465,7 @@ paths:
         - ProductionPlans
       summary: Get production plans count
       description: Returns the count of production plans for the specified tenant.
-      operationId: GetProductionPlansCountAsync
+      operationId: ProductionPlans_GetProductionPlansCount
       parameters:
         - name: tenantId
           in: query
@@ -498,7 +514,7 @@ paths:
         - ProductionPlans
       summary: Get production plan by ID
       description: Retrieves a specific production plan by its identifier.
-      operationId: GetProductionPlanByIdAsync
+      operationId: ProductionPlans_GetProductionPlanById
       parameters:
         - name: tenantId
           in: query
@@ -553,7 +569,7 @@ paths:
         - ProductionPlans
       summary: Update a production plan
       description: Updates an existing production plan for the specified tenant.
-      operationId: UpdateProductionPlanAsync
+      operationId: ProductionPlans_UpdateProductionPlan
       parameters:
         - name: tenantId
           in: query
@@ -609,7 +625,7 @@ paths:
         - ProductionPlans
       summary: Patch a production plan
       description: Patch a production plan
-      operationId: PatchProductionPlanAsync
+      operationId: ProductionPlans_PatchProductionPlan
       parameters:
         - name: tenantId
           in: query
@@ -676,7 +692,7 @@ paths:
         - ProductionPlans
       summary: Delete a production plan
       description: Deletes a production plan for the specified tenant.
-      operationId: DeleteProductionPlanAsync
+      operationId: ProductionPlans_DeleteProductionPlan
       parameters:
         - name: tenantId
           in: query
@@ -725,7 +741,7 @@ paths:
         - WorkOrders
       summary: Get all work orders
       description: Retrieves all work orders for the specified tenant.
-      operationId: GetWorkOrdersAsync
+      operationId: WorkOrders_GetWorkOrders
       parameters:
         - name: tenantId
           in: query
@@ -773,7 +789,7 @@ paths:
         - WorkOrders
       summary: Create a new work order
       description: Creates a new work order for the specified tenant.
-      operationId: CreateWorkOrderAsync
+      operationId: WorkOrders_CreateWorkOrder
       parameters:
         - name: tenantId
           in: query
@@ -824,7 +840,7 @@ paths:
         - WorkOrders
       summary: Get work orders count
       description: Returns the count of work orders for the specified tenant.
-      operationId: GetWorkOrdersCountAsync
+      operationId: WorkOrders_GetWorkOrdersCount
       parameters:
         - name: tenantId
           in: query
@@ -873,7 +889,7 @@ paths:
         - WorkOrders
       summary: Get work order by ID
       description: Retrieves a specific work order by its identifier.
-      operationId: GetWorkOrderByIdAsync
+      operationId: WorkOrders_GetWorkOrderById
       parameters:
         - name: tenantId
           in: query
@@ -928,7 +944,7 @@ paths:
         - WorkOrders
       summary: Update a work order
       description: Updates an existing work order for the specified tenant.
-      operationId: UpdateWorkOrderAsync
+      operationId: WorkOrders_UpdateWorkOrder
       parameters:
         - name: tenantId
           in: query
@@ -984,7 +1000,7 @@ paths:
         - WorkOrders
       summary: Patch a work order
       description: Patch a work order
-      operationId: PatchWorkOrderAsync
+      operationId: WorkOrders_PatchWorkOrder
       parameters:
         - name: tenantId
           in: query
@@ -1051,7 +1067,7 @@ paths:
         - WorkOrders
       summary: Delete a work order
       description: Deletes a work order for the specified tenant.
-      operationId: DeleteWorkOrderAsync
+      operationId: WorkOrders_DeleteWorkOrder
       parameters:
         - name: tenantId
           in: query
@@ -1100,7 +1116,7 @@ paths:
         - WorkOrderTypes
       summary: Get all work order types
       description: Retrieves all work order types for the specified tenant.
-      operationId: GetWorkOrderTypesAsync
+      operationId: WorkOrderTypes_GetWorkOrderTypes
       parameters:
         - name: tenantId
           in: query
@@ -1148,7 +1164,7 @@ paths:
         - WorkOrderTypes
       summary: Create a new work order type
       description: Creates a new work order type for the specified tenant.
-      operationId: CreateWorkOrderTypeAsync
+      operationId: WorkOrderTypes_CreateWorkOrderType
       parameters:
         - name: tenantId
           in: query
@@ -1199,7 +1215,7 @@ paths:
         - WorkOrderTypes
       summary: Get work order types count
       description: Returns the count of work order types for the specified tenant.
-      operationId: GetWorkOrderTypesCountAsync
+      operationId: WorkOrderTypes_GetWorkOrderTypesCount
       parameters:
         - name: tenantId
           in: query
@@ -1248,7 +1264,7 @@ paths:
         - WorkOrderTypes
       summary: Get work order type by ID
       description: Retrieves a specific work order type by its identifier.
-      operationId: GetWorkOrderTypeByIdAsync
+      operationId: WorkOrderTypes_GetWorkOrderTypeById
       parameters:
         - name: tenantId
           in: query
@@ -1303,7 +1319,7 @@ paths:
         - WorkOrderTypes
       summary: Update a work order type
       description: Updates an existing work order type for the specified tenant.
-      operationId: UpdateWorkOrderTypeAsync
+      operationId: WorkOrderTypes_UpdateWorkOrderType
       parameters:
         - name: tenantId
           in: query
@@ -1359,7 +1375,7 @@ paths:
         - WorkOrderTypes
       summary: Patch a work order type
       description: Patch a work order type
-      operationId: PatchWorkOrderTypeAsync
+      operationId: WorkOrderTypes_PatchWorkOrderType
       parameters:
         - name: tenantId
           in: query
@@ -1426,7 +1442,7 @@ paths:
         - WorkOrderTypes
       summary: Delete a work order type
       description: Deletes a work order type for the specified tenant.
-      operationId: DeleteWorkOrderTypeAsync
+      operationId: WorkOrderTypes_DeleteWorkOrderType
       parameters:
         - name: tenantId
           in: query
@@ -1475,7 +1491,7 @@ paths:
         - Workstations
       summary: Get all workstations
       description: Retrieves all workstations for the specified tenant.
-      operationId: GetWorkstationsAsync
+      operationId: Workstations_GetWorkstations
       parameters:
         - name: tenantId
           in: query
@@ -1523,7 +1539,7 @@ paths:
         - Workstations
       summary: Create a new workstation
       description: Creates a new workstation for the specified tenant.
-      operationId: CreateWorkstationAsync
+      operationId: Workstations_CreateWorkstation
       parameters:
         - name: tenantId
           in: query
@@ -1574,7 +1590,7 @@ paths:
         - Workstations
       summary: Get workstations count
       description: Returns the count of workstations for the specified tenant.
-      operationId: GetWorkstationsCountAsync
+      operationId: Workstations_GetWorkstationsCount
       parameters:
         - name: tenantId
           in: query
@@ -1623,7 +1639,7 @@ paths:
         - Workstations
       summary: Get workstation by ID
       description: Retrieves a specific workstation by its identifier.
-      operationId: GetWorkstationByIdAsync
+      operationId: Workstations_GetWorkstationById
       parameters:
         - name: tenantId
           in: query
@@ -1678,7 +1694,7 @@ paths:
         - Workstations
       summary: Update a workstation
       description: Updates an existing workstation for the specified tenant.
-      operationId: UpdateWorkstationAsync
+      operationId: Workstations_UpdateWorkstation
       parameters:
         - name: tenantId
           in: query
@@ -1734,7 +1750,7 @@ paths:
         - Workstations
       summary: Patch a workstation
       description: Patch a workstation
-      operationId: PatchWorkstationAsync
+      operationId: Workstations_PatchWorkstation
       parameters:
         - name: tenantId
           in: query
@@ -1801,7 +1817,7 @@ paths:
         - Workstations
       summary: Delete a workstation
       description: Deletes a workstation for the specified tenant.
-      operationId: DeleteWorkstationAsync
+      operationId: Workstations_DeleteWorkstation
       parameters:
         - name: tenantId
           in: query
@@ -2070,8 +2086,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     ProductionPlanCreateDto:
       required:

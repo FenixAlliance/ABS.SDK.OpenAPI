@@ -33,11 +33,82 @@
     }
   ],
   "paths": {
+    "/api/v2/InvoicingService/Coupons/Recognition": {
+      "get": {
+        "tags": [
+          "Coupons"
+        ],
+        "summary": "Recognise a voucher code for your cart.",
+        "description": "Says whether a voucher code is recognised for the caller's own cart. The seller is derived from the cart's lines, never from the request. Every miss answers the same 'not recognised'. Recognition does not apply the voucher.",
+        "operationId": "Coupons_GetBillingCouponRecognition",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "cartId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingCouponRecognitionDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingCouponRecognitionDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -50,6 +121,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,6 +134,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -74,6 +147,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -106,6 +180,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -151,6 +226,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +256,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -218,6 +294,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -240,6 +317,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -272,6 +350,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -304,6 +383,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -346,6 +426,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -376,6 +457,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -418,6 +500,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -476,6 +559,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -522,6 +606,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -568,6 +653,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -582,7 +668,7 @@
         ],
         "summary": "Get a list of invoices.",
         "description": "Retrieves a list of invoices for the specified tenant.",
-        "operationId": "GetInvoices",
+        "operationId": "Invoices_GetInvoices",
         "parameters": [
           {
             "name": "tenantId",
@@ -647,7 +733,7 @@
         ],
         "summary": "Create a new invoice.",
         "description": "Creates a new invoice for the specified tenant.",
-        "operationId": "CreateInvoice",
+        "operationId": "Invoices_CreateInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -714,7 +800,7 @@
         ],
         "summary": "Get the count of invoices.",
         "description": "Retrieves the total count of invoices for the specified tenant.",
-        "operationId": "GetInvoicesCount",
+        "operationId": "Invoices_GetInvoicesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -781,7 +867,7 @@
         ],
         "summary": "Get a list of extended invoices.",
         "description": "Retrieves a list of extended invoice details for the specified tenant.",
-        "operationId": "GetExtendedInvoices",
+        "operationId": "Invoices_GetExtendedInvoices",
         "parameters": [
           {
             "name": "tenantId",
@@ -848,7 +934,7 @@
         ],
         "summary": "Get the count of extended invoices.",
         "description": "Retrieves the total count of extended invoices for the specified tenant.",
-        "operationId": "GetExtendedInvoicesCount",
+        "operationId": "Invoices_GetExtendedInvoicesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -915,7 +1001,7 @@
         ],
         "summary": "Get an extended invoice by ID.",
         "description": "Retrieves the extended invoice details for the specified invoice ID.",
-        "operationId": "GetExtendedInvoice",
+        "operationId": "Invoices_GetExtendedInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -977,7 +1063,7 @@
         ],
         "summary": "Get an invoice by ID.",
         "description": "Retrieves the invoice details for the specified invoice ID.",
-        "operationId": "GetInvoice",
+        "operationId": "Invoices_GetInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -1037,7 +1123,7 @@
         ],
         "summary": "Update an invoice.",
         "description": "Updates the specified invoice for the tenant.",
-        "operationId": "UpdateInvoice",
+        "operationId": "Invoices_UpdateInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -1111,7 +1197,7 @@
         ],
         "summary": "Patch an invoice.",
         "description": "Partially updates the specified invoice for the tenant.",
-        "operationId": "PatchInvoice",
+        "operationId": "Invoices_PatchInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -1191,7 +1277,7 @@
         ],
         "summary": "Delete an invoice.",
         "description": "Deletes the specified invoice for the tenant.",
-        "operationId": "DeleteInvoice",
+        "operationId": "Invoices_DeleteInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -1253,7 +1339,7 @@
         ],
         "summary": "Calculate an invoice.",
         "description": "Calculates the totals and taxes for the specified invoice.",
-        "operationId": "CalculateInvoice",
+        "operationId": "Invoices_CalculateInvoice",
         "parameters": [
           {
             "name": "tenantId",
@@ -1308,6 +1394,465 @@
         }
       }
     },
+    "/api/v2/InvoicingService/Invoices/{invoiceId}/Issue": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Issue an invoice.",
+        "description": "Issues the specified Draft invoice: it becomes Signed and a payable obligation, and its amounts can no longer change. Issuing an invoice that is already issued succeeds and changes nothing.",
+        "operationId": "Invoices_IssueInvoice",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/InvoicingService/Invoices/{invoiceId}/CreditNotes": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Issue a credit note against an issued invoice.",
+        "description": "Issues a credit note in the invoice's currency that reduces what is owed on it: numbered from the tenant's credit note series and signed in one step. The amount cannot exceed what can still be credited, and an annulment credits all of it. The invoice must be issued and must not itself be a note.",
+        "operationId": "Invoices_CreateCreditNote",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditNoteCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditNoteCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceNoteDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceNoteDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/InvoicingService/Invoices/{invoiceId}/DebitNotes": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Issue a debit note against an issued invoice.",
+        "description": "Issues a debit note in the invoice's currency that increases what is owed on it: numbered from the tenant's debit note series and signed in one step. The invoice must be issued and must not itself be a note.",
+        "operationId": "Invoices_CreateDebitNote",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DebitNoteCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DebitNoteCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceNoteDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceNoteDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/InvoicingService/Invoices/{invoiceId}/CreditableAmount": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Get what can still be credited on an invoice.",
+        "description": "The invoice's total plus its issued debit notes, minus its issued credit notes, in its own currency: the most a new credit note can credit.",
+        "operationId": "Invoices_GetInvoiceCreditableAmount",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCreditableAmountDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCreditableAmountDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/InvoicingService/Invoices/IssuedUnnumbered": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "List the tenants that issue unnumbered invoices (root tenant only).",
+        "description": "Invoice numbering is opt-in per tenant: a tenant without an enumeration range issues unnumbered invoices. Lists those tenants with the count and the latest issue instant, so a range can be configured. Only the instance's root tenant may call it.",
+        "operationId": "Invoices_GetUnnumberedIssuingTenants",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnnumberedIssuingTenantDtoIReadOnlyListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnnumberedIssuingTenantDtoIReadOnlyListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/InvoicingService/Invoices/IssuedAtBackfill": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Backfill the issuance instant of legacy invoices (root tenant only).",
+        "description": "One bounded run of the one-time backfill: stamps the issuance instant on up to batchSize legacy live invoices that were already payable obligations, without re-posting them, and records an audit entry. Run again until it reports 0. Only the instance's root tenant may call it.",
+        "operationId": "Invoices_BackfillInvoiceIssuedAt",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "batchSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceIssuedAtBackfillResultDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceIssuedAtBackfillResultDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines": {
       "get": {
         "tags": [
@@ -1315,7 +1860,7 @@
         ],
         "summary": "Get invoice lines.",
         "description": "Retrieves the invoice lines for the specified invoice.",
-        "operationId": "GetInvoiceLines",
+        "operationId": "Invoices_GetInvoiceLines",
         "parameters": [
           {
             "name": "tenantId",
@@ -1382,7 +1927,7 @@
         ],
         "summary": "Create a new invoice line.",
         "description": "Creates a new invoice line for the specified invoice.",
-        "operationId": "CreateInvoiceLine",
+        "operationId": "Invoices_CreateInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1443,7 +1988,7 @@
         ],
         "summary": "Get the count of invoice lines.",
         "description": "Retrieves the total count of invoice lines for the specified invoice.",
-        "operationId": "GetInvoiceLinesCount",
+        "operationId": "Invoices_GetInvoiceLinesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -1504,7 +2049,7 @@
         ],
         "summary": "Get an invoice line by ID.",
         "description": "Retrieves the invoice line details for the specified invoice line ID.",
-        "operationId": "GetInvoiceLine",
+        "operationId": "Invoices_GetInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1558,7 +2103,7 @@
         ],
         "summary": "Update an invoice line.",
         "description": "Updates the specified invoice line.",
-        "operationId": "UpdateInvoiceLine",
+        "operationId": "Invoices_UpdateInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1626,7 +2171,7 @@
         ],
         "summary": "Patch an invoice line.",
         "description": "Partially updates the specified invoice line.",
-        "operationId": "PatchInvoiceLine",
+        "operationId": "Invoices_PatchInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1715,7 +2260,7 @@
         ],
         "summary": "Delete an invoice line.",
         "description": "Deletes the specified invoice line.",
-        "operationId": "DeleteInvoiceLine",
+        "operationId": "Invoices_DeleteInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1771,7 +2316,7 @@
         ],
         "summary": "Calculate an invoice line.",
         "description": "Calculates the totals and taxes for the specified invoice line.",
-        "operationId": "CalculateInvoiceLine",
+        "operationId": "Invoices_CalculateInvoiceLine",
         "parameters": [
           {
             "name": "tenantId",
@@ -1827,7 +2372,7 @@
         ],
         "summary": "Get taxes for an invoice line.",
         "description": "Retrieves the taxes applied to the specified invoice line.",
-        "operationId": "GetInvoiceLineTaxes",
+        "operationId": "Invoices_GetInvoiceLineTaxes",
         "parameters": [
           {
             "name": "tenantId",
@@ -1895,7 +2440,7 @@
         ],
         "summary": "Create a new tax for an invoice line.",
         "description": "Creates a new tax entry for the specified invoice line.",
-        "operationId": "CreateInvoiceLineTax",
+        "operationId": "Invoices_CreateInvoiceLineTax",
         "parameters": [
           {
             "name": "tenantId",
@@ -1965,7 +2510,7 @@
         ],
         "summary": "Get the count of taxes for an invoice line.",
         "description": "Retrieves the total count of taxes applied to the specified invoice line.",
-        "operationId": "GetInvoiceLineTaxesCount",
+        "operationId": "Invoices_GetInvoiceLineTaxesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2035,7 +2580,7 @@
         ],
         "summary": "Update a tax for an invoice line.",
         "description": "Updates the specified tax entry for the invoice line.",
-        "operationId": "UpdateInvoiceLineTax",
+        "operationId": "Invoices_UpdateInvoiceLineTax",
         "parameters": [
           {
             "name": "tenantId",
@@ -2112,7 +2657,7 @@
         ],
         "summary": "Patch a tax for an invoice line.",
         "description": "Partially updates the specified tax entry for the invoice line.",
-        "operationId": "PatchInvoiceLineTax",
+        "operationId": "Invoices_PatchInvoiceLineTax",
         "parameters": [
           {
             "name": "tenantId",
@@ -2195,7 +2740,7 @@
         ],
         "summary": "Delete a tax from an invoice line.",
         "description": "Deletes the specified tax entry from the invoice line.",
-        "operationId": "DeleteInvoiceLineTax",
+        "operationId": "Invoices_DeleteInvoiceLineTax",
         "parameters": [
           {
             "name": "tenantId",
@@ -2260,7 +2805,7 @@
         ],
         "summary": "Get invoice adjustments.",
         "description": "Retrieves the adjustments for the specified invoice.",
-        "operationId": "GetInvoiceAdjustments",
+        "operationId": "Invoices_GetInvoiceAdjustments",
         "parameters": [
           {
             "name": "tenantId",
@@ -2319,7 +2864,7 @@
         ],
         "summary": "Create a new invoice adjustment.",
         "description": "Creates a new adjustment for the specified invoice.",
-        "operationId": "CreateInvoiceAdjustment",
+        "operationId": "Invoices_CreateInvoiceAdjustment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2380,7 +2925,7 @@
         ],
         "summary": "Get the count of invoice adjustments.",
         "description": "Retrieves the total count of adjustments for the specified invoice.",
-        "operationId": "GetInvoiceAdjustmentsCount",
+        "operationId": "Invoices_GetInvoiceAdjustmentsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2441,7 +2986,7 @@
         ],
         "summary": "Get an invoice adjustment by ID.",
         "description": "Retrieves the adjustment details for the specified invoice adjustment ID.",
-        "operationId": "GetInvoiceAdjustment",
+        "operationId": "Invoices_GetInvoiceAdjustment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2495,7 +3040,7 @@
         ],
         "summary": "Update an invoice adjustment.",
         "description": "Updates the specified adjustment for the invoice.",
-        "operationId": "UpdateInvoiceAdjustment",
+        "operationId": "Invoices_UpdateInvoiceAdjustment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2563,7 +3108,7 @@
         ],
         "summary": "Patch an invoice adjustment.",
         "description": "Partially updates the specified adjustment for the invoice.",
-        "operationId": "PatchInvoiceAdjustment",
+        "operationId": "Invoices_PatchInvoiceAdjustment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2652,7 +3197,7 @@
         ],
         "summary": "Delete an invoice adjustment.",
         "description": "Deletes the specified adjustment from the invoice.",
-        "operationId": "DeleteInvoiceAdjustment",
+        "operationId": "Invoices_DeleteInvoiceAdjustment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2708,7 +3253,7 @@
         ],
         "summary": "Get invoice references.",
         "description": "Retrieves the references for the specified invoice.",
-        "operationId": "GetInvoiceReferences",
+        "operationId": "Invoices_GetInvoiceReferences",
         "parameters": [
           {
             "name": "tenantId",
@@ -2767,7 +3312,7 @@
         ],
         "summary": "Create a new invoice reference.",
         "description": "Creates a new reference for the specified invoice.",
-        "operationId": "CreateInvoiceReference",
+        "operationId": "Invoices_CreateInvoiceReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -2828,7 +3373,7 @@
         ],
         "summary": "Get the count of invoice references.",
         "description": "Retrieves the total count of references for the specified invoice.",
-        "operationId": "GetInvoiceReferencesCount",
+        "operationId": "Invoices_GetInvoiceReferencesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2889,7 +3434,7 @@
         ],
         "summary": "Get an invoice reference by ID.",
         "description": "Retrieves the reference details for the specified invoice reference ID.",
-        "operationId": "GetInvoiceReference",
+        "operationId": "Invoices_GetInvoiceReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -2943,7 +3488,7 @@
         ],
         "summary": "Update an invoice reference.",
         "description": "Updates the specified reference for the invoice.",
-        "operationId": "UpdateInvoiceReference",
+        "operationId": "Invoices_UpdateInvoiceReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -3011,7 +3556,7 @@
         ],
         "summary": "Patch an invoice reference.",
         "description": "Partially updates the specified reference for the invoice.",
-        "operationId": "PatchInvoiceReference",
+        "operationId": "Invoices_PatchInvoiceReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -3085,7 +3630,7 @@
         ],
         "summary": "Delete an invoice reference.",
         "description": "Deletes the specified reference from the invoice.",
-        "operationId": "DeleteInvoiceReference",
+        "operationId": "Invoices_DeleteInvoiceReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -3141,7 +3686,7 @@
         ],
         "summary": "Get payments for an invoice.",
         "description": "Retrieves the list of payments related to the specified invoice.",
-        "operationId": "GetInvoicePayments",
+        "operationId": "Invoices_GetInvoicePayments",
         "parameters": [
           {
             "name": "tenantId",
@@ -3202,7 +3747,7 @@
         ],
         "summary": "Get the count of payments for an invoice.",
         "description": "Retrieves the total count of payments for the specified invoice.",
-        "operationId": "GetInvoicePaymentsCount",
+        "operationId": "Invoices_GetInvoicePaymentsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -3263,7 +3808,7 @@
         ],
         "summary": "Aggregate invoice totals.",
         "description": "Aggregates the totals for the specified invoices.",
-        "operationId": "AggregateInvoiceTotals",
+        "operationId": "Invoices_AggregateInvoiceTotals",
         "parameters": [
           {
             "name": "tenantId",
@@ -3331,7 +3876,7 @@
         ],
         "summary": "Aggregate invoice taxes.",
         "description": "Aggregates the taxes for the specified invoices.",
-        "operationId": "AggregateInvoiceTaxes",
+        "operationId": "Invoices_AggregateInvoiceTaxes",
         "parameters": [
           {
             "name": "tenantId",
@@ -3399,7 +3944,7 @@
         ],
         "summary": "Aggregate invoice discounts.",
         "description": "Aggregates the discounts for the specified invoices.",
-        "operationId": "AggregateInvoiceDiscounts",
+        "operationId": "Invoices_AggregateInvoiceDiscounts",
         "parameters": [
           {
             "name": "tenantId",
@@ -3467,7 +4012,7 @@
         ],
         "summary": "Aggregate invoice tax bases.",
         "description": "Aggregates the tax bases for the specified invoices.",
-        "operationId": "AggregateInvoiceTaxBases",
+        "operationId": "Invoices_AggregateInvoiceTaxBases",
         "parameters": [
           {
             "name": "tenantId",
@@ -3535,7 +4080,7 @@
         ],
         "summary": "Aggregate invoice global surcharges.",
         "description": "Aggregates the global surcharges for the specified invoices.",
-        "operationId": "AggregateInvoiceGlobalSurcharges",
+        "operationId": "Invoices_AggregateInvoiceGlobalSurcharges",
         "parameters": [
           {
             "name": "tenantId",
@@ -3603,7 +4148,7 @@
         ],
         "summary": "Sum tenant sales-invoice totals.",
         "description": "Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == SalesInvoice, filtered by the supplied OData date range.",
-        "operationId": "GetSalesInvoicesSum",
+        "operationId": "Invoices_GetSalesInvoicesSum",
         "parameters": [
           {
             "name": "tenantId",
@@ -3685,7 +4230,7 @@
         ],
         "summary": "Sum tenant purchase-invoice totals.",
         "description": "Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == PurchaseInvoice, filtered by the supplied OData date range.",
-        "operationId": "GetPurchaseInvoicesSum",
+        "operationId": "Invoices_GetPurchaseInvoicesSum",
         "parameters": [
           {
             "name": "tenantId",
@@ -3767,7 +4312,7 @@
         ],
         "summary": "Send an invoice transactional email to recipients.",
         "description": "This action is only available for users with the 'send_email' permission.",
-        "operationId": "SendInvoiceEmail",
+        "operationId": "Invoices_SendInvoiceEmail",
         "parameters": [
           {
             "name": "tenantId",
@@ -3828,7 +4373,7 @@
         ],
         "summary": "Preview the rendered email for an invoice.",
         "description": "This action is only available for users with the 'send_email' permission.",
-        "operationId": "PreviewInvoiceEmail",
+        "operationId": "Invoices_PreviewInvoiceEmail",
         "parameters": [
           {
             "name": "invoiceId",
@@ -3901,6 +4446,100 @@
         },
         "additionalProperties": false
       },
+      "BillingCouponRecognitionDto": {
+        "type": "object",
+        "properties": {
+          "recognised": {
+            "type": "boolean"
+          },
+          "applicable": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingCouponRecognitionDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/BillingCouponRecognitionDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreditNoteCreateDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "reason": {
+            "enum": [
+              "Return",
+              "Annulment",
+              "Discount",
+              "PriceAdjustment",
+              "Other",
+              "Interest",
+              "Charges",
+              "ValueChange"
+            ],
+            "type": "string"
+          },
+          "reasonDescription": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CurrencyId": {
         "type": "object",
         "properties": {
@@ -3914,6 +4553,33 @@
             "nullable": true
           },
           "country": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DebitNoteCreateDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "reason": {
+            "enum": [
+              "Return",
+              "Annulment",
+              "Discount",
+              "PriceAdjustment",
+              "Other",
+              "Interest",
+              "Charges",
+              "ValueChange"
+            ],
+            "type": "string"
+          },
+          "reasonDescription": {
             "type": "string",
             "nullable": true
           }
@@ -4532,6 +5198,45 @@
               "$ref": "#/components/schemas/InvoiceLineDto"
             },
             "nullable": true
+          },
+          "invoiceEnumerationRange": {
+            "$ref": "#/components/schemas/InvoiceEnumerationRangeDto"
+          },
+          "expiration": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "effectiveDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveSurchargePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveTaxesPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalSurchargePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "emisorParty": {
+            "$ref": "#/components/schemas/InvoicePartyDto"
+          },
+          "receiverParty": {
+            "$ref": "#/components/schemas/InvoicePartyDto"
+          },
+          "emisorPartyUnresolved": {
+            "type": "boolean"
+          },
+          "receiverPartyUnresolved": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -5421,6 +6126,75 @@
         },
         "additionalProperties": false
       },
+      "InvoiceCreditableAmountDto": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceCreditableAmountDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/InvoiceCreditableAmountDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceDto": {
         "type": "object",
         "properties": {
@@ -5913,6 +6687,141 @@
               "$ref": "#/components/schemas/InvoiceDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceEnumerationRangeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "suffix": {
+            "type": "string",
+            "nullable": true
+          },
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "qualifiedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentNumeration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numerationTo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numerationFrom": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fiscalAuthorityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "enum": [
+              "Standard",
+              "DebitNote",
+              "CreditNote"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceIssuedAtBackfillResultDto": {
+        "type": "object",
+        "properties": {
+          "invoicesStamped": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mayHaveMore": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceIssuedAtBackfillResultDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/InvoiceIssuedAtBackfillResultDto"
           }
         },
         "additionalProperties": false
@@ -7227,6 +8136,172 @@
         },
         "additionalProperties": false
       },
+      "InvoiceNoteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentInvoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "enum": [
+              "Standard",
+              "DebitNote",
+              "CreditNote"
+            ],
+            "type": "string"
+          },
+          "reason": {
+            "enum": [
+              "Return",
+              "Annulment",
+              "Discount",
+              "PriceAdjustment",
+              "Other",
+              "Interest",
+              "Charges",
+              "ValueChange"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "reasonDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "enumeration": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceNoteDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/InvoiceNoteDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicePartyDto": {
+        "type": "object",
+        "properties": {
+          "registrationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "commercialName": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "identificationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "verificationDigit": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxLevelCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalZone": {
+            "type": "string",
+            "nullable": true
+          },
+          "countrySubentityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceReferenceCreateDto": {
         "type": "object",
         "properties": {
@@ -7861,9 +8936,7 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "nullable": true
-          }
+          "value": { }
         },
         "additionalProperties": false
       },
@@ -8772,10 +9845,87 @@
           }
         },
         "additionalProperties": false
+      },
+      "UnnumberedIssuingTenantDto": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unnumberedIssuedInvoices": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastIssuedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnnumberedIssuingTenantDtoIReadOnlyListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnnumberedIssuingTenantDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     }
   },
   "tags": [
+    {
+      "name": "Coupons"
+    },
     {
       "name": "FenixAlliance.ABS.Web"
     },

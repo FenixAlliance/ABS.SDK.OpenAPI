@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - LicenseAttributes
       summary: Get all license attributes
       description: Retrieves all license attributes for the specified tenant.
-      operationId: GetLicenseAttributesAsync
+      operationId: LicenseAttributes_GetLicenseAttributes
       parameters:
         - name: tenantId
           in: query
@@ -398,7 +414,7 @@ paths:
         - LicenseAttributes
       summary: Create a new license attribute
       description: Creates a new license attribute for the specified tenant.
-      operationId: CreateLicenseAttributeAsync
+      operationId: LicenseAttributes_CreateLicenseAttribute
       parameters:
         - name: tenantId
           in: query
@@ -449,7 +465,7 @@ paths:
         - LicenseAttributes
       summary: Get license attributes count
       description: Returns the count of license attributes for the specified tenant.
-      operationId: GetLicenseAttributesCountAsync
+      operationId: LicenseAttributes_GetLicenseAttributesCount
       parameters:
         - name: tenantId
           in: query
@@ -498,7 +514,7 @@ paths:
         - LicenseAttributes
       summary: Get license attribute by ID
       description: Retrieves a specific license attribute by its identifier.
-      operationId: GetLicenseAttributeByIdAsync
+      operationId: LicenseAttributes_GetLicenseAttributeById
       parameters:
         - name: tenantId
           in: query
@@ -553,7 +569,7 @@ paths:
         - LicenseAttributes
       summary: Update a license attribute
       description: Updates an existing license attribute for the specified tenant.
-      operationId: UpdateLicenseAttributeAsync
+      operationId: LicenseAttributes_UpdateLicenseAttribute
       parameters:
         - name: tenantId
           in: query
@@ -609,7 +625,7 @@ paths:
         - LicenseAttributes
       summary: Patch a license attribute
       description: Patch a license attribute for the specified tenant.
-      operationId: PatchLicenseAttributeAsync
+      operationId: LicenseAttributes_PatchLicenseAttribute
       parameters:
         - name: tenantId
           in: query
@@ -676,7 +692,7 @@ paths:
         - LicenseAttributes
       summary: Delete a license attribute
       description: Deletes a license attribute for the specified tenant.
-      operationId: DeleteLicenseAttributeAsync
+      operationId: LicenseAttributes_DeleteLicenseAttribute
       parameters:
         - name: tenantId
           in: query
@@ -725,7 +741,7 @@ paths:
         - LicenseFeatures
       summary: Get all license features
       description: Retrieves all license features for the specified tenant.
-      operationId: GetLicenseFeaturesAsync
+      operationId: LicenseFeatures_GetLicenseFeatures
       parameters:
         - name: tenantId
           in: query
@@ -773,7 +789,7 @@ paths:
         - LicenseFeatures
       summary: Create a new license feature
       description: Creates a new license feature for the specified tenant.
-      operationId: CreateLicenseFeatureAsync
+      operationId: LicenseFeatures_CreateLicenseFeature
       parameters:
         - name: tenantId
           in: query
@@ -824,7 +840,7 @@ paths:
         - LicenseFeatures
       summary: Get license features count
       description: Returns the count of license features for the specified tenant.
-      operationId: GetLicenseFeaturesCountAsync
+      operationId: LicenseFeatures_GetLicenseFeaturesCount
       parameters:
         - name: tenantId
           in: query
@@ -873,7 +889,7 @@ paths:
         - LicenseFeatures
       summary: Get license feature by ID
       description: Retrieves a specific license feature by its identifier.
-      operationId: GetLicenseFeatureByIdAsync
+      operationId: LicenseFeatures_GetLicenseFeatureById
       parameters:
         - name: tenantId
           in: query
@@ -928,7 +944,7 @@ paths:
         - LicenseFeatures
       summary: Update a license feature
       description: Updates an existing license feature for the specified tenant.
-      operationId: UpdateLicenseFeatureAsync
+      operationId: LicenseFeatures_UpdateLicenseFeature
       parameters:
         - name: tenantId
           in: query
@@ -984,7 +1000,7 @@ paths:
         - LicenseFeatures
       summary: Patch a license feature
       description: Patch a license feature for the specified tenant.
-      operationId: PatchLicenseFeatureAsync
+      operationId: LicenseFeatures_PatchLicenseFeature
       parameters:
         - name: tenantId
           in: query
@@ -1051,7 +1067,7 @@ paths:
         - LicenseFeatures
       summary: Delete a license feature
       description: Deletes a license feature for the specified tenant.
-      operationId: DeleteLicenseFeatureAsync
+      operationId: LicenseFeatures_DeleteLicenseFeature
       parameters:
         - name: tenantId
           in: query
@@ -1100,7 +1116,7 @@ paths:
         - Licenses
       summary: Get licenses
       description: 'Retrieves the license instances owned by the specified tenant, filtered via OData query options.'
-      operationId: GetLicensesAsync
+      operationId: Licenses_GetLicenses
       parameters:
         - name: tenantId
           in: query
@@ -1148,7 +1164,7 @@ paths:
         - Licenses
       summary: Create a new license
       description: Creates a new license instance for the specified tenant.
-      operationId: CreateLicenseAsync
+      operationId: Licenses_CreateLicense
       parameters:
         - name: tenantId
           in: query
@@ -1199,7 +1215,7 @@ paths:
         - Licenses
       summary: Get licenses count
       description: Returns the count of license instances owned by the specified tenant.
-      operationId: GetLicensesCountAsync
+      operationId: Licenses_GetLicensesCount
       parameters:
         - name: tenantId
           in: query
@@ -1248,7 +1264,7 @@ paths:
         - Licenses
       summary: Get license by ID
       description: Retrieves a specific license instance by its identifier.
-      operationId: GetLicenseByIdAsync
+      operationId: Licenses_GetLicenseById
       parameters:
         - name: tenantId
           in: query
@@ -1303,7 +1319,7 @@ paths:
         - Licenses
       summary: Update a license
       description: Updates an existing license instance for the specified tenant.
-      operationId: UpdateLicenseAsync
+      operationId: Licenses_UpdateLicense
       parameters:
         - name: tenantId
           in: query
@@ -1359,7 +1375,7 @@ paths:
         - Licenses
       summary: Delete a license
       description: Deletes a license instance for the specified tenant.
-      operationId: DeleteLicenseAsync
+      operationId: Licenses_DeleteLicense
       parameters:
         - name: tenantId
           in: query
@@ -1408,7 +1424,7 @@ paths:
         - LicenseTypes
       summary: Get all license types
       description: Retrieves all license types for the specified tenant.
-      operationId: GetLicenseTypesAsync
+      operationId: LicenseTypes_GetLicenseTypes
       parameters:
         - name: tenantId
           in: query
@@ -1456,7 +1472,7 @@ paths:
         - LicenseTypes
       summary: Create a new license type
       description: Creates a new license type for the specified tenant.
-      operationId: CreateLicenseTypeAsync
+      operationId: LicenseTypes_CreateLicenseType
       parameters:
         - name: tenantId
           in: query
@@ -1507,7 +1523,7 @@ paths:
         - LicenseTypes
       summary: Get license types count
       description: Returns the count of license types for the specified tenant.
-      operationId: GetLicenseTypesCountAsync
+      operationId: LicenseTypes_GetLicenseTypesCount
       parameters:
         - name: tenantId
           in: query
@@ -1556,7 +1572,7 @@ paths:
         - LicenseTypes
       summary: Get license type by ID
       description: Retrieves a specific license type by its identifier.
-      operationId: GetLicenseTypeByIdAsync
+      operationId: LicenseTypes_GetLicenseTypeById
       parameters:
         - name: tenantId
           in: query
@@ -1611,7 +1627,7 @@ paths:
         - LicenseTypes
       summary: Update a license type
       description: Updates an existing license type for the specified tenant.
-      operationId: UpdateLicenseTypeAsync
+      operationId: LicenseTypes_UpdateLicenseType
       parameters:
         - name: tenantId
           in: query
@@ -1667,7 +1683,7 @@ paths:
         - LicenseTypes
       summary: Patch a license type
       description: Patch a license type for the specified tenant.
-      operationId: PatchLicenseTypeAsync
+      operationId: LicenseTypes_PatchLicenseType
       parameters:
         - name: tenantId
           in: query
@@ -1734,7 +1750,7 @@ paths:
         - LicenseTypes
       summary: Delete a license type
       description: Deletes a license type for the specified tenant.
-      operationId: DeleteLicenseTypeAsync
+      operationId: LicenseTypes_DeleteLicenseType
       parameters:
         - name: tenantId
           in: query
@@ -1783,7 +1799,7 @@ paths:
         - LicensingCertificates
       summary: Get all licensing certificates
       description: Retrieves all licensing certificates for the specified tenant.
-      operationId: GetLicensingCertificatesAsync
+      operationId: LicensingCertificates_GetLicensingCertificates
       parameters:
         - name: tenantId
           in: query
@@ -1831,7 +1847,7 @@ paths:
         - LicensingCertificates
       summary: Create a new licensing certificate
       description: Creates a new licensing certificate for the specified tenant.
-      operationId: CreateLicensingCertificateAsync
+      operationId: LicensingCertificates_CreateLicensingCertificate
       parameters:
         - name: tenantId
           in: query
@@ -1882,7 +1898,7 @@ paths:
         - LicensingCertificates
       summary: Get licensing certificates count
       description: Returns the count of licensing certificates for the specified tenant.
-      operationId: GetLicensingCertificatesCountAsync
+      operationId: LicensingCertificates_GetLicensingCertificatesCount
       parameters:
         - name: tenantId
           in: query
@@ -1931,7 +1947,7 @@ paths:
         - LicensingCertificates
       summary: Get licensing certificate by ID
       description: Retrieves a specific licensing certificate by its identifier.
-      operationId: GetLicensingCertificateByIdAsync
+      operationId: LicensingCertificates_GetLicensingCertificateById
       parameters:
         - name: tenantId
           in: query
@@ -1986,7 +2002,7 @@ paths:
         - LicensingCertificates
       summary: Update a licensing certificate
       description: Updates an existing licensing certificate for the specified tenant.
-      operationId: UpdateLicensingCertificateAsync
+      operationId: LicensingCertificates_UpdateLicensingCertificate
       parameters:
         - name: tenantId
           in: query
@@ -2042,7 +2058,7 @@ paths:
         - LicensingCertificates
       summary: Patch a licensing certificate
       description: Patch a licensing certificate for the specified tenant.
-      operationId: PatchLicensingCertificateAsync
+      operationId: LicensingCertificates_PatchLicensingCertificate
       parameters:
         - name: tenantId
           in: query
@@ -2109,7 +2125,7 @@ paths:
         - LicensingCertificates
       summary: Delete a licensing certificate
       description: Deletes a licensing certificate for the specified tenant.
-      operationId: DeleteLicensingCertificateAsync
+      operationId: LicensingCertificates_DeleteLicensingCertificate
       parameters:
         - name: tenantId
           in: query
@@ -2152,6 +2168,214 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '200':
           description: OK
+  /api/v2/LicensingService/Usage:
+    get:
+      tags:
+        - Usage
+      summary: Get the tenant's usage
+      description: 'The tenant''s usage per license: plan, current period and, per licensed entitlement, the allowance, consumption, trend, projection and limit behaviour; plus meters consumed without a licensed entitlement.'
+      operationId: Usage_GetTenantUsage
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantUsageDtoEnvelope'
+  /api/v2/LicensingService/Usage/Meters:
+    get:
+      tags:
+        - Usage
+      summary: Get the usage meter registry
+      description: 'Every registered usage meter: key, unit, aggregation, licensed entitlement, source and whether it is rated.'
+      operationId: Usage_GetUsageMeters
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageMeterDefinitionDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UsageMeterDefinitionDtoIReadOnlyListEnvelope'
+  /api/v2/LicensingService/Admin/Usage:
+    get:
+      tags:
+        - Usage
+      summary: List every tenant's usage against its limits (root admin)
+      description: 'Root-admin, server-paged list of tenants holding licenses: the worst meter status, the highest percent used, meters near or over, and active hard stops. Usage and limits only; no personal data.'
+      operationId: Usage_GetTenantsUsage
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: minimumStatus
+          in: query
+          schema:
+            enum:
+              - Ok
+              - Near
+              - AtLimit
+              - Over
+              - NoAllowance
+              - Unavailable
+              - Unlicensed
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            default: MaxPercentUsed
+        - name: descending
+          in: query
+          schema:
+            type: boolean
+            default: true
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: top
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageSummaryDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantUsageSummaryDtoIReadOnlyListEnvelope'
+  '/api/v2/LicensingService/Admin/Usage/{targetTenantId}':
+    get:
+      tags:
+        - Usage
+      summary: Get a tenant's usage (root admin)
+      description: Root-admin read of one tenant's usage detail. Refused for anyone who is not a root admin of the instance root tenant.
+      operationId: Usage_GetTenantUsageAsAdmin
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: targetTenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantUsageDtoEnvelope'
 components:
   schemas:
     AccessTokenResponse:
@@ -3159,8 +3383,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:
@@ -3210,6 +3433,239 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    TenantUsageDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        tenantName:
+          type: string
+          nullable: true
+        currencyId:
+          type: string
+          nullable: true
+        measurementWindow:
+          $ref: '#/components/schemas/UsagePeriodDto'
+        licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageLicenseDto'
+          nullable: true
+        unlicensedMeters:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageMeterDto'
+          nullable: true
+        overageBudget:
+          $ref: '#/components/schemas/UsageBudgetDto'
+        projectedPeriodCost:
+          $ref: '#/components/schemas/UsageMoneyDto'
+        activeOverrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantUsageLimitOverrideDto'
+          nullable: true
+        generatedAtUtc:
+          type: string
+          format: date-time
+        capabilities:
+          $ref: '#/components/schemas/UsageCapabilitiesDto'
+      additionalProperties: false
+    TenantUsageDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TenantUsageDto'
+      additionalProperties: false
+    TenantUsageLimitOverrideDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        licenseId:
+          type: string
+          nullable: true
+        meterKey:
+          type: string
+          nullable: true
+        entitlementKey:
+          type: string
+          nullable: true
+        kind:
+          enum:
+            - SetAllowance
+            - ExtendAllowance
+            - ResetHardStop
+          type: string
+        quantity:
+          type: number
+          format: double
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        expiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        createdByUserId:
+          type: string
+          nullable: true
+        effectiveAllowanceBefore:
+          type: number
+          format: double
+          nullable: true
+        effectiveAllowanceAfter:
+          type: number
+          format: double
+          nullable: true
+        pooledAllowanceBefore:
+          type: number
+          format: double
+          nullable: true
+        pooledAllowanceAfter:
+          type: number
+          format: double
+          nullable: true
+        periodStartUtc:
+          type: string
+          format: date-time
+        stoppedBefore:
+          type: boolean
+        stoppedAfter:
+          type: boolean
+        active:
+          type: boolean
+      additionalProperties: false
+    TenantUsageSummaryDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        tenantName:
+          type: string
+          nullable: true
+        offeringKey:
+          type: string
+          nullable: true
+        planName:
+          type: string
+          nullable: true
+        periodEndUtc:
+          type: string
+          format: date-time
+          nullable: true
+        maxPercentUsed:
+          type: number
+          format: double
+          nullable: true
+        maxPercentMeterKey:
+          type: string
+          nullable: true
+        worstStatus:
+          enum:
+            - Ok
+            - Near
+            - AtLimit
+            - Over
+            - NoAllowance
+            - Unavailable
+            - Unlicensed
+          type: string
+        metersNear:
+          type: integer
+          format: int32
+        metersAtOrOver:
+          type: integer
+          format: int32
+        hardStopActive:
+          type: boolean
+        activeOverrides:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TenantUsageSummaryDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantUsageSummaryDto'
+          nullable: true
+      additionalProperties: false
     TwoFactorRequest:
       type: object
       properties:
@@ -3250,6 +3706,383 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UsageBudgetDto:
+      type: object
+      properties:
+        budget:
+          $ref: '#/components/schemas/UsageMoneyDto'
+        used:
+          $ref: '#/components/schemas/UsageMoneyDto'
+        percentUsed:
+          type: number
+          format: double
+          nullable: true
+        enforced:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    UsageCapabilitiesDto:
+      type: object
+      properties:
+        canChangePlan:
+          type: boolean
+        canManageBudget:
+          type: boolean
+        canOverrideLimits:
+          type: boolean
+      additionalProperties: false
+    UsageGrantDto:
+      type: object
+      properties:
+        licenseId:
+          type: string
+          nullable: true
+        allowanceKind:
+          enum:
+            - Finite
+            - Unlimited
+            - NotIncluded
+            - Unknown
+            - Unlicensed
+          type: string
+        planAllowance:
+          type: number
+          format: double
+          nullable: true
+        allowance:
+          type: number
+          format: double
+          nullable: true
+        overridden:
+          type: boolean
+        overrideExpiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        revision:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UsageLicenseDto:
+      type: object
+      properties:
+        licenseId:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        plan:
+          $ref: '#/components/schemas/UsagePlanDto'
+        period:
+          $ref: '#/components/schemas/UsagePeriodDto'
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageMeterDto'
+          nullable: true
+        pooledEntitlementKeys:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UsageMeterDefinitionDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        labelKey:
+          type: string
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        aggregation:
+          enum:
+            - PeriodCumulative
+            - Gauge
+            - TimeIntegral
+          type: string
+        entitlementKey:
+          type: string
+          nullable: true
+        sourceService:
+          type: string
+          nullable: true
+        rated:
+          type: boolean
+      additionalProperties: false
+    UsageMeterDefinitionDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageMeterDefinitionDto'
+          nullable: true
+      additionalProperties: false
+    UsageMeterDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        entitlementKey:
+          type: string
+          nullable: true
+        licenseId:
+          type: string
+          nullable: true
+        grantingLicenseIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageGrantDto'
+          nullable: true
+        labelKey:
+          type: string
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        aggregation:
+          enum:
+            - PeriodCumulative
+            - Gauge
+            - TimeIntegral
+          type: string
+        allowanceKind:
+          enum:
+            - Finite
+            - Unlimited
+            - NotIncluded
+            - Unknown
+            - Unlicensed
+          type: string
+        allowance:
+          type: number
+          format: double
+          nullable: true
+        planAllowance:
+          type: number
+          format: double
+          nullable: true
+        overridden:
+          type: boolean
+        nearThresholdPercent:
+          type: number
+          format: double
+        allowedOverrides:
+          type: array
+          items:
+            enum:
+              - SetAllowance
+              - ExtendAllowance
+              - ResetHardStop
+            type: string
+          nullable: true
+        overrideNote:
+          type: string
+          nullable: true
+        dataState:
+          enum:
+            - Measured
+            - Partial
+            - Delayed
+            - Unavailable
+          type: string
+        consumed:
+          type: number
+          format: double
+          nullable: true
+        peak:
+          type: number
+          format: double
+          nullable: true
+        unmeasuredEvents:
+          type: integer
+          format: int64
+        remaining:
+          type: number
+          format: double
+          nullable: true
+        percentUsed:
+          type: number
+          format: double
+          nullable: true
+        projectedAtPeriodEnd:
+          type: number
+          format: double
+          nullable: true
+        projectionBasis:
+          type: string
+          nullable: true
+        status:
+          enum:
+            - Ok
+            - Near
+            - AtLimit
+            - Over
+            - NoAllowance
+            - Unavailable
+            - Unlicensed
+          type: string
+        limitBehavior:
+          enum:
+            - None
+            - HardStop
+            - Overage
+          type: string
+        stopped:
+          type: boolean
+        includedQuantity:
+          type: number
+          format: double
+          nullable: true
+        overageQuantity:
+          type: number
+          format: double
+          nullable: true
+        costStatus:
+          enum:
+            - NotRated
+            - Estimated
+            - Invoiced
+          type: string
+        overageCost:
+          $ref: '#/components/schemas/UsageMoneyDto'
+        costBasis:
+          type: string
+          nullable: true
+        trend:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageTrendPointDto'
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        asOfUtc:
+          type: string
+          format: date-time
+          nullable: true
+        note:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UsageMoneyDto:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        currencyId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UsagePeriodDto:
+      type: object
+      properties:
+        startUtc:
+          type: string
+          format: date-time
+        endUtc:
+          type: string
+          format: date-time
+        timezoneId:
+          type: string
+          nullable: true
+        daysElapsed:
+          type: integer
+          format: int32
+        daysTotal:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UsagePlanDto:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+          nullable: true
+        offeringKey:
+          type: string
+          nullable: true
+        planSku:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        billingCycle:
+          enum:
+            - Monthly
+            - Annual
+          type: string
+        periodPrice:
+          $ref: '#/components/schemas/UsageMoneyDto'
+        hardStop:
+          type: boolean
+      additionalProperties: false
+    UsageTrendPointDto:
+      type: object
+      properties:
+        dateUtc:
+          type: string
+          format: date-time
+        consumed:
+          type: number
+          format: double
+        cumulative:
+          type: number
+          format: double
+        missing:
+          type: boolean
+      additionalProperties: false
 tags:
   - name: FenixAlliance.ABS.Web
   - name: LicenseAttributes
@@ -3257,3 +4090,4 @@ tags:
   - name: Licenses
   - name: LicenseTypes
   - name: LicensingCertificates
+  - name: Usage

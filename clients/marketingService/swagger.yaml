@@ -29,7 +29,7 @@ paths:
         - EmailGroups
       summary: Get email groups
       description: Retrieves a collection of email groups for the specified tenant using OData query options.
-      operationId: GetEmailGroupsODataAsync
+      operationId: EmailGroups_GetEmailGroupsOData
       parameters:
         - name: tenantId
           in: query
@@ -86,7 +86,7 @@ paths:
         - EmailGroups
       summary: Create an email group
       description: Creates a new email group for the specified tenant.
-      operationId: CreateEmailGroupAsync
+      operationId: EmailGroups_CreateEmailGroup
       parameters:
         - name: tenantId
           in: query
@@ -154,7 +154,7 @@ paths:
         - EmailGroups
       summary: Get email groups count
       description: Returns the count of email groups for the specified tenant using OData query options.
-      operationId: GetEmailGroupsCountAsync
+      operationId: EmailGroups_GetEmailGroupsCount
       parameters:
         - name: tenantId
           in: query
@@ -221,7 +221,7 @@ paths:
         - EmailGroups
       summary: Get email group by ID
       description: Retrieves the details of a specific email group by its ID.
-      operationId: GetEmailGroupDetailsAsync
+      operationId: EmailGroups_GetEmailGroupDetails
       parameters:
         - name: tenantId
           in: query
@@ -285,7 +285,7 @@ paths:
         - EmailGroups
       summary: Update an email group
       description: Updates an existing email group by its ID.
-      operationId: UpdateEmailGroupAsync
+      operationId: EmailGroups_UpdateEmailGroup
       parameters:
         - name: tenantId
           in: query
@@ -358,7 +358,7 @@ paths:
         - EmailGroups
       summary: Patch an email group
       description: Partially updates an email group by its ID using JSON Patch.
-      operationId: PatchEmailGroupAsync
+      operationId: EmailGroups_PatchEmailGroup
       parameters:
         - name: tenantId
           in: query
@@ -425,7 +425,7 @@ paths:
         - EmailGroups
       summary: Delete an email group
       description: Deletes an email group by its ID.
-      operationId: DeleteEmailGroupAsync
+      operationId: EmailGroups_DeleteEmailGroup
       parameters:
         - name: tenantId
           in: query
@@ -490,7 +490,7 @@ paths:
         - EmailSignatures
       summary: Get email signatures
       description: Retrieves a collection of email signatures for the specified tenant using OData query options.
-      operationId: GetEmailSignaturesODataAsync
+      operationId: EmailSignatures_GetEmailSignaturesOData
       parameters:
         - name: tenantId
           in: query
@@ -547,7 +547,7 @@ paths:
         - EmailSignatures
       summary: Create an email signature
       description: Creates a new email signature for the specified tenant.
-      operationId: CreateEmailSignatureAsync
+      operationId: EmailSignatures_CreateEmailSignature
       parameters:
         - name: tenantId
           in: query
@@ -615,7 +615,7 @@ paths:
         - EmailSignatures
       summary: Get email signatures count
       description: Returns the count of email signatures for the specified tenant using OData query options.
-      operationId: GetEmailSignaturesCountAsync
+      operationId: EmailSignatures_GetEmailSignaturesCount
       parameters:
         - name: tenantId
           in: query
@@ -682,7 +682,7 @@ paths:
         - EmailSignatures
       summary: Get email signature by ID
       description: Retrieves the details of a specific email signature by its ID.
-      operationId: GetEmailSignatureDetailsAsync
+      operationId: EmailSignatures_GetEmailSignatureDetails
       parameters:
         - name: tenantId
           in: query
@@ -746,7 +746,7 @@ paths:
         - EmailSignatures
       summary: Update an email signature
       description: Updates an existing email signature by its ID.
-      operationId: UpdateEmailSignatureAsync
+      operationId: EmailSignatures_UpdateEmailSignature
       parameters:
         - name: tenantId
           in: query
@@ -819,7 +819,7 @@ paths:
         - EmailSignatures
       summary: Patch an email signature
       description: Partially updates an email signature by its ID using JSON Patch.
-      operationId: PatchEmailSignatureAsync
+      operationId: EmailSignatures_PatchEmailSignature
       parameters:
         - name: tenantId
           in: query
@@ -886,7 +886,7 @@ paths:
         - EmailSignatures
       summary: Delete an email signature
       description: Deletes an email signature by its ID.
-      operationId: DeleteEmailSignatureAsync
+      operationId: EmailSignatures_DeleteEmailSignature
       parameters:
         - name: tenantId
           in: query
@@ -951,7 +951,7 @@ paths:
         - EmailTemplates
       summary: Get email templates
       description: Retrieves a collection of email templates for the specified tenant using OData query options.
-      operationId: GetEmailTemplatesODataAsync
+      operationId: EmailTemplates_GetEmailTemplatesOData
       parameters:
         - name: tenantId
           in: query
@@ -1008,7 +1008,7 @@ paths:
         - EmailTemplates
       summary: Create an email template
       description: Creates a new email template for the specified tenant.
-      operationId: CreateEmailTemplateAsync
+      operationId: EmailTemplates_CreateEmailTemplate
       parameters:
         - name: tenantId
           in: query
@@ -1076,7 +1076,7 @@ paths:
         - EmailTemplates
       summary: Get email templates count
       description: Returns the count of email templates for the specified tenant using OData query options.
-      operationId: GetEmailTemplatesCountAsync
+      operationId: EmailTemplates_GetEmailTemplatesCount
       parameters:
         - name: tenantId
           in: query
@@ -1143,7 +1143,7 @@ paths:
         - EmailTemplates
       summary: Get email template by ID
       description: Retrieves the details of a specific email template by its ID.
-      operationId: GetEmailTemplateDetailsAsync
+      operationId: EmailTemplates_GetEmailTemplateDetails
       parameters:
         - name: tenantId
           in: query
@@ -1207,7 +1207,7 @@ paths:
         - EmailTemplates
       summary: Update an email template
       description: Updates an existing email template by its ID.
-      operationId: UpdateEmailTemplateAsync
+      operationId: EmailTemplates_UpdateEmailTemplate
       parameters:
         - name: tenantId
           in: query
@@ -1280,7 +1280,7 @@ paths:
         - EmailTemplates
       summary: Patch an email template
       description: Partially updates an email template by its ID using JSON Patch.
-      operationId: PatchEmailTemplateAsync
+      operationId: EmailTemplates_PatchEmailTemplate
       parameters:
         - name: tenantId
           in: query
@@ -1347,7 +1347,7 @@ paths:
         - EmailTemplates
       summary: Delete an email template
       description: Deletes an email template by its ID.
-      operationId: DeleteEmailTemplateAsync
+      operationId: EmailTemplates_DeleteEmailTemplate
       parameters:
         - name: tenantId
           in: query
@@ -1410,6 +1410,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -1417,6 +1418,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -1424,6 +1426,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -1431,6 +1434,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -1450,6 +1454,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -1476,6 +1481,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -1493,7 +1499,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -1516,6 +1522,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -1529,6 +1536,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -1548,6 +1556,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -1567,6 +1576,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -1592,6 +1602,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -1610,6 +1621,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -1635,6 +1647,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1670,6 +1683,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -1697,6 +1711,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1724,6 +1739,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -1733,7 +1749,7 @@ paths:
         - MarketingAreas
       summary: Get marketing areas
       description: Retrieves marketing areas for the specified tenant.
-      operationId: GetMarketingAreasAsync
+      operationId: MarketingAreas_GetMarketingAreas
       parameters:
         - name: tenantId
           in: query
@@ -1790,7 +1806,7 @@ paths:
         - MarketingAreas
       summary: Create a marketing area
       description: Creates a new marketing area for the specified tenant.
-      operationId: CreateMarketingAreaAsync
+      operationId: MarketingAreas_CreateMarketingArea
       parameters:
         - name: tenantId
           in: query
@@ -1857,7 +1873,7 @@ paths:
         - MarketingAreas
       summary: Count marketing areas
       description: Counts marketing areas for the specified tenant.
-      operationId: GetMarketingAreasCountAsync
+      operationId: MarketingAreas_GetMarketingAreasCount
       parameters:
         - name: tenantId
           in: query
@@ -1915,7 +1931,7 @@ paths:
         - MarketingAreas
       summary: Get marketing area by ID
       description: Retrieves a specific marketing area by its identifier.
-      operationId: GetMarketingAreaByIdAsync
+      operationId: MarketingAreas_GetMarketingAreaById
       parameters:
         - name: tenantId
           in: query
@@ -1970,7 +1986,7 @@ paths:
         - MarketingAreas
       summary: Update a marketing area
       description: Updates an existing marketing area for the specified tenant.
-      operationId: UpdateMarketingAreaAsync
+      operationId: MarketingAreas_UpdateMarketingArea
       parameters:
         - name: tenantId
           in: query
@@ -2042,7 +2058,7 @@ paths:
         - MarketingAreas
       summary: Patch a marketing area
       description: Partially updates a marketing area by its ID using JSON Patch.
-      operationId: PatchMarketingAreaAsync
+      operationId: MarketingAreas_PatchMarketingArea
       parameters:
         - name: tenantId
           in: query
@@ -2109,7 +2125,7 @@ paths:
         - MarketingAreas
       summary: Delete a marketing area
       description: Deletes a marketing area for the specified tenant.
-      operationId: DeleteMarketingAreaAsync
+      operationId: MarketingAreas_DeleteMarketingArea
       parameters:
         - name: tenantId
           in: query
@@ -2174,7 +2190,7 @@ paths:
         - MarketingCampaigns
       summary: Get marketing campaigns
       description: Retrieves a collection of marketing campaigns for the specified tenant using OData query options.
-      operationId: GetMarketingCampaignODataAsync
+      operationId: MarketingCampaigns_GetMarketingCampaignOData
       parameters:
         - name: tenantId
           in: query
@@ -2231,7 +2247,7 @@ paths:
         - MarketingCampaigns
       summary: Create a marketing campaign
       description: Creates a new marketing campaign for the specified tenant.
-      operationId: CreateMarketingCampaignAsync
+      operationId: MarketingCampaigns_CreateMarketingCampaign
       parameters:
         - name: tenantId
           in: query
@@ -2299,7 +2315,7 @@ paths:
         - MarketingCampaigns
       summary: Get marketing campaigns count
       description: Returns the count of marketing campaigns for the specified tenant using OData query options.
-      operationId: GetMarketingCampaignsCountAsync
+      operationId: MarketingCampaigns_GetMarketingCampaignsCount
       parameters:
         - name: tenantId
           in: query
@@ -2366,7 +2382,7 @@ paths:
         - MarketingCampaigns
       summary: Get marketing campaign by ID
       description: Retrieves the details of a specific marketing campaign by its ID.
-      operationId: GetMarketingCampaignDetailsAsync
+      operationId: MarketingCampaigns_GetMarketingCampaignDetails
       parameters:
         - name: tenantId
           in: query
@@ -2430,7 +2446,7 @@ paths:
         - MarketingCampaigns
       summary: Update a marketing campaign
       description: Updates an existing marketing campaign by its ID.
-      operationId: UpdateMarketingCampaignAsync
+      operationId: MarketingCampaigns_UpdateMarketingCampaign
       parameters:
         - name: tenantId
           in: query
@@ -2503,7 +2519,7 @@ paths:
         - MarketingCampaigns
       summary: Patch a marketing campaign
       description: Partially updates a marketing campaign by its ID using JSON Patch.
-      operationId: PatchMarketingCampaignAsync
+      operationId: MarketingCampaigns_PatchMarketingCampaign
       parameters:
         - name: tenantId
           in: query
@@ -2570,7 +2586,7 @@ paths:
         - MarketingCampaigns
       summary: Delete a marketing campaign
       description: Deletes a marketing campaign by its ID.
-      operationId: DeleteMarketingCampaignAsync
+      operationId: MarketingCampaigns_DeleteMarketingCampaign
       parameters:
         - name: tenantId
           in: query
@@ -2635,7 +2651,7 @@ paths:
         - MarketingLeads
       summary: Get marketing leads
       description: Retrieves a collection of marketing leads for the specified tenant using OData query options.
-      operationId: GetMarketingLeadsODataAsync
+      operationId: MarketingLeads_GetMarketingLeadsOData
       parameters:
         - name: tenantId
           in: query
@@ -2673,7 +2689,7 @@ paths:
       tags:
         - MarketingLeads
       summary: Create a marketing lead
-      operationId: CreateMarketingLeadAsync
+      operationId: MarketingLeads_CreateMarketingLead
       parameters:
         - name: tenantId
           in: query
@@ -2713,7 +2729,7 @@ paths:
       tags:
         - MarketingLeads
       summary: Get marketing leads count
-      operationId: GetMarketingLeadsCountAsync
+      operationId: MarketingLeads_GetMarketingLeadsCount
       parameters:
         - name: tenantId
           in: query
@@ -2752,7 +2768,7 @@ paths:
       tags:
         - MarketingLeads
       summary: Get marketing lead by ID
-      operationId: GetMarketingLeadDetailsAsync
+      operationId: MarketingLeads_GetMarketingLeadDetails
       parameters:
         - name: tenantId
           in: query
@@ -2788,7 +2804,7 @@ paths:
       tags:
         - MarketingLeads
       summary: Update a marketing lead
-      operationId: UpdateMarketingLeadAsync
+      operationId: MarketingLeads_UpdateMarketingLead
       parameters:
         - name: tenantId
           in: query
@@ -2834,7 +2850,7 @@ paths:
         - MarketingLeads
       summary: Patch a marketing lead
       description: Partially updates a marketing lead by its ID using JSON Patch.
-      operationId: PatchMarketingLeadAsync
+      operationId: MarketingLeads_PatchMarketingLead
       parameters:
         - name: tenantId
           in: query
@@ -2900,7 +2916,7 @@ paths:
       tags:
         - MarketingLeads
       summary: Delete a marketing lead
-      operationId: DeleteMarketingLeadAsync
+      operationId: MarketingLeads_DeleteMarketingLead
       parameters:
         - name: tenantId
           in: query
@@ -2938,7 +2954,7 @@ paths:
         - MarketingLists
       summary: Get marketing lists
       description: Retrieves a collection of marketing lists for the specified tenant using OData query options.
-      operationId: GetMarketingListODataAsync
+      operationId: MarketingLists_GetMarketingListOData
       parameters:
         - name: tenantId
           in: query
@@ -2995,7 +3011,7 @@ paths:
         - MarketingLists
       summary: Create a marketing list
       description: Creates a new marketing list for the specified tenant.
-      operationId: CreateMarketingListAsync
+      operationId: MarketingLists_CreateMarketingList
       parameters:
         - name: tenantId
           in: query
@@ -3063,7 +3079,7 @@ paths:
         - MarketingLists
       summary: Get marketing lists count
       description: Returns the count of marketing lists for the specified tenant using OData query options.
-      operationId: GetMarketingListsCountAsync
+      operationId: MarketingLists_GetMarketingListsCount
       parameters:
         - name: tenantId
           in: query
@@ -3130,7 +3146,7 @@ paths:
         - MarketingLists
       summary: Get marketing list by ID
       description: Retrieves the details of a specific marketing list by its ID.
-      operationId: GetMarketingListDetailsAsync
+      operationId: MarketingLists_GetMarketingListDetails
       parameters:
         - name: tenantId
           in: query
@@ -3194,7 +3210,7 @@ paths:
         - MarketingLists
       summary: Update a marketing list
       description: Updates an existing marketing list by its ID.
-      operationId: UpdateMarketingListAsync
+      operationId: MarketingLists_UpdateMarketingList
       parameters:
         - name: tenantId
           in: query
@@ -3267,7 +3283,7 @@ paths:
         - MarketingLists
       summary: Patch a marketing list
       description: Partially updates a marketing list by its ID using JSON Patch.
-      operationId: PatchMarketingListAsync
+      operationId: MarketingLists_PatchMarketingList
       parameters:
         - name: tenantId
           in: query
@@ -3334,7 +3350,7 @@ paths:
         - MarketingLists
       summary: Delete a marketing list
       description: Deletes a marketing list by its ID.
-      operationId: DeleteMarketingListAsync
+      operationId: MarketingLists_DeleteMarketingList
       parameters:
         - name: tenantId
           in: query
@@ -3399,7 +3415,7 @@ paths:
         - Newsletters
       summary: Get newsletters
       description: Retrieves a collection of newsletters for the specified tenant using OData query options.
-      operationId: GetNewsletterODataAsync
+      operationId: Newsletters_GetNewsletterOData
       parameters:
         - name: tenantId
           in: query
@@ -3456,7 +3472,7 @@ paths:
         - Newsletters
       summary: Create a newsletter
       description: Creates a new newsletter for the specified tenant.
-      operationId: CreateNewsletterAsync
+      operationId: Newsletters_CreateNewsletter
       parameters:
         - name: tenantId
           in: query
@@ -3524,7 +3540,7 @@ paths:
         - Newsletters
       summary: Get newsletters count
       description: Returns the count of newsletters for the specified tenant using OData query options.
-      operationId: GetNewslettersCountAsync
+      operationId: Newsletters_GetNewslettersCount
       parameters:
         - name: tenantId
           in: query
@@ -3591,7 +3607,7 @@ paths:
         - Newsletters
       summary: Get newsletter by ID
       description: Retrieves the details of a specific newsletter by its ID.
-      operationId: GetNewsletterDetailsAsync
+      operationId: Newsletters_GetNewsletterDetails
       parameters:
         - name: tenantId
           in: query
@@ -3655,7 +3671,7 @@ paths:
         - Newsletters
       summary: Update a newsletter
       description: Updates an existing newsletter by its ID.
-      operationId: UpdateNewsletterAsync
+      operationId: Newsletters_UpdateNewsletter
       parameters:
         - name: tenantId
           in: query
@@ -3728,7 +3744,7 @@ paths:
         - Newsletters
       summary: Patch a newsletter
       description: Partially updates a newsletter by its ID using JSON Patch.
-      operationId: PatchNewsletterAsync
+      operationId: Newsletters_PatchNewsletter
       parameters:
         - name: tenantId
           in: query
@@ -3795,7 +3811,7 @@ paths:
         - Newsletters
       summary: Delete a newsletter
       description: Deletes a newsletter by its ID.
-      operationId: DeleteNewsletterAsync
+      operationId: Newsletters_DeleteNewsletter
       parameters:
         - name: tenantId
           in: query
@@ -3860,7 +3876,7 @@ paths:
         - NewsletterSubscriptions
       summary: Get newsletter subscriptions
       description: Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
-      operationId: GetNewsletterSubscriptionsAsync
+      operationId: NewsletterSubscriptions_GetNewsletterSubscriptions
       parameters:
         - name: tenantId
           in: query
@@ -3926,7 +3942,7 @@ paths:
         - NewsletterSubscriptions
       summary: Create a newsletter subscription
       description: Creates a new newsletter subscription for the specified tenant.
-      operationId: CreateNewsletterSubscriptionAsync
+      operationId: NewsletterSubscriptions_CreateNewsletterSubscription
       parameters:
         - name: tenantId
           in: query
@@ -3994,7 +4010,7 @@ paths:
         - NewsletterSubscriptions
       summary: Get newsletter subscriptions count
       description: Returns the count of newsletter subscriptions for the specified tenant using OData query options.
-      operationId: GetNewsletterSubscriptionsCountAsync
+      operationId: NewsletterSubscriptions_GetNewsletterSubscriptionsCount
       parameters:
         - name: tenantId
           in: query
@@ -4061,7 +4077,7 @@ paths:
         - NewsletterSubscriptions
       summary: Get newsletter subscription by ID
       description: Retrieves the details of a specific newsletter subscription by its ID.
-      operationId: GetNewsletterSubscriptionByIdAsync
+      operationId: NewsletterSubscriptions_GetNewsletterSubscriptionById
       parameters:
         - name: tenantId
           in: query
@@ -4125,7 +4141,7 @@ paths:
         - NewsletterSubscriptions
       summary: Update a newsletter subscription
       description: Updates an existing newsletter subscription by its ID.
-      operationId: UpdateNewsletterSubscriptionAsync
+      operationId: NewsletterSubscriptions_UpdateNewsletterSubscription
       parameters:
         - name: tenantId
           in: query
@@ -4198,7 +4214,7 @@ paths:
         - NewsletterSubscriptions
       summary: Delete a newsletter subscription
       description: Deletes a newsletter subscription by its ID.
-      operationId: DeleteNewsletterSubscriptionAsync
+      operationId: NewsletterSubscriptions_DeleteNewsletterSubscription
       parameters:
         - name: tenantId
           in: query
@@ -4263,7 +4279,7 @@ paths:
         - SocialMediaPosts
       summary: Get social media posts
       description: Retrieves a collection of social media posts for the specified tenant using OData query options.
-      operationId: GetSocialMediaPostsODataAsync
+      operationId: SocialMediaPosts_GetSocialMediaPostsOData
       parameters:
         - name: tenantId
           in: query
@@ -4320,7 +4336,7 @@ paths:
         - SocialMediaPosts
       summary: Create a social media post
       description: Creates a new social media post for the specified tenant.
-      operationId: CreateSocialMediaPostAsync
+      operationId: SocialMediaPosts_CreateSocialMediaPost
       parameters:
         - name: tenantId
           in: query
@@ -4388,7 +4404,7 @@ paths:
         - SocialMediaPosts
       summary: Get social media posts count
       description: Returns the count of social media posts for the specified tenant using OData query options.
-      operationId: GetSocialMediaPostsCountAsync
+      operationId: SocialMediaPosts_GetSocialMediaPostsCount
       parameters:
         - name: tenantId
           in: query
@@ -4455,7 +4471,7 @@ paths:
         - SocialMediaPosts
       summary: Get social media post by ID
       description: Retrieves the details of a specific social media post by its ID.
-      operationId: GetSocialMediaPostDetailsAsync
+      operationId: SocialMediaPosts_GetSocialMediaPostDetails
       parameters:
         - name: tenantId
           in: query
@@ -4519,7 +4535,7 @@ paths:
         - SocialMediaPosts
       summary: Update a social media post
       description: Updates an existing social media post by its ID.
-      operationId: UpdateSocialMediaPostAsync
+      operationId: SocialMediaPosts_UpdateSocialMediaPost
       parameters:
         - name: tenantId
           in: query
@@ -4592,7 +4608,7 @@ paths:
         - SocialMediaPosts
       summary: Patch a social media post
       description: Partially updates a social media post by its ID using JSON Patch.
-      operationId: PatchSocialMediaPostAsync
+      operationId: SocialMediaPosts_PatchSocialMediaPost
       parameters:
         - name: tenantId
           in: query
@@ -4659,7 +4675,7 @@ paths:
         - SocialMediaPosts
       summary: Delete a social media post
       description: Deletes a social media post by its ID.
-      operationId: DeleteSocialMediaPostAsync
+      operationId: SocialMediaPosts_DeleteSocialMediaPost
       parameters:
         - name: tenantId
           in: query
@@ -4724,7 +4740,7 @@ paths:
         - SocialPostBuckets
       summary: Get social post buckets
       description: Retrieves a collection of social post buckets for the specified tenant using OData query options.
-      operationId: GetSocialPostBucketsODataAsync
+      operationId: SocialPostBuckets_GetSocialPostBucketsOData
       parameters:
         - name: tenantId
           in: query
@@ -4781,7 +4797,7 @@ paths:
         - SocialPostBuckets
       summary: Create a social post bucket
       description: Creates a new social post bucket for the specified tenant.
-      operationId: CreateSocialPostBucketAsync
+      operationId: SocialPostBuckets_CreateSocialPostBucket
       parameters:
         - name: tenantId
           in: query
@@ -4849,7 +4865,7 @@ paths:
         - SocialPostBuckets
       summary: Get social post buckets count
       description: Returns the count of social post buckets for the specified tenant using OData query options.
-      operationId: GetSocialPostBucketsCountAsync
+      operationId: SocialPostBuckets_GetSocialPostBucketsCount
       parameters:
         - name: tenantId
           in: query
@@ -4916,7 +4932,7 @@ paths:
         - SocialPostBuckets
       summary: Get social post bucket by ID
       description: Retrieves the details of a specific social post bucket by its ID.
-      operationId: GetSocialPostBucketDetailsAsync
+      operationId: SocialPostBuckets_GetSocialPostBucketDetails
       parameters:
         - name: tenantId
           in: query
@@ -4980,7 +4996,7 @@ paths:
         - SocialPostBuckets
       summary: Update a social post bucket
       description: Updates an existing social post bucket by its ID.
-      operationId: UpdateSocialPostBucketAsync
+      operationId: SocialPostBuckets_UpdateSocialPostBucket
       parameters:
         - name: tenantId
           in: query
@@ -5053,7 +5069,7 @@ paths:
         - SocialPostBuckets
       summary: Patch a social post bucket
       description: Partially updates a social post bucket by its ID using JSON Patch.
-      operationId: PatchSocialPostBucketAsync
+      operationId: SocialPostBuckets_PatchSocialPostBucket
       parameters:
         - name: tenantId
           in: query
@@ -5120,7 +5136,7 @@ paths:
         - SocialPostBuckets
       summary: Delete a social post bucket
       description: Deletes a social post bucket by its ID.
-      operationId: DeleteSocialPostBucketAsync
+      operationId: SocialPostBuckets_DeleteSocialPostBucket
       parameters:
         - name: tenantId
           in: query
@@ -5185,7 +5201,7 @@ paths:
         - TrackingPixels
       summary: Get a tracking pixel
       description: Retrieves a tracking pixel by its ID.
-      operationId: GetTrackingPixelAsync
+      operationId: TrackingPixels_GetTrackingPixel
       parameters:
         - name: pixelId
           in: path
@@ -5489,8 +5505,7 @@ components:
         canonicalUrl:
           type: string
           nullable: true
-        emitResult:
-          nullable: true
+        emitResult: { }
         seoTitle:
           type: string
           nullable: true
@@ -5983,8 +5998,7 @@ components:
         canonicalUrl:
           type: string
           nullable: true
-        emitResult:
-          nullable: true
+        emitResult: { }
         seoTitle:
           type: string
           nullable: true
@@ -8093,8 +8107,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:

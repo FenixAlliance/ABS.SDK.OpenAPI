@@ -38,6 +38,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -50,6 +51,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,6 +64,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -74,6 +77,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -106,6 +110,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -151,6 +156,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +186,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -218,6 +224,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -240,6 +247,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -272,6 +280,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -304,6 +313,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -346,6 +356,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -376,6 +387,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -418,6 +430,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -476,6 +489,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -522,6 +536,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -568,6 +583,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -582,7 +598,7 @@
         ],
         "summary": "Retrieves all payment methods",
         "description": "Gets all payment methods for the current tenant with OData support.",
-        "operationId": "GetPaymentMethodsAsync",
+        "operationId": "PaymentMethods_GetPaymentMethods",
         "parameters": [
           {
             "name": "tenantId",
@@ -676,7 +692,7 @@
         ],
         "summary": "Creates a new payment method",
         "description": "Creates a new payment method for the current tenant.",
-        "operationId": "CreatePaymentMethodAsync",
+        "operationId": "PaymentMethods_CreatePaymentMethod",
         "parameters": [
           {
             "name": "tenantId",
@@ -772,7 +788,7 @@
         ],
         "summary": "Counts payment methods",
         "description": "Gets the count of payment methods for the current tenant.",
-        "operationId": "GetPaymentMethodsCountAsync",
+        "operationId": "PaymentMethods_GetPaymentMethodsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -868,7 +884,7 @@
         ],
         "summary": "Gets a payment method by ID",
         "description": "Retrieves the details of a payment method using its unique ID.",
-        "operationId": "GetPaymentMethodDetailsAsync",
+        "operationId": "PaymentMethods_GetPaymentMethodDetails",
         "parameters": [
           {
             "name": "tenantId",
@@ -957,7 +973,7 @@
         ],
         "summary": "Updates a payment method",
         "description": "Updates the specified payment method.",
-        "operationId": "UpdatePaymentMethodAsync",
+        "operationId": "PaymentMethods_UpdatePaymentMethod",
         "parameters": [
           {
             "name": "tenantId",
@@ -1060,7 +1076,7 @@
         ],
         "summary": "Patch a payment method",
         "description": "Patch a payment method",
-        "operationId": "PatchPaymentMethodAsync",
+        "operationId": "PaymentMethods_PatchPaymentMethod",
         "parameters": [
           {
             "name": "tenantId",
@@ -1169,7 +1185,7 @@
         ],
         "summary": "Deletes a payment method",
         "description": "Deletes the specified payment method.",
-        "operationId": "DeletePaymentMethodAsync",
+        "operationId": "PaymentMethods_DeletePaymentMethod",
         "parameters": [
           {
             "name": "tenantId",
@@ -1260,7 +1276,7 @@
         ],
         "summary": "Retrieves all payment modes",
         "description": "Gets all payment modes for the current tenant with OData support.",
-        "operationId": "GetPaymentModesAsync",
+        "operationId": "PaymentModes_GetPaymentModes",
         "parameters": [
           {
             "name": "tenantId",
@@ -1354,7 +1370,7 @@
         ],
         "summary": "Creates a new payment mode",
         "description": "Creates a new payment mode for the current tenant.",
-        "operationId": "CreatePaymentModeAsync",
+        "operationId": "PaymentModes_CreatePaymentMode",
         "parameters": [
           {
             "name": "tenantId",
@@ -1450,7 +1466,7 @@
         ],
         "summary": "Counts payment modes",
         "description": "Gets the count of payment modes for the current tenant.",
-        "operationId": "GetPaymentModesCountAsync",
+        "operationId": "PaymentModes_GetPaymentModesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -1546,7 +1562,7 @@
         ],
         "summary": "Gets a payment mode by ID",
         "description": "Retrieves the details of a payment mode using its unique ID.",
-        "operationId": "GetPaymentModeDetailsAsync",
+        "operationId": "PaymentModes_GetPaymentModeDetails",
         "parameters": [
           {
             "name": "tenantId",
@@ -1635,7 +1651,7 @@
         ],
         "summary": "Updates a payment mode",
         "description": "Updates the specified payment mode.",
-        "operationId": "UpdatePaymentModeAsync",
+        "operationId": "PaymentModes_UpdatePaymentMode",
         "parameters": [
           {
             "name": "tenantId",
@@ -1738,7 +1754,7 @@
         ],
         "summary": "Patch a payment mode",
         "description": "Patch a payment mode",
-        "operationId": "PatchPaymentModeAsync",
+        "operationId": "PaymentModes_PatchPaymentMode",
         "parameters": [
           {
             "name": "tenantId",
@@ -1847,7 +1863,7 @@
         ],
         "summary": "Deletes a payment mode",
         "description": "Deletes the specified payment mode.",
-        "operationId": "DeletePaymentModeAsync",
+        "operationId": "PaymentModes_DeletePaymentMode",
         "parameters": [
           {
             "name": "tenantId",
@@ -1937,8 +1953,8 @@
           "PaymentProviderRegistrations"
         ],
         "summary": "Provisions a provider webhook registration",
-        "description": "Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.",
-        "operationId": "CreateAsync",
+        "description": "Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL. It does NOT carry a credential mode or credential-set reference: provisioning establishes the RAIL, and the authority the rail transacts under is server-owned here (the secret goes to the tenant's own options store, which the created registration references by a server-held key). Selecting or re-homing that authority afterwards is POST {registrationId}/Credential. Sending a credentialMode field here has no effect.",
+        "operationId": "PaymentProviderRegistrations_Create",
         "parameters": [
           {
             "name": "tenantId",
@@ -2033,7 +2049,7 @@
         ],
         "summary": "Lists the tenant's provider registrations",
         "description": "Gets all provider registrations for the current tenant with OData support (no secret is ever returned).",
-        "operationId": "GetAsync",
+        "operationId": "PaymentProviderRegistrations_Get",
         "parameters": [
           {
             "name": "tenantId",
@@ -2115,7 +2131,7 @@
         ],
         "summary": "Counts the tenant's provider registrations",
         "description": "Gets the count of provider registrations for the current tenant (OData sibling of the list).",
-        "operationId": "GetCountAsync",
+        "operationId": "PaymentProviderRegistrations_GetCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2197,7 +2213,7 @@
         ],
         "summary": "Rotates a registration's webhook key",
         "description": "Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.",
-        "operationId": "RotateKeyAsync",
+        "operationId": "PaymentProviderRegistrations_RotateKey",
         "parameters": [
           {
             "name": "tenantId",
@@ -2282,6 +2298,339 @@
         }
       }
     },
+    "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}": {
+      "put": {
+        "tags": [
+          "PaymentProviderRegistrations"
+        ],
+        "summary": "Updates an owned provider registration",
+        "description": "Updates the CONTENT half of a tenant-owned registration: enabled capabilities and the provider-side account id. It does NOT carry the declared payment environment, and it does NOT carry the credential mode or credential-set reference. Both of those are AUTHORITY rather than content — the world decides whether a rail may move real money, the credential decides which authority it transacts under — so each moves through its own narrow control-plane sub-resource: POST {registrationId}/Environment and POST {registrationId}/Credential. Sending an environment or credential field here has no effect. Never accepts a secret; the registration only ever references its credential.",
+        "operationId": "PaymentProviderRegistrations_Update",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentProviderRegistrationUpdateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentProviderRegistrationUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Environment": {
+      "post": {
+        "tags": [
+          "PaymentProviderRegistrations"
+        ],
+        "summary": "Declares the world a provider registration transacts in",
+        "description": "Declares this registration's payment environment (Test or Live) — the coordinate that decides whether the rail may ever move real money. A NARROW declaration, not a replace: the body is the single 'environment' field and the registration is addressed by the route, so nothing else can be overwritten or blanked on the way past. Unknown is refused by name (it means authority has not been established, never a way to switch a rail off — use Disable for that), '*' to Unknown is refused, and a Live declaration is refused unless the resolved connector is certified for Live. The change is recorded as durable audit evidence attributed to the AUTHENTICATED caller; no actor field is read from the request.",
+        "operationId": "PaymentProviderRegistrations_DeclareEnvironment",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeclarePaymentProviderEnvironmentRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DeclarePaymentProviderEnvironmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Credential": {
+      "post": {
+        "tags": [
+          "PaymentProviderRegistrations"
+        ],
+        "summary": "Sets the credential authority a provider registration transacts under",
+        "description": "Sets this registration's credential mode and, optionally, its credential-set REFERENCE — the coordinate that decides which authority the rail transacts under. A NARROW declaration, not a replace: the registration is addressed by the route and the body carries only the credential fields, so nothing else can be overwritten or blanked on the way past, and an omitted reference leaves the existing coordinate exactly where it was. The tenant surface may configure tenant-managed (BYO) credentials only. This is the ONLY path to the coordinate: it was removed from the generic update because that update is projected to the Workflow and AI surfaces, and those may use an already-authorized route but may never select, blank, replace or re-home its credential authority. Never accepts a secret — only a non-secret reference.",
+        "operationId": "PaymentProviderRegistrations_SetCredential",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetPaymentProviderRegistrationCredentialRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SetPaymentProviderRegistrationCredentialRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
       "get": {
         "tags": [
@@ -2289,7 +2638,7 @@
         ],
         "summary": "Gets a payment by ID (deprecated)",
         "description": "Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.",
-        "operationId": "GetPaymentAsync",
+        "operationId": "Payments_GetPayment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2367,7 +2716,7 @@
         ],
         "summary": "Gets a payment by ID",
         "description": "Retrieves the details of a payment using its unique identifier.",
-        "operationId": "GetPaymentAsyncV2",
+        "operationId": "Payments_GetPaymentAsyncV2",
         "parameters": [
           {
             "name": "tenantId",
@@ -2442,7 +2791,7 @@
         ],
         "summary": "Updates a payment",
         "description": "Updates the specified payment.",
-        "operationId": "UpdatePaymentAsync",
+        "operationId": "Payments_UpdatePayment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2546,7 +2895,7 @@
         ],
         "summary": "Patch a payment",
         "description": "Patch a payment",
-        "operationId": "PatchPaymentAsync",
+        "operationId": "Payments_PatchPayment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2641,7 +2990,7 @@
         ],
         "summary": "Deletes a payment",
         "description": "Deletes the specified payment.",
-        "operationId": "DeletePaymentAsync",
+        "operationId": "Payments_DeletePayment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2733,7 +3082,7 @@
         ],
         "summary": "Retrieves all payments",
         "description": "Gets all payments for the current tenant with OData support.",
-        "operationId": "GetPaymentsAsync",
+        "operationId": "Payments_GetPayments",
         "parameters": [
           {
             "name": "tenantId",
@@ -2828,7 +3177,7 @@
         ],
         "summary": "Creates a new payment",
         "description": "Creates a new payment for the current tenant.",
-        "operationId": "CreatePaymentAsync",
+        "operationId": "Payments_CreatePayment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2925,7 +3274,7 @@
         ],
         "summary": "Retrieves all payment terms",
         "description": "Gets all payment terms for the current tenant with OData support.",
-        "operationId": "GetPaymentTermsAsync",
+        "operationId": "PaymentTerms_GetPaymentTerms",
         "parameters": [
           {
             "name": "tenantId",
@@ -3019,7 +3368,7 @@
         ],
         "summary": "Creates a new payment term",
         "description": "Creates a new payment term for the current tenant.",
-        "operationId": "CreatePaymentTermAsync",
+        "operationId": "PaymentTerms_CreatePaymentTerm",
         "parameters": [
           {
             "name": "tenantId",
@@ -3115,7 +3464,7 @@
         ],
         "summary": "Counts payment terms",
         "description": "Gets the count of payment terms for the current tenant.",
-        "operationId": "GetPaymentTermsCountAsync",
+        "operationId": "PaymentTerms_GetPaymentTermsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -3211,7 +3560,7 @@
         ],
         "summary": "Gets a payment term by ID",
         "description": "Retrieves the details of a payment term using its unique ID.",
-        "operationId": "GetPaymentTermDetailsAsync",
+        "operationId": "PaymentTerms_GetPaymentTermDetails",
         "parameters": [
           {
             "name": "tenantId",
@@ -3300,7 +3649,7 @@
         ],
         "summary": "Updates a payment term",
         "description": "Updates the specified payment term.",
-        "operationId": "UpdatePaymentTermAsync",
+        "operationId": "PaymentTerms_UpdatePaymentTerm",
         "parameters": [
           {
             "name": "tenantId",
@@ -3403,7 +3752,7 @@
         ],
         "summary": "Patch a payment term",
         "description": "Patch a payment term",
-        "operationId": "PatchPaymentTermAsync",
+        "operationId": "PaymentTerms_PatchPaymentTerm",
         "parameters": [
           {
             "name": "tenantId",
@@ -3512,7 +3861,7 @@
         ],
         "summary": "Deletes a payment term",
         "description": "Deletes the specified payment term.",
-        "operationId": "DeletePaymentTermAsync",
+        "operationId": "PaymentTerms_DeletePaymentTerm",
         "parameters": [
           {
             "name": "tenantId",
@@ -3595,6 +3944,486 @@
           }
         }
       }
+    },
+    "/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome": {
+      "get": {
+        "tags": [
+          "ProviderOperations"
+        ],
+        "summary": "Lists provider instructions whose outcome is not established",
+        "description": "The tenant's outcome review queue: every provider instruction for which no provider-authenticated evidence settles whether money moved. It is deliberately inclusive. An instruction still sitting at Prepared is NOT proof that nothing egressed, and one ABS locally stopped pursuing (Discontinued) is not an outcome either: both are still Unknown, both still hold the economic occurrence, and both appear here. Each row carries whether the rail can be asked what became of it, and the plain sentence explaining what happens if nobody acts. Where the answer is that the rail cannot be asked, no automatic process will resolve the row: an operator must establish the outcome against the provider's own record. OData filter / search / order / paging apply to the persisted columns; the two reconciliation fields are derived from connector code after the read and are not filterable.",
+        "operationId": "ProviderOperations_GetAwaitingOutcome",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome/Count": {
+      "get": {
+        "tags": [
+          "ProviderOperations"
+        ],
+        "summary": "Counts provider instructions whose outcome is not established",
+        "description": "The OData sibling of the outcome review queue, so an operator surface can show how much is open without paging the list. Honours the same filter and search; paging never alters a total.",
+        "operationId": "ProviderOperations_GetAwaitingOutcomeCount",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/ReconcileOutcome": {
+      "post": {
+        "tags": [
+          "ProviderOperations"
+        ],
+        "summary": "Asks the rail what became of one instruction",
+        "description": "Establishes what actually happened to ONE provider instruction, and records the answer as durable provider-authenticated evidence. Gated on payments_manage; the operation is re-checked against the acting tenant before any rail is contacted, and a missing instruction and another tenant's instruction answer identically so the route cannot be used to learn which ids exist elsewhere. \n\nIt is a POST because establishing the fact APPENDS evidence and may release the economic-occurrence claim; it changes no business intent and sends no new money instruction. \n\nRead the Availability field, not just the Certainty. Unknown + Available means the rail was asked and has not settled it, so asking again is worth something. Unknown + Unavailable means this rail cannot automatically establish the outcome at all: no scheduled process will resolve it, the occurrence stays claimed, and a person must reconcile it against the provider's own record. Today only Stripe collections are mechanically reconcilable; MercadoPago, ePayco and PayU are not, and no rail certifies reconciliation for a cancellation, which is exactly where ambiguous outcomes live.",
+        "operationId": "ProviderOperations_ReconcileOutcome",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "providerOperationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderOperationOutcomeReconciliationEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderOperationOutcomeReconciliationEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/PublicPaymentLinks": {
+      "post": {
+        "tags": [
+          "PublicPaymentLinks"
+        ],
+        "summary": "Issues a public payment link for one of the tenant's obligations",
+        "description": "Mints an anonymous access grant (PublicPaymentLink) for one of the acting tenant's own obligations and reveals the one-time plaintext bearer token plus its ready-to-share relative url (/Payments/{token}). The token is stored only as a hash at rest and is surfaced exactly once; the issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.",
+        "operationId": "PublicPaymentLinks_Issue",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssuePaymentLinkCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/IssuePaymentLinkCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssuedPaymentLinkDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssuedPaymentLinkDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/PaymentsService/PublicPaymentReferences": {
+      "post": {
+        "tags": [
+          "PublicPaymentReferences"
+        ],
+        "summary": "Issues the public payment reference for one of the tenant's obligations",
+        "description": "Mints (or returns) the opaque, high-entropy, server-minted public payment reference for one of the acting tenant's own obligations, in both its canonical and its printable grouped form. The value is safe to print on a PDF, an email or paper: it is separate from the obligation's internal id and from the document number, is unique by a database constraint, and is revocable/rotatable. Issuance is idempotent so a reprint keeps the same reference. The issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.",
+        "operationId": "PublicPaymentReferences_Issue",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssuePublicPaymentReferenceCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/IssuePublicPaymentReferenceCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicPaymentReferenceDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicPaymentReferenceDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3642,13 +4471,29 @@
             "type": "string",
             "nullable": true
           },
-          "credentialMode": {
+          "environment": {
             "enum": [
-              "TenantManaged",
-              "PlatformManaged",
-              "ExternalReference"
+              "Unknown",
+              "Test",
+              "Live"
             ],
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeclarePaymentProviderEnvironmentRequest": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "enum": [
+              "Unknown",
+              "Test",
+              "Live"
+            ],
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3886,6 +4731,131 @@
         },
         "additionalProperties": false
       },
+      "IssuePaymentLinkCreateDto": {
+        "type": "object",
+        "properties": {
+          "obligationType": {
+            "enum": [
+              "Invoice"
+            ],
+            "type": "string"
+          },
+          "obligationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IssuePublicPaymentReferenceCreateDto": {
+        "type": "object",
+        "properties": {
+          "obligationType": {
+            "enum": [
+              "Invoice"
+            ],
+            "type": "string"
+          },
+          "obligationId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IssuedPaymentLinkDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "obligationType": {
+            "enum": [
+              "Invoice"
+            ],
+            "type": "string"
+          },
+          "obligationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "relativeUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IssuedPaymentLinkDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/IssuedPaymentLinkDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginRequest": {
         "required": [
           "email",
@@ -3927,9 +4897,7 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "nullable": true
-          }
+          "value": { }
         },
         "additionalProperties": false
       },
@@ -5088,6 +6056,14 @@
             ],
             "type": "string"
           },
+          "environment": {
+            "enum": [
+              "Unknown",
+              "Test",
+              "Live"
+            ],
+            "type": "string"
+          },
           "externalAccountId": {
             "type": "string",
             "nullable": true
@@ -5213,6 +6189,32 @@
             "items": {
               "$ref": "#/components/schemas/PaymentProviderRegistrationDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentProviderRegistrationUpdateDto": {
+        "type": "object",
+        "properties": {
+          "enabledCapabilities": {
+            "enum": [
+              "None",
+              "Collection",
+              "Authorization",
+              "Capture",
+              "Refund",
+              "Void",
+              "SplitPayment",
+              "Transfer",
+              "Payout",
+              "RecipientOnboarding",
+              "BalanceInquiry"
+            ],
+            "type": "string"
+          },
+          "externalAccountId": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5811,6 +6813,319 @@
         },
         "additionalProperties": false
       },
+      "ProviderOperationOutcomeReconciliation": {
+        "type": "object",
+        "properties": {
+          "providerOperationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "operationKind": {
+            "enum": [
+              "Collection",
+              "Refund",
+              "Payout",
+              "FxQuote",
+              "Tokenization",
+              "VirtualAccountIssuance",
+              "Void"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "providerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "certainty": {
+            "enum": [
+              "Unknown",
+              "KnownNoEffect",
+              "KnownSucceeded",
+              "KnownFailed"
+            ],
+            "type": "string"
+          },
+          "availability": {
+            "enum": [
+              "Unknown",
+              "Unavailable",
+              "Available",
+              "AlreadyEstablished"
+            ],
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiresReconciliation": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "requiresOperatorResolution": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProviderOperationOutcomeReconciliationEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/ProviderOperationOutcomeReconciliation"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProviderOperationOutcomeReviewDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentAttemptId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "operationKind": {
+            "enum": [
+              "Collection",
+              "Refund",
+              "Payout",
+              "FxQuote",
+              "Tokenization",
+              "VirtualAccountIssuance",
+              "Void"
+            ],
+            "type": "string"
+          },
+          "environment": {
+            "enum": [
+              "Unknown",
+              "Test",
+              "Live"
+            ],
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "Prepared",
+              "Dispatched",
+              "Observed",
+              "Settled",
+              "Failed",
+              "Discontinued"
+            ],
+            "type": "string"
+          },
+          "canonicalStatus": {
+            "enum": [
+              "Pending",
+              "RequiresAction",
+              "Authorized",
+              "Succeeded",
+              "Failed",
+              "Cancelled"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "requestedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "requestedCurrencyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerResourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subjectType": {
+            "type": "string",
+            "nullable": true
+          },
+          "subjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "outcomeReconciliation": {
+            "enum": [
+              "Unknown",
+              "Unavailable",
+              "Available",
+              "AlreadyEstablished"
+            ],
+            "type": "string"
+          },
+          "reconciliationDisposition": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProviderOperationOutcomeReviewDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProviderOperationOutcomeReviewDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderOperationOutcomeReviewDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProviderWebhookRegistrationCreatedDto": {
         "type": "object",
         "properties": {
@@ -5893,6 +7208,103 @@
         },
         "additionalProperties": false
       },
+      "PublicPaymentReferenceDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "obligationType": {
+            "enum": [
+              "Invoice"
+            ],
+            "type": "string"
+          },
+          "obligationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "enum": [
+              "Unminted",
+              "Active",
+              "Revoked",
+              "Rotated"
+            ],
+            "type": "string"
+          },
+          "mintedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicPaymentReferenceDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PublicPaymentReferenceDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -5954,6 +7366,21 @@
             "nullable": true
           },
           "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetPaymentProviderRegistrationCredentialRequest": {
+        "type": "object",
+        "properties": {
+          "credentialMode": {
+            "enum": [
+              "TenantManaged",
+              "PlatformManaged",
+              "ExternalReference"
+            ],
             "type": "string",
             "nullable": true
           }
@@ -6036,6 +7463,15 @@
     },
     {
       "name": "PaymentTerms"
+    },
+    {
+      "name": "ProviderOperations"
+    },
+    {
+      "name": "PublicPaymentLinks"
+    },
+    {
+      "name": "PublicPaymentReferences"
     }
   ]
 }

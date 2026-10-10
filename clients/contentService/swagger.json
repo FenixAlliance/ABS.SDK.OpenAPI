@@ -40,7 +40,7 @@
         ],
         "summary": "Get blog authors",
         "description": "Retrieves all blog authors, optionally filtered by tenant.",
-        "operationId": "GetBlogAuthorsAsync",
+        "operationId": "BlogPostAuthors_GetBlogAuthors",
         "parameters": [
           {
             "name": "tenantId",
@@ -120,7 +120,7 @@
         ],
         "summary": "Get blog author by ID",
         "description": "Retrieves a specific blog author by their identifier.",
-        "operationId": "GetBlogAuthorByIdAsync",
+        "operationId": "BlogPostAuthors_GetBlogAuthorById",
         "parameters": [
           {
             "name": "authorId",
@@ -187,7 +187,7 @@
         ],
         "summary": "Get blog posts by author",
         "description": "Retrieves all blog posts written by a specific author.",
-        "operationId": "GetBlogPostsByAuthorAsync",
+        "operationId": "BlogPostAuthors_GetBlogPostsByAuthor",
         "parameters": [
           {
             "name": "authorId",
@@ -268,7 +268,7 @@
         ],
         "summary": "Count blog posts by author",
         "description": "Returns the count of blog posts written by a specific author.",
-        "operationId": "CountBlogPostsByAuthorAsync",
+        "operationId": "BlogPostAuthors_CountBlogPostsByAuthor",
         "parameters": [
           {
             "name": "authorId",
@@ -349,7 +349,7 @@
         ],
         "summary": "Count blog post categories",
         "description": "Counts all blog post categories for the specified tenant.",
-        "operationId": "CountBlogPostCategoriesAsync",
+        "operationId": "BlogPostCategories_CountBlogPostCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -445,7 +445,7 @@
         ],
         "summary": "Get blog post categories",
         "description": "Retrieves all blog post categories for the specified tenant.",
-        "operationId": "GetBlogPostCategoriesAsync",
+        "operationId": "BlogPostCategories_GetBlogPostCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -539,7 +539,7 @@
         ],
         "summary": "Create a blog post category",
         "description": "Creates a new blog post category for the specified tenant.",
-        "operationId": "CreateBlogPostCategoryAsync",
+        "operationId": "BlogPostCategories_CreateBlogPostCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -635,7 +635,7 @@
         ],
         "summary": "Get blog post category by ID",
         "description": "Retrieves a specific blog post category by its ID.",
-        "operationId": "GetBlogPostCategoryByIdAsync",
+        "operationId": "BlogPostCategories_GetBlogPostCategoryById",
         "parameters": [
           {
             "name": "tenantId",
@@ -724,7 +724,7 @@
         ],
         "summary": "Update a blog post category",
         "description": "Updates an existing blog post category for the specified tenant.",
-        "operationId": "UpdateBlogPostCategoryAsync",
+        "operationId": "BlogPostCategories_UpdateBlogPostCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -827,7 +827,7 @@
         ],
         "summary": "Patch a blog post category",
         "description": "Partially updates an existing blog post category for the specified tenant.",
-        "operationId": "PatchBlogPostCategoryAsync",
+        "operationId": "BlogPostCategories_PatchBlogPostCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -936,7 +936,7 @@
         ],
         "summary": "Delete a blog post category",
         "description": "Deletes a blog post category for the specified tenant.",
-        "operationId": "DeleteBlogPostCategoryAsync",
+        "operationId": "BlogPostCategories_DeleteBlogPostCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -1027,7 +1027,7 @@
         ],
         "summary": "Retrieve a list of blog posts",
         "description": "Retrieves all blog posts, optionally filtered by tenant using OData query options.",
-        "operationId": "GetBlogPostsAsync",
+        "operationId": "BlogPosts_GetBlogPosts",
         "parameters": [
           {
             "name": "tenantId",
@@ -1106,7 +1106,7 @@
         ],
         "summary": "Create a new blog post",
         "description": "Creates a new blog post for the specified tenant.",
-        "operationId": "CreateBlogPostAsync",
+        "operationId": "BlogPosts_CreateBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1188,7 +1188,7 @@
         ],
         "summary": "Get the count of blog posts",
         "description": "Returns the total count of blog posts, optionally filtered by tenant using OData query options.",
-        "operationId": "GetBlogPostsCountAsync",
+        "operationId": "BlogPosts_GetBlogPostsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -1269,12 +1269,20 @@
         ],
         "summary": "Get a blog post by ID",
         "description": "Retrieves a single blog post by its unique identifier.",
-        "operationId": "GetBlogPostByIdAsync",
+        "operationId": "BlogPosts_GetBlogPostById",
         "parameters": [
           {
             "name": "blogPostId",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -1312,6 +1320,21 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "content": {
@@ -1335,7 +1358,7 @@
         ],
         "summary": "Update a blog post",
         "description": "Updates an existing blog post for the specified tenant.",
-        "operationId": "UpdateBlogPostAsync",
+        "operationId": "BlogPosts_UpdateBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1424,7 +1447,7 @@
         ],
         "summary": "Patch a blog post",
         "description": "Partially updates an existing blog post for the specified tenant.",
-        "operationId": "PatchBlogPostAsync",
+        "operationId": "BlogPosts_PatchBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1519,7 +1542,7 @@
         ],
         "summary": "Delete a blog post",
         "description": "Deletes a blog post for the specified tenant.",
-        "operationId": "DeleteBlogPostAsync",
+        "operationId": "BlogPosts_DeleteBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1589,6 +1612,217 @@
         }
       }
     },
+    "/api/v2/ContentService/BlogPosts/Public": {
+      "get": {
+        "tags": [
+          "BlogPosts"
+        ],
+        "summary": "Get public blog posts",
+        "description": "Retrieves a portal's publicly-visible (published) blog posts. Anonymous.",
+        "operationId": "BlogPosts_GetPublicBlogPosts",
+        "parameters": [
+          {
+            "name": "portalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicBlogPostDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicBlogPostDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicBlogPostDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicBlogPostDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/ContentService/BlogPosts/Public/Count": {
+      "get": {
+        "tags": [
+          "BlogPosts"
+        ],
+        "summary": "Count public blog posts",
+        "description": "Counts a portal's publicly-visible (published) blog posts. Anonymous.",
+        "operationId": "BlogPosts_CountPublicBlogPosts",
+        "parameters": [
+          {
+            "name": "portalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicBlogPostDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicBlogPostDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/ContentService/BlogPosts/Public/{blogPostId}": {
+      "get": {
+        "tags": [
+          "BlogPosts"
+        ],
+        "summary": "Get public blog post by ID",
+        "description": "Retrieves a portal's publicly-visible blog post by its identifier. An unpublished or out-of-portal post is not found. Anonymous.",
+        "operationId": "BlogPosts_GetPublicBlogPostById",
+        "parameters": [
+          {
+            "name": "blogPostId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "portalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicBlogPostDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicBlogPostDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags": {
       "get": {
         "tags": [
@@ -1596,7 +1830,7 @@
         ],
         "summary": "Get tags for a blog post",
         "description": "Retrieves all tags related to a specific blog post.",
-        "operationId": "GetTagsForBlogPostAsync",
+        "operationId": "BlogPosts_GetTagsForBlogPost",
         "parameters": [
           {
             "name": "blogPostId",
@@ -1676,7 +1910,7 @@
         ],
         "summary": "Create a tag for a blog post",
         "description": "Creates a new tag and relates it to a specific blog post.",
-        "operationId": "CreateTagForBlogPostAsync",
+        "operationId": "BlogPosts_CreateTagForBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1767,7 +2001,7 @@
         ],
         "summary": "Relate an existing tag to a blog post",
         "description": "Creates a relationship between an existing tag and a blog post.",
-        "operationId": "RelateTagToBlogPostAsync",
+        "operationId": "BlogPosts_RelateTagToBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1851,7 +2085,7 @@
         ],
         "summary": "Remove a tag from a blog post",
         "description": "Removes the relationship between a tag and a blog post.",
-        "operationId": "UnrelateTagFromBlogPostAsync",
+        "operationId": "BlogPosts_UnrelateTagFromBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -1937,7 +2171,7 @@
         ],
         "summary": "Get categories for a blog post",
         "description": "Retrieves all categories related to a specific blog post.",
-        "operationId": "GetCategoriesForBlogPostAsync",
+        "operationId": "BlogPosts_GetCategoriesForBlogPost",
         "parameters": [
           {
             "name": "blogPostId",
@@ -2017,7 +2251,7 @@
         ],
         "summary": "Create a category for a blog post",
         "description": "Creates a new category and relates it to a specific blog post.",
-        "operationId": "CreateCategoryForBlogPostAsync",
+        "operationId": "BlogPosts_CreateCategoryForBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -2108,7 +2342,7 @@
         ],
         "summary": "Relate an existing category to a blog post",
         "description": "Creates a relationship between an existing category and a blog post.",
-        "operationId": "RelateCategoryToBlogPostAsync",
+        "operationId": "BlogPosts_RelateCategoryToBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -2192,7 +2426,7 @@
         ],
         "summary": "Remove a category from a blog post",
         "description": "Removes the relationship between a category and a blog post.",
-        "operationId": "UnrelateCategoryFromBlogPostAsync",
+        "operationId": "BlogPosts_UnrelateCategoryFromBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -2278,7 +2512,7 @@
         ],
         "summary": "Get comments for a blog post",
         "description": "Retrieves all comments for a specific blog post.",
-        "operationId": "GetCommentsForBlogPostAsync",
+        "operationId": "BlogPosts_GetCommentsForBlogPost",
         "parameters": [
           {
             "name": "blogPostId",
@@ -2358,7 +2592,7 @@
         ],
         "summary": "Create a comment for a blog post",
         "description": "Creates a new comment on a specific blog post.",
-        "operationId": "CreateCommentForBlogPostAsync",
+        "operationId": "BlogPosts_CreateCommentForBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -2449,7 +2683,7 @@
         ],
         "summary": "Get replies for a comment",
         "description": "Retrieves all replies for a specific blog post comment.",
-        "operationId": "GetRepliesForCommentAsync",
+        "operationId": "BlogPosts_GetRepliesForComment",
         "parameters": [
           {
             "name": "commentId",
@@ -2539,7 +2773,7 @@
         ],
         "summary": "Reply to a blog post comment",
         "description": "Creates a reply to an existing comment on a blog post.",
-        "operationId": "ReplyToCommentAsync",
+        "operationId": "BlogPosts_ReplyToComment",
         "parameters": [
           {
             "name": "tenantId",
@@ -2639,7 +2873,7 @@
         ],
         "summary": "Delete a blog post comment",
         "description": "Deletes a comment from a specific blog post.",
-        "operationId": "DeleteCommentFromBlogPostAsync",
+        "operationId": "BlogPosts_DeleteCommentFromBlogPost",
         "parameters": [
           {
             "name": "tenantId",
@@ -2725,7 +2959,7 @@
         ],
         "summary": "Get blog post tags",
         "description": "Retrieves all blog post tags for the specified tenant.",
-        "operationId": "GetBlogPostTagsAsync",
+        "operationId": "BlogPostTags_GetBlogPostTags",
         "parameters": [
           {
             "name": "tenantId",
@@ -2819,7 +3053,7 @@
         ],
         "summary": "Create a blog post tag",
         "description": "Creates a new blog post tag for the specified tenant.",
-        "operationId": "CreateBlogPostTagAsync",
+        "operationId": "BlogPostTags_CreateBlogPostTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -2915,7 +3149,7 @@
         ],
         "summary": "Count blog post tags",
         "description": "Counts all blog post tags for the specified tenant.",
-        "operationId": "CountBlogPostTagsAsync",
+        "operationId": "BlogPostTags_CountBlogPostTags",
         "parameters": [
           {
             "name": "tenantId",
@@ -3011,7 +3245,7 @@
         ],
         "summary": "Get blog post tag by ID",
         "description": "Retrieves a specific blog post tag by its ID.",
-        "operationId": "GetBlogPostTagByIdAsync",
+        "operationId": "BlogPostTags_GetBlogPostTagById",
         "parameters": [
           {
             "name": "tenantId",
@@ -3100,7 +3334,7 @@
         ],
         "summary": "Update a blog post tag",
         "description": "Updates an existing blog post tag for the specified tenant.",
-        "operationId": "UpdateBlogPostTagAsync",
+        "operationId": "BlogPostTags_UpdateBlogPostTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -3203,7 +3437,7 @@
         ],
         "summary": "Patch a blog post tag",
         "description": "Partially updates an existing blog post tag for the specified tenant.",
-        "operationId": "PatchBlogPostTagAsync",
+        "operationId": "BlogPostTags_PatchBlogPostTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -3312,7 +3546,7 @@
         ],
         "summary": "Delete a blog post tag",
         "description": "Deletes a blog post tag for the specified tenant.",
-        "operationId": "DeleteBlogPostTagAsync",
+        "operationId": "BlogPostTags_DeleteBlogPostTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -3403,7 +3637,7 @@
         ],
         "summary": "Get business domains",
         "description": "Retrieves business domains for the specified tenant.",
-        "operationId": "GetBusinessDomainsAsync",
+        "operationId": "BusinessDomains_GetBusinessDomains",
         "parameters": [
           {
             "name": "tenantId",
@@ -3497,7 +3731,7 @@
         ],
         "summary": "Register a business domain",
         "description": "Registers a new (unverified) business domain for the tenant and issues a DNS TXT verification token.",
-        "operationId": "CreateBusinessDomainAsync",
+        "operationId": "BusinessDomains_CreateBusinessDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -3609,7 +3843,7 @@
         ],
         "summary": "Get business domains count",
         "description": "Retrieves the count of business domains for the specified tenant.",
-        "operationId": "GetBusinessDomainsCountAsync",
+        "operationId": "BusinessDomains_GetBusinessDomainsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -3705,7 +3939,7 @@
         ],
         "summary": "Get business domain by ID",
         "description": "Retrieves a specific business domain.",
-        "operationId": "GetBusinessDomainByIdAsync",
+        "operationId": "BusinessDomains_GetBusinessDomainById",
         "parameters": [
           {
             "name": "tenantId",
@@ -3794,7 +4028,7 @@
         ],
         "summary": "Update a business domain",
         "description": "Updates a business domain. Changing the host re-issues the verification token and clears verification.",
-        "operationId": "UpdateBusinessDomainAsync",
+        "operationId": "BusinessDomains_UpdateBusinessDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -3898,7 +4132,7 @@
         ],
         "summary": "Delete a business domain",
         "description": "Removes a business domain from the tenant.",
-        "operationId": "DeleteBusinessDomainAsync",
+        "operationId": "BusinessDomains_DeleteBusinessDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -3989,7 +4223,7 @@
         ],
         "summary": "Verify a business domain",
         "description": "Checks the domain's DNS TXT records for the verification token and marks the domain verified.",
-        "operationId": "VerifyBusinessDomainAsync",
+        "operationId": "BusinessDomains_VerifyBusinessDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -4093,6 +4327,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -4105,6 +4340,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -4117,6 +4353,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -4129,6 +4366,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4161,6 +4399,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -4206,6 +4445,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4235,7 +4475,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -4273,6 +4513,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4295,6 +4536,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4327,6 +4569,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4359,6 +4602,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4401,6 +4645,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -4431,6 +4676,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4473,6 +4719,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -4531,6 +4778,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -4577,6 +4825,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -4623,6 +4872,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -4637,7 +4887,7 @@
         ],
         "summary": "Get localization strings",
         "description": "Retrieves all localization strings for the specified tenant.",
-        "operationId": "GetLocalizationStringsAsync",
+        "operationId": "LocalizationStrings_GetLocalizationStrings",
         "parameters": [
           {
             "name": "tenantId",
@@ -4731,7 +4981,7 @@
         ],
         "summary": "Create a localization string",
         "description": "Creates a new localization string for the specified tenant.",
-        "operationId": "CreateLocalizationStringAsync",
+        "operationId": "LocalizationStrings_CreateLocalizationString",
         "parameters": [
           {
             "name": "tenantId",
@@ -4828,7 +5078,7 @@
         ],
         "summary": "Count localization strings",
         "description": "Counts all localization strings for the specified tenant.",
-        "operationId": "CountLocalizationStringsAsync",
+        "operationId": "LocalizationStrings_CountLocalizationStrings",
         "parameters": [
           {
             "name": "tenantId",
@@ -4924,7 +5174,7 @@
         ],
         "summary": "Get localization string by ID",
         "description": "Retrieves a specific localization string by its identifier.",
-        "operationId": "GetLocalizationStringByIdAsync",
+        "operationId": "LocalizationStrings_GetLocalizationStringById",
         "parameters": [
           {
             "name": "tenantId",
@@ -5013,7 +5263,7 @@
         ],
         "summary": "Update a localization string",
         "description": "Updates an existing localization string for the specified tenant.",
-        "operationId": "UpdateLocalizationStringAsync",
+        "operationId": "LocalizationStrings_UpdateLocalizationString",
         "parameters": [
           {
             "name": "tenantId",
@@ -5117,7 +5367,7 @@
         ],
         "summary": "Delete a localization string",
         "description": "Deletes a localization string for the specified tenant.",
-        "operationId": "DeleteLocalizationStringAsync",
+        "operationId": "LocalizationStrings_DeleteLocalizationString",
         "parameters": [
           {
             "name": "tenantId",
@@ -5208,7 +5458,7 @@
         ],
         "summary": "Get menu contexts",
         "description": "Retrieves all menu contexts for the specified tenant.",
-        "operationId": "GetMenuContextsAsync",
+        "operationId": "MenuContexts_GetMenuContexts",
         "parameters": [
           {
             "name": "tenantId",
@@ -5302,7 +5552,7 @@
         ],
         "summary": "Create a menu context",
         "description": "Creates a new menu context for the specified tenant.",
-        "operationId": "CreateMenuContextAsync",
+        "operationId": "MenuContexts_CreateMenuContext",
         "parameters": [
           {
             "name": "tenantId",
@@ -5399,7 +5649,7 @@
         ],
         "summary": "Count menu contexts",
         "description": "Counts all menu contexts for the specified tenant.",
-        "operationId": "CountMenuContextsAsync",
+        "operationId": "MenuContexts_CountMenuContexts",
         "parameters": [
           {
             "name": "tenantId",
@@ -5495,7 +5745,7 @@
         ],
         "summary": "Get menu context by ID",
         "description": "Retrieves a specific menu context by its identifier.",
-        "operationId": "GetMenuContextByIdAsync",
+        "operationId": "MenuContexts_GetMenuContextById",
         "parameters": [
           {
             "name": "tenantId",
@@ -5584,7 +5834,7 @@
         ],
         "summary": "Update a menu context",
         "description": "Updates an existing menu context for the specified tenant.",
-        "operationId": "UpdateMenuContextAsync",
+        "operationId": "MenuContexts_UpdateMenuContext",
         "parameters": [
           {
             "name": "tenantId",
@@ -5688,7 +5938,7 @@
         ],
         "summary": "Delete a menu context",
         "description": "Deletes a menu context for the specified tenant.",
-        "operationId": "DeleteMenuContextAsync",
+        "operationId": "MenuContexts_DeleteMenuContext",
         "parameters": [
           {
             "name": "tenantId",
@@ -5779,7 +6029,7 @@
         ],
         "summary": "Get portals",
         "description": "Retrieves all portals for the specified tenant.",
-        "operationId": "GetPortalsAsync",
+        "operationId": "Portals_GetPortals",
         "parameters": [
           {
             "name": "tenantId",
@@ -5873,7 +6123,7 @@
         ],
         "summary": "Create a new web portal",
         "description": "Create a new web portal",
-        "operationId": "CreateWebPortalAsync",
+        "operationId": "Portals_CreateWebPortal",
         "parameters": [
           {
             "name": "tenantId",
@@ -5969,7 +6219,7 @@
         ],
         "summary": "Count portals",
         "description": "Counts all portals for the specified tenant.",
-        "operationId": "CountPortalsAsync",
+        "operationId": "Portals_CountPortals",
         "parameters": [
           {
             "name": "tenantId",
@@ -6065,7 +6315,7 @@
         ],
         "summary": "Get the root portal",
         "description": "Get the root portal of the this server instance",
-        "operationId": "GetRootWebPortalAsync",
+        "operationId": "Portals_GetRootWebPortal",
         "parameters": [
           {
             "name": "api-version",
@@ -6138,7 +6388,7 @@
         ],
         "summary": "Get the current portal",
         "description": "Get the current portal of the this server instance",
-        "operationId": "GetCurrentWebPortalAsync",
+        "operationId": "Portals_GetCurrentWebPortal",
         "parameters": [
           {
             "name": "api-version",
@@ -6211,7 +6461,7 @@
         ],
         "summary": "Initialize the current portal",
         "description": "Initialize the current portal for the current user.",
-        "operationId": "InitializeCurrentWebPortalAsync",
+        "operationId": "Portals_InitializeCurrentWebPortal",
         "parameters": [
           {
             "name": "api-version",
@@ -6283,8 +6533,8 @@
           "Portals"
         ],
         "summary": "Get the current portal's options",
-        "description": "Get the current portal's options for the current user.",
-        "operationId": "GetCurrentWebPortalOptionsAsync",
+        "description": "Get the current portal's public (presentational) options. Integration, email and store settings are never returned here.",
+        "operationId": "Portals_GetCurrentWebPortalOptions",
         "parameters": [
           {
             "name": "api-version",
@@ -6337,12 +6587,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalOptionsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalOptionsEnvelope"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalOptionsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalOptionsEnvelope"
                 }
               }
             }
@@ -6357,7 +6607,7 @@
         ],
         "summary": "Search for a portal by its domain",
         "description": "Search for a portal by its domain",
-        "operationId": "SearchWebPortalAsync",
+        "operationId": "Portals_SearchWebPortal",
         "parameters": [
           {
             "name": "domain",
@@ -6438,12 +6688,20 @@
         ],
         "summary": "Get a web portal by its ID",
         "description": "Get a web portal by its ID",
-        "operationId": "GetWebPortalByIdAsync",
+        "operationId": "Portals_GetWebPortalById",
         "parameters": [
           {
             "name": "portalId",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -6518,7 +6776,7 @@
         ],
         "summary": "Update an existing web portal",
         "description": "Update an existing web portal",
-        "operationId": "UpdateWebPortalAsync",
+        "operationId": "Portals_UpdateWebPortal",
         "parameters": [
           {
             "name": "tenantId",
@@ -6621,7 +6879,7 @@
         ],
         "summary": "Delete a web portal",
         "description": "Delete a web portal",
-        "operationId": "DeleteWebPortalAsync",
+        "operationId": "Portals_DeleteWebPortal",
         "parameters": [
           {
             "name": "tenantId",
@@ -6710,7 +6968,7 @@
         ],
         "summary": "Partially update a web portal",
         "description": "Partially update a web portal",
-        "operationId": "PatchWebPortalAsync",
+        "operationId": "Portals_PatchWebPortal",
         "parameters": [
           {
             "name": "tenantId",
@@ -6819,9 +7077,9 @@
         "tags": [
           "Portals"
         ],
-        "summary": "Get a web portal's settings by its ID",
-        "description": "Get a web portal's settings by its ID",
-        "operationId": "GetWebPortalSettingsAsync",
+        "summary": "Get a web portal's public settings by its ID",
+        "description": "Get a web portal's public settings by its ID. Credentials and integration secrets are never returned here; the portal's owner reads the full settings from {portalId}/Settings/Full.",
+        "operationId": "Portals_GetWebPortalSettings",
         "parameters": [
           {
             "name": "portalId",
@@ -6878,17 +7136,32 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalSettingsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalSettingsEnvelope"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalSettingsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalSettingsEnvelope"
                 }
               }
             }
@@ -6901,7 +7174,7 @@
         ],
         "summary": "Update a web portal's settings",
         "description": "Update a web portal's settings (Options) by its ID",
-        "operationId": "UpdateWebPortalSettingsAsync",
+        "operationId": "Portals_UpdateWebPortalSettings",
         "parameters": [
           {
             "name": "tenantId",
@@ -6999,14 +7272,120 @@
         }
       }
     },
+    "/api/v2/ContentService/Portals/{portalId}/Settings/Full": {
+      "get": {
+        "tags": [
+          "Portals"
+        ],
+        "summary": "Get a web portal's full settings",
+        "description": "Get the full settings of a portal the tenant owns, for editing. Requires portals_update.",
+        "operationId": "Portals_GetWebPortalFullSettings",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "portalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PortalSettingsEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PortalSettingsEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/ContentService/Portals/{portalId}/Options": {
       "get": {
         "tags": [
           "Portals"
         ],
-        "summary": "Get a web portal's options by its ID",
-        "description": "Get a web portal's options by its ID",
-        "operationId": "GetWebPortalOptionsAsync",
+        "summary": "Get a web portal's public options by its ID",
+        "description": "Get a web portal's public (presentational) options by its ID. Integration, email and store settings are never returned here.",
+        "operationId": "Portals_GetWebPortalOptions",
         "parameters": [
           {
             "name": "portalId",
@@ -7063,17 +7442,32 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalOptionsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalOptionsEnvelope"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortalOptionsEnvelope"
+                  "$ref": "#/components/schemas/PublicPortalOptionsEnvelope"
                 }
               }
             }
@@ -7088,7 +7482,7 @@
         ],
         "summary": "Get a web portal's bound domains",
         "description": "Get the BusinessDomains bound to a web portal",
-        "operationId": "GetWebPortalDomainBindingsAsync",
+        "operationId": "Portals_GetWebPortalDomainBindings",
         "parameters": [
           {
             "name": "tenantId",
@@ -7179,7 +7573,7 @@
         ],
         "summary": "Bind a domain to a web portal",
         "description": "Bind a verified BusinessDomain to a web portal",
-        "operationId": "BindWebPortalDomainAsync",
+        "operationId": "Portals_BindWebPortalDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -7277,7 +7671,7 @@
         ],
         "summary": "Unbind a domain from a web portal",
         "description": "Unbind a BusinessDomain from a web portal",
-        "operationId": "UnbindWebPortalDomainAsync",
+        "operationId": "Portals_UnbindWebPortalDomain",
         "parameters": [
           {
             "name": "tenantId",
@@ -7370,14 +7764,14 @@
         }
       }
     },
-    "/api/v2/ContentService/Themes/Update": {
-      "get": {
+    "/api/v2/ContentService/Themes/BaseWebContent": {
+      "post": {
         "tags": [
           "Themes"
         ],
-        "summary": "Update base web content themes",
-        "description": "Triggers an update of the base web content themes.",
-        "operationId": "UpdateThemesAsync",
+        "summary": "Update the base theme web content",
+        "description": "Reinstalls the instance's base theme from the pinned, SHA-256-verified package. Root-tenant instance administrators only.",
+        "operationId": "Themes_UpdateBaseWebContent",
         "parameters": [
           {
             "name": "api-version",
@@ -7395,6 +7789,21 @@
           }
         ],
         "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
             "content": {
@@ -7424,6 +7833,21 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
           }
         }
       }
@@ -7435,7 +7859,7 @@
         ],
         "summary": "Get web components",
         "description": "Retrieves all web components for the specified tenant.",
-        "operationId": "GetWebComponentsAsync",
+        "operationId": "WebComponents_GetWebComponents",
         "parameters": [
           {
             "name": "tenantId",
@@ -7529,7 +7953,7 @@
         ],
         "summary": "Create a web component",
         "description": "Creates a new web component for the specified tenant.",
-        "operationId": "CreateWebComponentAsync",
+        "operationId": "WebComponents_CreateWebComponent",
         "parameters": [
           {
             "name": "tenantId",
@@ -7626,7 +8050,7 @@
         ],
         "summary": "Count web components",
         "description": "Counts all web components for the specified tenant.",
-        "operationId": "CountWebComponentsAsync",
+        "operationId": "WebComponents_CountWebComponents",
         "parameters": [
           {
             "name": "tenantId",
@@ -7722,7 +8146,7 @@
         ],
         "summary": "Get web component by ID",
         "description": "Retrieves a specific web component by its identifier.",
-        "operationId": "GetWebComponentByIdAsync",
+        "operationId": "WebComponents_GetWebComponentById",
         "parameters": [
           {
             "name": "tenantId",
@@ -7811,7 +8235,7 @@
         ],
         "summary": "Update a web component",
         "description": "Updates an existing web component for the specified tenant.",
-        "operationId": "UpdateWebComponentAsync",
+        "operationId": "WebComponents_UpdateWebComponent",
         "parameters": [
           {
             "name": "tenantId",
@@ -7915,7 +8339,7 @@
         ],
         "summary": "Delete a web component",
         "description": "Deletes a web component for the specified tenant.",
-        "operationId": "DeleteWebComponentAsync",
+        "operationId": "WebComponents_DeleteWebComponent",
         "parameters": [
           {
             "name": "tenantId",
@@ -8006,7 +8430,7 @@
         ],
         "summary": "Count web contents",
         "description": "Counts all web contents for the specified tenant.",
-        "operationId": "CountWebContentsAsync",
+        "operationId": "WebContents_CountWebContents",
         "parameters": [
           {
             "name": "tenantId",
@@ -8102,7 +8526,7 @@
         ],
         "summary": "Get web contents",
         "description": "Retrieves all web contents for the specified tenant.",
-        "operationId": "GetWebContentsAsync",
+        "operationId": "WebContents_GetWebContents",
         "parameters": [
           {
             "name": "tenantId",
@@ -8196,7 +8620,7 @@
         ],
         "summary": "Create a web content",
         "description": "Creates a new web content for the specified tenant.",
-        "operationId": "CreateWebContentAsync",
+        "operationId": "WebContents_CreateWebContent",
         "parameters": [
           {
             "name": "tenantId",
@@ -8292,7 +8716,7 @@
         ],
         "summary": "Get web content by ID",
         "description": "Retrieves a specific web content by its ID.",
-        "operationId": "GetWebContentByIdAsync",
+        "operationId": "WebContents_GetWebContentById",
         "parameters": [
           {
             "name": "tenantId",
@@ -8381,7 +8805,7 @@
         ],
         "summary": "Update a web content",
         "description": "Updates an existing web content for the specified tenant.",
-        "operationId": "UpdateWebContentAsync",
+        "operationId": "WebContents_UpdateWebContent",
         "parameters": [
           {
             "name": "tenantId",
@@ -8484,7 +8908,7 @@
         ],
         "summary": "Patch a web content",
         "description": "Partially updates an existing web content for the specified tenant.",
-        "operationId": "PatchWebContentAsync",
+        "operationId": "WebContents_PatchWebContent",
         "parameters": [
           {
             "name": "tenantId",
@@ -8593,7 +9017,7 @@
         ],
         "summary": "Delete a web content",
         "description": "Deletes a web content for the specified tenant.",
-        "operationId": "DeleteWebContentAsync",
+        "operationId": "WebContents_DeleteWebContent",
         "parameters": [
           {
             "name": "tenantId",
@@ -8684,7 +9108,7 @@
         ],
         "summary": "Get web page categories",
         "description": "Retrieves all web page categories for the specified tenant.",
-        "operationId": "GetWebPageCategoriesAsync",
+        "operationId": "WebPageCategories_GetWebPageCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -8778,7 +9202,7 @@
         ],
         "summary": "Create a web page category",
         "description": "Creates a new web page category for the specified tenant.",
-        "operationId": "CreateWebPageCategoryAsync",
+        "operationId": "WebPageCategories_CreateWebPageCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -8874,7 +9298,7 @@
         ],
         "summary": "Count web page categories",
         "description": "Counts all web page categories for the specified tenant.",
-        "operationId": "CountWebPageCategoriesAsync",
+        "operationId": "WebPageCategories_CountWebPageCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -8970,7 +9394,7 @@
         ],
         "summary": "Get web page category by ID",
         "description": "Retrieves a specific web page category by its ID.",
-        "operationId": "GetWebPageCategoryByIdAsync",
+        "operationId": "WebPageCategories_GetWebPageCategoryById",
         "parameters": [
           {
             "name": "tenantId",
@@ -9059,7 +9483,7 @@
         ],
         "summary": "Update a web page category",
         "description": "Updates an existing web page category for the specified tenant.",
-        "operationId": "UpdateWebPageCategoryAsync",
+        "operationId": "WebPageCategories_UpdateWebPageCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -9162,7 +9586,7 @@
         ],
         "summary": "Patch a web page category",
         "description": "Partially updates an existing web page category for the specified tenant.",
-        "operationId": "PatchWebPageCategoryAsync",
+        "operationId": "WebPageCategories_PatchWebPageCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -9271,7 +9695,7 @@
         ],
         "summary": "Delete a web page category",
         "description": "Deletes a web page category for the specified tenant.",
-        "operationId": "DeleteWebPageCategoryAsync",
+        "operationId": "WebPageCategories_DeleteWebPageCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -9362,7 +9786,7 @@
         ],
         "summary": "Count web pages",
         "description": "Counts all web pages for the specified tenant.",
-        "operationId": "CountWebPagesAsync",
+        "operationId": "WebPages_CountWebPages",
         "parameters": [
           {
             "name": "tenantId",
@@ -9443,7 +9867,7 @@
         ],
         "summary": "Get web pages",
         "description": "Retrieves all web pages for the specified tenant.",
-        "operationId": "GetWebPagesAsync",
+        "operationId": "WebPages_GetWebPages",
         "parameters": [
           {
             "name": "tenantId",
@@ -9522,7 +9946,7 @@
         ],
         "summary": "Create a web page",
         "description": "Creates a new web page for the specified tenant.",
-        "operationId": "CreateWebPageAsync",
+        "operationId": "WebPages_CreateWebPage",
         "parameters": [
           {
             "name": "tenantId",
@@ -9591,7 +10015,7 @@
         ],
         "summary": "Get web page by ID",
         "description": "Retrieves a specific web page by its identifier.",
-        "operationId": "GetWebPageByIdAsync",
+        "operationId": "WebPages_GetWebPageById",
         "parameters": [
           {
             "name": "tenantId",
@@ -9665,7 +10089,7 @@
         ],
         "summary": "Update a web page",
         "description": "Updates an existing web page for the specified tenant.",
-        "operationId": "UpdateWebPageAsync",
+        "operationId": "WebPages_UpdateWebPage",
         "parameters": [
           {
             "name": "tenantId",
@@ -9741,7 +10165,7 @@
         ],
         "summary": "Patch a web page",
         "description": "Partially updates an existing web page for the specified tenant.",
-        "operationId": "PatchWebPageAsync",
+        "operationId": "WebPages_PatchWebPage",
         "parameters": [
           {
             "name": "tenantId",
@@ -9823,7 +10247,7 @@
         ],
         "summary": "Delete a web page",
         "description": "Deletes a web page for the specified tenant.",
-        "operationId": "DeleteWebPageAsync",
+        "operationId": "WebPages_DeleteWebPage",
         "parameters": [
           {
             "name": "tenantId",
@@ -9887,7 +10311,7 @@
         ],
         "summary": "Get tags by web page",
         "description": "Retrieves all tags related to a specific web page.",
-        "operationId": "GetTagsByWebPageAsync",
+        "operationId": "WebPages_GetTagsByWebPage",
         "parameters": [
           {
             "name": "webPageId",
@@ -9966,7 +10390,7 @@
         ],
         "summary": "Create a web page tag relation",
         "description": "Creates a new tag and relates it to a web page.",
-        "operationId": "CreateWebPageTagRelationAsync",
+        "operationId": "WebPages_CreateWebPageTagRelation",
         "parameters": [
           {
             "name": "tenantId",
@@ -10044,7 +10468,7 @@
         ],
         "summary": "Relate web page to tag",
         "description": "Relates an existing tag to a web page.",
-        "operationId": "RelateWebPageToTagAsync",
+        "operationId": "WebPages_RelateWebPageToTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -10115,7 +10539,7 @@
         ],
         "summary": "Unrelate web page from tag",
         "description": "Removes the relationship between a web page and a tag.",
-        "operationId": "UnrelateWebPageTagAsync",
+        "operationId": "WebPages_UnrelateWebPageTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -10188,7 +10612,7 @@
         ],
         "summary": "Get categories by web page",
         "description": "Retrieves all categories related to a specific web page.",
-        "operationId": "GetCategoriesByWebPageAsync",
+        "operationId": "WebPages_GetCategoriesByWebPage",
         "parameters": [
           {
             "name": "webPageId",
@@ -10267,7 +10691,7 @@
         ],
         "summary": "Create a web page category relation",
         "description": "Creates a new category and relates it to a web page.",
-        "operationId": "CreateWebPageCategoryRelationAsync",
+        "operationId": "WebPages_CreateWebPageCategoryRelation",
         "parameters": [
           {
             "name": "tenantId",
@@ -10345,7 +10769,7 @@
         ],
         "summary": "Relate web page to category",
         "description": "Relates an existing category to a web page.",
-        "operationId": "RelateWebPageToCategoryAsync",
+        "operationId": "WebPages_RelateWebPageToCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -10416,7 +10840,7 @@
         ],
         "summary": "Unrelate web page from category",
         "description": "Removes the relationship between a web page and a category.",
-        "operationId": "UnrelateWebPageCategoryAsync",
+        "operationId": "WebPages_UnrelateWebPageCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -10489,7 +10913,7 @@
         ],
         "summary": "Get web page tags",
         "description": "Retrieves all web page tags for the specified tenant.",
-        "operationId": "GetWebPageTagsAsync",
+        "operationId": "WebPageTags_GetWebPageTags",
         "parameters": [
           {
             "name": "tenantId",
@@ -10583,7 +11007,7 @@
         ],
         "summary": "Create a web page tag",
         "description": "Creates a new web page tag for the specified tenant.",
-        "operationId": "CreateWebPageTagAsync",
+        "operationId": "WebPageTags_CreateWebPageTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -10679,7 +11103,7 @@
         ],
         "summary": "Count web page tags",
         "description": "Counts all web page tags for the specified tenant.",
-        "operationId": "CountWebPageTagsAsync",
+        "operationId": "WebPageTags_CountWebPageTags",
         "parameters": [
           {
             "name": "tenantId",
@@ -10775,7 +11199,7 @@
         ],
         "summary": "Get web page tag by ID",
         "description": "Retrieves a specific web page tag by its ID.",
-        "operationId": "GetWebPageTagByIdAsync",
+        "operationId": "WebPageTags_GetWebPageTagById",
         "parameters": [
           {
             "name": "tenantId",
@@ -10864,7 +11288,7 @@
         ],
         "summary": "Update a web page tag",
         "description": "Updates an existing web page tag for the specified tenant.",
-        "operationId": "UpdateWebPageTagAsync",
+        "operationId": "WebPageTags_UpdateWebPageTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -10967,7 +11391,7 @@
         ],
         "summary": "Patch a web page tag",
         "description": "Partially updates an existing web page tag for the specified tenant.",
-        "operationId": "PatchWebPageTagAsync",
+        "operationId": "WebPageTags_PatchWebPageTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -11076,7 +11500,7 @@
         ],
         "summary": "Delete a web page tag",
         "description": "Deletes a web page tag for the specified tenant.",
-        "operationId": "DeleteWebPageTagAsync",
+        "operationId": "WebPageTags_DeleteWebPageTag",
         "parameters": [
           {
             "name": "tenantId",
@@ -11167,7 +11591,7 @@
         ],
         "summary": "Get all website themes",
         "description": "Retrieves all website themes for the specified tenant.",
-        "operationId": "GetWebsiteThemesAsync",
+        "operationId": "WebsiteThemes_GetWebsiteThemes",
         "parameters": [
           {
             "name": "tenantId",
@@ -11246,7 +11670,7 @@
         ],
         "summary": "Create a new website theme",
         "description": "Creates a new website theme for the specified tenant.",
-        "operationId": "CreateWebsiteThemeAsync",
+        "operationId": "WebsiteThemes_CreateWebsiteTheme",
         "parameters": [
           {
             "name": "tenantId",
@@ -11330,7 +11754,7 @@
         ],
         "summary": "Get website themes count",
         "description": "Returns the count of website themes for the specified tenant.",
-        "operationId": "GetWebsiteThemesCountAsync",
+        "operationId": "WebsiteThemes_GetWebsiteThemesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -11411,7 +11835,7 @@
         ],
         "summary": "Get website theme by ID",
         "description": "Retrieves a specific website theme by its identifier.",
-        "operationId": "GetWebsiteThemeByIdAsync",
+        "operationId": "WebsiteThemes_GetWebsiteThemeById",
         "parameters": [
           {
             "name": "tenantId",
@@ -11500,7 +11924,7 @@
         ],
         "summary": "Update a website theme",
         "description": "Updates an existing website theme for the specified tenant.",
-        "operationId": "UpdateWebsiteThemeAsync",
+        "operationId": "WebsiteThemes_UpdateWebsiteTheme",
         "parameters": [
           {
             "name": "tenantId",
@@ -11591,7 +12015,7 @@
         ],
         "summary": "Patch a website theme",
         "description": "Partially updates an existing website theme for the specified tenant.",
-        "operationId": "PatchWebsiteThemeAsync",
+        "operationId": "WebsiteThemes_PatchWebsiteTheme",
         "parameters": [
           {
             "name": "tenantId",
@@ -11688,7 +12112,7 @@
         ],
         "summary": "Delete a website theme",
         "description": "Deletes a website theme for the specified tenant.",
-        "operationId": "DeleteWebsiteThemeAsync",
+        "operationId": "WebsiteThemes_DeleteWebsiteTheme",
         "parameters": [
           {
             "name": "tenantId",
@@ -11767,7 +12191,7 @@
         ],
         "summary": "Get web templates",
         "description": "Retrieves all web templates for the specified tenant.",
-        "operationId": "GetWebTemplatesAsync",
+        "operationId": "WebTemplates_GetWebTemplates",
         "parameters": [
           {
             "name": "tenantId",
@@ -11861,7 +12285,7 @@
         ],
         "summary": "Create a web template",
         "description": "Creates a new web template for the specified tenant.",
-        "operationId": "CreateWebTemplateAsync",
+        "operationId": "WebTemplates_CreateWebTemplate",
         "parameters": [
           {
             "name": "tenantId",
@@ -11945,7 +12369,7 @@
         ],
         "summary": "Count web templates",
         "description": "Counts all web templates for the specified tenant.",
-        "operationId": "CountWebTemplatesAsync",
+        "operationId": "WebTemplates_CountWebTemplates",
         "parameters": [
           {
             "name": "tenantId",
@@ -12041,7 +12465,7 @@
         ],
         "summary": "Get web template by ID",
         "description": "Retrieves a specific web template by its identifier.",
-        "operationId": "GetWebTemplateByIdAsync",
+        "operationId": "WebTemplates_GetWebTemplateById",
         "parameters": [
           {
             "name": "tenantId",
@@ -12130,7 +12554,7 @@
         ],
         "summary": "Update a web template",
         "description": "Updates an existing web template for the specified tenant.",
-        "operationId": "UpdateWebTemplateAsync",
+        "operationId": "WebTemplates_UpdateWebTemplate",
         "parameters": [
           {
             "name": "tenantId",
@@ -12221,7 +12645,7 @@
         ],
         "summary": "Patch a web template",
         "description": "Partially updates an existing web template for the specified tenant.",
-        "operationId": "PatchWebTemplateAsync",
+        "operationId": "WebTemplates_PatchWebTemplate",
         "parameters": [
           {
             "name": "tenantId",
@@ -12318,7 +12742,7 @@
         ],
         "summary": "Delete a web template",
         "description": "Deletes a web template for the specified tenant.",
-        "operationId": "DeleteWebTemplateAsync",
+        "operationId": "WebTemplates_DeleteWebTemplate",
         "parameters": [
           {
             "name": "tenantId",
@@ -12585,6 +13009,19 @@
           },
           "provenance": {
             "$ref": "#/components/schemas/ExecutionProvenance"
+          },
+          "executionPrincipalId": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "executionPrincipalEnrollmentId": {
+            "$ref": "#/components/schemas/EnrollmentId"
+          },
+          "executionPrincipalScopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -12749,6 +13186,20 @@
             "nullable": true
           },
           "mainContentImageURL": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BaseThemePackageOptions": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "sha256": {
             "type": "string",
             "nullable": true
           }
@@ -13704,9 +14155,7 @@
             "type": "string",
             "nullable": true
           },
-          "emitResult": {
-            "nullable": true
-          },
+          "emitResult": { },
           "seoTitle": {
             "type": "string",
             "nullable": true
@@ -15291,11 +15740,20 @@
           },
           "identityProviderAccessToken": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "birthday": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "tikTokUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUsername": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -16135,6 +16593,10 @@
             "type": "string",
             "nullable": true
           },
+          "tenantName": {
+            "type": "string",
+            "nullable": true
+          },
           "revoked": {
             "type": "boolean"
           },
@@ -16604,6 +17066,9 @@
           },
           "settings": {
             "$ref": "#/components/schemas/UserSettingsDto"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -16778,6 +17243,31 @@
         },
         "additionalProperties": false
       },
+      "ForexIntegrationOptions": {
+        "type": "object",
+        "properties": {
+          "enable": {
+            "type": "boolean"
+          },
+          "exchangeRateHostApiKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "staleAfterHours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stalenessMode": {
+            "enum": [
+              "Off",
+              "Flag",
+              "Block"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "ForexRatesDto": {
         "type": "object",
         "properties": {
@@ -16795,6 +17285,15 @@
           "timestamp": {
             "type": "integer",
             "format": "int64"
+          },
+          "ratesAsOfUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isStale": {
+            "type": "boolean"
           },
           "requestTimestamp": {
             "type": "string",
@@ -17346,6 +17845,9 @@
           },
           "openExchangeRates": {
             "$ref": "#/components/schemas/OpenExchangeRatesIntegrationsOptions"
+          },
+          "forex": {
+            "$ref": "#/components/schemas/ForexIntegrationOptions"
           }
         },
         "additionalProperties": false
@@ -18511,9 +19013,7 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "nullable": true
-          }
+          "value": { }
         },
         "additionalProperties": false
       },
@@ -18706,57 +19206,6 @@
         },
         "additionalProperties": false
       },
-      "PortalOptionsEnvelope": {
-        "type": "object",
-        "properties": {
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "errorMessage": {
-            "type": "string",
-            "nullable": true
-          },
-          "correlationId": {
-            "type": "string",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "httpStatus": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "errorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "validationDetails": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "nullable": true
-            },
-            "nullable": true
-          },
-          "activityId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "result": {
-            "$ref": "#/components/schemas/PortalOptions"
-          }
-        },
-        "additionalProperties": false
-      },
       "PortalSettings": {
         "type": "object",
         "properties": {
@@ -18817,6 +19266,9 @@
           },
           "options": {
             "$ref": "#/components/schemas/PortalOptions"
+          },
+          "baseThemePackage": {
+            "$ref": "#/components/schemas/BaseThemePackageOptions"
           }
         },
         "additionalProperties": false
@@ -18898,6 +19350,488 @@
       },
       "ProductOptions": {
         "type": "object",
+        "additionalProperties": false
+      },
+      "PublicBlogAuthorDto": {
+        "type": "object",
+        "properties": {
+          "publicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicBlogPostDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "htmlContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "featuredImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "highlightImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "releaseDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "seoTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "metaDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "canonicalUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "blogPostCategoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/PublicBlogAuthorDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicBlogPostDtoCollectionQueryParameters": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "select": {
+            "type": "string",
+            "nullable": true
+          },
+          "expand": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEmpty": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicBlogPostDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PublicBlogPostDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicBlogPostDtoListEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicBlogPostDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicPortalOptions": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "portalUiEngine": {
+            "enum": [
+              "Angular",
+              "React",
+              "Razor"
+            ],
+            "type": "string"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SeoOptions"
+          },
+          "theming": {
+            "$ref": "#/components/schemas/ThemingOptions"
+          },
+          "branding": {
+            "$ref": "#/components/schemas/BrandingOptions"
+          },
+          "social": {
+            "$ref": "#/components/schemas/SocialMediaOptions"
+          },
+          "privacy": {
+            "$ref": "#/components/schemas/PrivacyOptions"
+          },
+          "blog": {
+            "$ref": "#/components/schemas/BlogOptions"
+          },
+          "forums": {
+            "$ref": "#/components/schemas/ForumOptions"
+          },
+          "footer": {
+            "$ref": "#/components/schemas/FooterOptions"
+          },
+          "background": {
+            "$ref": "#/components/schemas/BackgroundOptions"
+          },
+          "breadcrumbs": {
+            "$ref": "#/components/schemas/BreadcrumbsOptions"
+          },
+          "color": {
+            "$ref": "#/components/schemas/ColorOptions"
+          },
+          "header": {
+            "$ref": "#/components/schemas/HeaderOptions"
+          },
+          "titleBar": {
+            "$ref": "#/components/schemas/TitleBarOptions"
+          },
+          "typography": {
+            "$ref": "#/components/schemas/TypographyOptions"
+          },
+          "socialMedia": {
+            "$ref": "#/components/schemas/SocialMediaOptions"
+          },
+          "slidingBar": {
+            "$ref": "#/components/schemas/SlidingBarOptions"
+          },
+          "slideshow": {
+            "$ref": "#/components/schemas/SlideshowOptions"
+          },
+          "slider": {
+            "$ref": "#/components/schemas/SliderOptions"
+          },
+          "sidebar": {
+            "$ref": "#/components/schemas/SidebarOptions"
+          },
+          "search": {
+            "$ref": "#/components/schemas/SearchOptions"
+          },
+          "responsive": {
+            "$ref": "#/components/schemas/ResponsiveOptions"
+          },
+          "portfolio": {
+            "$ref": "#/components/schemas/PortfolioOptions"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationOptions"
+          },
+          "menu": {
+            "$ref": "#/components/schemas/MenuOptions"
+          },
+          "grid": {
+            "$ref": "#/components/schemas/GridOptions"
+          },
+          "mansory": {
+            "$ref": "#/components/schemas/MansoryOptions"
+          },
+          "lightbox": {
+            "$ref": "#/components/schemas/LightboxOptions"
+          },
+          "layout": {
+            "$ref": "#/components/schemas/LayoutOptions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicPortalOptionsEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PublicPortalOptions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicPortalSettings": {
+        "type": "object",
+        "properties": {
+          "portalID": {
+            "type": "string",
+            "nullable": true
+          },
+          "homePageID": {
+            "type": "string",
+            "nullable": true
+          },
+          "blogPageID": {
+            "type": "string",
+            "nullable": true
+          },
+          "storePageID": {
+            "type": "string",
+            "nullable": true
+          },
+          "baseEndpoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "storeRoutePrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "$ref": "#/components/schemas/PublicPortalOptions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicPortalSettingsEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PublicPortalSettings"
+          }
+        },
         "additionalProperties": false
       },
       "RecommendationOptions": {
@@ -20538,7 +21472,8 @@
           },
           "ethereumPrivateKey": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "rollingReservePercent": {
             "type": "number",
@@ -20565,6 +21500,10 @@
             "maxLength": 150,
             "minLength": 1,
             "type": "string"
+          },
+          "webPortalId": {
+            "type": "string",
+            "nullable": true
           },
           "title": {
             "type": "string",
@@ -21011,9 +21950,7 @@
             "type": "string",
             "nullable": true
           },
-          "emitResult": {
-            "nullable": true
-          },
+          "emitResult": { },
           "seoTitle": {
             "type": "string",
             "nullable": true
@@ -22012,9 +22949,7 @@
             "type": "string",
             "nullable": true
           },
-          "emitResult": {
-            "nullable": true
-          },
+          "emitResult": { },
           "seoTitle": {
             "type": "string",
             "nullable": true

@@ -38,6 +38,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -50,6 +51,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,6 +64,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -74,6 +77,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -106,6 +110,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -151,6 +156,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +186,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -218,6 +224,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -240,6 +247,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -272,6 +280,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -304,6 +313,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -346,6 +356,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -376,6 +387,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -418,6 +430,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -476,6 +489,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -522,6 +536,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -568,9 +583,128 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/WalletsService/Me/Ethereum/Balance": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Get the current user's Ether balance",
+        "description": "Reads the Ether balance of the current user's own wallet from the configured Ethereum node. The network follows the wallet's test mode. No key material is returned.",
+        "operationId": "Me_GetMyEthereumBalance",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EthereumBalanceDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EthereumBalanceDtoEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
           }
         }
       }
@@ -582,7 +716,7 @@
         ],
         "summary": "Get Wallet Details",
         "description": "Get details of a specific wallet by ID.",
-        "operationId": "GetWalletDetailsAsync",
+        "operationId": "Wallets_GetWalletDetails",
         "parameters": [
           {
             "name": "walletId",
@@ -664,7 +798,7 @@
         ],
         "summary": "Get Wallet Orders",
         "description": "Get orders of a specific wallet by ID.",
-        "operationId": "GetWalletOrdersAsync",
+        "operationId": "Wallets_GetWalletOrders",
         "parameters": [
           {
             "name": "walletId",
@@ -760,7 +894,7 @@
         ],
         "summary": "Get Wallet Extended Orders",
         "description": "Get extended orders of a specific wallet by ID.",
-        "operationId": "GetWalletExtendedOrdersAsync",
+        "operationId": "Wallets_GetWalletExtendedOrders",
         "parameters": [
           {
             "name": "walletId",
@@ -856,7 +990,7 @@
         ],
         "summary": "Get Wallet Orders Count",
         "description": "Get orders count of a specific wallet by ID.",
-        "operationId": "GetWalletOrdersCountAsync",
+        "operationId": "Wallets_GetWalletOrdersCount",
         "parameters": [
           {
             "name": "walletId",
@@ -952,7 +1086,7 @@
         ],
         "summary": "Get Wallet Invoices",
         "description": "Get invoices of a specific wallet by ID.",
-        "operationId": "GetWalletInvoicesAsync",
+        "operationId": "Wallets_GetWalletInvoices",
         "parameters": [
           {
             "name": "walletId",
@@ -1048,7 +1182,7 @@
         ],
         "summary": "Get Wallet Invoices Count",
         "description": "Get invoices count of a specific wallet by ID.",
-        "operationId": "GetWalletInvoicesCountAsync",
+        "operationId": "Wallets_GetWalletInvoicesCount",
         "parameters": [
           {
             "name": "walletId",
@@ -1144,7 +1278,7 @@
         ],
         "summary": "Get Wallet Payments",
         "description": "Get payments of a specific wallet by ID.",
-        "operationId": "GetWalletPaymentsAsync",
+        "operationId": "Wallets_GetWalletPayments",
         "parameters": [
           {
             "name": "walletId",
@@ -1238,7 +1372,7 @@
         ],
         "summary": "Create Wallet Payment",
         "description": "Create a new payment for a specific wallet by ID.",
-        "operationId": "CreateWalletPaymentAsync",
+        "operationId": "Wallets_CreateWalletPayment",
         "parameters": [
           {
             "name": "walletId",
@@ -1334,7 +1468,7 @@
         ],
         "summary": "Get Wallet Payments Count",
         "description": "Get payments count of a specific wallet by ID.",
-        "operationId": "GetWalletPaymentsCountAsync",
+        "operationId": "Wallets_GetWalletPaymentsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -1430,8 +1564,16 @@
         ],
         "summary": "Get Wallet Locations",
         "description": "Get locations of a specific wallet by ID.",
-        "operationId": "GetLocationsForWalletAsync",
+        "operationId": "Wallets_GetLocationsForWallet",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1524,8 +1666,16 @@
         ],
         "summary": "Create Wallet Location",
         "description": "Create a new location for a specific wallet by ID.",
-        "operationId": "CreateLocationForWalletAsync",
+        "operationId": "Wallets_CreateLocationForWallet",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1620,8 +1770,16 @@
         ],
         "summary": "Get Wallet Locations Count",
         "description": "Get locations count of a specific wallet by ID.",
-        "operationId": "GetLocationsForWalletCountAsync",
+        "operationId": "Wallets_GetLocationsForWalletCount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1716,8 +1874,16 @@
         ],
         "summary": "Get Wallet Location",
         "description": "Get a specific location of a specific wallet by ID.",
-        "operationId": "GetLocationForWalletAsync",
+        "operationId": "Wallets_GetLocationForWallet",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1805,8 +1971,16 @@
         ],
         "summary": "Update Wallet Location",
         "description": "Update a specific location of a specific wallet by ID.",
-        "operationId": "UpdateLocationForWalletAsync",
+        "operationId": "Wallets_UpdateLocationForWallet",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1908,8 +2082,16 @@
         ],
         "summary": "Delete Wallet Location",
         "description": "Delete a specific location of a specific wallet by ID.",
-        "operationId": "DeleteLocationForWalletAsync",
+        "operationId": "Wallets_DeleteLocationForWallet",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -1999,7 +2181,7 @@
         ],
         "summary": "Get Incoming Wallet Invoices",
         "description": "Get incoming invoices of a specific wallet by ID.",
-        "operationId": "GetIncomingWalletInvoicesAsync",
+        "operationId": "Wallets_GetIncomingWalletInvoices",
         "parameters": [
           {
             "name": "walletId",
@@ -2095,7 +2277,7 @@
         ],
         "summary": "Get Incoming Wallet Invoices Count",
         "description": "Get incoming invoices count of a specific wallet by ID.",
-        "operationId": "GetIncomingWalletInvoicesCountAsync",
+        "operationId": "Wallets_GetIncomingWalletInvoicesCount",
         "parameters": [
           {
             "name": "walletId",
@@ -2191,7 +2373,7 @@
         ],
         "summary": "Get Outgoing Wallet Invoices",
         "description": "Get outgoing invoices of a specific wallet by ID.",
-        "operationId": "GetOutgoingWalletInvoicesAsync",
+        "operationId": "Wallets_GetOutgoingWalletInvoices",
         "parameters": [
           {
             "name": "walletId",
@@ -2287,7 +2469,7 @@
         ],
         "summary": "Get Outgoing Wallet Invoices Count",
         "description": "Get outgoing invoices count of a specific wallet by ID.",
-        "operationId": "GetOutgoingWalletInvoicesCountAsync",
+        "operationId": "Wallets_GetOutgoingWalletInvoicesCount",
         "parameters": [
           {
             "name": "walletId",
@@ -2383,7 +2565,7 @@
         ],
         "summary": "Get Incoming Payments",
         "description": "Get incoming payments of a specific wallet by ID.",
-        "operationId": "GetIncomingPaymentsAsync",
+        "operationId": "Wallets_GetIncomingPayments",
         "parameters": [
           {
             "name": "walletId",
@@ -2479,7 +2661,7 @@
         ],
         "summary": "Get Incoming Payments Count",
         "description": "Get incoming payments count of a specific wallet by ID.",
-        "operationId": "GetIncomingPaymentsCountAsync",
+        "operationId": "Wallets_GetIncomingPaymentsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -2575,7 +2757,7 @@
         ],
         "summary": "Get Outgoing Payments",
         "description": "Get outgoing payments of a specific wallet by ID.",
-        "operationId": "GetOutgoingPaymentsAsync",
+        "operationId": "Wallets_GetOutgoingPayments",
         "parameters": [
           {
             "name": "walletId",
@@ -2671,7 +2853,7 @@
         ],
         "summary": "Get Outgoing Payments Count",
         "description": "Get outgoing payments count of a specific wallet by ID.",
-        "operationId": "GetOutgoingPaymentsCountAsync",
+        "operationId": "Wallets_GetOutgoingPaymentsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -2767,7 +2949,7 @@
         ],
         "summary": "Get Wallet Quotes",
         "description": "Get quotes of a specific wallet by ID.",
-        "operationId": "GetWalletQuotesAsync",
+        "operationId": "Wallets_GetWalletQuotes",
         "parameters": [
           {
             "name": "walletId",
@@ -2863,7 +3045,7 @@
         ],
         "summary": "Get Wallet Quotes Count",
         "description": "Get quotes count of a specific wallet by ID.",
-        "operationId": "GetWalletQuotesCountAsync",
+        "operationId": "Wallets_GetWalletQuotesCount",
         "parameters": [
           {
             "name": "walletId",
@@ -2959,8 +3141,16 @@
         ],
         "summary": "Get Wallet Bank Accounts",
         "description": "Get bank accounts of a specific wallet by ID.",
-        "operationId": "GetWalletBankAccountsAsync",
+        "operationId": "Wallets_GetWalletBankAccounts",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3053,8 +3243,16 @@
         ],
         "summary": "Create Wallet Bank Account",
         "description": "Create a new bank account for a specific wallet by ID.",
-        "operationId": "CreateWalletBankAccountAsync",
+        "operationId": "Wallets_CreateWalletBankAccount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3149,8 +3347,16 @@
         ],
         "summary": "Get Wallet Bank Accounts Count",
         "description": "Get bank accounts count of a specific wallet by ID.",
-        "operationId": "GetWalletBankAccountsCountAsync",
+        "operationId": "Wallets_GetWalletBankAccountsCount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3245,8 +3451,16 @@
         ],
         "summary": "Get Wallet Bank Account",
         "description": "Get a specific bank account of a specific wallet by ID.",
-        "operationId": "GetWalletBankAccountAsync",
+        "operationId": "Wallets_GetWalletBankAccount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3334,8 +3548,16 @@
         ],
         "summary": "Update Wallet Bank Account",
         "description": "Update a specific bank account of a specific wallet by ID.",
-        "operationId": "UpdateWalletBankAccountAsync",
+        "operationId": "Wallets_UpdateWalletBankAccount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3437,8 +3659,16 @@
         ],
         "summary": "Patch Wallet Bank Account",
         "description": "Partially update a specific bank account of a specific wallet by ID.",
-        "operationId": "PatchWalletBankAccountAsync",
+        "operationId": "Wallets_PatchWalletBankAccount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3546,8 +3776,16 @@
         ],
         "summary": "Delete Wallet Bank Account",
         "description": "Delete a specific bank account of a specific wallet by ID.",
-        "operationId": "DeleteWalletBankAccountAsync",
+        "operationId": "Wallets_DeleteWalletBankAccount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -3637,7 +3875,7 @@
         ],
         "summary": "Get Wallet Withdraws",
         "description": "Get withdraws of a specific wallet by ID.",
-        "operationId": "GetWalletWithdrawsAsync",
+        "operationId": "Wallets_GetWalletWithdraws",
         "parameters": [
           {
             "name": "walletId",
@@ -3731,7 +3969,7 @@
         ],
         "summary": "Create Wallet Withdraw Request",
         "description": "Create a new withdraw request for a specific wallet by ID.",
-        "operationId": "CreateWalletWithdrawRequestAsync",
+        "operationId": "Wallets_CreateWalletWithdrawRequest",
         "parameters": [
           {
             "name": "walletId",
@@ -3827,7 +4065,7 @@
         ],
         "summary": "Get Wallet Withdraws Count",
         "description": "Get withdraws count of a specific wallet by ID.",
-        "operationId": "GetWalletWithdrawsCountAsync",
+        "operationId": "Wallets_GetWalletWithdrawsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -3923,7 +4161,7 @@
         ],
         "summary": "Get Wallet Withdraw Requests",
         "description": "Get withdraw requests of a specific wallet by ID.",
-        "operationId": "GetWalletWithdrawRequestsAsync",
+        "operationId": "Wallets_GetWalletWithdrawRequests",
         "parameters": [
           {
             "name": "walletId",
@@ -4019,7 +4257,7 @@
         ],
         "summary": "Get Wallet Withdraw Requests Count",
         "description": "Get withdraw requests count of a specific wallet by ID.",
-        "operationId": "GetWalletWithdrawRequestsCountAsync",
+        "operationId": "Wallets_GetWalletWithdrawRequestsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -4115,7 +4353,7 @@
         ],
         "summary": "Get Wallet Chargebacks",
         "description": "Get chargebacks of a specific wallet by ID.",
-        "operationId": "GetWalletChargebacksAsync",
+        "operationId": "Wallets_GetWalletChargebacks",
         "parameters": [
           {
             "name": "walletId",
@@ -4211,7 +4449,7 @@
         ],
         "summary": "Get Wallet Chargebacks Count",
         "description": "Get chargebacks count of a specific wallet by ID.",
-        "operationId": "GetWalletChargebacksCountAsync",
+        "operationId": "Wallets_GetWalletChargebacksCount",
         "parameters": [
           {
             "name": "walletId",
@@ -4307,7 +4545,7 @@
         ],
         "summary": "Get Wallet Refunds",
         "description": "Get refunds of a specific wallet by ID.",
-        "operationId": "GetWalletRefundsAsync",
+        "operationId": "Wallets_GetWalletRefunds",
         "parameters": [
           {
             "name": "walletId",
@@ -4403,7 +4641,7 @@
         ],
         "summary": "Get Wallet Refunds Count",
         "description": "Get refunds count of a specific wallet by ID.",
-        "operationId": "GetWalletRefundsCountAsync",
+        "operationId": "Wallets_GetWalletRefundsCount",
         "parameters": [
           {
             "name": "walletId",
@@ -4499,8 +4737,16 @@
         ],
         "summary": "Get Wallet Tokens",
         "description": "Get payment tokens of a specific wallet by ID.",
-        "operationId": "GetWalletTokensAsync",
+        "operationId": "Wallets_GetWalletTokens",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -4593,8 +4839,16 @@
         ],
         "summary": "Create Wallet Token",
         "description": "Create a new payment token for a specific wallet by ID.",
-        "operationId": "CreateWalletTokenAsync",
+        "operationId": "Wallets_CreateWalletToken",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -4689,8 +4943,16 @@
         ],
         "summary": "Get Wallet Tokens Count",
         "description": "Get payment tokens count of a specific wallet by ID.",
-        "operationId": "GetWalletTokensCountAsync",
+        "operationId": "Wallets_GetWalletTokensCount",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -4785,8 +5047,16 @@
         ],
         "summary": "Get Wallet Token",
         "description": "Get a specific payment token of a specific wallet by ID.",
-        "operationId": "GetWalletTokenAsync",
+        "operationId": "Wallets_GetWalletToken",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -4874,8 +5144,16 @@
         ],
         "summary": "Update Wallet Token",
         "description": "Update a specific payment token of a specific wallet by ID.",
-        "operationId": "UpdateWalletTokenAsync",
+        "operationId": "Wallets_UpdateWalletToken",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -4977,8 +5255,16 @@
         ],
         "summary": "Patch Wallet Token",
         "description": "Partially update a specific payment token of a specific wallet by ID.",
-        "operationId": "PatchWalletTokenAsync",
+        "operationId": "Wallets_PatchWalletToken",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -5086,8 +5372,16 @@
         ],
         "summary": "Delete Wallet Token",
         "description": "Delete a specific payment token of a specific wallet by ID.",
-        "operationId": "DeleteWalletTokenAsync",
+        "operationId": "Wallets_DeleteWalletToken",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "walletId",
             "in": "path",
@@ -5756,11 +6050,20 @@
           },
           "identityProviderAccessToken": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "birthday": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "tikTokUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUsername": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5858,6 +6161,74 @@
             "type": "string",
             "nullable": true,
             "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EthereumBalanceDto": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "balanceInEther": {
+            "type": "number",
+            "format": "double"
+          },
+          "testNet": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EthereumBalanceDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/EthereumBalanceDto"
           }
         },
         "additionalProperties": false
@@ -7882,9 +8253,7 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "nullable": true
-          }
+          "value": { }
         },
         "additionalProperties": false
       },
@@ -10098,7 +10467,8 @@
           },
           "ethereumPrivateKey": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "rollingReservePercent": {
             "type": "number",
@@ -10484,6 +10854,9 @@
   "tags": [
     {
       "name": "FenixAlliance.ABS.Web"
+    },
+    {
+      "name": "Me"
     },
     {
       "name": "Wallets"

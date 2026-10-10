@@ -38,6 +38,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -50,6 +51,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,6 +64,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -74,6 +77,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -106,6 +110,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -151,6 +156,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +186,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -218,6 +224,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -240,6 +247,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -272,6 +280,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -304,6 +313,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -346,6 +356,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -376,6 +387,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -418,6 +430,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -476,6 +489,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -522,6 +536,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -568,6 +583,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -582,7 +598,7 @@
         ],
         "summary": "Get all signatures",
         "description": "Retrieves all signatures for the specified tenant.",
-        "operationId": "GetSignaturesAsync",
+        "operationId": "Signatures_GetSignatures",
         "parameters": [
           {
             "name": "tenantId",
@@ -663,7 +679,7 @@
         ],
         "summary": "Get signatures count",
         "description": "Returns the count of signatures for the specified tenant.",
-        "operationId": "GetSignaturesCountAsync",
+        "operationId": "Signatures_GetSignaturesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -744,7 +760,7 @@
         ],
         "summary": "Get signature by ID",
         "description": "Retrieves a specific signature by its identifier.",
-        "operationId": "GetSignatureByIdAsync",
+        "operationId": "Signatures_GetSignatureById",
         "parameters": [
           {
             "name": "tenantId",
@@ -835,7 +851,7 @@
         ],
         "summary": "Set the primary authoring file",
         "description": "Links an existing scan-gated FileUpload as the document's mutable authoring artifact (only while editable).",
-        "operationId": "SetPrimaryAuthoringFileAsync",
+        "operationId": "SignedDocumentArtifacts_SetPrimaryAuthoringFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -921,7 +937,7 @@
         ],
         "summary": "Freeze the source for signature",
         "description": "Copies the primary authoring artifact into a new Sealed frozen-source artifact, hashes it, and binds it to the document (LockState = FrozenForSignature).",
-        "operationId": "FreezeAsync",
+        "operationId": "SignedDocumentArtifacts_Freeze",
         "parameters": [
           {
             "name": "tenantId",
@@ -1026,7 +1042,7 @@
         ],
         "summary": "Get an artifact reference",
         "description": "Resolves a stored artifact's reference (FileUpload id + key + hash + media hints).",
-        "operationId": "GetReferenceAsync",
+        "operationId": "SignedDocumentArtifacts_GetReference",
         "parameters": [
           {
             "name": "tenantId",
@@ -1116,7 +1132,7 @@
         ],
         "summary": "Verify an artifact hash",
         "description": "Re-reads the artifact bytes and verifies them against the recorded SHA-256. Returns true on match.",
-        "operationId": "VerifyAsync",
+        "operationId": "SignedDocumentArtifacts_Verify",
         "parameters": [
           {
             "name": "tenantId",
@@ -1206,7 +1222,7 @@
         ],
         "summary": "Get all signed document attachments",
         "description": "Retrieves all signed document attachments for the specified tenant.",
-        "operationId": "GetSignedDocumentAttachmentsAsync",
+        "operationId": "SignedDocumentAttachments_GetSignedDocumentAttachments",
         "parameters": [
           {
             "name": "tenantId",
@@ -1285,7 +1301,7 @@
         ],
         "summary": "Create a new signed document attachment",
         "description": "Links an already-stored file to a SignedDocument (metadata + Storage pointer; no bytes).",
-        "operationId": "CreateSignedDocumentAttachmentAsync",
+        "operationId": "SignedDocumentAttachments_CreateSignedDocumentAttachment",
         "parameters": [
           {
             "name": "tenantId",
@@ -1369,7 +1385,7 @@
         ],
         "summary": "Get signed document attachments count",
         "description": "Returns the count of signed document attachments for the specified tenant.",
-        "operationId": "GetSignedDocumentAttachmentsCountAsync",
+        "operationId": "SignedDocumentAttachments_GetSignedDocumentAttachmentsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -1450,7 +1466,7 @@
         ],
         "summary": "Get signed document attachment by ID",
         "description": "Retrieves a specific signed document attachment by its identifier.",
-        "operationId": "GetSignedDocumentAttachmentByIdAsync",
+        "operationId": "SignedDocumentAttachments_GetSignedDocumentAttachmentById",
         "parameters": [
           {
             "name": "tenantId",
@@ -1539,7 +1555,7 @@
         ],
         "summary": "Update a signed document attachment",
         "description": "Updates signed document attachment metadata for the specified tenant.",
-        "operationId": "UpdateSignedDocumentAttachmentAsync",
+        "operationId": "SignedDocumentAttachments_UpdateSignedDocumentAttachment",
         "parameters": [
           {
             "name": "tenantId",
@@ -1630,7 +1646,7 @@
         ],
         "summary": "Patch a signed document attachment",
         "description": "Patch a signed document attachment",
-        "operationId": "PatchSignedDocumentAttachmentAsync",
+        "operationId": "SignedDocumentAttachments_PatchSignedDocumentAttachment",
         "parameters": [
           {
             "name": "tenantId",
@@ -1739,7 +1755,7 @@
         ],
         "summary": "Delete a signed document attachment",
         "description": "Deletes a signed document attachment link for the specified tenant.",
-        "operationId": "DeleteSignedDocumentAttachmentAsync",
+        "operationId": "SignedDocumentAttachments_DeleteSignedDocumentAttachment",
         "parameters": [
           {
             "name": "tenantId",
@@ -1818,7 +1834,7 @@
         ],
         "summary": "Get all signed documents",
         "description": "Retrieves all signed documents for the specified tenant.",
-        "operationId": "GetSignedDocumentsAsync",
+        "operationId": "SignedDocuments_GetSignedDocuments",
         "parameters": [
           {
             "name": "tenantId",
@@ -1897,7 +1913,7 @@
         ],
         "summary": "Create a new signed document",
         "description": "Creates a new signed document for the specified tenant.",
-        "operationId": "CreateSignedDocumentAsync",
+        "operationId": "SignedDocuments_CreateSignedDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -1981,7 +1997,7 @@
         ],
         "summary": "Get signed documents count",
         "description": "Returns the count of signed documents for the specified tenant.",
-        "operationId": "GetSignedDocumentsCountAsync",
+        "operationId": "SignedDocuments_GetSignedDocumentsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2062,7 +2078,7 @@
         ],
         "summary": "Get signed document by ID",
         "description": "Retrieves a specific signed document by its identifier.",
-        "operationId": "GetSignedDocumentByIdAsync",
+        "operationId": "SignedDocuments_GetSignedDocumentById",
         "parameters": [
           {
             "name": "tenantId",
@@ -2151,7 +2167,7 @@
         ],
         "summary": "Update a signed document",
         "description": "Updates an existing signed document for the specified tenant.",
-        "operationId": "UpdateSignedDocumentAsync",
+        "operationId": "SignedDocuments_UpdateSignedDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -2242,7 +2258,7 @@
         ],
         "summary": "Patch a signed document",
         "description": "Patch a signed document",
-        "operationId": "PatchSignedDocumentAsync",
+        "operationId": "SignedDocuments_PatchSignedDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -2351,7 +2367,7 @@
         ],
         "summary": "Delete a signed document",
         "description": "Deletes a signed document for the specified tenant.",
-        "operationId": "DeleteSignedDocumentAsync",
+        "operationId": "SignedDocuments_DeleteSignedDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -2430,7 +2446,7 @@
         ],
         "summary": "Quick-sign a frozen document",
         "description": "Signs a frozen signed document directly with a chosen certificate + provider (no signing-request workflow) and seals it. Returns the sealed document.",
-        "operationId": "QuickSignSignedDocumentAsync",
+        "operationId": "SignedDocuments_QuickSignSignedDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -2538,7 +2554,7 @@
         ],
         "summary": "Create, freeze, and quick-sign a document in one call",
         "description": "Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.",
-        "operationId": "PrepareAndQuickSignAsync",
+        "operationId": "SignedDocuments_PrepareAndQuickSign",
         "parameters": [
           {
             "name": "tenantId",
@@ -2798,7 +2814,7 @@
         ],
         "summary": "Verify a signed document's signature",
         "description": "Re-verifies the document's signature against its stored signed artifact (bytes intact + signed by the embedded certificate; certificate trust is a separate concern).",
-        "operationId": "VerifySignedDocumentSignatureAsync",
+        "operationId": "SignedDocuments_VerifySignedDocumentSignature",
         "parameters": [
           {
             "name": "tenantId",
@@ -2889,7 +2905,7 @@
         ],
         "summary": "Get all signing certificates",
         "description": "Retrieves all signing certificates for the specified tenant.",
-        "operationId": "GetSigningCertificatesAsync",
+        "operationId": "SigningCertificates_GetSigningCertificates",
         "parameters": [
           {
             "name": "tenantId",
@@ -2968,7 +2984,7 @@
         ],
         "summary": "Create a new signing certificate",
         "description": "Creates a new signing certificate for the specified tenant.",
-        "operationId": "CreateSigningCertificateAsync",
+        "operationId": "SigningCertificates_CreateSigningCertificate",
         "parameters": [
           {
             "name": "tenantId",
@@ -3052,7 +3068,7 @@
         ],
         "summary": "Get signing certificates count",
         "description": "Returns the count of signing certificates for the specified tenant.",
-        "operationId": "GetSigningCertificatesCountAsync",
+        "operationId": "SigningCertificates_GetSigningCertificatesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -3133,7 +3149,7 @@
         ],
         "summary": "Get signing certificate by ID",
         "description": "Retrieves a specific signing certificate by its identifier.",
-        "operationId": "GetSigningCertificateByIdAsync",
+        "operationId": "SigningCertificates_GetSigningCertificateById",
         "parameters": [
           {
             "name": "tenantId",
@@ -3222,7 +3238,7 @@
         ],
         "summary": "Update a signing certificate",
         "description": "Updates an existing signing certificate for the specified tenant.",
-        "operationId": "UpdateSigningCertificateAsync",
+        "operationId": "SigningCertificates_UpdateSigningCertificate",
         "parameters": [
           {
             "name": "tenantId",
@@ -3313,7 +3329,7 @@
         ],
         "summary": "Patch a signing certificate",
         "description": "Patch a signing certificate",
-        "operationId": "PatchSigningCertificateAsync",
+        "operationId": "SigningCertificates_PatchSigningCertificate",
         "parameters": [
           {
             "name": "tenantId",
@@ -3422,7 +3438,7 @@
         ],
         "summary": "Delete a signing certificate",
         "description": "Deletes a signing certificate for the specified tenant.",
-        "operationId": "DeleteSigningCertificateAsync",
+        "operationId": "SigningCertificates_DeleteSigningCertificate",
         "parameters": [
           {
             "name": "tenantId",
@@ -3501,7 +3517,7 @@
         ],
         "summary": "Import a PFX/P12 signing certificate into custody",
         "description": "Parses the uploaded PFX/P12, imports the private material into the configured signing custody, and creates the certificate metadata record. The PFX and password are used only for the request — never returned or stored.",
-        "operationId": "ImportSigningCertificateAsync",
+        "operationId": "SigningCertificates_ImportSigningCertificate",
         "parameters": [
           {
             "name": "tenantId",
@@ -3698,7 +3714,7 @@
         ],
         "summary": "List signing providers",
         "description": "Returns the registered alpha signing providers (Noop / Manual / External). OData-queryable.",
-        "operationId": "GetProvidersAsync",
+        "operationId": "SigningEngine_GetProviders",
         "parameters": [
           {
             "name": "tenantId",
@@ -3779,7 +3795,7 @@
         ],
         "summary": "Count signing providers",
         "description": "Returns the count of registered alpha signing providers. OData-queryable.",
-        "operationId": "GetProvidersCountAsync",
+        "operationId": "SigningEngine_GetProvidersCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -3860,7 +3876,7 @@
         ],
         "summary": "Preview signing readiness",
         "description": "Side-effect-free: validates a signing request and reports whether it can proceed and with what policy.",
-        "operationId": "PreviewAsync",
+        "operationId": "SigningEngine_Preview",
         "parameters": [
           {
             "name": "tenantId",
@@ -3949,6 +3965,117 @@
         }
       }
     },
+    "/api/v2/TrustService/SigningKeys/Platform": {
+      "post": {
+        "tags": [
+          "SigningKeys"
+        ],
+        "summary": "Generate a platform authority signing key in custody",
+        "description": "Generates the Alliance root or the licensing issuer key inside the configured signing custody and records its descriptor. Only the instance root tenant may call it, and only for a configured platform authority. The private key never leaves custody; the response carries public data only.",
+        "operationId": "SigningKeys_GeneratePlatformSigningKey",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformSigningKeyGenerateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformSigningKeyGenerateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSigningKeyDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSigningKeyDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/TrustService/SigningLogs": {
       "get": {
         "tags": [
@@ -3956,7 +4083,7 @@
         ],
         "summary": "Get all signing logs",
         "description": "Retrieves all signing logs for the specified tenant.",
-        "operationId": "GetSigningLogsAsync",
+        "operationId": "SigningLogs_GetSigningLogs",
         "parameters": [
           {
             "name": "tenantId",
@@ -4037,7 +4164,7 @@
         ],
         "summary": "Get signing logs count",
         "description": "Returns the count of signing logs for the specified tenant.",
-        "operationId": "GetSigningLogsCountAsync",
+        "operationId": "SigningLogs_GetSigningLogsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -4118,7 +4245,7 @@
         ],
         "summary": "Get signing log by ID",
         "description": "Retrieves a specific signing log by its identifier.",
-        "operationId": "GetSigningLogByIdAsync",
+        "operationId": "SigningLogs_GetSigningLogById",
         "parameters": [
           {
             "name": "tenantId",
@@ -4208,7 +4335,7 @@
           "SigningParticipants"
         ],
         "summary": "Get all signing participants",
-        "operationId": "GetSigningParticipantsAsync",
+        "operationId": "SigningParticipants_GetSigningParticipants",
         "parameters": [
           {
             "name": "tenantId",
@@ -4288,7 +4415,7 @@
           "SigningParticipants"
         ],
         "summary": "Get signing participants count",
-        "operationId": "GetSigningParticipantsCountAsync",
+        "operationId": "SigningParticipants_GetSigningParticipantsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -4353,7 +4480,7 @@
           "SigningParticipants"
         ],
         "summary": "Get signing participant by ID",
-        "operationId": "GetSigningParticipantByIdAsync",
+        "operationId": "SigningParticipants_GetSigningParticipantById",
         "parameters": [
           {
             "name": "tenantId",
@@ -4427,7 +4554,7 @@
           "SigningParticipants"
         ],
         "summary": "Mark a participant as having viewed the request",
-        "operationId": "MarkViewedAsync",
+        "operationId": "SigningParticipants_MarkViewed",
         "parameters": [
           {
             "name": "tenantId",
@@ -4474,7 +4601,7 @@
           "SigningParticipants"
         ],
         "summary": "Record a manual/external participant outcome",
-        "operationId": "RecordOutcomeAsync",
+        "operationId": "SigningParticipants_RecordOutcome",
         "parameters": [
           {
             "name": "tenantId",
@@ -4551,7 +4678,7 @@
         ],
         "summary": "Get all signature representations",
         "description": "Retrieves all reusable signature representations for the specified tenant.",
-        "operationId": "GetSigningProfileGraphicalRepresentationsAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentations",
         "parameters": [
           {
             "name": "tenantId",
@@ -4630,7 +4757,7 @@
         ],
         "summary": "Create a new signature representation",
         "description": "Creates a new reusable signature representation for the specified tenant.",
-        "operationId": "CreateSigningProfileGraphicalRepresentationAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_CreateSigningProfileGraphicalRepresentation",
         "parameters": [
           {
             "name": "tenantId",
@@ -4714,7 +4841,7 @@
         ],
         "summary": "Get signature representations count",
         "description": "Returns the count of signature representations for the specified tenant.",
-        "operationId": "GetSigningProfileGraphicalRepresentationsCountAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -4795,7 +4922,7 @@
         ],
         "summary": "Get signature representation by ID",
         "description": "Retrieves a specific signature representation by its identifier.",
-        "operationId": "GetSigningProfileGraphicalRepresentationByIdAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationById",
         "parameters": [
           {
             "name": "tenantId",
@@ -4884,7 +5011,7 @@
         ],
         "summary": "Update a signature representation",
         "description": "Updates an existing signature representation for the specified tenant.",
-        "operationId": "UpdateSigningProfileGraphicalRepresentationAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_UpdateSigningProfileGraphicalRepresentation",
         "parameters": [
           {
             "name": "tenantId",
@@ -4975,7 +5102,7 @@
         ],
         "summary": "Patch a signature representation",
         "description": "Patch a signature representation",
-        "operationId": "PatchSigningProfileGraphicalRepresentationAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_PatchSigningProfileGraphicalRepresentation",
         "parameters": [
           {
             "name": "tenantId",
@@ -5084,7 +5211,7 @@
         ],
         "summary": "Delete a signature representation",
         "description": "Deletes a signature representation for the specified tenant.",
-        "operationId": "DeleteSigningProfileGraphicalRepresentationAsync",
+        "operationId": "SigningProfileGraphicalRepresentations_DeleteSigningProfileGraphicalRepresentation",
         "parameters": [
           {
             "name": "tenantId",
@@ -5163,7 +5290,7 @@
         ],
         "summary": "Get all signing profiles",
         "description": "Retrieves all signing profiles for the specified tenant.",
-        "operationId": "GetSigningProfilesAsync",
+        "operationId": "SigningProfiles_GetSigningProfiles",
         "parameters": [
           {
             "name": "tenantId",
@@ -5242,7 +5369,7 @@
         ],
         "summary": "Create a new signing profile",
         "description": "Creates a new signing profile for the specified tenant (supports inline contact creation).",
-        "operationId": "CreateSigningProfileAsync",
+        "operationId": "SigningProfiles_CreateSigningProfile",
         "parameters": [
           {
             "name": "tenantId",
@@ -5326,7 +5453,7 @@
         ],
         "summary": "Get signing profiles count",
         "description": "Returns the count of signing profiles for the specified tenant.",
-        "operationId": "GetSigningProfilesCountAsync",
+        "operationId": "SigningProfiles_GetSigningProfilesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -5407,7 +5534,7 @@
         ],
         "summary": "Get signing profile by ID",
         "description": "Retrieves a specific signing profile by its identifier.",
-        "operationId": "GetSigningProfileByIdAsync",
+        "operationId": "SigningProfiles_GetSigningProfileById",
         "parameters": [
           {
             "name": "tenantId",
@@ -5496,7 +5623,7 @@
         ],
         "summary": "Update a signing profile",
         "description": "Updates an existing signing profile for the specified tenant.",
-        "operationId": "UpdateSigningProfileAsync",
+        "operationId": "SigningProfiles_UpdateSigningProfile",
         "parameters": [
           {
             "name": "tenantId",
@@ -5587,7 +5714,7 @@
         ],
         "summary": "Patch a signing profile",
         "description": "Patch a signing profile",
-        "operationId": "PatchSigningProfileAsync",
+        "operationId": "SigningProfiles_PatchSigningProfile",
         "parameters": [
           {
             "name": "tenantId",
@@ -5696,7 +5823,7 @@
         ],
         "summary": "Delete a signing profile",
         "description": "Deletes a signing profile for the specified tenant.",
-        "operationId": "DeleteSigningProfileAsync",
+        "operationId": "SigningProfiles_DeleteSigningProfile",
         "parameters": [
           {
             "name": "tenantId",
@@ -5768,13 +5895,222 @@
         }
       }
     },
+    "/api/v2/TrustService/SigningProfiles/{id}/execution-binding": {
+      "get": {
+        "tags": [
+          "SigningProfiles"
+        ],
+        "summary": "Get a signing profile's execution binding",
+        "description": "Read-only inspection of the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with — together with a read-only custody-readiness status computed from the same fail-closed usability check the write path runs. It NEVER exposes key material, credential references or certificate bytes, and NEVER mutates the profile. This is the READ counterpart to the dedicated set-binding operation; a missing or cross-tenant profile fails closed as not found.",
+        "operationId": "SigningProfiles_GetSigningProfileExecutionBinding",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SigningProfileExecutionBindingDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SigningProfileExecutionBindingDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SigningProfiles"
+        ],
+        "summary": "Set a signing profile's execution binding",
+        "description": "Dedicated, security-sensitive admin operation that configures the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with. The provider, certificate validity and custody usability are validated server-side and fail closed. This is NOT part of the generic profile update surface, and the runtime signing path can never override the binding set here.",
+        "operationId": "SigningProfiles_SetSigningProfileExecutionBinding",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetSigningProfileExecutionBindingRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SetSigningProfileExecutionBindingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/TrustService/SigningRequests": {
       "get": {
         "tags": [
           "SigningRequests"
         ],
         "summary": "Get all signing requests",
-        "operationId": "GetSigningRequestsAsync",
+        "operationId": "SigningRequests_GetSigningRequests",
         "parameters": [
           {
             "name": "tenantId",
@@ -5854,7 +6190,7 @@
           "SigningRequests"
         ],
         "summary": "Get signing requests count",
-        "operationId": "GetSigningRequestsCountAsync",
+        "operationId": "SigningRequests_GetSigningRequestsCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -5934,7 +6270,7 @@
           "SigningRequests"
         ],
         "summary": "Get signing request by ID",
-        "operationId": "GetSigningRequestByIdAsync",
+        "operationId": "SigningRequests_GetSigningRequestById",
         "parameters": [
           {
             "name": "tenantId",
@@ -6008,7 +6344,7 @@
           "SigningRequests"
         ],
         "summary": "Get participants of a signing request",
-        "operationId": "GetSigningRequestParticipantsAsync",
+        "operationId": "SigningRequests_GetSigningRequestParticipants",
         "parameters": [
           {
             "name": "tenantId",
@@ -6059,6 +6395,77 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "SigningRequests"
+        ],
+        "summary": "Add a participant to a signing request",
+        "operationId": "SigningRequests_AddParticipant",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSigningParticipantDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSigningParticipantDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SigningParticipantDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SigningParticipantDto"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v2/TrustService/SigningRequests/from-document/{signedDocumentId}": {
@@ -6067,7 +6474,7 @@
           "SigningRequests"
         ],
         "summary": "Create a signing request from a frozen document",
-        "operationId": "CreateFromDocumentAsync",
+        "operationId": "SigningRequests_CreateFromDocument",
         "parameters": [
           {
             "name": "tenantId",
@@ -6156,7 +6563,7 @@
         ],
         "summary": "Create, store, freeze a document and open a signing request in one call",
         "description": "Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.",
-        "operationId": "PrepareAndCreateAsync",
+        "operationId": "SigningRequests_PrepareAndCreate",
         "parameters": [
           {
             "name": "tenantId",
@@ -6457,86 +6864,13 @@
         }
       }
     },
-    "/api/v2/TrustService/SigningRequests/{id}/participants": {
-      "post": {
-        "tags": [
-          "SigningRequests"
-        ],
-        "summary": "Add a participant to a signing request",
-        "operationId": "AddParticipantAsync",
-        "parameters": [
-          {
-            "name": "tenantId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSigningParticipantDto"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSigningParticipantDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SigningParticipantDto"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/SigningParticipantDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v2/TrustService/SigningRequests/{id}/send": {
       "post": {
         "tags": [
           "SigningRequests"
         ],
         "summary": "Send a signing request",
-        "operationId": "SendAsync",
+        "operationId": "SigningRequests_Send",
         "parameters": [
           {
             "name": "tenantId",
@@ -6583,7 +6917,7 @@
           "SigningRequests"
         ],
         "summary": "Void a signing request",
-        "operationId": "VoidAsync",
+        "operationId": "SigningRequests_Void",
         "parameters": [
           {
             "name": "tenantId",
@@ -6644,7 +6978,7 @@
           "SigningRequests"
         ],
         "summary": "Expire a signing request",
-        "operationId": "ExpireAsync",
+        "operationId": "SigningRequests_Expire",
         "parameters": [
           {
             "name": "tenantId",
@@ -6691,7 +7025,7 @@
           "SigningRequests"
         ],
         "summary": "Finalize a completed request into a signed artifact",
-        "operationId": "FinalizeAsync",
+        "operationId": "SigningRequests_Finalize",
         "parameters": [
           {
             "name": "tenantId",
@@ -6767,7 +7101,7 @@
           "SigningRequests"
         ],
         "summary": "Run a signing provider to produce + finalize the signed artifact",
-        "operationId": "ExecuteProviderAsync",
+        "operationId": "SigningRequests_ExecuteProvider",
         "parameters": [
           {
             "name": "tenantId",
@@ -6833,6 +7167,117 @@
           },
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/TrustService/TrustManifests/Platform": {
+      "post": {
+        "tags": [
+          "TrustManifests"
+        ],
+        "summary": "Compose the platform trust manifest with the root key in custody",
+        "description": "The configured root key signs, inside custody, the delegation to the configured licensing issuer key. The manifest is returned only after the runtime trust store resolves the issuer key through it. Only the instance root tenant may call it. Public data only.",
+        "operationId": "TrustManifests_ComposePlatformTrustManifest",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformTrustManifestComposeDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformTrustManifestComposeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformTrustManifestDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformTrustManifestDtoEnvelope"
+                }
+              }
+            }
           }
         }
       }
@@ -7369,11 +7814,20 @@
           },
           "identityProviderAccessToken": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "birthday": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "tikTokUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUsername": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -7769,8 +8223,226 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
+          "value": { }
+        },
+        "additionalProperties": false
+      },
+      "PlatformSigningKeyDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
             "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "authorityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "keyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "algorithm": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "custodyKeyRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "validFromUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validUntilUtc": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformSigningKeyDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PlatformSigningKeyDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformSigningKeyGenerateDto": {
+        "type": "object",
+        "properties": {
+          "authorityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "keyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "validUntilUtc": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformTrustManifestComposeDto": {
+        "type": "object",
+        "properties": {
+          "rootKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuerKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "generation": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformTrustManifestDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "authorityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuerAuthorityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rootKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuerKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "generation": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "document": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformTrustManifestDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/PlatformTrustManifestDto"
           }
         },
         "additionalProperties": false
@@ -7896,6 +8568,24 @@
           "newPassword": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetSigningProfileExecutionBindingRequest": {
+        "required": [
+          "signingCertificateId",
+          "signingProviderKey"
+        ],
+        "type": "object",
+        "properties": {
+          "signingProviderKey": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "signingCertificateId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -9335,7 +10025,8 @@
               "ResolveCredential",
               "SubmitToAuthority",
               "ReceiveAuthorityResponse",
-              "Freeze"
+              "Freeze",
+              "ConfigureSigningBinding"
             ],
             "type": "string",
             "nullable": true
@@ -10141,6 +10832,91 @@
               "$ref": "#/components/schemas/SigningProfileDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SigningProfileExecutionBindingDto": {
+        "type": "object",
+        "properties": {
+          "signingProfileId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "signingProviderKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "signingCertificateId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isBound": {
+            "type": "boolean"
+          },
+          "custodyReadiness": {
+            "enum": [
+              "Unbound",
+              "Ready",
+              "NotReady"
+            ],
+            "type": "string"
+          },
+          "readinessDetail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SigningProfileExecutionBindingDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/SigningProfileExecutionBindingDto"
           }
         },
         "additionalProperties": false
@@ -11300,6 +12076,9 @@
       "name": "SigningEngine"
     },
     {
+      "name": "SigningKeys"
+    },
+    {
       "name": "SigningLogs"
     },
     {
@@ -11313,6 +12092,9 @@
     },
     {
       "name": "SigningRequests"
+    },
+    {
+      "name": "TrustManifests"
     }
   ]
 }

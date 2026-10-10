@@ -29,7 +29,7 @@ paths:
         - DiscountLists
       summary: Retrieves all discount lists
       description: Gets all discount lists for the current tenant with OData support.
-      operationId: GetDiscountLists
+      operationId: DiscountLists_GetDiscountLists
       parameters:
         - name: tenantId
           in: query
@@ -87,7 +87,7 @@ paths:
         - DiscountLists
       summary: Creates a new discount list
       description: Creates a new discount list for the current tenant.
-      operationId: CreateDiscountList
+      operationId: DiscountLists_CreateDiscountList
       parameters:
         - name: tenantId
           in: query
@@ -146,7 +146,7 @@ paths:
         - DiscountLists
       summary: Counts discount lists
       description: Gets the count of discount lists for the current tenant.
-      operationId: GetDiscountListsCount
+      operationId: DiscountLists_GetDiscountListsCount
       parameters:
         - name: tenantId
           in: query
@@ -205,7 +205,7 @@ paths:
         - DiscountLists
       summary: Gets a discount list by ID
       description: Retrieves the details of a discount list using its unique identifier.
-      operationId: GetDiscountList
+      operationId: DiscountLists_GetDiscountList
       parameters:
         - name: tenantId
           in: query
@@ -261,7 +261,7 @@ paths:
         - DiscountLists
       summary: Updates a discount list
       description: Updates the specified discount list.
-      operationId: UpdateDiscountList
+      operationId: DiscountLists_UpdateDiscountList
       parameters:
         - name: tenantId
           in: query
@@ -325,7 +325,7 @@ paths:
         - DiscountLists
       summary: Patches a discount list
       description: Partially updates the specified discount list using a JSON Patch document.
-      operationId: PatchDiscountList
+      operationId: DiscountLists_PatchDiscountList
       parameters:
         - name: tenantId
           in: query
@@ -393,7 +393,7 @@ paths:
         - DiscountLists
       summary: Deletes a discount list
       description: Deletes the specified discount list.
-      operationId: DeleteDiscountList
+      operationId: DiscountLists_DeleteDiscountList
       parameters:
         - name: tenantId
           in: query
@@ -450,7 +450,7 @@ paths:
         - DiscountLists
       summary: Retrieves discounts in a discount list
       description: Gets all discount entries for a specific discount list with OData support.
-      operationId: GetDiscountListEntries
+      operationId: DiscountLists_GetDiscountListEntries
       parameters:
         - name: tenantId
           in: query
@@ -514,7 +514,7 @@ paths:
         - DiscountLists
       summary: Creates a discount list entry
       description: Creates a new discount entry in the specified discount list.
-      operationId: CreateDiscountListEntry
+      operationId: DiscountLists_CreateDiscountListEntry
       parameters:
         - name: tenantId
           in: query
@@ -579,7 +579,7 @@ paths:
         - DiscountLists
       summary: Counts discounts in a discount list
       description: Gets the count of discount entries for a specific discount list.
-      operationId: GetDiscountListEntriesCount
+      operationId: DiscountLists_GetDiscountListEntriesCount
       parameters:
         - name: tenantId
           in: query
@@ -644,7 +644,7 @@ paths:
         - DiscountLists
       summary: Gets a discount list entry by ID
       description: Retrieves a specific discount entry from a discount list.
-      operationId: GetDiscountListEntry
+      operationId: DiscountLists_GetDiscountListEntry
       parameters:
         - name: tenantId
           in: query
@@ -706,7 +706,7 @@ paths:
         - DiscountLists
       summary: Updates a discount list entry
       description: Updates the specified discount entry in a discount list.
-      operationId: UpdateDiscountListEntry
+      operationId: DiscountLists_UpdateDiscountListEntry
       parameters:
         - name: tenantId
           in: query
@@ -776,7 +776,7 @@ paths:
         - DiscountLists
       summary: Patches a discount list entry
       description: Partially updates the specified discount entry using a JSON Patch document.
-      operationId: PatchDiscountListEntry
+      operationId: DiscountLists_PatchDiscountListEntry
       parameters:
         - name: tenantId
           in: query
@@ -850,7 +850,7 @@ paths:
         - DiscountLists
       summary: Deletes a discount list entry
       description: Deletes the specified discount entry from a discount list.
-      operationId: DeleteDiscountListEntry
+      operationId: DiscountLists_DeleteDiscountListEntry
       parameters:
         - name: tenantId
           in: query
@@ -911,6 +911,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -918,6 +919,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -925,6 +927,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -932,6 +935,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -951,6 +955,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -977,6 +982,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -994,7 +1000,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -1017,6 +1023,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -1030,6 +1037,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -1049,6 +1057,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -1068,6 +1077,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -1093,6 +1103,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -1111,6 +1122,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -1136,6 +1148,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1171,6 +1184,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -1198,6 +1212,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1225,6 +1240,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -1234,7 +1250,7 @@ paths:
         - PriceLists
       summary: Retrieves all price lists
       description: Gets all price lists for the current tenant with OData support.
-      operationId: GetPriceListsAsync
+      operationId: PriceLists_GetPriceLists
       parameters:
         - name: tenantId
           in: query
@@ -1274,7 +1290,7 @@ paths:
         - PriceLists
       summary: Creates a new price list
       description: Creates a new price list for the current tenant.
-      operationId: CreatePriceListAsync
+      operationId: PriceLists_CreatePriceList
       parameters:
         - name: tenantId
           in: query
@@ -1315,7 +1331,7 @@ paths:
         - PriceLists
       summary: Counts price lists
       description: Gets the count of price lists for the current tenant.
-      operationId: GetPriceListsCountAsync
+      operationId: PriceLists_GetPriceListsCount
       parameters:
         - name: tenantId
           in: query
@@ -1356,7 +1372,7 @@ paths:
         - PriceLists
       summary: Gets a price list by ID
       description: Retrieves the details of a price list using its unique identifier.
-      operationId: GetPriceListAsync
+      operationId: PriceLists_GetPriceList
       parameters:
         - name: tenantId
           in: query
@@ -1394,7 +1410,7 @@ paths:
         - PriceLists
       summary: Updates a price list
       description: Updates the specified price list.
-      operationId: UpdatePriceListAsync
+      operationId: PriceLists_UpdatePriceList
       parameters:
         - name: tenantId
           in: query
@@ -1440,7 +1456,7 @@ paths:
         - PriceLists
       summary: Patches a price list
       description: Partially updates the specified price list using a JSON Patch document.
-      operationId: PatchPriceListAsync
+      operationId: PriceLists_PatchPriceList
       parameters:
         - name: tenantId
           in: query
@@ -1490,7 +1506,7 @@ paths:
         - PriceLists
       summary: Deletes a price list
       description: Deletes the specified price list.
-      operationId: DeletePriceListAsync
+      operationId: PriceLists_DeletePriceList
       parameters:
         - name: tenantId
           in: query
@@ -1529,7 +1545,7 @@ paths:
         - PriceLists
       summary: Retrieves prices in a price list
       description: Gets all price entries for a specific price list with OData support.
-      operationId: GetPriceListPricesAsync
+      operationId: PriceLists_GetPriceListPrices
       parameters:
         - name: tenantId
           in: query
@@ -1580,7 +1596,7 @@ paths:
         - PriceLists
       summary: Creates a price list entry
       description: Creates a new price entry in the specified price list.
-      operationId: CreatePriceListPricesAsync
+      operationId: PriceLists_CreatePriceListPrices
       parameters:
         - name: tenantId
           in: query
@@ -1627,7 +1643,7 @@ paths:
         - PriceLists
       summary: Counts prices in a price list
       description: Gets the count of price entries for a specific price list.
-      operationId: GetPriceListPricesCountAsync
+      operationId: PriceLists_GetPriceListPricesCount
       parameters:
         - name: tenantId
           in: query
@@ -1674,7 +1690,7 @@ paths:
         - PriceLists
       summary: Gets a price list entry by ID
       description: Retrieves a specific price entry from a price list.
-      operationId: GetPriceListPriceAsync
+      operationId: PriceLists_GetPriceListPrice
       parameters:
         - name: tenantId
           in: query
@@ -1718,7 +1734,7 @@ paths:
         - PriceLists
       summary: Updates a price list entry
       description: Updates the specified price entry in a price list.
-      operationId: UpdatePriceListPriceAsync
+      operationId: PriceLists_UpdatePriceListPrice
       parameters:
         - name: tenantId
           in: query
@@ -1770,7 +1786,7 @@ paths:
         - PriceLists
       summary: Patches a price list entry
       description: Partially updates the specified price entry in a price list using a JSON Patch document.
-      operationId: PatchPriceListPriceAsync
+      operationId: PriceLists_PatchPriceListPrice
       parameters:
         - name: tenantId
           in: query
@@ -1826,7 +1842,7 @@ paths:
         - PriceLists
       summary: Deletes a price list entry
       description: Deletes the specified price entry from a price list.
-      operationId: DeletePriceListPriceAsync
+      operationId: PriceLists_DeletePriceListPrice
       parameters:
         - name: tenantId
           in: query
@@ -1871,7 +1887,7 @@ paths:
         - Prices
       summary: Gets the calculated price for an item
       description: 'Calculates the price for an item considering price list, discount list, quantity, and currency.'
-      operationId: GetPrice
+      operationId: Prices_GetPrice
       parameters:
         - name: itemId
           in: path
@@ -1933,7 +1949,7 @@ paths:
         - Prices
       summary: Gets the final price for an item
       description: Gets the final price for an item after all discounts and taxes in the specified currency.
-      operationId: GetFinalPrice
+      operationId: Prices_GetFinalPrice
       parameters:
         - name: itemId
           in: path
@@ -1979,7 +1995,7 @@ paths:
         - Prices
       summary: Gets total taxes for an item
       description: Gets the total tax amount for an item in the specified currency.
-      operationId: GetTotalTaxesInUsd
+      operationId: Prices_GetTotalTaxesInUsd
       parameters:
         - name: itemId
           in: path
@@ -2025,7 +2041,7 @@ paths:
         - Prices
       summary: Gets total savings for an item
       description: Gets the total savings amount for an item in the specified currency.
-      operationId: GetTotalSavingsInUsd
+      operationId: Prices_GetTotalSavingsInUsd
       parameters:
         - name: itemId
           in: path
@@ -2071,7 +2087,7 @@ paths:
         - PricingRules
       summary: Create a new pricing rule
       description: Creates a new pricing rule for the specified tenant.
-      operationId: CreatePricingRule
+      operationId: PricingRules_CreatePricingRule
       parameters:
         - name: tenantId
           in: query
@@ -2128,7 +2144,7 @@ paths:
         - PricingRules
       summary: Get all pricing rules
       description: 'Retrieves all pricing rules for the specified tenant, with optional OData query options.'
-      operationId: GetPricingRules
+      operationId: PricingRules_GetPricingRules
       parameters:
         - name: tenantId
           in: query
@@ -2186,7 +2202,7 @@ paths:
         - PricingRules
       summary: Get pricing rule by ID
       description: Retrieves a pricing rule by its unique identifier.
-      operationId: GetPricingRuleById
+      operationId: PricingRules_GetPricingRuleById
       parameters:
         - name: tenantId
           in: query
@@ -2241,7 +2257,7 @@ paths:
         - PricingRules
       summary: Patch a pricing rule
       description: Partially updates a pricing rule using a JSON Patch document.
-      operationId: PatchPricingRule
+      operationId: PricingRules_PatchPricingRule
       parameters:
         - name: tenantId
           in: query
@@ -2301,7 +2317,7 @@ paths:
         - PricingRules
       summary: Delete a pricing rule
       description: Deletes a pricing rule for the specified tenant and rule ID.
-      operationId: DeletePricingRule
+      operationId: PricingRules_DeletePricingRule
       parameters:
         - name: tenantId
           in: query
@@ -2350,7 +2366,7 @@ paths:
         - PricingRules
       summary: Counts pricing rules
       description: Gets the count of pricing rules for the current tenant.
-      operationId: GetPricingRulesCountAsync
+      operationId: PricingRules_GetPricingRulesCount
       parameters:
         - name: tenantId
           in: query
@@ -2399,7 +2415,7 @@ paths:
         - PricingRules
       summary: Update a pricing rule
       description: Updates an existing pricing rule for the specified tenant and rule ID.
-      operationId: UpdatePricingRule
+      operationId: PricingRules_UpdatePricingRule
       parameters:
         - name: tenantId
           in: query
@@ -2456,7 +2472,7 @@ paths:
         - RoundingPolicies
       summary: Gets all rounding policies
       description: Retrieves all rounding policies for the current tenant with OData support.
-      operationId: GetRoundingPoliciesAsync
+      operationId: RoundingPolicies_GetRoundingPolicies
       parameters:
         - name: tenantId
           in: query
@@ -2513,7 +2529,7 @@ paths:
         - RoundingPolicies
       summary: Creates a rounding policy
       description: Creates a new rounding policy for the current tenant.
-      operationId: CreateRoundingPolicyAsync
+      operationId: RoundingPolicies_CreateRoundingPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2572,7 +2588,7 @@ paths:
         - RoundingPolicies
       summary: Counts rounding policies
       description: Gets the count of rounding policies for the current tenant.
-      operationId: GetRoundingPoliciesCountAsync
+      operationId: RoundingPolicies_GetRoundingPoliciesCount
       parameters:
         - name: tenantId
           in: query
@@ -2630,7 +2646,7 @@ paths:
         - RoundingPolicies
       summary: Gets a rounding policy by ID
       description: Retrieves the details of a rounding policy using its unique ID.
-      operationId: GetRoundingPolicyByIdAsync
+      operationId: RoundingPolicies_GetRoundingPolicyById
       parameters:
         - name: tenantId
           in: query
@@ -2685,7 +2701,7 @@ paths:
         - RoundingPolicies
       summary: Updates a rounding policy
       description: Updates the specified rounding policy.
-      operationId: UpdateRoundingPolicyAsync
+      operationId: RoundingPolicies_UpdateRoundingPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2749,7 +2765,7 @@ paths:
         - RoundingPolicies
       summary: Patches a rounding policy
       description: Partially updates the specified rounding policy using a JSON Patch document.
-      operationId: PatchRoundingPolicyAsync
+      operationId: RoundingPolicies_PatchRoundingPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2816,7 +2832,7 @@ paths:
         - RoundingPolicies
       summary: Deletes a rounding policy
       description: Deletes the specified rounding policy.
-      operationId: DeleteRoundingPolicyAsync
+      operationId: RoundingPolicies_DeleteRoundingPolicy
       parameters:
         - name: tenantId
           in: query
@@ -3886,8 +3902,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     PriceListCreateDto:
       required:

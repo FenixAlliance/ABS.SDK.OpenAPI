@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - Quotes
       summary: Get a list of quotes.
       description: 'Retrieves a list of quotes for the specified tenant, supporting OData query options.'
-      operationId: GetQuotes
+      operationId: Quotes_GetQuotes
       parameters:
         - name: tenantId
           in: query
@@ -390,7 +406,7 @@ paths:
         - Quotes
       summary: Create a new quote.
       description: Creates a new quote for the specified tenant.
-      operationId: CreateQuote
+      operationId: Quotes_CreateQuote
       parameters:
         - name: tenantId
           in: query
@@ -431,7 +447,7 @@ paths:
         - Quotes
       summary: Get the count of quotes.
       description: 'Retrieves the total count of quotes for the specified tenant, supporting OData query options.'
-      operationId: GetQuotesCount
+      operationId: Quotes_GetQuotesCount
       parameters:
         - name: tenantId
           in: query
@@ -472,7 +488,7 @@ paths:
         - Quotes
       summary: Get a list of extended quotes.
       description: 'Retrieves a list of extended quotes for the specified tenant, supporting OData query options.'
-      operationId: GetExtendedQuotes
+      operationId: Quotes_GetExtendedQuotes
       parameters:
         - name: tenantId
           in: query
@@ -513,7 +529,7 @@ paths:
         - Quotes
       summary: Get a quote by ID.
       description: Retrieves a single quote by its unique identifier for the specified tenant.
-      operationId: GetQuote
+      operationId: Quotes_GetQuote
       parameters:
         - name: tenantId
           in: query
@@ -551,7 +567,7 @@ paths:
         - Quotes
       summary: Update an existing quote.
       description: Updates an existing quote for the specified tenant and quote ID.
-      operationId: UpdateQuote
+      operationId: Quotes_UpdateQuote
       parameters:
         - name: tenantId
           in: query
@@ -597,7 +613,7 @@ paths:
         - Quotes
       summary: Patch an existing quote.
       description: Partially updates an existing quote for the specified tenant and quote ID using a JSON Patch document.
-      operationId: PatchQuoteAsync
+      operationId: Quotes_PatchQuote
       parameters:
         - name: tenantId
           in: query
@@ -665,7 +681,7 @@ paths:
         - Quotes
       summary: Delete a quote.
       description: Deletes the specified quote for the tenant.
-      operationId: DeleteQuote
+      operationId: Quotes_DeleteQuote
       parameters:
         - name: quoteId
           in: path
@@ -704,7 +720,7 @@ paths:
         - Quotes
       summary: Calculate a quote.
       description: Performs calculation logic for the specified quote.
-      operationId: CalculateQuote
+      operationId: Quotes_CalculateQuote
       parameters:
         - name: tenantId
           in: query
@@ -743,7 +759,7 @@ paths:
         - Quotes
       summary: Close a quote.
       description: Closes the specified quote for the tenant.
-      operationId: CloseQuote
+      operationId: Quotes_CloseQuote
       parameters:
         - name: tenantId
           in: query
@@ -782,7 +798,7 @@ paths:
         - Quotes
       summary: Reopen a closed quote.
       description: Reopens a previously closed quote for the tenant.
-      operationId: ReopenQuote
+      operationId: Quotes_ReopenQuote
       parameters:
         - name: tenantId
           in: query
@@ -821,7 +837,7 @@ paths:
         - Quotes
       summary: Create an order from a quote.
       description: Creates an order based on the specified quote for the tenant.
-      operationId: CreateOrderFromQuote
+      operationId: Quotes_CreateOrderFromQuote
       parameters:
         - name: tenantId
           in: query
@@ -860,7 +876,7 @@ paths:
         - Quotes
       summary: Get quote lines for a quote.
       description: Retrieves all quote lines for the specified quote and tenant.
-      operationId: GetQuoteLines
+      operationId: Quotes_GetQuoteLines
       parameters:
         - name: tenantId
           in: query
@@ -911,7 +927,7 @@ paths:
         - Quotes
       summary: Create a new quote line.
       description: Creates a new quote line for the specified quote and tenant.
-      operationId: CreateQuoteLine
+      operationId: Quotes_CreateQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -958,7 +974,7 @@ paths:
         - Quotes
       summary: Get the count of quote lines.
       description: Retrieves the total count of quote lines for the specified quote and tenant.
-      operationId: GetQuoteLinesCount
+      operationId: Quotes_GetQuoteLinesCount
       parameters:
         - name: tenantId
           in: query
@@ -1005,7 +1021,7 @@ paths:
         - Quotes
       summary: Get a quote line by ID.
       description: Retrieves a single quote line by its unique identifier for the specified quote and tenant.
-      operationId: GetQuoteLine
+      operationId: Quotes_GetQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1049,7 +1065,7 @@ paths:
         - Quotes
       summary: Update a quote line.
       description: Updates an existing quote line for the specified quote and tenant.
-      operationId: UpdateQuoteLine
+      operationId: Quotes_UpdateQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1101,7 +1117,7 @@ paths:
         - Quotes
       summary: Patch a quote line.
       description: Partially updates an existing quote line for the specified quote and tenant using a JSON Patch document.
-      operationId: PatchQuoteLineAsync
+      operationId: Quotes_PatchQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1175,7 +1191,7 @@ paths:
         - Quotes
       summary: Delete a quote line.
       description: Deletes the specified quote line for the quote and tenant.
-      operationId: DeleteQuoteLine
+      operationId: Quotes_DeleteQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1220,7 +1236,7 @@ paths:
         - Quotes
       summary: Upsert a quote line.
       description: Creates or updates a quote line for the specified quote and tenant.
-      operationId: UpsertQuoteLine
+      operationId: Quotes_UpsertQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1273,7 +1289,7 @@ paths:
         - Quotes
       summary: Calculate a quote line.
       description: Performs calculation logic for the specified quote line.
-      operationId: CalculateQuoteLine
+      operationId: Quotes_CalculateQuoteLine
       parameters:
         - name: tenantId
           in: query
@@ -1318,7 +1334,7 @@ paths:
         - Quotes
       summary: Check if a quote line exists.
       description: 'Checks if a quote line exists for the specified quote and tenant, by quote line ID or item ID.'
-      operationId: QuoteLineExists
+      operationId: Quotes_QuoteLineExists
       parameters:
         - name: tenantId
           in: query
@@ -1367,7 +1383,7 @@ paths:
         - Quotes
       summary: Send a quote transactional email to recipients.
       description: This action is only available for users with the 'send_email' permission.
-      operationId: SendQuoteEmail
+      operationId: Quotes_SendQuoteEmail
       parameters:
         - name: tenantId
           in: query
@@ -1423,7 +1439,7 @@ paths:
         - Quotes
       summary: Preview the rendered email for an invoice.
       description: This action is only available for users with the 'send_email' permission.
-      operationId: PreviewQuoteEmailTemplate
+      operationId: Quotes_PreviewQuoteEmailTemplate
       parameters:
         - name: quoteId
           in: path
@@ -1703,9 +1719,16 @@ components:
         identityProviderAccessToken:
           type: string
           nullable: true
+          deprecated: true
         birthday:
           type: string
           format: date-time
+          nullable: true
+        tikTokUsername:
+          type: string
+          nullable: true
+        instagramUsername:
+          type: string
           nullable: true
       additionalProperties: false
     EmailDispatchRequest:
@@ -2303,8 +2326,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     QuoteCreateDto:
       type: object

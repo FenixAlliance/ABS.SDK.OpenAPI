@@ -39,7 +39,7 @@
           "Avatars"
         ],
         "summary": "Get the avatar for a given social profile.",
-        "operationId": "GetAvatar",
+        "operationId": "Avatars_GetAvatar",
         "parameters": [
           {
             "name": "socialProfileId",
@@ -90,7 +90,7 @@
           "Avatars"
         ],
         "summary": "Get the avatar for the current user.",
-        "operationId": "GetCurrentUserAvatar",
+        "operationId": "Avatars_GetCurrentUserAvatar",
         "parameters": [
           {
             "name": "api-version",
@@ -130,7 +130,7 @@
           "Avatars"
         ],
         "summary": "Update the avatar for the current user.",
-        "operationId": "UpdateUserAvatar",
+        "operationId": "Avatars_UpdateUserAvatar",
         "parameters": [
           {
             "name": "api-version",
@@ -237,7 +237,7 @@
           "Avatars"
         ],
         "summary": "Get the avatar for a given user.",
-        "operationId": "GetUserAvatar",
+        "operationId": "Avatars_GetUserAvatar",
         "parameters": [
           {
             "name": "userId",
@@ -288,7 +288,7 @@
           "Avatars"
         ],
         "summary": "Get the avatar for a given tenant.",
-        "operationId": "GetTenantAvatar",
+        "operationId": "Avatars_GetTenantAvatar",
         "parameters": [
           {
             "name": "tenantId",
@@ -337,7 +337,7 @@
           "Avatars"
         ],
         "summary": "Update the avatar for a given tenant.",
-        "operationId": "UpdateTenantAvatar",
+        "operationId": "Avatars_UpdateTenantAvatar",
         "parameters": [
           {
             "name": "tenantId",
@@ -453,8 +453,16 @@
           "Avatars"
         ],
         "summary": "Get the avatar for a given contact.",
-        "operationId": "GetContactAvatar",
+        "operationId": "Avatars_GetContactAvatar",
         "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "contactId",
             "in": "path",
@@ -504,7 +512,7 @@
           "Avatars"
         ],
         "summary": "Update the avatar for a given contact.",
-        "operationId": "UpdateContactAvatar",
+        "operationId": "Avatars_UpdateContactAvatar",
         "parameters": [
           {
             "name": "tenantId",
@@ -627,7 +635,7 @@
         "tags": [
           "Blobs"
         ],
-        "operationId": "GetBlobsAsync",
+        "operationId": "Blobs_GetBlobs",
         "parameters": [
           {
             "name": "tenantId",
@@ -749,7 +757,7 @@
         "tags": [
           "Blobs"
         ],
-        "operationId": "GetBlobAsync",
+        "operationId": "Blobs_GetBlob",
         "parameters": [
           {
             "name": "tenantId",
@@ -835,7 +843,7 @@
         "tags": [
           "EditorAssets"
         ],
-        "operationId": "GetEditorAssetAsync",
+        "operationId": "EditorAssets_GetEditorAsset",
         "parameters": [
           {
             "name": "fileId",
@@ -1315,11 +1323,463 @@
         }
       }
     },
+    "/api/v2/StorageService/EditorAssets/resolve": {
+      "post": {
+        "tags": [
+          "EditorAssets"
+        ],
+        "operationId": "EditorAssets_PostEditorAssetsResolve",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=full;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.metadata=none;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=true;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=true;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=false;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;odata.streaming=false;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;IEEE754Compatible=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json;IEEE754Compatible=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveEditorAssetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=true;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=false;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;IEEE754Compatible=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;IEEE754Compatible=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -1332,6 +1792,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -1344,6 +1805,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -1356,6 +1818,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1388,6 +1851,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -1433,6 +1897,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1462,7 +1927,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -1500,6 +1965,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1522,6 +1988,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1554,6 +2021,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1586,6 +2054,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1628,6 +2097,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -1658,6 +2128,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1700,6 +2171,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -1758,6 +2230,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -1804,6 +2277,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -1850,6 +2324,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -1862,7 +2337,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "GetFilesAsync",
+        "operationId": "Files_GetFiles",
         "parameters": [
           {
             "name": "tenantId",
@@ -1948,7 +2423,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "CreateFileAsync",
+        "operationId": "Files_CreateFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -2284,7 +2759,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "GetFilesCountAsync",
+        "operationId": "Files_GetFilesCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2374,7 +2849,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "GetFileAsync",
+        "operationId": "Files_GetFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -2460,7 +2935,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "UpdateFileAsync",
+        "operationId": "Files_UpdateFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -2756,7 +3231,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "DeleteFileAsync",
+        "operationId": "Files_DeleteFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -2859,7 +3334,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "DownloadFileAsync",
+        "operationId": "Files_DownloadFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -2949,7 +3424,7 @@
         "tags": [
           "Files"
         ],
-        "operationId": "GetFileThumbnailAsync",
+        "operationId": "Files_GetFileThumbnail",
         "parameters": [
           {
             "name": "tenantId",
@@ -3040,7 +3515,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload a single editor file to tenant storage.",
-        "operationId": "RadzenUploadSingle",
+        "operationId": "RadzenEditor_RadzenUploadSingle",
         "parameters": [
           {
             "name": "tenantId",
@@ -3099,7 +3574,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload a single editor file scoped to a record.",
-        "operationId": "RadzenUploadSingleScoped",
+        "operationId": "RadzenEditor_RadzenUploadSingleScoped",
         "parameters": [
           {
             "name": "tenantId",
@@ -3174,7 +3649,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload an editor image to tenant storage.",
-        "operationId": "RadzenUploadImage",
+        "operationId": "RadzenEditor_RadzenUploadImage",
         "parameters": [
           {
             "name": "tenantId",
@@ -3254,7 +3729,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload an editor image scoped to a record.",
-        "operationId": "RadzenUploadImageScoped",
+        "operationId": "RadzenEditor_RadzenUploadImageScoped",
         "parameters": [
           {
             "name": "tenantId",
@@ -3350,7 +3825,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload an editor image to user storage.",
-        "operationId": "RadzenUploadUserImage",
+        "operationId": "RadzenEditor_RadzenUploadUserImage",
         "parameters": [
           {
             "name": "visibility",
@@ -3421,7 +3896,7 @@
           "RadzenEditor"
         ],
         "summary": "Upload a user editor image scoped to a record.",
-        "operationId": "RadzenUploadUserImageScoped",
+        "operationId": "RadzenEditor_RadzenUploadUserImageScoped",
         "parameters": [
           {
             "name": "recordType",
@@ -3508,7 +3983,7 @@
           "RadzenEditor"
         ],
         "summary": "Chunked editor upload (not implemented).",
-        "operationId": "RadzenUploadStream",
+        "operationId": "RadzenEditor_RadzenUploadStream",
         "parameters": [
           {
             "name": "tenantId",
@@ -3546,7 +4021,7 @@
           "RadzenEditor"
         ],
         "summary": "Chunked editor upload scoped to a record (not implemented).",
-        "operationId": "RadzenUploadStreamScoped",
+        "operationId": "RadzenEditor_RadzenUploadStreamScoped",
         "parameters": [
           {
             "name": "tenantId",
@@ -3601,7 +4076,7 @@
         ],
         "summary": "Upload a file",
         "description": "Uploads a file to tenant or user storage, scanned and catalogued through the storage spine.",
-        "operationId": "SaveFileAsync",
+        "operationId": "Uploads_SaveFile",
         "parameters": [
           {
             "name": "tenantId",
@@ -4001,9 +4476,7 @@
           },
           "properties": {
             "type": "object",
-            "additionalProperties": {
-              "nullable": true
-            },
+            "additionalProperties": { },
             "nullable": true,
             "readOnly": true
           },
@@ -4614,6 +5087,24 @@
             "nullable": true
           },
           "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResolveEditorAssetRequest": {
+        "type": "object",
+        "properties": {
+          "recordType": {
+            "type": "string",
+            "nullable": true
+          },
+          "recordId": {
+            "type": "string",
+            "nullable": true
+          },
+          "target": {
             "type": "string",
             "nullable": true
           }

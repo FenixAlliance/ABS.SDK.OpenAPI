@@ -38,6 +38,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetVersion",
         "responses": {
           "200": {
             "description": "OK"
@@ -50,6 +51,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHealth",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,6 +64,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetHello",
         "responses": {
           "200": {
             "description": "OK"
@@ -74,6 +77,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRegister",
         "requestBody": {
           "content": {
             "application/json": {
@@ -106,6 +110,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -151,6 +156,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostRefresh",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +186,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
-        "operationId": "MapIdentityApi-/confirmEmail",
+        "operationId": "Platform_MapIdentityApiConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -218,6 +224,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResendConfirmationEmail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -240,6 +247,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostForgotPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -272,6 +280,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -304,6 +313,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManage2fa",
         "requestBody": {
           "content": {
             "application/json": {
@@ -346,6 +356,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_GetManageInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -376,6 +387,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostManageInfo",
         "requestBody": {
           "content": {
             "application/json": {
@@ -418,6 +430,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountPerformExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -476,6 +489,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountLogout",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -522,6 +536,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageLinkExternalLogin",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -568,6 +583,7 @@
         "tags": [
           "FenixAlliance.ABS.Web"
         ],
+        "operationId": "Platform_PostAccountManageDownloadPersonalData",
         "responses": {
           "200": {
             "description": "OK"
@@ -582,7 +598,7 @@
         ],
         "summary": "Retrieves all projects",
         "description": "Gets all projects for the current tenant with OData support.",
-        "operationId": "GetProjectsByTenantIdAsync",
+        "operationId": "Projects_GetProjectsByTenantId",
         "parameters": [
           {
             "name": "tenantId",
@@ -662,7 +678,7 @@
         ],
         "summary": "Creates a new project",
         "description": "Creates a new project for the current tenant.",
-        "operationId": "CreateProjectAsync",
+        "operationId": "Projects_CreateProject",
         "parameters": [
           {
             "name": "tenantId",
@@ -744,7 +760,7 @@
         ],
         "summary": "Counts projects",
         "description": "Gets the count of projects for the current tenant.",
-        "operationId": "GetProjectsCountByTenantIdAsync",
+        "operationId": "Projects_GetProjectsCountByTenantId",
         "parameters": [
           {
             "name": "tenantId",
@@ -826,7 +842,7 @@
         ],
         "summary": "Gets a project by ID",
         "description": "Retrieves the details of a project using its unique identifier.",
-        "operationId": "GetProjectByIdAsync",
+        "operationId": "Projects_GetProjectById",
         "parameters": [
           {
             "name": "projectId",
@@ -901,7 +917,7 @@
         ],
         "summary": "Updates a project",
         "description": "Updates the specified project.",
-        "operationId": "UpdateProjectAsync",
+        "operationId": "Projects_UpdateProject",
         "parameters": [
           {
             "name": "projectId",
@@ -990,7 +1006,7 @@
         ],
         "summary": "Patches a project",
         "description": "Partially updates the specified project.",
-        "operationId": "PatchProjectAsync",
+        "operationId": "Projects_PatchProject",
         "parameters": [
           {
             "name": "projectId",
@@ -1085,7 +1101,7 @@
         ],
         "summary": "Deletes a project",
         "description": "Deletes the specified project.",
-        "operationId": "DeleteProjectAsync",
+        "operationId": "Projects_DeleteProject",
         "parameters": [
           {
             "name": "projectId",
@@ -1162,7 +1178,7 @@
         ],
         "summary": "Retrieves project periods",
         "description": "Gets all periods for a specific project.",
-        "operationId": "GetProjectPeriodsAsync",
+        "operationId": "Projects_GetProjectPeriods",
         "parameters": [
           {
             "name": "projectId",
@@ -1237,7 +1253,7 @@
         ],
         "summary": "Creates a project period",
         "description": "Creates a new period for the specified project.",
-        "operationId": "CreateProjectPeriodAsync",
+        "operationId": "Projects_CreateProjectPeriod",
         "parameters": [
           {
             "name": "projectId",
@@ -1328,7 +1344,7 @@
         ],
         "summary": "Updates a project period",
         "description": "Updates the specified period for a project.",
-        "operationId": "UpdateProjectPeriodAsync",
+        "operationId": "Projects_UpdateProjectPeriod",
         "parameters": [
           {
             "name": "projectId",
@@ -1426,7 +1442,7 @@
         ],
         "summary": "Patches a project period",
         "description": "Partially updates the specified period for a project.",
-        "operationId": "PatchProjectPeriodAsync",
+        "operationId": "Projects_PatchProjectPeriod",
         "parameters": [
           {
             "name": "projectId",
@@ -1530,7 +1546,7 @@
         ],
         "summary": "Deletes a project period",
         "description": "Deletes the specified period from a project.",
-        "operationId": "DeleteProjectPeriodAsync",
+        "operationId": "Projects_DeleteProjectPeriod",
         "parameters": [
           {
             "name": "projectId",
@@ -1616,7 +1632,7 @@
         ],
         "summary": "Retrieves project time logs",
         "description": "Gets all time log entries for a specific project with OData support.",
-        "operationId": "GetTimeLogsForProjectAsync",
+        "operationId": "Projects_GetTimeLogsForProject",
         "parameters": [
           {
             "name": "projectId",
@@ -1707,7 +1723,7 @@
         ],
         "summary": "Counts project time logs",
         "description": "Gets the count of time log entries for a specific project.",
-        "operationId": "GetProjectTimeLogsCountAsync",
+        "operationId": "Projects_GetProjectTimeLogsCount",
         "parameters": [
           {
             "name": "projectId",
@@ -1798,7 +1814,7 @@
         ],
         "summary": "Retrieves project tasks",
         "description": "Gets all tasks for a specific project with OData support.",
-        "operationId": "GetTasksForProjectAsync",
+        "operationId": "Projects_GetTasksForProject",
         "parameters": [
           {
             "name": "projectId",
@@ -1887,7 +1903,7 @@
         ],
         "summary": "Creates a project task",
         "description": "Creates a new task for the specified project.",
-        "operationId": "CreateTaskForProjectAsync",
+        "operationId": "Projects_CreateTaskForProject",
         "parameters": [
           {
             "name": "projectId",
@@ -1978,7 +1994,7 @@
         ],
         "summary": "Counts project tasks",
         "description": "Gets the count of tasks for a specific project.",
-        "operationId": "GetTasksForProjectCountAsync",
+        "operationId": "Projects_GetTasksForProjectCount",
         "parameters": [
           {
             "name": "projectId",
@@ -2069,7 +2085,7 @@
         ],
         "summary": "Updates a project task",
         "description": "Updates the specified task in a project.",
-        "operationId": "UpdateTaskForProjectAsync",
+        "operationId": "Projects_UpdateTaskForProject",
         "parameters": [
           {
             "name": "projectId",
@@ -2167,7 +2183,7 @@
         ],
         "summary": "Patches a project task",
         "description": "Partially updates the specified task in a project.",
-        "operationId": "PatchTaskForProjectAsync",
+        "operationId": "Projects_PatchTaskForProject",
         "parameters": [
           {
             "name": "projectId",
@@ -2271,7 +2287,7 @@
         ],
         "summary": "Deletes a project task",
         "description": "Deletes the specified task from a project.",
-        "operationId": "DeleteTaskForProjectAsync",
+        "operationId": "Projects_DeleteTaskForProject",
         "parameters": [
           {
             "name": "tenantId",
@@ -2357,7 +2373,7 @@
         ],
         "summary": "Retrieves project task categories",
         "description": "Gets all task categories for a specific project with OData support.",
-        "operationId": "GetProjectTaskCategoriesAsync",
+        "operationId": "Projects_GetProjectTaskCategories",
         "parameters": [
           {
             "name": "projectId",
@@ -2448,7 +2464,7 @@
         ],
         "summary": "Counts project task categories",
         "description": "Gets the count of task categories for a specific project.",
-        "operationId": "GetProjectTaskCategoriesCountAsync",
+        "operationId": "Projects_GetProjectTaskCategoriesCount",
         "parameters": [
           {
             "name": "projectId",
@@ -2539,7 +2555,7 @@
         ],
         "summary": "Get all project tasks",
         "description": "Retrieves all project tasks for the specified tenant.",
-        "operationId": "GetProjectTasksAsync",
+        "operationId": "ProjectTasks_GetProjectTasks",
         "parameters": [
           {
             "name": "tenantId",
@@ -2633,7 +2649,7 @@
         ],
         "summary": "Create a project task",
         "description": "Creates a new project task.",
-        "operationId": "CreateProjectTaskAsync",
+        "operationId": "ProjectTasks_CreateProjectTask",
         "parameters": [
           {
             "name": "tenantId",
@@ -2714,7 +2730,7 @@
         ],
         "summary": "Get project tasks count",
         "description": "Returns the count of project tasks for the specified tenant.",
-        "operationId": "GetProjectTasksCountAsync",
+        "operationId": "ProjectTasks_GetProjectTasksCount",
         "parameters": [
           {
             "name": "tenantId",
@@ -2780,7 +2796,7 @@
         ],
         "summary": "Get project task by ID",
         "description": "Retrieves a specific project task.",
-        "operationId": "GetProjectTaskByIdAsync",
+        "operationId": "ProjectTasks_GetProjectTaskById",
         "parameters": [
           {
             "name": "tenantId",
@@ -2854,7 +2870,7 @@
         ],
         "summary": "Update a project task",
         "description": "Updates an existing project task.",
-        "operationId": "UpdateProjectTaskAsync",
+        "operationId": "ProjectTasks_UpdateProjectTask",
         "parameters": [
           {
             "name": "tenantId",
@@ -2942,7 +2958,7 @@
         ],
         "summary": "Patch a project task",
         "description": "Partially updates an existing project task.",
-        "operationId": "PatchProjectTaskAsync",
+        "operationId": "ProjectTasks_PatchProjectTask",
         "parameters": [
           {
             "name": "tenantId",
@@ -3036,7 +3052,7 @@
         ],
         "summary": "Delete a project task",
         "description": "Deletes a project task.",
-        "operationId": "DeleteProjectTaskAsync",
+        "operationId": "ProjectTasks_DeleteProjectTask",
         "parameters": [
           {
             "name": "tenantId",
@@ -3112,7 +3128,7 @@
         ],
         "summary": "Retrieves all task categories",
         "description": "Gets all task categories for the current tenant with OData support.",
-        "operationId": "GetTenantTaskCategoriesAsync",
+        "operationId": "TaskCategories_GetTenantTaskCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -3192,7 +3208,7 @@
         ],
         "summary": "Creates a new task category",
         "description": "Creates a new task category for the current tenant.",
-        "operationId": "CreateTaskCategoryAsync",
+        "operationId": "TaskCategories_CreateTaskCategory",
         "parameters": [
           {
             "name": "tenantId",
@@ -3274,7 +3290,7 @@
         ],
         "summary": "Counts task categories",
         "description": "Gets the count of task categories for the current tenant.",
-        "operationId": "CountTenantTaskCategoriesAsync",
+        "operationId": "TaskCategories_CountTenantTaskCategories",
         "parameters": [
           {
             "name": "tenantId",
@@ -3356,7 +3372,7 @@
         ],
         "summary": "Gets a task category by ID",
         "description": "Retrieves the details of a task category using its unique identifier.",
-        "operationId": "GetTaskCategoryByIdAsync",
+        "operationId": "TaskCategories_GetTaskCategoryById",
         "parameters": [
           {
             "name": "taskCategoryId",
@@ -3431,7 +3447,7 @@
         ],
         "summary": "Updates a task category",
         "description": "Updates the specified task category.",
-        "operationId": "UpdateTaskCategoryAsync",
+        "operationId": "TaskCategories_UpdateTaskCategory",
         "parameters": [
           {
             "name": "taskCategoryId",
@@ -3520,7 +3536,7 @@
         ],
         "summary": "Patches a task category",
         "description": "Partially updates the specified task category.",
-        "operationId": "PatchTaskCategoryAsync",
+        "operationId": "TaskCategories_PatchTaskCategory",
         "parameters": [
           {
             "name": "taskCategoryId",
@@ -3615,7 +3631,7 @@
         ],
         "summary": "Deletes a task category",
         "description": "Deletes the specified task category.",
-        "operationId": "DeleteTaskCategoryAsync",
+        "operationId": "TaskCategories_DeleteTaskCategory",
         "parameters": [
           {
             "name": "taskCategoryId",
@@ -3692,7 +3708,7 @@
         ],
         "summary": "Retrieves task types for a category",
         "description": "Gets all task types belonging to the specified task category.",
-        "operationId": "GetTaskCategoryTaskTypesAsync",
+        "operationId": "TaskCategories_GetTaskCategoryTaskTypes",
         "parameters": [
           {
             "name": "taskCategoryId",
@@ -3769,7 +3785,7 @@
         ],
         "summary": "Gets a task type by ID",
         "description": "Retrieves the details of a task type using its unique identifier.",
-        "operationId": "GetTaskTypeByIdAsync",
+        "operationId": "TaskTypes_GetTaskTypeById",
         "parameters": [
           {
             "name": "taskTypeId",
@@ -3844,7 +3860,7 @@
         ],
         "summary": "Updates a task type",
         "description": "Updates the specified task type.",
-        "operationId": "UpdateTaskTypeAsync",
+        "operationId": "TaskTypes_UpdateTaskType",
         "parameters": [
           {
             "name": "taskTypeId",
@@ -3933,7 +3949,7 @@
         ],
         "summary": "Patches a task type",
         "description": "Partially updates the specified task type.",
-        "operationId": "PatchTaskTypeAsync",
+        "operationId": "TaskTypes_PatchTaskType",
         "parameters": [
           {
             "name": "taskTypeId",
@@ -4028,7 +4044,7 @@
         ],
         "summary": "Deletes a task type",
         "description": "Deletes the specified task type.",
-        "operationId": "DeleteTaskTypeAsync",
+        "operationId": "TaskTypes_DeleteTaskType",
         "parameters": [
           {
             "name": "taskTypeId",
@@ -4105,7 +4121,7 @@
         ],
         "summary": "Creates a new task type",
         "description": "Creates a new task type for the current tenant.",
-        "operationId": "CreateTaskTypeAsync",
+        "operationId": "TaskTypes_CreateTaskType",
         "parameters": [
           {
             "name": "tenantId",
@@ -4187,7 +4203,7 @@
         ],
         "summary": "Request project hours approval",
         "description": "Creates a new project hours approval request.",
-        "operationId": "RequestProjectHoursApprovalAsync",
+        "operationId": "TimeLogApprovals_RequestProjectHoursApproval",
         "parameters": [
           {
             "name": "tenantId",
@@ -4271,7 +4287,7 @@
         ],
         "summary": "Update approval status",
         "description": "Updates the status of an existing project hours approval.",
-        "operationId": "UpdateProjectHoursApprovalStatusAsync",
+        "operationId": "TimeLogApprovals_UpdateProjectHoursApprovalStatus",
         "parameters": [
           {
             "name": "tenantId",
@@ -4364,7 +4380,7 @@
         ],
         "summary": "Update approval approver",
         "description": "Updates the approver of an existing project hours approval.",
-        "operationId": "UpdateProjectHoursApprovalApproverAsync",
+        "operationId": "TimeLogApprovals_UpdateProjectHoursApprovalApprover",
         "parameters": [
           {
             "name": "approvalId",
@@ -4457,7 +4473,7 @@
         ],
         "summary": "Retrieve project period time logs",
         "description": "Retrieves a list of time logs for a specific project period with OData query support.",
-        "operationId": "GetProjectPeriodTimeLogsAsync",
+        "operationId": "TimeLogs_GetProjectPeriodTimeLogs",
         "parameters": [
           {
             "name": "tenantId",
@@ -4560,7 +4576,7 @@
         ],
         "summary": "Create a new project time log",
         "description": "Creates a new project time log entry.",
-        "operationId": "CreateProjectTimeLogAsync",
+        "operationId": "TimeLogs_CreateProjectTimeLog",
         "parameters": [
           {
             "name": "tenantId",
@@ -4644,7 +4660,7 @@
         ],
         "summary": "Get the count of project period time logs",
         "description": "Returns the total count of time logs for a specific project period with OData query support.",
-        "operationId": "CountProjectPeriodTimeLogsAsync",
+        "operationId": "TimeLogs_CountProjectPeriodTimeLogs",
         "parameters": [
           {
             "name": "tenantId",
@@ -4749,7 +4765,7 @@
         ],
         "summary": "Retrieve time logs by responsible contact",
         "description": "Retrieves time logs where the specified contact is the responsible party.",
-        "operationId": "GetProjectTimeLogsByResponsibleContactAsync",
+        "operationId": "TimeLogs_GetProjectTimeLogsByResponsibleContact",
         "parameters": [
           {
             "name": "contactId",
@@ -4840,7 +4856,7 @@
         ],
         "summary": "Retrieve time logs created by a contact",
         "description": "Retrieves time logs that were created by the specified contact.",
-        "operationId": "GetProjectTimeLogsCreatedByContactAsync",
+        "operationId": "TimeLogs_GetProjectTimeLogsCreatedByContact",
         "parameters": [
           {
             "name": "contactId",
@@ -4931,7 +4947,7 @@
         ],
         "summary": "Retrieve time logs for a project",
         "description": "Retrieves all time logs associated with the specified project.",
-        "operationId": "GetProjectTimeLogsAsync",
+        "operationId": "TimeLogs_GetProjectTimeLogs",
         "parameters": [
           {
             "name": "projectId",
@@ -5022,7 +5038,7 @@
         ],
         "summary": "Retrieve a project time log by ID",
         "description": "Retrieves a single project time log by its unique identifier.",
-        "operationId": "GetProjectTimeLogByIdAsync",
+        "operationId": "TimeLogs_GetProjectTimeLogById",
         "parameters": [
           {
             "name": "timeLogId",
@@ -5111,7 +5127,7 @@
         ],
         "summary": "Update a project time log",
         "description": "Updates an existing project time log entry.",
-        "operationId": "UpdateProjectTimeLogAsync",
+        "operationId": "TimeLogs_UpdateProjectTimeLog",
         "parameters": [
           {
             "name": "timeLogId",
@@ -5202,7 +5218,7 @@
         ],
         "summary": "Patch a project time log",
         "description": "Partially updates an existing project time log entry.",
-        "operationId": "PatchProjectTimeLogAsync",
+        "operationId": "TimeLogs_PatchProjectTimeLog",
         "parameters": [
           {
             "name": "timeLogId",
@@ -5299,7 +5315,7 @@
         ],
         "summary": "Delete a project time log",
         "description": "Deletes a project time log entry.",
-        "operationId": "DeleteProjectTimeLogAsync",
+        "operationId": "TimeLogs_DeleteProjectTimeLog",
         "parameters": [
           {
             "name": "tenantId",
@@ -5676,9 +5692,7 @@
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "nullable": true
-          }
+          "value": { }
         },
         "additionalProperties": false
       },

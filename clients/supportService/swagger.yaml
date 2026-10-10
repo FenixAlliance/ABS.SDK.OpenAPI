@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -349,7 +365,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Retrieve inquiry requests
-      operationId: GetInquiryRequestsAsync
+      operationId: InquiryRequests_GetInquiryRequests
       parameters:
         - name: tenantId
           in: query
@@ -387,7 +403,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Create an inquiry request
-      operationId: CreateInquiryRequestAsync
+      operationId: InquiryRequests_CreateInquiryRequest
       parameters:
         - name: tenantId
           in: query
@@ -426,7 +442,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Get inquiry requests count
-      operationId: GetInquiryRequestsCountAsync
+      operationId: InquiryRequests_GetInquiryRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -465,7 +481,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Retrieve an inquiry request by ID
-      operationId: GetInquiryRequestAsync
+      operationId: InquiryRequests_GetInquiryRequest
       parameters:
         - name: tenantId
           in: query
@@ -501,7 +517,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Update an inquiry request
-      operationId: UpdateInquiryRequestAsync
+      operationId: InquiryRequests_UpdateInquiryRequest
       parameters:
         - name: tenantId
           in: query
@@ -546,7 +562,7 @@ paths:
         - InquiryRequests
       summary: Patch an inquiry request
       description: Partially updates an existing inquiry request by its unique identifier.
-      operationId: PatchInquiryRequestAsync
+      operationId: InquiryRequests_PatchInquiryRequest
       parameters:
         - name: tenantId
           in: query
@@ -612,7 +628,7 @@ paths:
       tags:
         - InquiryRequests
       summary: Delete an inquiry request
-      operationId: DeleteInquiryRequestAsync
+      operationId: InquiryRequests_DeleteInquiryRequest
       parameters:
         - name: tenantId
           in: query
@@ -649,7 +665,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Retrieve knowledge articles
-      operationId: GetKnowledgeArticlesAsync
+      operationId: KnowledgeArticles_GetKnowledgeArticles
       parameters:
         - name: tenantId
           in: query
@@ -687,7 +703,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Create a knowledge article
-      operationId: CreateKnowledgeArticleAsync
+      operationId: KnowledgeArticles_CreateKnowledgeArticle
       parameters:
         - name: tenantId
           in: query
@@ -726,7 +742,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Get knowledge articles count
-      operationId: GetKnowledgeArticlesCountAsync
+      operationId: KnowledgeArticles_GetKnowledgeArticlesCount
       parameters:
         - name: tenantId
           in: query
@@ -765,7 +781,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Retrieve a knowledge article by ID
-      operationId: GetKnowledgeArticleAsync
+      operationId: KnowledgeArticles_GetKnowledgeArticle
       parameters:
         - name: tenantId
           in: query
@@ -801,7 +817,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Update a knowledge article
-      operationId: UpdateKnowledgeArticleAsync
+      operationId: KnowledgeArticles_UpdateKnowledgeArticle
       parameters:
         - name: tenantId
           in: query
@@ -846,7 +862,7 @@ paths:
         - KnowledgeArticles
       summary: Patch a knowledge article
       description: Partially updates an existing knowledge article by its unique identifier.
-      operationId: PatchKnowledgeArticleAsync
+      operationId: KnowledgeArticles_PatchKnowledgeArticle
       parameters:
         - name: tenantId
           in: query
@@ -912,7 +928,7 @@ paths:
       tags:
         - KnowledgeArticles
       summary: Delete a knowledge article
-      operationId: DeleteKnowledgeArticleAsync
+      operationId: KnowledgeArticles_DeleteKnowledgeArticle
       parameters:
         - name: tenantId
           in: query
@@ -949,7 +965,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Retrieve maintenance visits
-      operationId: GetMaintenanceVisitsAsync
+      operationId: MaintenanceVisits_GetMaintenanceVisits
       parameters:
         - name: tenantId
           in: query
@@ -987,7 +1003,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Create a maintenance visit
-      operationId: CreateMaintenanceVisitAsync
+      operationId: MaintenanceVisits_CreateMaintenanceVisit
       parameters:
         - name: tenantId
           in: query
@@ -1026,7 +1042,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Get maintenance visits count
-      operationId: GetMaintenanceVisitsCountAsync
+      operationId: MaintenanceVisits_GetMaintenanceVisitsCount
       parameters:
         - name: tenantId
           in: query
@@ -1065,7 +1081,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Retrieve a maintenance visit by ID
-      operationId: GetMaintenanceVisitAsync
+      operationId: MaintenanceVisits_GetMaintenanceVisit
       parameters:
         - name: tenantId
           in: query
@@ -1101,7 +1117,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Update a maintenance visit
-      operationId: UpdateMaintenanceVisitAsync
+      operationId: MaintenanceVisits_UpdateMaintenanceVisit
       parameters:
         - name: tenantId
           in: query
@@ -1146,7 +1162,7 @@ paths:
         - MaintenanceVisits
       summary: Patch a maintenance visit
       description: Partially updates an existing maintenance visit by its unique identifier.
-      operationId: PatchMaintenanceVisitAsync
+      operationId: MaintenanceVisits_PatchMaintenanceVisit
       parameters:
         - name: tenantId
           in: query
@@ -1212,7 +1228,7 @@ paths:
       tags:
         - MaintenanceVisits
       summary: Delete a maintenance visit
-      operationId: DeleteMaintenanceVisitAsync
+      operationId: MaintenanceVisits_DeleteMaintenanceVisit
       parameters:
         - name: tenantId
           in: query
@@ -1249,7 +1265,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Retrieve a list of refund policies
-      operationId: GetRefundPoliciesAsync
+      operationId: RefundPolicies_GetRefundPolicies
       parameters:
         - name: tenantId
           in: query
@@ -1305,7 +1321,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Create a new refund policy
-      operationId: CreateRefundPolicyAsync
+      operationId: RefundPolicies_CreateRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -1362,7 +1378,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Get the count of refund policies
-      operationId: GetRefundPoliciesCountAsync
+      operationId: RefundPolicies_GetRefundPoliciesCount
       parameters:
         - name: tenantId
           in: query
@@ -1419,7 +1435,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Retrieve a refund policy by ID
-      operationId: GetRefundPolicyAsync
+      operationId: RefundPolicies_GetRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -1473,7 +1489,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Update a refund policy
-      operationId: UpdateRefundPolicyAsync
+      operationId: RefundPolicies_UpdateRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -1536,7 +1552,7 @@ paths:
         - RefundPolicies
       summary: Patch a refund policy
       description: Partially updates an existing refund policy by its unique identifier.
-      operationId: PatchRefundPolicyAsync
+      operationId: RefundPolicies_PatchRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -1602,7 +1618,7 @@ paths:
       tags:
         - RefundPolicies
       summary: Delete a refund policy
-      operationId: DeleteRefundPolicyAsync
+      operationId: RefundPolicies_DeleteRefundPolicy
       parameters:
         - name: tenantId
           in: query
@@ -1657,7 +1673,7 @@ paths:
       tags:
         - RefundRequests
       summary: Retrieve refund requests
-      operationId: GetRefundRequestsAsync
+      operationId: RefundRequests_GetRefundRequests
       parameters:
         - name: tenantId
           in: query
@@ -1695,7 +1711,7 @@ paths:
       tags:
         - RefundRequests
       summary: Create a refund request
-      operationId: CreateRefundRequestAsync
+      operationId: RefundRequests_CreateRefundRequest
       parameters:
         - name: tenantId
           in: query
@@ -1734,7 +1750,7 @@ paths:
       tags:
         - RefundRequests
       summary: Get refund requests count
-      operationId: GetRefundRequestsCountAsync
+      operationId: RefundRequests_GetRefundRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -1773,7 +1789,7 @@ paths:
       tags:
         - RefundRequests
       summary: Retrieve a refund request by ID
-      operationId: GetRefundRequestAsync
+      operationId: RefundRequests_GetRefundRequest
       parameters:
         - name: tenantId
           in: query
@@ -1809,7 +1825,7 @@ paths:
       tags:
         - RefundRequests
       summary: Update a refund request
-      operationId: UpdateRefundRequestAsync
+      operationId: RefundRequests_UpdateRefundRequest
       parameters:
         - name: tenantId
           in: query
@@ -1854,7 +1870,7 @@ paths:
         - RefundRequests
       summary: Patch a refund request
       description: Partially updates an existing refund request by its unique identifier.
-      operationId: PatchRefundRequestAsync
+      operationId: RefundRequests_PatchRefundRequest
       parameters:
         - name: tenantId
           in: query
@@ -1920,7 +1936,7 @@ paths:
       tags:
         - RefundRequests
       summary: Delete a refund request
-      operationId: DeleteRefundRequestAsync
+      operationId: RefundRequests_DeleteRefundRequest
       parameters:
         - name: tenantId
           in: query
@@ -1957,7 +1973,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Retrieve a list of return policies
-      operationId: GetReturnPoliciesAsync
+      operationId: ReturnPolicies_GetReturnPolicies
       parameters:
         - name: tenantId
           in: query
@@ -2013,7 +2029,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Create a new return policy
-      operationId: CreateReturnPolicyAsync
+      operationId: ReturnPolicies_CreateReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2070,7 +2086,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Get the count of return policies
-      operationId: GetReturnPoliciesCountAsync
+      operationId: ReturnPolicies_GetReturnPoliciesCount
       parameters:
         - name: tenantId
           in: query
@@ -2127,7 +2143,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Retrieve a return policy by ID
-      operationId: GetReturnPolicyAsync
+      operationId: ReturnPolicies_GetReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2181,7 +2197,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Update a return policy
-      operationId: UpdateReturnPolicyAsync
+      operationId: ReturnPolicies_UpdateReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2244,7 +2260,7 @@ paths:
         - ReturnPolicies
       summary: Patch a return policy
       description: Partially updates an existing return policy by its unique identifier.
-      operationId: PatchReturnPolicyAsync
+      operationId: ReturnPolicies_PatchReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2310,7 +2326,7 @@ paths:
       tags:
         - ReturnPolicies
       summary: Delete a return policy
-      operationId: DeleteReturnPolicyAsync
+      operationId: ReturnPolicies_DeleteReturnPolicy
       parameters:
         - name: tenantId
           in: query
@@ -2365,7 +2381,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Retrieve return requests
-      operationId: GetReturnRequestsAsync
+      operationId: ReturnRequests_GetReturnRequests
       parameters:
         - name: tenantId
           in: query
@@ -2403,7 +2419,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Create a return request
-      operationId: CreateReturnRequestAsync
+      operationId: ReturnRequests_CreateReturnRequest
       parameters:
         - name: tenantId
           in: query
@@ -2442,7 +2458,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Get return requests count
-      operationId: GetReturnRequestsCountAsync
+      operationId: ReturnRequests_GetReturnRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -2481,7 +2497,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Retrieve a return request by ID
-      operationId: GetReturnRequestAsync
+      operationId: ReturnRequests_GetReturnRequest
       parameters:
         - name: tenantId
           in: query
@@ -2517,7 +2533,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Update a return request
-      operationId: UpdateReturnRequestAsync
+      operationId: ReturnRequests_UpdateReturnRequest
       parameters:
         - name: tenantId
           in: query
@@ -2562,7 +2578,7 @@ paths:
         - ReturnRequests
       summary: Patch a return request
       description: Partially updates an existing return request by its unique identifier.
-      operationId: PatchReturnRequestAsync
+      operationId: ReturnRequests_PatchReturnRequest
       parameters:
         - name: tenantId
           in: query
@@ -2628,7 +2644,7 @@ paths:
       tags:
         - ReturnRequests
       summary: Delete a return request
-      operationId: DeleteReturnRequestAsync
+      operationId: ReturnRequests_DeleteReturnRequest
       parameters:
         - name: tenantId
           in: query
@@ -2666,7 +2682,7 @@ paths:
         - SupportEntitlements
       summary: Retrieve a list of support entitlements
       description: Retrieves a list of support entitlements for the specified tenant with OData query support.
-      operationId: GetSupportEntitlementsAsync
+      operationId: SupportEntitlements_GetSupportEntitlements
       parameters:
         - name: tenantId
           in: query
@@ -2723,7 +2739,7 @@ paths:
         - SupportEntitlements
       summary: Create a new support entitlement
       description: Creates a new support entitlement for the specified tenant.
-      operationId: CreateSupportEntitlementAsync
+      operationId: SupportEntitlements_CreateSupportEntitlement
       parameters:
         - name: tenantId
           in: query
@@ -2781,7 +2797,7 @@ paths:
         - SupportEntitlements
       summary: Get the count of support entitlements
       description: Returns the total count of support entitlements for the specified tenant with OData query support.
-      operationId: GetSupportEntitlementsCountAsync
+      operationId: SupportEntitlements_GetSupportEntitlementsCount
       parameters:
         - name: tenantId
           in: query
@@ -2839,7 +2855,7 @@ paths:
         - SupportEntitlements
       summary: Retrieve a support entitlement by ID
       description: Retrieves a single support entitlement by its unique identifier.
-      operationId: GetSupportEntitlementAsync
+      operationId: SupportEntitlements_GetSupportEntitlement
       parameters:
         - name: tenantId
           in: query
@@ -2894,7 +2910,7 @@ paths:
         - SupportEntitlements
       summary: Update a support entitlement
       description: Updates an existing support entitlement by its unique identifier.
-      operationId: UpdateSupportEntitlementAsync
+      operationId: SupportEntitlements_UpdateSupportEntitlement
       parameters:
         - name: tenantId
           in: query
@@ -2957,7 +2973,7 @@ paths:
         - SupportEntitlements
       summary: Patch a support entitlement
       description: Partially updates an existing support entitlement by its unique identifier.
-      operationId: PatchSupportEntitlementAsync
+      operationId: SupportEntitlements_PatchSupportEntitlement
       parameters:
         - name: tenantId
           in: query
@@ -3024,7 +3040,7 @@ paths:
         - SupportEntitlements
       summary: Delete a support entitlement
       description: Deletes a support entitlement by its unique identifier.
-      operationId: DeleteSupportEntitlementAsync
+      operationId: SupportEntitlements_DeleteSupportEntitlement
       parameters:
         - name: tenantId
           in: query
@@ -3080,7 +3096,7 @@ paths:
         - SupportRequestAttachments
       summary: Retrieve a list of support request attachments
       description: Retrieves a list of support request attachments for the specified tenant with OData query support.
-      operationId: GetSupportRequestAttachmentsAsync
+      operationId: SupportRequestAttachments_GetSupportRequestAttachments
       parameters:
         - name: tenantId
           in: query
@@ -3137,7 +3153,7 @@ paths:
         - SupportRequestAttachments
       summary: Create a new support request attachment
       description: Creates a new support request attachment for the specified tenant.
-      operationId: CreateSupportRequestAttachmentAsync
+      operationId: SupportRequestAttachments_CreateSupportRequestAttachment
       parameters:
         - name: tenantId
           in: query
@@ -3195,7 +3211,7 @@ paths:
         - SupportRequestAttachments
       summary: Get the count of support request attachments
       description: Returns the total count of support request attachments for the specified tenant with OData query support.
-      operationId: GetSupportRequestAttachmentsCountAsync
+      operationId: SupportRequestAttachments_GetSupportRequestAttachmentsCount
       parameters:
         - name: tenantId
           in: query
@@ -3253,7 +3269,7 @@ paths:
         - SupportRequestAttachments
       summary: Retrieve a support request attachment by ID
       description: Retrieves a single support request attachment by its unique identifier.
-      operationId: GetSupportRequestAttachmentAsync
+      operationId: SupportRequestAttachments_GetSupportRequestAttachment
       parameters:
         - name: tenantId
           in: query
@@ -3308,7 +3324,7 @@ paths:
         - SupportRequestAttachments
       summary: Update a support request attachment
       description: Updates an existing support request attachment by its unique identifier.
-      operationId: UpdateSupportRequestAttachmentAsync
+      operationId: SupportRequestAttachments_UpdateSupportRequestAttachment
       parameters:
         - name: tenantId
           in: query
@@ -3371,7 +3387,7 @@ paths:
         - SupportRequestAttachments
       summary: Patch a support request attachment
       description: Partially updates an existing support request attachment by its unique identifier.
-      operationId: PatchSupportRequestAttachmentAsync
+      operationId: SupportRequestAttachments_PatchSupportRequestAttachment
       parameters:
         - name: tenantId
           in: query
@@ -3438,7 +3454,7 @@ paths:
         - SupportRequestAttachments
       summary: Delete a support request attachment
       description: Deletes a support request attachment by its unique identifier.
-      operationId: DeleteSupportRequestAttachmentAsync
+      operationId: SupportRequestAttachments_DeleteSupportRequestAttachment
       parameters:
         - name: tenantId
           in: query
@@ -3494,7 +3510,7 @@ paths:
         - SupportRequests
       summary: Retrieve a list of support requests
       description: Retrieves a list of support requests for the specified tenant with OData query support.
-      operationId: GetSupportRequestsAsync
+      operationId: SupportRequests_GetSupportRequests
       parameters:
         - name: tenantId
           in: query
@@ -3551,7 +3567,7 @@ paths:
         - SupportRequests
       summary: Create a new support request
       description: Creates a new support request for the specified tenant.
-      operationId: CreateSupportRequestAsync
+      operationId: SupportRequests_CreateSupportRequest
       parameters:
         - name: tenantId
           in: query
@@ -3609,7 +3625,7 @@ paths:
         - SupportRequests
       summary: Get the count of support requests
       description: Returns the total count of support requests for the specified tenant with OData query support.
-      operationId: GetSupportRequestsCountAsync
+      operationId: SupportRequests_GetSupportRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -3667,7 +3683,7 @@ paths:
         - SupportRequests
       summary: Retrieve a support request by ID
       description: Retrieves a single support request by its unique identifier.
-      operationId: GetSupportRequestAsync
+      operationId: SupportRequests_GetSupportRequest
       parameters:
         - name: tenantId
           in: query
@@ -3722,7 +3738,7 @@ paths:
         - SupportRequests
       summary: Update a support request
       description: Updates an existing support request by its unique identifier.
-      operationId: UpdateSupportRequestAsync
+      operationId: SupportRequests_UpdateSupportRequest
       parameters:
         - name: tenantId
           in: query
@@ -3785,7 +3801,7 @@ paths:
         - SupportRequests
       summary: Patch a support request
       description: Partially updates an existing support request by its unique identifier.
-      operationId: PatchSupportRequestAsync
+      operationId: SupportRequests_PatchSupportRequest
       parameters:
         - name: tenantId
           in: query
@@ -3852,7 +3868,7 @@ paths:
         - SupportRequests
       summary: Delete a support request
       description: Deletes a support request by its unique identifier.
-      operationId: DeleteSupportRequestAsync
+      operationId: SupportRequests_DeleteSupportRequest
       parameters:
         - name: tenantId
           in: query
@@ -3908,7 +3924,7 @@ paths:
         - SupportRequests
       summary: Retrieve tickets for a support request
       description: Retrieves the list of support tickets associated with a specific support request.
-      operationId: GetSupportRequestTicketsAsync
+      operationId: SupportRequests_GetSupportRequestTickets
       parameters:
         - name: tenantId
           in: query
@@ -3972,7 +3988,7 @@ paths:
         - SupportRequests
       summary: Add an attachment to a support request
       description: Creates a new attachment and associates it with the specified support request.
-      operationId: RelateSupportRequestToAttachmentAsync
+      operationId: SupportRequests_RelateSupportRequestToAttachment
       parameters:
         - name: tenantId
           in: query
@@ -4035,7 +4051,7 @@ paths:
         - SupportRequests
       summary: Retrieve attachments for a support request
       description: Retrieves the list of attachments associated with a specific support request.
-      operationId: GetSupportRequestAttachmentsByRequest
+      operationId: SupportRequests_GetSupportRequestAttachmentsByRequest
       parameters:
         - name: tenantId
           in: query
@@ -4099,7 +4115,7 @@ paths:
         - SupportRequests
       summary: Get the count of attachments for a support request
       description: Returns the total count of attachments for a specific support request.
-      operationId: GetSupportRequestAttachmentsCountByRequest
+      operationId: SupportRequests_GetSupportRequestAttachmentsCountByRequest
       parameters:
         - name: tenantId
           in: query
@@ -4163,7 +4179,7 @@ paths:
         - SupportRequests
       summary: Retrieve a specific attachment for a support request
       description: Retrieves a single attachment by its ID for a specific support request.
-      operationId: GetSupportRequestAttachmentByRequest
+      operationId: SupportRequests_GetSupportRequestAttachmentByRequest
       parameters:
         - name: tenantId
           in: query
@@ -4225,7 +4241,7 @@ paths:
         - SupportTicketPriorities
       summary: Retrieve a list of support ticket priorities
       description: Retrieves a list of support ticket priorities for the specified tenant with OData query support.
-      operationId: GetSupportTicketPrioritiesAsync
+      operationId: SupportTicketPriorities_GetSupportTicketPriorities
       parameters:
         - name: tenantId
           in: query
@@ -4282,7 +4298,7 @@ paths:
         - SupportTicketPriorities
       summary: Create a new support ticket priority
       description: Creates a new support ticket priority for the specified tenant.
-      operationId: CreateSupportTicketPriorityAsync
+      operationId: SupportTicketPriorities_CreateSupportTicketPriority
       parameters:
         - name: tenantId
           in: query
@@ -4340,7 +4356,7 @@ paths:
         - SupportTicketPriorities
       summary: Get the count of support ticket priorities
       description: Returns the total count of support ticket priorities for the specified tenant with OData query support.
-      operationId: GetSupportTicketPrioritiesCountAsync
+      operationId: SupportTicketPriorities_GetSupportTicketPrioritiesCount
       parameters:
         - name: tenantId
           in: query
@@ -4398,7 +4414,7 @@ paths:
         - SupportTicketPriorities
       summary: Retrieve a support ticket priority by ID
       description: Retrieves a single support ticket priority by its unique identifier.
-      operationId: GetSupportTicketPriorityAsync
+      operationId: SupportTicketPriorities_GetSupportTicketPriority
       parameters:
         - name: tenantId
           in: query
@@ -4453,7 +4469,7 @@ paths:
         - SupportTicketPriorities
       summary: Update a support ticket priority
       description: Updates an existing support ticket priority by its unique identifier.
-      operationId: UpdateSupportTicketPriorityAsync
+      operationId: SupportTicketPriorities_UpdateSupportTicketPriority
       parameters:
         - name: tenantId
           in: query
@@ -4516,7 +4532,7 @@ paths:
         - SupportTicketPriorities
       summary: Patch a support ticket priority
       description: Partially updates an existing support ticket priority by its unique identifier.
-      operationId: PatchSupportTicketPriorityAsync
+      operationId: SupportTicketPriorities_PatchSupportTicketPriority
       parameters:
         - name: tenantId
           in: query
@@ -4583,7 +4599,7 @@ paths:
         - SupportTicketPriorities
       summary: Delete a support ticket priority
       description: Deletes a support ticket priority by its unique identifier.
-      operationId: DeleteSupportTicketPriorityAsync
+      operationId: SupportTicketPriorities_DeleteSupportTicketPriority
       parameters:
         - name: tenantId
           in: query
@@ -4639,7 +4655,7 @@ paths:
         - SupportTickets
       summary: Retrieve a list of support tickets
       description: Retrieves a list of support tickets for the specified tenant with OData query support.
-      operationId: GetSupportTicketsAsync
+      operationId: SupportTickets_GetSupportTickets
       parameters:
         - name: tenantId
           in: query
@@ -4696,7 +4712,7 @@ paths:
         - SupportTickets
       summary: Create a new support ticket
       description: Creates a new support ticket for the specified tenant.
-      operationId: CreateSupportTicketAsync
+      operationId: SupportTickets_CreateSupportTicket
       parameters:
         - name: tenantId
           in: query
@@ -4754,7 +4770,7 @@ paths:
         - SupportTickets
       summary: Get the count of support tickets
       description: Returns the total count of support tickets for the specified tenant with OData query support.
-      operationId: GetSupportTicketsCountAsync
+      operationId: SupportTickets_GetSupportTicketsCount
       parameters:
         - name: tenantId
           in: query
@@ -4812,7 +4828,7 @@ paths:
         - SupportTickets
       summary: Retrieve a support ticket by ID
       description: Retrieves a single support ticket by its unique identifier.
-      operationId: GetSupportTicketAsync
+      operationId: SupportTickets_GetSupportTicket
       parameters:
         - name: tenantId
           in: query
@@ -4867,7 +4883,7 @@ paths:
         - SupportTickets
       summary: Update a support ticket
       description: Updates an existing support ticket by its unique identifier.
-      operationId: UpdateSupportTicketAsync
+      operationId: SupportTickets_UpdateSupportTicket
       parameters:
         - name: tenantId
           in: query
@@ -4930,7 +4946,7 @@ paths:
         - SupportTickets
       summary: Patch a support ticket
       description: Partially updates an existing support ticket by its unique identifier.
-      operationId: PatchSupportTicketAsync
+      operationId: SupportTickets_PatchSupportTicket
       parameters:
         - name: tenantId
           in: query
@@ -4997,7 +5013,7 @@ paths:
         - SupportTickets
       summary: Delete a support ticket
       description: Deletes a support ticket by its unique identifier.
-      operationId: DeleteSupportTicketAsync
+      operationId: SupportTickets_DeleteSupportTicket
       parameters:
         - name: tenantId
           in: query
@@ -5053,7 +5069,7 @@ paths:
         - SupportTickets
       summary: Create a conversation for a support ticket
       description: Creates a new conversation and associates it with the specified support ticket.
-      operationId: RelateSupportTicketToConversationAsync
+      operationId: SupportTickets_RelateSupportTicketToConversation
       parameters:
         - name: tenantId
           in: query
@@ -5116,7 +5132,7 @@ paths:
         - SupportTickets
       summary: Retrieve conversations for a support ticket
       description: Retrieves the list of conversations associated with a specific support ticket.
-      operationId: GetSupportTicketConversationsAsync
+      operationId: SupportTickets_GetSupportTicketConversations
       parameters:
         - name: tenantId
           in: query
@@ -5180,7 +5196,7 @@ paths:
         - SupportTickets
       summary: Retrieve a specific conversation for a support ticket
       description: Retrieves a single conversation by its ID for a specific support ticket.
-      operationId: GetSupportTicketConversationAsync
+      operationId: SupportTickets_GetSupportTicketConversation
       parameters:
         - name: tenantId
           in: query
@@ -5241,7 +5257,7 @@ paths:
         - SupportTickets
       summary: Delete a conversation from a support ticket
       description: Deletes a specific conversation from a support ticket.
-      operationId: DeleteSupportTicketConversationAsync
+      operationId: SupportTickets_DeleteSupportTicketConversation
       parameters:
         - name: tenantId
           in: query
@@ -5303,7 +5319,7 @@ paths:
         - SupportTickets
       summary: Retrieve messages for a support ticket conversation
       description: Retrieves the list of messages within a specific conversation of a support ticket.
-      operationId: GetSupportTicketConversationMessagesAsync
+      operationId: SupportTickets_GetSupportTicketConversationMessages
       parameters:
         - name: tenantId
           in: query
@@ -5379,7 +5395,7 @@ paths:
         - SupportTicketTypes
       summary: Retrieve a list of support ticket types
       description: Retrieves a list of support ticket types for the specified tenant with OData query support.
-      operationId: GetSupportTicketTypesAsync
+      operationId: SupportTicketTypes_GetSupportTicketTypes
       parameters:
         - name: tenantId
           in: query
@@ -5436,7 +5452,7 @@ paths:
         - SupportTicketTypes
       summary: Create a new support ticket type
       description: Creates a new support ticket type for the specified tenant.
-      operationId: CreateSupportTicketTypeAsync
+      operationId: SupportTicketTypes_CreateSupportTicketType
       parameters:
         - name: tenantId
           in: query
@@ -5494,7 +5510,7 @@ paths:
         - SupportTicketTypes
       summary: Get the count of support ticket types
       description: Returns the total count of support ticket types for the specified tenant with OData query support.
-      operationId: GetSupportTicketTypesCountAsync
+      operationId: SupportTicketTypes_GetSupportTicketTypesCount
       parameters:
         - name: tenantId
           in: query
@@ -5552,7 +5568,7 @@ paths:
         - SupportTicketTypes
       summary: Retrieve a support ticket type by ID
       description: Retrieves a single support ticket type by its unique identifier.
-      operationId: GetSupportTicketTypeAsync
+      operationId: SupportTicketTypes_GetSupportTicketType
       parameters:
         - name: tenantId
           in: query
@@ -5607,7 +5623,7 @@ paths:
         - SupportTicketTypes
       summary: Update a support ticket type
       description: Updates an existing support ticket type by its unique identifier.
-      operationId: UpdateSupportTicketTypeAsync
+      operationId: SupportTicketTypes_UpdateSupportTicketType
       parameters:
         - name: tenantId
           in: query
@@ -5670,7 +5686,7 @@ paths:
         - SupportTicketTypes
       summary: Patch a support ticket type
       description: Partially updates an existing support ticket type by its unique identifier.
-      operationId: PatchSupportTicketTypeAsync
+      operationId: SupportTicketTypes_PatchSupportTicketType
       parameters:
         - name: tenantId
           in: query
@@ -5737,7 +5753,7 @@ paths:
         - SupportTicketTypes
       summary: Delete a support ticket type
       description: Deletes a support ticket type by its unique identifier.
-      operationId: DeleteSupportTicketTypeAsync
+      operationId: SupportTicketTypes_DeleteSupportTicketType
       parameters:
         - name: tenantId
           in: query
@@ -5792,7 +5808,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Retrieve a list of warranty policies
-      operationId: GetWarrantyPoliciesAsync
+      operationId: WarrantyPolicies_GetWarrantyPolicies
       parameters:
         - name: tenantId
           in: query
@@ -5848,7 +5864,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Create a new warranty policy
-      operationId: CreateWarrantyPolicyAsync
+      operationId: WarrantyPolicies_CreateWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -5905,7 +5921,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Get the count of warranty policies
-      operationId: GetWarrantyPoliciesCountAsync
+      operationId: WarrantyPolicies_GetWarrantyPoliciesCount
       parameters:
         - name: tenantId
           in: query
@@ -5962,7 +5978,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Retrieve a warranty policy by ID
-      operationId: GetWarrantyPolicyAsync
+      operationId: WarrantyPolicies_GetWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -6016,7 +6032,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Update a warranty policy
-      operationId: UpdateWarrantyPolicyAsync
+      operationId: WarrantyPolicies_UpdateWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -6079,7 +6095,7 @@ paths:
         - WarrantyPolicies
       summary: Patch a warranty policy
       description: Partially updates an existing warranty policy by its unique identifier.
-      operationId: PatchWarrantyPolicyAsync
+      operationId: WarrantyPolicies_PatchWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -6145,7 +6161,7 @@ paths:
       tags:
         - WarrantyPolicies
       summary: Delete a warranty policy
-      operationId: DeleteWarrantyPolicyAsync
+      operationId: WarrantyPolicies_DeleteWarrantyPolicy
       parameters:
         - name: tenantId
           in: query
@@ -6200,7 +6216,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Retrieve warranty requests
-      operationId: GetWarrantyRequestsAsync
+      operationId: WarrantyRequests_GetWarrantyRequests
       parameters:
         - name: tenantId
           in: query
@@ -6238,7 +6254,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Create a warranty request
-      operationId: CreateWarrantyRequestAsync
+      operationId: WarrantyRequests_CreateWarrantyRequest
       parameters:
         - name: tenantId
           in: query
@@ -6277,7 +6293,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Get warranty requests count
-      operationId: GetWarrantyRequestsCountAsync
+      operationId: WarrantyRequests_GetWarrantyRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -6316,7 +6332,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Retrieve a warranty request by ID
-      operationId: GetWarrantyRequestAsync
+      operationId: WarrantyRequests_GetWarrantyRequest
       parameters:
         - name: tenantId
           in: query
@@ -6352,7 +6368,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Update a warranty request
-      operationId: UpdateWarrantyRequestAsync
+      operationId: WarrantyRequests_UpdateWarrantyRequest
       parameters:
         - name: tenantId
           in: query
@@ -6397,7 +6413,7 @@ paths:
         - WarrantyRequests
       summary: Patch a warranty request
       description: Partially updates an existing warranty request by its unique identifier.
-      operationId: PatchWarrantyRequestAsync
+      operationId: WarrantyRequests_PatchWarrantyRequest
       parameters:
         - name: tenantId
           in: query
@@ -6463,7 +6479,7 @@ paths:
       tags:
         - WarrantyRequests
       summary: Delete a warranty request
-      operationId: DeleteWarrantyRequestAsync
+      operationId: WarrantyRequests_DeleteWarrantyRequest
       parameters:
         - name: tenantId
           in: query
@@ -8372,8 +8388,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     PrivateMessageDto:
       type: object

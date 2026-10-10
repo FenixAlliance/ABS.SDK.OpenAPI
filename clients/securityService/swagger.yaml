@@ -29,7 +29,7 @@ paths:
         - ApplicationPrincipals
       summary: Get all application principals
       description: Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).
-      operationId: GetApplicationPrincipalsAsync
+      operationId: ApplicationPrincipals_GetApplicationPrincipals
       parameters:
         - name: tenantId
           in: query
@@ -87,7 +87,7 @@ paths:
         - ApplicationPrincipals
       summary: Get application principals count
       description: Retrieves the count of application principals enrolled in the specified tenant.
-      operationId: GetApplicationPrincipalsCountAsync
+      operationId: ApplicationPrincipals_GetApplicationPrincipalsCount
       parameters:
         - name: tenantId
           in: query
@@ -145,7 +145,7 @@ paths:
         - ApplicationPrincipals
       summary: Get application principal by ID
       description: 'Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.'
-      operationId: GetApplicationPrincipalAsync
+      operationId: ApplicationPrincipals_GetApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -210,7 +210,7 @@ paths:
         - ApplicationPrincipals
       summary: Provision an application principal
       description: Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.
-      operationId: ProvisionApplicationPrincipalAsync
+      operationId: ApplicationPrincipals_ProvisionApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -278,7 +278,7 @@ paths:
         - ApplicationPrincipals
       summary: Grant a permission to an application principal
       description: Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.
-      operationId: GrantPermissionAsync
+      operationId: ApplicationPrincipals_GrantPermission
       parameters:
         - name: tenantId
           in: query
@@ -352,7 +352,7 @@ paths:
         - ApplicationPrincipals
       summary: Revoke a permission from an application principal
       description: Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.
-      operationId: RevokePermissionAsync
+      operationId: ApplicationPrincipals_RevokePermission
       parameters:
         - name: tenantId
           in: query
@@ -422,7 +422,7 @@ paths:
         - ApplicationPrincipals
       summary: Enable an application principal
       description: Reinstates the application principal to the Active lifecycle state.
-      operationId: EnableApplicationPrincipalAsync
+      operationId: ApplicationPrincipals_EnableApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -487,7 +487,7 @@ paths:
         - ApplicationPrincipals
       summary: Suspend an application principal
       description: Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.
-      operationId: SuspendApplicationPrincipalAsync
+      operationId: ApplicationPrincipals_SuspendApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -552,7 +552,7 @@ paths:
         - ApplicationPrincipals
       summary: Disable an application principal
       description: Disables the application principal; dependent unattended execution fails closed.
-      operationId: DisableApplicationPrincipalAsync
+      operationId: ApplicationPrincipals_DisableApplicationPrincipal
       parameters:
         - name: tenantId
           in: query
@@ -617,7 +617,7 @@ paths:
         - Applications
       summary: Get all business applications
       description: Retrieves all business applications for the specified tenant.
-      operationId: GetBusinessApplicationsAsync
+      operationId: Applications_GetBusinessApplications
       parameters:
         - name: tenantId
           in: query
@@ -674,7 +674,7 @@ paths:
         - Applications
       summary: Create a new business application
       description: Creates a new business application for the specified tenant.
-      operationId: CreateBusinessApplicationAsync
+      operationId: Applications_CreateBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -742,7 +742,7 @@ paths:
         - Applications
       summary: Get business applications count
       description: Retrieves the count of business applications for the specified tenant.
-      operationId: GetBusinessApplicationsCountAsync
+      operationId: Applications_GetBusinessApplicationsCount
       parameters:
         - name: tenantId
           in: query
@@ -800,7 +800,7 @@ paths:
         - Applications
       summary: Get business application by ID
       description: Retrieves a specific business application by its identifier.
-      operationId: GetBusinessApplicationByIdAsync
+      operationId: Applications_GetBusinessApplicationById
       parameters:
         - name: tenantId
           in: query
@@ -854,7 +854,7 @@ paths:
         - Applications
       summary: Update an existing business application
       description: Updates an existing business application for the specified tenant.
-      operationId: UpdateBusinessApplicationAsync
+      operationId: Applications_UpdateBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -926,7 +926,7 @@ paths:
         - Applications
       summary: Patch an existing business application
       description: Partially updates an existing business application using a JSON Patch document.
-      operationId: PatchBusinessApplicationAsync
+      operationId: Applications_PatchBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -1002,7 +1002,7 @@ paths:
         - Applications
       summary: Delete a business application
       description: Deletes an existing business application for the specified tenant.
-      operationId: DeleteBusinessApplicationAsync
+      operationId: Applications_DeleteBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -1066,7 +1066,7 @@ paths:
         - Applications
       summary: Get permissions by application
       description: Retrieves all security permissions granted to a specific business application.
-      operationId: GetPermissionsByApplicationAsync
+      operationId: Applications_GetPermissionsByApplication
       parameters:
         - name: tenantId
           in: query
@@ -1121,7 +1121,7 @@ paths:
         - Applications
       summary: Get roles by application
       description: Retrieves all security roles granted to a specific business application.
-      operationId: GetRolesByApplicationAsync
+      operationId: Applications_GetRolesByApplication
       parameters:
         - name: tenantId
           in: query
@@ -1174,6 +1174,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -1181,6 +1182,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -1188,6 +1190,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -1195,6 +1198,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -1214,6 +1218,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -1240,6 +1245,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -1257,7 +1263,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -1280,6 +1286,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -1293,6 +1300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -1312,6 +1320,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -1331,6 +1340,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -1356,6 +1366,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -1374,6 +1385,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -1399,6 +1411,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1434,6 +1447,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -1461,6 +1475,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -1488,6 +1503,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -1497,7 +1513,7 @@ paths:
         - Logs
       summary: Get tenant logs
       description: Retrieves logs for the specified tenant.
-      operationId: GetLogsAsync
+      operationId: Logs_GetLogs
       parameters:
         - name: tenantId
           in: query
@@ -1555,7 +1571,7 @@ paths:
         - Logs
       summary: Get tenant logs count
       description: Retrieves the count of logs for the specified tenant.
-      operationId: GetLogsCountAsync
+      operationId: Logs_GetLogsCount
       parameters:
         - name: tenantId
           in: query
@@ -1607,13 +1623,99 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/SecurityService/Logs/Me:
+    get:
+      tags:
+        - Logs
+      summary: Get my logs
+      description: Retrieves the signed-in user's own log entries. Another user's entries are never returned.
+      operationId: Logs_GetMyLogs
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LogDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LogDtoListEnvelope'
+  /api/v2/SecurityService/Logs/Me/Count:
+    get:
+      tags:
+        - Logs
+      summary: Get my logs count
+      description: Retrieves the count of the signed-in user's own log entries.
+      operationId: Logs_GetMyLogsCount
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LogDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
   /api/v2/SecurityService/OAuthApplications:
     get:
       tags:
         - OAuthApplications
       summary: Get all OAuth applications
       description: Retrieves all OAuth applications for the specified tenant.
-      operationId: GetOAuthApplicationsAsync
+      operationId: OAuthApplications_GetOAuthApplications
       parameters:
         - name: tenantId
           in: query
@@ -1662,7 +1764,7 @@ paths:
         - OAuthApplications
       summary: Create a new OAuth application
       description: Creates a new OAuth application for the specified tenant.
-      operationId: CreateOAuthApplicationAsync
+      operationId: OAuthApplications_CreateOAuthApplication
       parameters:
         - name: tenantId
           in: query
@@ -1730,7 +1832,7 @@ paths:
         - OAuthApplications
       summary: Get OAuth applications count
       description: Retrieves the count of OAuth applications for the specified tenant.
-      operationId: GetOAuthApplicationsCountAsync
+      operationId: OAuthApplications_GetOAuthApplicationsCount
       parameters:
         - name: tenantId
           in: query
@@ -1780,7 +1882,7 @@ paths:
         - OAuthApplications
       summary: Get OAuth application by ID
       description: Retrieves a specific OAuth application by its identifier.
-      operationId: GetOAuthApplicationByIdAsync
+      operationId: OAuthApplications_GetOAuthApplicationById
       parameters:
         - name: tenantId
           in: query
@@ -1834,7 +1936,7 @@ paths:
         - OAuthApplications
       summary: Update an existing OAuth application
       description: Updates an existing OAuth application.
-      operationId: UpdateOAuthApplicationAsync
+      operationId: OAuthApplications_UpdateOAuthApplication
       parameters:
         - name: tenantId
           in: query
@@ -1906,7 +2008,7 @@ paths:
         - OAuthApplications
       summary: Patch an existing OAuth application
       description: Partially updates an existing OAuth application using a JSON Patch document.
-      operationId: PatchOAuthApplicationAsync
+      operationId: OAuthApplications_PatchOAuthApplication
       parameters:
         - name: tenantId
           in: query
@@ -1982,7 +2084,7 @@ paths:
         - OAuthApplications
       summary: Delete an OAuth application
       description: Deletes an existing OAuth application.
-      operationId: DeleteOAuthApplicationAsync
+      operationId: OAuthApplications_DeleteOAuthApplication
       parameters:
         - name: tenantId
           in: query
@@ -2046,7 +2148,7 @@ paths:
         - OAuthApplications
       summary: Get all OAuth authorizations
       description: Retrieves all OAuth authorizations for the specified user.
-      operationId: GetOAuthAuthorizationsAsync
+      operationId: OAuthApplications_GetOAuthAuthorizations
       parameters:
         - name: tenantId
           in: query
@@ -2100,7 +2202,7 @@ paths:
         - OAuthApplications
       summary: Get OAuth authorizations count
       description: Retrieves the count of OAuth authorizations for the specified user.
-      operationId: GetOAuthAuthorizationsCountAsync
+      operationId: OAuthApplications_GetOAuthAuthorizationsCount
       parameters:
         - name: tenantId
           in: query
@@ -2154,7 +2256,7 @@ paths:
         - OAuthApplications
       summary: Get OAuth authorization by ID
       description: Retrieves a specific OAuth authorization by its identifier.
-      operationId: GetOAuthAuthorizationByIdAsync
+      operationId: OAuthApplications_GetOAuthAuthorizationById
       parameters:
         - name: tenantId
           in: query
@@ -2209,7 +2311,7 @@ paths:
         - Permissions
       summary: Get all permissions
       description: Retrieves all security permissions for the specified tenant.
-      operationId: GetPermissionsAsync
+      operationId: Permissions_GetPermissions
       parameters:
         - name: tenantId
           in: query
@@ -2266,7 +2368,7 @@ paths:
         - Permissions
       summary: Create a new permission
       description: Creates a new security permission for the specified tenant.
-      operationId: CreatePermissionAsync
+      operationId: Permissions_CreatePermission
       parameters:
         - name: tenantId
           in: query
@@ -2334,7 +2436,7 @@ paths:
         - Permissions
       summary: Get permissions count
       description: Retrieves the count of security permissions for the specified tenant.
-      operationId: GetPermissionsCountAsync
+      operationId: Permissions_GetPermissionsCount
       parameters:
         - name: tenantId
           in: query
@@ -2392,7 +2494,7 @@ paths:
         - Permissions
       summary: Get permission by ID
       description: Retrieves a specific security permission by its ID.
-      operationId: GetPermissionAsync
+      operationId: Permissions_GetPermission
       parameters:
         - name: tenantId
           in: query
@@ -2446,7 +2548,7 @@ paths:
         - Permissions
       summary: Update an existing permission
       description: Updates an existing security permission for the specified tenant.
-      operationId: UpdatePermissionAsync
+      operationId: Permissions_UpdatePermission
       parameters:
         - name: tenantId
           in: query
@@ -2518,7 +2620,7 @@ paths:
         - Permissions
       summary: Patch an existing permission
       description: Partially updates an existing security permission using a JSON Patch document.
-      operationId: PatchPermissionAsync
+      operationId: Permissions_PatchPermission
       parameters:
         - name: tenantId
           in: query
@@ -2594,7 +2696,7 @@ paths:
         - Permissions
       summary: Delete an existing permission
       description: Deletes an existing security permission for the specified tenant.
-      operationId: DeletePermissionAsync
+      operationId: Permissions_DeletePermission
       parameters:
         - name: tenantId
           in: query
@@ -2658,7 +2760,7 @@ paths:
         - Permissions
       summary: Assign a role to a permission
       description: Assigns a security role to a security permission.
-      operationId: AssignRoleToPermissionAsync
+      operationId: Permissions_AssignRoleToPermission
       parameters:
         - name: tenantId
           in: query
@@ -2726,7 +2828,7 @@ paths:
         - Permissions
       summary: Revoke a role from a permission
       description: Revokes a security role from a security permission.
-      operationId: RevokeRoleFromPermissionAsync
+      operationId: Permissions_RevokeRoleFromPermission
       parameters:
         - name: tenantId
           in: query
@@ -2795,7 +2897,7 @@ paths:
         - Permissions
       summary: Get roles by permission
       description: Retrieves all security roles that have a specific permission granted.
-      operationId: GetRolesByPermissionAsync
+      operationId: Permissions_GetRolesByPermission
       parameters:
         - name: tenantId
           in: query
@@ -2850,7 +2952,7 @@ paths:
         - Permissions
       summary: Get applications by permission
       description: Retrieves all business applications that have a specific permission granted.
-      operationId: GetApplicationsByPermissionAsync
+      operationId: Permissions_GetApplicationsByPermission
       parameters:
         - name: tenantId
           in: query
@@ -2905,7 +3007,7 @@ paths:
         - Permissions
       summary: Get enrollments by permission
       description: Retrieves all tenant enrollments that have a specific permission.
-      operationId: GetEnrollmentsByPermissionAsync
+      operationId: Permissions_GetEnrollmentsByPermission
       parameters:
         - name: tenantId
           in: query
@@ -2960,7 +3062,7 @@ paths:
         - Permissions
       summary: Assign a permission to an enrollment
       description: Assigns a security permission to a tenant enrollment.
-      operationId: AssignPermissionToEnrollmentAsync
+      operationId: Permissions_AssignPermissionToEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -3028,7 +3130,7 @@ paths:
         - Permissions
       summary: Revoke a permission from an enrollment
       description: Revokes a security permission from a tenant enrollment.
-      operationId: RevokePermissionFromEnrollmentAsync
+      operationId: Permissions_RevokePermissionFromEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -3097,7 +3199,7 @@ paths:
         - Permissions
       summary: Assign a permission to a business application
       description: Assigns a security permission to a business application.
-      operationId: AssignPermissionToBusinessApplicationAsync
+      operationId: Permissions_AssignPermissionToBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -3165,7 +3267,7 @@ paths:
         - Permissions
       summary: Revoke a permission from a business application
       description: Revokes a security permission from a business application.
-      operationId: RevokePermissionFromBusinessApplicationAsync
+      operationId: Permissions_RevokePermissionFromBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -3234,7 +3336,7 @@ paths:
         - Permissions
       summary: Get permissions by enrollment
       description: Retrieves all security permissions granted to a specific enrollment.
-      operationId: GetPermissionsByEnrollmentAsync
+      operationId: Permissions_GetPermissionsByEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -3289,7 +3391,7 @@ paths:
         - Roles
       summary: Get all roles
       description: Retrieves all security roles for the specified tenant.
-      operationId: GetRolesAsync
+      operationId: Roles_GetRoles
       parameters:
         - name: tenantId
           in: query
@@ -3346,7 +3448,7 @@ paths:
         - Roles
       summary: Create a new role
       description: Creates a new security role for the specified tenant.
-      operationId: CreateRoleAsync
+      operationId: Roles_CreateRole
       parameters:
         - name: tenantId
           in: query
@@ -3414,7 +3516,7 @@ paths:
         - Roles
       summary: Get roles count
       description: Retrieves the count of security roles for the specified tenant.
-      operationId: GetRolesCountAsync
+      operationId: Roles_GetRolesCount
       parameters:
         - name: tenantId
           in: query
@@ -3472,7 +3574,7 @@ paths:
         - Roles
       summary: Get role by ID
       description: Retrieves a specific security role by its ID.
-      operationId: GetRoleAsync
+      operationId: Roles_GetRole
       parameters:
         - name: tenantId
           in: query
@@ -3526,7 +3628,7 @@ paths:
         - Roles
       summary: Update an existing role
       description: Updates an existing security role for the specified tenant.
-      operationId: UpdateRoleAsync
+      operationId: Roles_UpdateRole
       parameters:
         - name: tenantId
           in: query
@@ -3598,7 +3700,7 @@ paths:
         - Roles
       summary: Patch an existing role
       description: Partially updates an existing security role using a JSON Patch document.
-      operationId: PatchRoleAsync
+      operationId: Roles_PatchRole
       parameters:
         - name: tenantId
           in: query
@@ -3674,7 +3776,7 @@ paths:
         - Roles
       summary: Delete an existing role
       description: Deletes an existing security role for the specified tenant.
-      operationId: DeleteRoleAsync
+      operationId: Roles_DeleteRole
       parameters:
         - name: tenantId
           in: query
@@ -3738,7 +3840,7 @@ paths:
         - Roles
       summary: Get permissions by role
       description: Retrieves all security permissions assigned to a specific role.
-      operationId: GetRolePermissionsAsync
+      operationId: Roles_GetRolePermissions
       parameters:
         - name: tenantId
           in: query
@@ -3793,7 +3895,7 @@ paths:
         - Roles
       summary: Assign a permission to a role
       description: Assigns a security permission to a security role.
-      operationId: AssignPermissionToRoleAsync
+      operationId: Roles_AssignPermissionToRole
       parameters:
         - name: tenantId
           in: query
@@ -3861,7 +3963,7 @@ paths:
         - Roles
       summary: Revoke a permission from a role
       description: Revokes a security permission from a security role.
-      operationId: RevokePermissionFromRoleAsync
+      operationId: Roles_RevokePermissionFromRole
       parameters:
         - name: tenantId
           in: query
@@ -3930,7 +4032,7 @@ paths:
         - Roles
       summary: Get enrollments by role
       description: Retrieves all tenant enrollments that have a specific role.
-      operationId: GetEnrollmentsByRoleAsync
+      operationId: Roles_GetEnrollmentsByRole
       parameters:
         - name: tenantId
           in: query
@@ -3985,7 +4087,7 @@ paths:
         - Roles
       summary: Get applications by role
       description: Retrieves all business applications that have a specific role granted.
-      operationId: GetApplicationsByRoleAsync
+      operationId: Roles_GetApplicationsByRole
       parameters:
         - name: tenantId
           in: query
@@ -4040,7 +4142,7 @@ paths:
         - Roles
       summary: Assign a role to an enrollment
       description: Assigns a security role to a tenant enrollment.
-      operationId: AssignRoleToEnrollmentAsync
+      operationId: Roles_AssignRoleToEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -4108,7 +4210,7 @@ paths:
         - Roles
       summary: Revoke a role from an enrollment
       description: Revokes a security role from a tenant enrollment.
-      operationId: RevokeRoleFromEnrollmentAsync
+      operationId: Roles_RevokeRoleFromEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -4177,7 +4279,7 @@ paths:
         - Roles
       summary: Assign a role to a business application
       description: Assigns a security role to a business application.
-      operationId: AssignRoleToBusinessApplicationAsync
+      operationId: Roles_AssignRoleToBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -4246,7 +4348,7 @@ paths:
         - Roles
       summary: Revoke a role from a business application
       description: Revokes a security role from a business application.
-      operationId: RevokeRoleFromBusinessApplicationAsync
+      operationId: Roles_RevokeRoleFromBusinessApplication
       parameters:
         - name: tenantId
           in: query
@@ -4316,7 +4418,7 @@ paths:
         - Roles
       summary: Get roles by enrollment
       description: Retrieves all security roles granted to a specific enrollment.
-      operationId: GetRolesByEnrollmentAsync
+      operationId: Roles_GetRolesByEnrollment
       parameters:
         - name: tenantId
           in: query
@@ -4371,7 +4473,7 @@ paths:
         - SecurityCertificates
       summary: Get security certificates
       description: Retrieves security certificates for the specified tenant.
-      operationId: GetSecurityCertificatesAsync
+      operationId: SecurityCertificates_GetSecurityCertificates
       parameters:
         - name: tenantId
           in: query
@@ -4429,7 +4531,7 @@ paths:
         - SecurityCertificates
       summary: Get security certificates count
       description: Retrieves the count of security certificates for the specified tenant.
-      operationId: GetSecurityCertificatesCountAsync
+      operationId: SecurityCertificates_GetSecurityCertificatesCount
       parameters:
         - name: tenantId
           in: query
@@ -4487,7 +4589,7 @@ paths:
         - SecurityLogs
       summary: Get business security logs
       description: Retrieves security logs for the specified tenant.
-      operationId: GetSecurityLogsAsync
+      operationId: SecurityLogs_GetSecurityLogs
       parameters:
         - name: tenantId
           in: query
@@ -4545,7 +4647,7 @@ paths:
         - SecurityLogs
       summary: Get business security logs count
       description: Retrieves the count of security logs for the specified tenant.
-      operationId: GetSecurityLogsCountAsync
+      operationId: SecurityLogs_GetSecurityLogsCount
       parameters:
         - name: tenantId
           in: query
@@ -4603,7 +4705,7 @@ paths:
         - Webhooks
       summary: Get all webhook requests
       description: Retrieves all webhook requests for the specified tenant.
-      operationId: GetWebhookRequestsAsync
+      operationId: Webhooks_GetWebhookRequests
       parameters:
         - name: tenantId
           in: query
@@ -4661,7 +4763,7 @@ paths:
         - Webhooks
       summary: Get webhook requests count
       description: Retrieves the count of webhook requests for the specified tenant.
-      operationId: GetWebhookRequestsCountAsync
+      operationId: Webhooks_GetWebhookRequestsCount
       parameters:
         - name: tenantId
           in: query
@@ -6294,8 +6396,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:

@@ -27,6 +27,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
       responses:
         '200':
           description: OK
@@ -34,6 +35,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
       responses:
         '200':
           description: OK
@@ -41,6 +43,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
       responses:
         '200':
           description: OK
@@ -48,6 +51,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
       requestBody:
         content:
           application/json:
@@ -67,6 +71,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
       parameters:
         - name: useCookies
           in: query
@@ -93,6 +98,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
       requestBody:
         content:
           application/json:
@@ -110,7 +116,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
-      operationId: MapIdentityApi-/confirmEmail
+      operationId: Platform_MapIdentityApiConfirmEmail
       parameters:
         - name: userId
           in: query
@@ -133,6 +139,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
       requestBody:
         content:
           application/json:
@@ -146,6 +153,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
       requestBody:
         content:
           application/json:
@@ -165,6 +173,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
       requestBody:
         content:
           application/json:
@@ -184,6 +193,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
       requestBody:
         content:
           application/json:
@@ -209,6 +219,7 @@ paths:
     get:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
       responses:
         '200':
           description: OK
@@ -227,6 +238,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
       requestBody:
         content:
           application/json:
@@ -252,6 +264,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -287,6 +300,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
       requestBody:
         content:
           multipart/form-data:
@@ -314,6 +328,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
       requestBody:
         content:
           multipart/form-data:
@@ -341,6 +356,7 @@ paths:
     post:
       tags:
         - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
       responses:
         '200':
           description: OK
@@ -350,7 +366,7 @@ paths:
         - ServiceCases
       summary: Get all service cases
       description: Retrieves all service cases for the specified tenant.
-      operationId: GetServiceCasesAsync
+      operationId: ServiceCases_GetServiceCases
       parameters:
         - name: tenantId
           in: query
@@ -407,7 +423,7 @@ paths:
         - ServiceCases
       summary: Create a service case
       description: Creates a new service case for the specified tenant.
-      operationId: CreateServiceCaseAsync
+      operationId: ServiceCases_CreateServiceCase
       parameters:
         - name: tenantId
           in: query
@@ -465,7 +481,7 @@ paths:
         - ServiceCases
       summary: Get service cases count
       description: Returns the count of service cases for the specified tenant.
-      operationId: GetServiceCasesCountAsync
+      operationId: ServiceCases_GetServiceCasesCount
       parameters:
         - name: tenantId
           in: query
@@ -523,7 +539,7 @@ paths:
         - ServiceCases
       summary: Get a service case by ID
       description: Retrieves a service case by its identifier.
-      operationId: GetServiceCaseByIdAsync
+      operationId: ServiceCases_GetServiceCaseById
       parameters:
         - name: tenantId
           in: query
@@ -578,7 +594,7 @@ paths:
         - ServiceCases
       summary: Update a service case
       description: Updates an existing service case.
-      operationId: UpdateServiceCaseAsync
+      operationId: ServiceCases_UpdateServiceCase
       parameters:
         - name: tenantId
           in: query
@@ -641,7 +657,7 @@ paths:
         - ServiceCases
       summary: Patch a service case
       description: Partially updates an existing service case using a JSON Patch document.
-      operationId: PatchServiceCaseAsync
+      operationId: ServiceCases_PatchServiceCase
       parameters:
         - name: tenantId
           in: query
@@ -708,7 +724,7 @@ paths:
         - ServiceCases
       summary: Delete a service case
       description: Deletes a service case by its identifier.
-      operationId: DeleteServiceCaseAsync
+      operationId: ServiceCases_DeleteServiceCase
       parameters:
         - name: tenantId
           in: query
@@ -764,7 +780,7 @@ paths:
         - ServiceCaseTypes
       summary: Get all service case types
       description: Retrieves all service case types for the specified tenant.
-      operationId: GetServiceCaseTypesAsync
+      operationId: ServiceCaseTypes_GetServiceCaseTypes
       parameters:
         - name: tenantId
           in: query
@@ -821,7 +837,7 @@ paths:
         - ServiceCaseTypes
       summary: Create a service case type
       description: Creates a new service case type for the specified tenant.
-      operationId: CreateServiceCaseTypeAsync
+      operationId: ServiceCaseTypes_CreateServiceCaseType
       parameters:
         - name: tenantId
           in: query
@@ -879,7 +895,7 @@ paths:
         - ServiceCaseTypes
       summary: Get service case types count
       description: Returns the count of service case types for the specified tenant.
-      operationId: GetServiceCaseTypesCountAsync
+      operationId: ServiceCaseTypes_GetServiceCaseTypesCount
       parameters:
         - name: tenantId
           in: query
@@ -937,7 +953,7 @@ paths:
         - ServiceCaseTypes
       summary: Get a service case type by ID
       description: Retrieves a service case type by its identifier.
-      operationId: GetServiceCaseTypeByIdAsync
+      operationId: ServiceCaseTypes_GetServiceCaseTypeById
       parameters:
         - name: tenantId
           in: query
@@ -992,7 +1008,7 @@ paths:
         - ServiceCaseTypes
       summary: Update a service case type
       description: Updates an existing service case type.
-      operationId: UpdateServiceCaseTypeAsync
+      operationId: ServiceCaseTypes_UpdateServiceCaseType
       parameters:
         - name: tenantId
           in: query
@@ -1055,7 +1071,7 @@ paths:
         - ServiceCaseTypes
       summary: Patch a service case type
       description: Partially updates an existing service case type using a JSON Patch document.
-      operationId: PatchServiceCaseTypeAsync
+      operationId: ServiceCaseTypes_PatchServiceCaseType
       parameters:
         - name: tenantId
           in: query
@@ -1122,7 +1138,7 @@ paths:
         - ServiceCaseTypes
       summary: Delete a service case type
       description: Deletes a service case type by its identifier.
-      operationId: DeleteServiceCaseTypeAsync
+      operationId: ServiceCaseTypes_DeleteServiceCaseType
       parameters:
         - name: tenantId
           in: query
@@ -1178,7 +1194,7 @@ paths:
         - ServiceLevelAgreements
       summary: Get all service level agreements
       description: Retrieves all service level agreements for the specified tenant.
-      operationId: GetServiceLevelAgreementsAsync
+      operationId: ServiceLevelAgreements_GetServiceLevelAgreements
       parameters:
         - name: tenantId
           in: query
@@ -1235,7 +1251,7 @@ paths:
         - ServiceLevelAgreements
       summary: Create a service level agreement
       description: Creates a new service level agreement for the specified tenant.
-      operationId: CreateServiceLevelAgreementAsync
+      operationId: ServiceLevelAgreements_CreateServiceLevelAgreement
       parameters:
         - name: tenantId
           in: query
@@ -1293,7 +1309,7 @@ paths:
         - ServiceLevelAgreements
       summary: Get service level agreements count
       description: Returns the count of service level agreements for the specified tenant.
-      operationId: GetServiceLevelAgreementsCountAsync
+      operationId: ServiceLevelAgreements_GetServiceLevelAgreementsCount
       parameters:
         - name: tenantId
           in: query
@@ -1351,7 +1367,7 @@ paths:
         - ServiceLevelAgreements
       summary: Get a service level agreement by ID
       description: Retrieves a service level agreement by its identifier.
-      operationId: GetServiceLevelAgreementByIdAsync
+      operationId: ServiceLevelAgreements_GetServiceLevelAgreementById
       parameters:
         - name: tenantId
           in: query
@@ -1406,7 +1422,7 @@ paths:
         - ServiceLevelAgreements
       summary: Update a service level agreement
       description: Updates an existing service level agreement.
-      operationId: UpdateServiceLevelAgreementAsync
+      operationId: ServiceLevelAgreements_UpdateServiceLevelAgreement
       parameters:
         - name: tenantId
           in: query
@@ -1469,7 +1485,7 @@ paths:
         - ServiceLevelAgreements
       summary: Patch a service level agreement
       description: Partially updates an existing service level agreement using a JSON Patch document.
-      operationId: PatchServiceLevelAgreementAsync
+      operationId: ServiceLevelAgreements_PatchServiceLevelAgreement
       parameters:
         - name: tenantId
           in: query
@@ -1536,7 +1552,7 @@ paths:
         - ServiceLevelAgreements
       summary: Delete a service level agreement
       description: Deletes a service level agreement by its identifier.
-      operationId: DeleteServiceLevelAgreementAsync
+      operationId: ServiceLevelAgreements_DeleteServiceLevelAgreement
       parameters:
         - name: tenantId
           in: query
@@ -1592,7 +1608,7 @@ paths:
         - ServiceLevels
       summary: Get all service levels
       description: Retrieves all service levels for the specified tenant.
-      operationId: GetAllServiceLevelsAsync
+      operationId: ServiceLevels_GetAllServiceLevels
       parameters:
         - name: tenantId
           in: query
@@ -1650,7 +1666,7 @@ paths:
         - ServiceLevels
       summary: Get all service levels count
       description: Returns the count of all service levels for the specified tenant.
-      operationId: CountAllServiceLevelsAsync
+      operationId: ServiceLevels_CountAllServiceLevels
       parameters:
         - name: tenantId
           in: query
@@ -1708,7 +1724,7 @@ paths:
         - ServiceLevels
       summary: Get all service levels
       description: Retrieves all service levels for the specified service.
-      operationId: GetServiceLevelsAsync
+      operationId: ServiceLevels_GetServiceLevels
       parameters:
         - name: tenantId
           in: query
@@ -1771,7 +1787,7 @@ paths:
         - ServiceLevels
       summary: Create a service level
       description: Creates a new service level for the specified service.
-      operationId: CreateServiceLevelAsync
+      operationId: ServiceLevels_CreateServiceLevel
       parameters:
         - name: tenantId
           in: query
@@ -1835,7 +1851,7 @@ paths:
         - ServiceLevels
       summary: Get service levels count
       description: Returns the count of service levels for the specified service.
-      operationId: GetServiceLevelsCountAsync
+      operationId: ServiceLevels_GetServiceLevelsCount
       parameters:
         - name: tenantId
           in: query
@@ -1899,7 +1915,7 @@ paths:
         - ServiceLevels
       summary: Get a service level by ID
       description: Retrieves a service level by its identifier.
-      operationId: GetServiceLevelByIdAsync
+      operationId: ServiceLevels_GetServiceLevelById
       parameters:
         - name: tenantId
           in: query
@@ -1960,7 +1976,7 @@ paths:
         - ServiceLevels
       summary: Update a service level
       description: Updates an existing service level.
-      operationId: UpdateServiceLevelAsync
+      operationId: ServiceLevels_UpdateServiceLevel
       parameters:
         - name: tenantId
           in: query
@@ -2029,7 +2045,7 @@ paths:
         - ServiceLevels
       summary: Patch a service level
       description: Partially updates an existing service level using a JSON Patch document.
-      operationId: PatchServiceLevelAsync
+      operationId: ServiceLevels_PatchServiceLevel
       parameters:
         - name: tenantId
           in: query
@@ -2102,7 +2118,7 @@ paths:
         - ServiceLevels
       summary: Delete a service level
       description: Deletes a service level by its identifier.
-      operationId: DeleteServiceLevelAsync
+      operationId: ServiceLevels_DeleteServiceLevel
       parameters:
         - name: tenantId
           in: query
@@ -2164,7 +2180,7 @@ paths:
         - ServiceQueues
       summary: Get all service queues
       description: Retrieves all service queues for the specified tenant.
-      operationId: GetServiceQueuesAsync
+      operationId: ServiceQueues_GetServiceQueues
       parameters:
         - name: tenantId
           in: query
@@ -2221,7 +2237,7 @@ paths:
         - ServiceQueues
       summary: Create a service queue
       description: Creates a new service queue for the specified tenant.
-      operationId: CreateServiceQueueAsync
+      operationId: ServiceQueues_CreateServiceQueue
       parameters:
         - name: tenantId
           in: query
@@ -2279,7 +2295,7 @@ paths:
         - ServiceQueues
       summary: Get service queues count
       description: Returns the count of service queues for the specified tenant.
-      operationId: GetServiceQueuesCountAsync
+      operationId: ServiceQueues_GetServiceQueuesCount
       parameters:
         - name: tenantId
           in: query
@@ -2337,7 +2353,7 @@ paths:
         - ServiceQueues
       summary: Get a service queue by ID
       description: Retrieves a service queue by its identifier.
-      operationId: GetServiceQueueByIdAsync
+      operationId: ServiceQueues_GetServiceQueueById
       parameters:
         - name: tenantId
           in: query
@@ -2392,7 +2408,7 @@ paths:
         - ServiceQueues
       summary: Update a service queue
       description: Updates an existing service queue.
-      operationId: UpdateServiceQueueAsync
+      operationId: ServiceQueues_UpdateServiceQueue
       parameters:
         - name: tenantId
           in: query
@@ -2455,7 +2471,7 @@ paths:
         - ServiceQueues
       summary: Patch a service queue
       description: Partially updates an existing service queue using a JSON Patch document.
-      operationId: PatchServiceQueueAsync
+      operationId: ServiceQueues_PatchServiceQueue
       parameters:
         - name: tenantId
           in: query
@@ -2522,7 +2538,7 @@ paths:
         - ServiceQueues
       summary: Delete a service queue
       description: Deletes a service queue by its identifier.
-      operationId: DeleteServiceQueueAsync
+      operationId: ServiceQueues_DeleteServiceQueue
       parameters:
         - name: tenantId
           in: query
@@ -2578,7 +2594,7 @@ paths:
         - Services
       summary: Get all services
       description: Retrieves all services for the specified tenant.
-      operationId: GetServicesAsync
+      operationId: Services_GetServices
       parameters:
         - name: tenantId
           in: query
@@ -2635,7 +2651,7 @@ paths:
         - Services
       summary: Create a service
       description: Creates a new service for the specified tenant.
-      operationId: CreateServiceAsync
+      operationId: Services_CreateService
       parameters:
         - name: tenantId
           in: query
@@ -2693,7 +2709,7 @@ paths:
         - Services
       summary: Get services count
       description: Returns the count of services for the specified tenant.
-      operationId: GetServicesCountAsync
+      operationId: Services_GetServicesCount
       parameters:
         - name: tenantId
           in: query
@@ -2751,7 +2767,7 @@ paths:
         - Services
       summary: Get a service by ID
       description: Retrieves a service by its identifier.
-      operationId: GetServiceByIdAsync
+      operationId: Services_GetServiceById
       parameters:
         - name: tenantId
           in: query
@@ -2806,7 +2822,7 @@ paths:
         - Services
       summary: Update a service
       description: Updates an existing service.
-      operationId: UpdateServiceAsync
+      operationId: Services_UpdateService
       parameters:
         - name: tenantId
           in: query
@@ -2869,7 +2885,7 @@ paths:
         - Services
       summary: Patch a service
       description: Partially updates an existing service using a JSON Patch document.
-      operationId: PatchServiceAsync
+      operationId: Services_PatchService
       parameters:
         - name: tenantId
           in: query
@@ -2936,7 +2952,7 @@ paths:
         - Services
       summary: Delete a service
       description: Deletes a service by its identifier.
-      operationId: DeleteServiceAsync
+      operationId: Services_DeleteService
       parameters:
         - name: tenantId
           in: query
@@ -3215,8 +3231,7 @@ components:
         from:
           type: string
           nullable: true
-        value:
-          nullable: true
+        value: { }
       additionalProperties: false
     RefreshRequest:
       required:
