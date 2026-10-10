@@ -6570,6 +6570,13 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
+    EntitlementStatus:
+      enum:
+        - Active
+        - GracePeriod
+        - Disabled
+        - Deleted
+      type: string
     ErrorEnvelope:
       type: object
       properties:
@@ -6606,6 +6613,13 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
+    FileUploadPublicAccessType:
+      enum:
+        - Off
+        - Container
+        - Blob
+        - Unknown
+      type: string
     ForgotPasswordRequest:
       required:
         - email
@@ -8433,12 +8447,7 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
       additionalProperties: false
     PrivateMessageDtoListEnvelope:
       type: object
@@ -8952,6 +8961,29 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SocialProfileType:
+      enum:
+        - User
+        - Tenant
+        - Contact
+      type: string
+    StorageScanStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Clean
+        - Infected
+        - Failed
+        - Quarantined
+      type: string
+    StorageThumbnailStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Ready
+        - Failed
+        - Unsupported
+      type: string
     SupportEntitlementCreateDto:
       type: object
       properties:
@@ -9113,12 +9145,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Active
-            - GracePeriod
-            - Disabled
-            - Deleted
-          type: string
+          $ref: '#/components/schemas/EntitlementStatus'
         startDateTime:
           type: string
           format: date-time
@@ -9533,12 +9560,7 @@ components:
           type: string
           nullable: true
         publicAccessType:
-          enum:
-            - Off
-            - Container
-            - Blob
-            - Unknown
-          type: string
+          $ref: '#/components/schemas/FileUploadPublicAccessType'
         metadata:
           type: string
           nullable: true
@@ -9621,22 +9643,9 @@ components:
           type: string
           nullable: true
         scanStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Clean
-            - Infected
-            - Failed
-            - Quarantined
-          type: string
+          $ref: '#/components/schemas/StorageScanStatus'
         thumbnailStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Ready
-            - Failed
-            - Unsupported
-          type: string
+          $ref: '#/components/schemas/StorageThumbnailStatus'
         hasThumbnail:
           type: boolean
           readOnly: true
@@ -9653,12 +9662,7 @@ components:
           type: integer
           format: int32
         publicAccessType:
-          enum:
-            - Off
-            - Container
-            - Blob
-            - Unknown
-          type: string
+          $ref: '#/components/schemas/FileUploadPublicAccessType'
         supportRequestId:
           type: string
           nullable: true
@@ -10192,12 +10196,7 @@ components:
           type: string
           nullable: true
         supportTicketStatus:
-          enum:
-            - New
-            - OpenAndWaitingForAgent
-            - OpenAndWaitingForCustomer
-            - Closed
-          type: string
+          $ref: '#/components/schemas/SupportTicketStatus'
         contactId:
           maxLength: 36
           minLength: 36
@@ -10236,12 +10235,7 @@ components:
           type: string
           nullable: true
         supportTicketStatus:
-          enum:
-            - New
-            - OpenAndWaitingForAgent
-            - OpenAndWaitingForCustomer
-            - Closed
-          type: string
+          $ref: '#/components/schemas/SupportTicketStatus'
         userId:
           type: string
           nullable: true
@@ -10547,6 +10541,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SupportTicketStatus:
+      enum:
+        - New
+        - OpenAndWaitingForAgent
+        - OpenAndWaitingForCustomer
+        - Closed
+      type: string
     SupportTicketTypeCreateDto:
       type: object
       properties:
@@ -10729,12 +10730,7 @@ components:
           type: string
           nullable: true
         supportTicketStatus:
-          enum:
-            - New
-            - OpenAndWaitingForAgent
-            - OpenAndWaitingForCustomer
-            - Closed
-          type: string
+          $ref: '#/components/schemas/SupportTicketStatus'
         contactId:
           type: string
           nullable: true

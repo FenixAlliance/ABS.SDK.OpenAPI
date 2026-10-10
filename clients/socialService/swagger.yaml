@@ -6899,6 +6899,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BodyFormat:
+      enum:
+        - PlainText
+        - Html
+      type: string
     BooleanEnvelope:
       type: object
       properties:
@@ -6994,12 +6999,7 @@ components:
           type: string
           nullable: true
         counterpartyType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         unreadCount:
           type: integer
           format: int32
@@ -7792,6 +7792,13 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
+    FileUploadPublicAccessType:
+      enum:
+        - Off
+        - Container
+        - Blob
+        - Unknown
+      type: string
     FollowRecordDto:
       type: object
       properties:
@@ -8031,11 +8038,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Event
-            - Alert
-            - Log
-          type: string
+          $ref: '#/components/schemas/NotificationType'
         socialProfileId:
           type: string
           nullable: true
@@ -8211,6 +8214,12 @@ components:
         result:
           $ref: '#/components/schemas/NotificationIssuanceReceiptDto'
       additionalProperties: false
+    NotificationType:
+      enum:
+        - Event
+        - Alert
+        - Log
+      type: string
     PatchOperation:
       type: object
       properties:
@@ -8293,12 +8302,7 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
       additionalProperties: false
     PrivateMessageDtoCollectionQueryParameters:
       type: object
@@ -8383,6 +8387,17 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Reaction:
+      enum:
+        - Like
+        - Happy
+        - HaHa
+        - Love
+        - Sad
+        - Angry
+        - Wow
+        - Afraid
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -8458,10 +8473,7 @@ components:
           type: string
           nullable: true
         skillType:
-          enum:
-            - Skill
-            - Certification
-          type: string
+          $ref: '#/components/schemas/SkillType'
       additionalProperties: false
     SkillDto:
       type: object
@@ -8489,10 +8501,7 @@ components:
           type: string
           nullable: true
         skillType:
-          enum:
-            - Skill
-            - Certification
-          type: string
+          $ref: '#/components/schemas/SkillType'
         tenantId:
           type: string
           nullable: true
@@ -8611,6 +8620,11 @@ components:
             $ref: '#/components/schemas/SkillDto'
           nullable: true
       additionalProperties: false
+    SkillType:
+      enum:
+        - Skill
+        - Certification
+      type: string
     SkillUpdateDto:
       type: object
       properties:
@@ -8631,10 +8645,7 @@ components:
           type: string
           nullable: true
         skillType:
-          enum:
-            - Skill
-            - Certification
-          type: string
+          $ref: '#/components/schemas/SkillType'
       additionalProperties: false
     SocialCommentReactionDto:
       type: object
@@ -8647,16 +8658,7 @@ components:
           format: date-time
           nullable: true
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
         reactionValue:
           type: string
           nullable: true
@@ -8670,12 +8672,7 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialCommentId:
           type: string
           nullable: true
@@ -8945,11 +8942,7 @@ components:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         backgroundStyle:
           maxLength: 64
           type: string
@@ -8987,21 +8980,12 @@ components:
           type: integer
           format: int32
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         bodyHtml:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         backgroundStyle:
           type: string
           nullable: true
@@ -9019,17 +9003,7 @@ components:
             $ref: '#/components/schemas/SocialPostAttachmentRefDto'
           nullable: true
         myReaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Reaction'
         myReactionId:
           type: string
           nullable: true
@@ -9159,11 +9133,7 @@ components:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         backgroundStyle:
           maxLength: 64
           type: string
@@ -9382,12 +9352,7 @@ components:
           type: string
           nullable: true
         publicAccessType:
-          enum:
-            - Off
-            - Container
-            - Blob
-            - Unknown
-          type: string
+          $ref: '#/components/schemas/FileUploadPublicAccessType'
         socialPostId:
           type: string
           nullable: true
@@ -9467,22 +9432,9 @@ components:
           type: string
           nullable: true
         scanStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Clean
-            - Infected
-            - Failed
-            - Quarantined
-          type: string
+          $ref: '#/components/schemas/StorageScanStatus'
         thumbnailStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Ready
-            - Failed
-            - Unsupported
-          type: string
+          $ref: '#/components/schemas/StorageThumbnailStatus'
         hasThumbnail:
           type: boolean
           readOnly: true
@@ -9499,12 +9451,7 @@ components:
           type: integer
           format: int32
         publicAccessType:
-          enum:
-            - Off
-            - Container
-            - Blob
-            - Unknown
-          type: string
+          $ref: '#/components/schemas/FileUploadPublicAccessType'
         socialPostId:
           type: string
           nullable: true
@@ -9688,11 +9635,7 @@ components:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         parentCommentId:
           type: string
           nullable: true
@@ -9735,21 +9678,12 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         bodyHtml:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         replyCount:
           type: integer
           format: int32
@@ -9765,17 +9699,7 @@ components:
             $ref: '#/components/schemas/SocialPostReactionFacepileDto'
           nullable: true
         myReaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Reaction'
         myReactionId:
           type: string
           nullable: true
@@ -9955,21 +9879,12 @@ components:
           type: integer
           format: int32
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         bodyHtml:
           type: string
           nullable: true
         bodyFormat:
-          enum:
-            - PlainText
-            - Html
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BodyFormat'
         backgroundStyle:
           type: string
           nullable: true
@@ -10096,16 +10011,7 @@ components:
           format: date-time
           nullable: true
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
         reactionValue:
           type: string
           nullable: true
@@ -10119,12 +10025,7 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialPostId:
           type: string
           nullable: true
@@ -10212,23 +10113,9 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
       additionalProperties: false
     SocialPostUpdateDto:
       type: object
@@ -10296,12 +10183,7 @@ components:
           format: int32
           nullable: true
         type:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialFeedId:
           type: string
           nullable: true
@@ -10444,6 +10326,12 @@ components:
             $ref: '#/components/schemas/SocialProfileDto'
           nullable: true
       additionalProperties: false
+    SocialProfileType:
+      enum:
+        - User
+        - Tenant
+        - Contact
+      type: string
     SocialReactionCreateDto:
       type: object
       properties:
@@ -10454,16 +10342,7 @@ components:
           type: string
           format: date-time
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
         reactionValue:
           type: string
           nullable: true
@@ -10482,16 +10361,7 @@ components:
           format: date-time
           nullable: true
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
         reactionValue:
           type: string
           nullable: true
@@ -10505,12 +10375,7 @@ components:
           type: string
           nullable: true
         socialProfileType:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
       additionalProperties: false
     SocialReactionDtoEnvelope:
       type: object
@@ -10602,20 +10467,28 @@ components:
           format: date-time
           nullable: true
         reaction:
-          enum:
-            - Like
-            - Happy
-            - HaHa
-            - Love
-            - Sad
-            - Angry
-            - Wow
-            - Afraid
-          type: string
+          $ref: '#/components/schemas/Reaction'
         reactionValue:
           type: string
           nullable: true
       additionalProperties: false
+    StorageScanStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Clean
+        - Infected
+        - Failed
+        - Quarantined
+      type: string
+    StorageThumbnailStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Ready
+        - Failed
+        - Unsupported
+      type: string
     StringEnvelope:
       type: object
       properties:

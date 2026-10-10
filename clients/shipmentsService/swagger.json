@@ -8261,21 +8261,7 @@
             "format": "date-time"
           },
           "shippingTerms": {
-            "enum": [
-              "NC",
-              "EXW",
-              "FCA",
-              "FOB",
-              "FAS",
-              "CFR",
-              "CIF",
-              "CPT",
-              "CIP",
-              "DDP",
-              "DAP",
-              "DPU"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingTerms"
           },
           "orderId": {
             "type": "string",
@@ -8326,21 +8312,7 @@
             "format": "date-time"
           },
           "shippingTerms": {
-            "enum": [
-              "NC",
-              "EXW",
-              "FCA",
-              "FOB",
-              "FAS",
-              "CFR",
-              "CIF",
-              "CPT",
-              "CIP",
-              "DDP",
-              "DAP",
-              "DPU"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingTerms"
           },
           "orderId": {
             "type": "string",
@@ -8543,21 +8515,7 @@
             "format": "date-time"
           },
           "shippingTerms": {
-            "enum": [
-              "NC",
-              "EXW",
-              "FCA",
-              "FOB",
-              "FAS",
-              "CFR",
-              "CIF",
-              "CPT",
-              "CIP",
-              "DDP",
-              "DAP",
-              "DPU"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingTerms"
           },
           "orderId": {
             "type": "string",
@@ -8565,6 +8523,13 @@
           }
         },
         "additionalProperties": false
+      },
+      "ShippingClassCalculationType": {
+        "enum": [
+          "PerClass",
+          "PerOrder"
+        ],
+        "type": "string"
       },
       "ShippingClassCreateDto": {
         "required": [
@@ -9300,11 +9265,7 @@
             "nullable": true
           },
           "shippingClassCalculationType": {
-            "enum": [
-              "PerClass",
-              "PerOrder"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingClassCalculationType"
           }
         },
         "additionalProperties": false
@@ -9348,11 +9309,7 @@
             "nullable": true
           },
           "shippingClassCalculationType": {
-            "enum": [
-              "PerClass",
-              "PerOrder"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingClassCalculationType"
           }
         },
         "additionalProperties": false
@@ -9532,11 +9489,7 @@
             "nullable": true
           },
           "shippingClassCalculationType": {
-            "enum": [
-              "PerClass",
-              "PerOrder"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ShippingClassCalculationType"
           }
         },
         "additionalProperties": false
@@ -9755,6 +9708,23 @@
           }
         },
         "additionalProperties": false
+      },
+      "ShippingTerms": {
+        "enum": [
+          "NC",
+          "EXW",
+          "FCA",
+          "FOB",
+          "FAS",
+          "CFR",
+          "CIF",
+          "CPT",
+          "CIP",
+          "DDP",
+          "DAP",
+          "DPU"
+        ],
+        "type": "string"
       },
       "ShippingZoneCreateDto": {
         "required": [

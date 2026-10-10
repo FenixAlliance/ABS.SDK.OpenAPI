@@ -3342,6 +3342,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ApprovalStatus:
+      enum:
+        - Pending
+        - Approved
+        - Rejected
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -3754,11 +3760,7 @@ components:
       type: object
       properties:
         approvalStatus:
-          enum:
-            - Pending
-            - Approved
-            - Rejected
-          type: string
+          $ref: '#/components/schemas/ApprovalStatus'
         comments:
           type: string
           nullable: true
@@ -4074,11 +4076,7 @@ components:
           minLength: 1
           type: string
         projectTimeLogRecordType:
-          enum:
-            - RegularHours
-            - OvertimeToPay
-            - OvertimeToCompensate
-          type: string
+          $ref: '#/components/schemas/ProjectTimeLogRecordType'
         projectId:
           type: string
           nullable: true
@@ -4112,11 +4110,7 @@ components:
           type: string
           nullable: true
         recordType:
-          enum:
-            - RegularHours
-            - OvertimeToPay
-            - OvertimeToCompensate
-          type: string
+          $ref: '#/components/schemas/ProjectTimeLogRecordType'
         timeSpan:
           type: string
           format: date-span
@@ -4241,6 +4235,12 @@ components:
             $ref: '#/components/schemas/ProjectTimeLogDto'
           nullable: true
       additionalProperties: false
+    ProjectTimeLogRecordType:
+      enum:
+        - RegularHours
+        - OvertimeToPay
+        - OvertimeToCompensate
+      type: string
     ProjectTimeLogUpdateDto:
       type: object
       properties:
@@ -4260,11 +4260,7 @@ components:
           type: string
           nullable: true
         projectTimeLogRecordType:
-          enum:
-            - RegularHours
-            - OvertimeToPay
-            - OvertimeToCompensate
-          type: string
+          $ref: '#/components/schemas/ProjectTimeLogRecordType'
       additionalProperties: false
     ProjectUpdateDto:
       type: object

@@ -857,6 +857,510 @@
         }
       }
     },
+    "/api/v2/QuotesService/Quotes/Received": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "List the quotes the tenant received.",
+        "description": "Quotes whose receiver is the tenant and which it did not issue, supporting OData query options.",
+        "operationId": "Quotes_GetReceivedQuotes",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Received/Count": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Count the quotes the tenant received.",
+        "description": "The count companion of GetReceivedQuotes, supporting OData query options.",
+        "operationId": "Quotes_GetReceivedQuotesCount",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Received/{quoteId}": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Get a quote the tenant received.",
+        "description": "A quote the tenant did not receive (one it issued included) is not found.",
+        "operationId": "Quotes_GetReceivedQuote",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Me/Received": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "List the quotes the current user received.",
+        "description": "Quotes whose account holder is the current user and that name no receiving tenant.",
+        "operationId": "Quotes_GetMyReceivedQuotes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Me/Received/Count": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Count the quotes the current user received.",
+        "description": "The count companion of GetMyReceivedQuotes, supporting OData query options.",
+        "operationId": "Quotes_GetMyReceivedQuotesCount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendedQuoteDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Me/Received/{quoteId}": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Get a quote the current user received.",
+        "description": "A quote the current user did not receive is not found.",
+        "operationId": "Quotes_GetMyReceivedQuote",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendedQuoteDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Received/{quoteId}/Lines": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "List the lines of a quote the tenant received.",
+        "description": "A quote the tenant did not receive is not found. Supports OData query options.",
+        "operationId": "Quotes_GetReceivedQuoteLines",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteLineDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteLineDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteLineDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteLineDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Me/Received/{quoteId}/Lines": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "List the lines of a quote the current user received.",
+        "description": "A quote the current user did not receive is not found. Supports OData query options.",
+        "operationId": "Quotes_GetMyReceivedQuoteLines",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteLineDtoCollectionQueryParameters"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteLineDtoCollectionQueryParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteLineDtoListEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteLineDtoListEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/QuotesService/Quotes/{quoteId}": {
       "get": {
         "tags": [
@@ -1404,6 +1908,181 @@
               "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/{quoteId}/PlaceOrder": {
+      "post": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Place an order from a quote the tenant received.",
+        "description": "The receiving tenant accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the tenant does not receive is not found.",
+        "operationId": "Quotes_PlaceOrderFromQuote",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderIdEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderIdEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/QuotesService/Quotes/Me/{quoteId}/PlaceOrder": {
+      "post": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Place an order from a quote the current user received.",
+        "description": "The current user, as the quote's personal receiver, accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the user does not receive is not found.",
+        "operationId": "Quotes_PlaceMyOrderFromQuote",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderIdEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderIdEnvelope"
                 }
               }
             }
@@ -2443,6 +3122,13 @@
         },
         "additionalProperties": false
       },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
       "ContactDto": {
         "type": "object",
         "properties": {
@@ -2465,11 +3151,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -2702,6 +3384,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -2712,6 +3405,50 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "CostCalculationMethod": {
+        "enum": [
+          "Automatic",
+          "Custom"
+        ],
+        "type": "string"
+      },
+      "EmailAlertType": {
+        "enum": [
+          "None",
+          "Info",
+          "Error",
+          "Warning",
+          "Success",
+          "Action",
+          "Alert"
+        ],
+        "type": "string"
       },
       "EmailDispatchRequest": {
         "required": [
@@ -2748,16 +3485,7 @@
             "nullable": true
           },
           "alertType": {
-            "enum": [
-              "None",
-              "Info",
-              "Error",
-              "Warning",
-              "Success",
-              "Action",
-              "Alert"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/EmailAlertType"
           },
           "culture": {
             "minLength": 1,
@@ -3005,18 +3733,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -3193,21 +3913,10 @@
             "nullable": true
           },
           "quoteStatus": {
-            "enum": [
-              "Draft",
-              "New",
-              "Accepted",
-              "Declined",
-              "Expired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/QuoteStatus"
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "customDiscountsAmount": {
             "type": "number",
@@ -3230,6 +3939,26 @@
           },
           "enrollment": {
             "$ref": "#/components/schemas/TenantEnrollmentDto"
+          },
+          "effectiveDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveSurchargePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveTaxesPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalSurchargePercent": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -3273,6 +4002,57 @@
           "isEmpty": {
             "type": "boolean",
             "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtendedQuoteDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/ExtendedQuoteDto"
           }
         },
         "additionalProperties": false
@@ -3344,6 +4124,22 @@
           }
         },
         "additionalProperties": false
+      },
+      "FreightTerms": {
+        "enum": [
+          "FOB",
+          "NoCharge"
+        ],
+        "type": "string"
+      },
+      "Gender": {
+        "enum": [
+          "Unknown",
+          "Male",
+          "Female",
+          "PreferNotToSay"
+        ],
+        "type": "string"
       },
       "HttpValidationProblemDetails": {
         "type": "object",
@@ -3491,6 +4287,62 @@
           "twoFactorRecoveryCode": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderId": {
+        "type": "string",
+        "additionalProperties": false,
+        "format": "uuid"
+      },
+      "OrderIdEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/OrderId"
           }
         },
         "additionalProperties": false
@@ -3701,18 +4553,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "cartId": {
             "type": "string",
@@ -3733,14 +4577,7 @@
             "nullable": true
           },
           "quoteStatus": {
-            "enum": [
-              "Draft",
-              "New",
-              "Accepted",
-              "Declined",
-              "Expired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/QuoteStatus"
           },
           "quoteLines": {
             "type": "array",
@@ -3852,18 +4689,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -4040,21 +4869,10 @@
             "nullable": true
           },
           "quoteStatus": {
-            "enum": [
-              "Draft",
-              "New",
-              "Accepted",
-              "Declined",
-              "Expired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/QuoteStatus"
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "customDiscountsAmount": {
             "type": "number",
@@ -4399,18 +5217,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "itemId": {
             "type": "string",
@@ -4762,18 +5572,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -4954,6 +5756,11 @@
           "quantity": {
             "type": "number",
             "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
           },
           "free": {
             "type": "boolean"
@@ -5469,18 +6276,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "itemId": {
             "type": "string",
@@ -5919,18 +6718,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "itemId": {
             "type": "string",
@@ -6182,6 +6973,16 @@
         },
         "additionalProperties": false
       },
+      "QuoteStatus": {
+        "enum": [
+          "Draft",
+          "New",
+          "Accepted",
+          "Declined",
+          "Expired"
+        ],
+        "type": "string"
+      },
       "QuoteUpdateDto": {
         "type": "object",
         "properties": {
@@ -6377,39 +7178,20 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "cartId": {
             "type": "string",
             "nullable": true
           },
           "quoteStatus": {
-            "enum": [
-              "Draft",
-              "New",
-              "Accepted",
-              "Declined",
-              "Expired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/QuoteStatus"
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "effectiveTo": {
             "type": "string",
@@ -6527,6 +7309,21 @@
         },
         "additionalProperties": false
       },
+      "SiteTheme": {
+        "enum": [
+          "System",
+          "Light",
+          "Dark"
+        ],
+        "type": "string"
+      },
+      "TaxCalculationMethod": {
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string"
+      },
       "TenantDto": {
         "type": "object",
         "properties": {
@@ -6545,11 +7342,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -6786,6 +7579,16 @@
         },
         "additionalProperties": false
       },
+      "UserAvailability": {
+        "enum": [
+          "DND",
+          "Busy",
+          "Away",
+          "Offline",
+          "Available"
+        ],
+        "type": "string"
+      },
       "UserDto": {
         "type": "object",
         "properties": {
@@ -6885,14 +7688,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Gender"
           },
           "cityId": {
             "type": "string",
@@ -6965,15 +7761,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/UserAvailability"
           },
           "lockoutEnabled": {
             "type": "boolean"
@@ -6989,13 +7777,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SiteTheme"
           }
         },
         "additionalProperties": false

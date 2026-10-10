@@ -556,6 +556,316 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/OrdersService/Orders/Received:
+    get:
+      tags:
+        - Orders
+      summary: List the orders the tenant received.
+      description: 'Orders whose receiver is the tenant and which it did not sell, supporting OData query options.'
+      operationId: Orders_GetReceivedOrders
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoListEnvelope'
+  /api/v2/OrdersService/Orders/Received/Count:
+    get:
+      tags:
+        - Orders
+      summary: Count the orders the tenant received.
+      description: 'The count companion of GetReceivedOrders, supporting OData query options.'
+      operationId: Orders_GetReceivedOrdersCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/OrdersService/Orders/Received/{orderId}':
+    get:
+      tags:
+        - Orders
+      summary: Get an order the tenant received.
+      description: An order the tenant did not receive (one it sold included) is not found.
+      operationId: Orders_GetReceivedOrder
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoEnvelope'
+  /api/v2/OrdersService/Orders/Me/Received:
+    get:
+      tags:
+        - Orders
+      summary: List the orders the current user received.
+      description: Orders whose account holder is the current user and that name no receiving tenant.
+      operationId: Orders_GetMyReceivedOrders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoListEnvelope'
+  /api/v2/OrdersService/Orders/Me/Received/Count:
+    get:
+      tags:
+        - Orders
+      summary: Count the orders the current user received.
+      description: 'The count companion of GetMyReceivedOrders, supporting OData query options.'
+      operationId: Orders_GetMyReceivedOrdersCount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExtendedOrderDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/OrdersService/Orders/Me/Received/{orderId}':
+    get:
+      tags:
+        - Orders
+      summary: Get an order the current user received.
+      description: An order the current user did not receive is not found.
+      operationId: Orders_GetMyReceivedOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderDtoEnvelope'
+  '/api/v2/OrdersService/Orders/Received/{orderId}/Lines':
+    get:
+      tags:
+        - Orders
+      summary: List the lines of an order the tenant received.
+      description: An order the tenant did not receive is not found. Supports OData query options.
+      operationId: Orders_GetReceivedOrderLines
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderLineDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderLineDtoListEnvelope'
+  '/api/v2/OrdersService/Orders/Me/Received/{orderId}/Lines':
+    get:
+      tags:
+        - Orders
+      summary: List the lines of an order the current user received.
+      description: An order the current user did not receive is not found. Supports OData query options.
+      operationId: Orders_GetMyReceivedOrderLines
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderLineDtoCollectionQueryParameters'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderLineDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderLineDtoListEnvelope'
   '/api/v2/OrdersService/Orders/{orderId}':
     get:
       tags:
@@ -1265,6 +1575,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BusinessEntityKind:
+      enum:
+        - Organization
+        - Individual
+      type: string
     ContactDto:
       type: object
       properties:
@@ -1283,10 +1598,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -1464,6 +1776,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
+          type: string
+          format: date-time
+          nullable: true
         tikTokUsername:
           type: string
           nullable: true
@@ -1471,6 +1791,40 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
+    CostCalculationMethod:
+      enum:
+        - Automatic
+        - Custom
+      type: string
+    EmailAlertType:
+      enum:
+        - None
+        - Info
+        - Error
+        - Warning
+        - Success
+        - Action
+        - Alert
+      type: string
     EmailDispatchRequest:
       required:
         - culture
@@ -1500,15 +1854,7 @@ components:
           type: string
           nullable: true
         alertType:
-          enum:
-            - None
-            - Info
-            - Error
-            - Warning
-            - Success
-            - Action
-            - Alert
-          type: string
+          $ref: '#/components/schemas/EmailAlertType'
         culture:
           minLength: 1
           pattern: '^[a-z]{2}(-[A-Z]{2})?$'
@@ -1693,15 +2039,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -1853,23 +2193,19 @@ components:
           type: string
           nullable: true
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
         requestedDeliveryDate:
           type: string
           format: date-time
@@ -1912,6 +2248,21 @@ components:
           $ref: '#/components/schemas/TenantDto'
         enrollment:
           $ref: '#/components/schemas/TenantEnrollmentDto'
+        effectiveDiscountPercent:
+          type: number
+          format: double
+        effectiveSurchargePercent:
+          type: number
+          format: double
+        effectiveTaxesPercent:
+          type: number
+          format: double
+        effectiveGlobalDiscountPercent:
+          type: number
+          format: double
+        effectiveGlobalSurchargePercent:
+          type: number
+          format: double
       additionalProperties: false
     ExtendedOrderDtoCollectionQueryParameters:
       type: object
@@ -1944,6 +2295,44 @@ components:
         isEmpty:
           type: boolean
           readOnly: true
+      additionalProperties: false
+    ExtendedOrderDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ExtendedOrderDto'
       additionalProperties: false
     ExtendedOrderDtoListEnvelope:
       type: object
@@ -1995,6 +2384,18 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    FreightTerms:
+      enum:
+        - FOB
+        - NoCharge
+      type: string
+    Gender:
+      enum:
+        - Unknown
+        - Male
+        - Female
+        - PreferNotToSay
+      type: string
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -2246,15 +2647,9 @@ components:
           type: string
           nullable: true
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         cartId:
           type: string
           nullable: true
@@ -2277,31 +2672,11 @@ components:
           type: string
           nullable: true
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/OrderStatus'
         quoteStatus:
-          enum:
-            - Draft
-            - New
-            - Accepted
-            - Declined
-            - Expired
-          type: string
+          $ref: '#/components/schemas/QuoteStatus'
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         shippingLocationId:
           type: string
           nullable: true
@@ -2416,15 +2791,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -2576,23 +2945,19 @@ components:
           type: string
           nullable: true
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
         requestedDeliveryDate:
           type: string
           format: date-time
@@ -2876,15 +3241,9 @@ components:
           type: string
           nullable: true
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         itemId:
           type: string
           nullable: true
@@ -3147,15 +3506,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -3291,6 +3644,10 @@ components:
         quantity:
           type: number
           format: double
+        unitPrice:
+          type: number
+          format: double
+          readOnly: true
         free:
           type: boolean
         freeReason:
@@ -3675,15 +4032,9 @@ components:
           type: string
           nullable: true
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         itemId:
           type: string
           nullable: true
@@ -3864,6 +4215,19 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    OrderStatus:
+      enum:
+        - New
+        - Processing
+        - Accepted
+        - Declined
+        - Shipped
+        - Delivered
+        - OnHold
+        - Failed
+        - Fulfilled
+        - Cancelled
+      type: string
     OrderUpdateDto:
       type: object
       properties:
@@ -4011,15 +4375,9 @@ components:
           type: string
           nullable: true
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         cartId:
           type: string
           nullable: true
@@ -4055,6 +4413,14 @@ components:
           nullable: true
         value: { }
       additionalProperties: false
+    QuoteStatus:
+      enum:
+        - Draft
+        - New
+        - Accepted
+        - Declined
+        - Expired
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -4103,6 +4469,23 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
+    SiteTheme:
+      enum:
+        - System
+        - Light
+        - Dark
+      type: string
+    TaxCalculationMethod:
+      enum:
+        - Included
+        - Excluded
+      type: string
     TenantDto:
       type: object
       properties:
@@ -4118,10 +4501,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -4294,6 +4674,14 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UserAvailability:
+      enum:
+        - DND
+        - Busy
+        - Away
+        - Offline
+        - Available
+      type: string
     UserDto:
       type: object
       properties:
@@ -4370,13 +4758,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Gender'
         cityId:
           type: string
           nullable: true
@@ -4430,14 +4812,7 @@ components:
         emailConfirmed:
           type: boolean
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/UserAvailability'
         lockoutEnabled:
           type: boolean
         lockoutEnd:
@@ -4449,12 +4824,7 @@ components:
           format: int32
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SiteTheme'
       additionalProperties: false
 tags:
   - name: FenixAlliance.ABS.Web

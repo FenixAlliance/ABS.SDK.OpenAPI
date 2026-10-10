@@ -2621,6 +2621,13 @@
         },
         "additionalProperties": false
       },
+      "BillingCycle": {
+        "enum": [
+          "Monthly",
+          "Annual"
+        ],
+        "type": "string"
+      },
       "CommercialSubscriptionDto": {
         "type": "object",
         "properties": {
@@ -2638,14 +2645,7 @@
             "nullable": true
           },
           "lifecycleState": {
-            "enum": [
-              "Pending",
-              "Active",
-              "Suspended",
-              "Ended"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SubscriptionLifecycleState"
           },
           "quantity": {
             "type": "integer",
@@ -2854,19 +2854,10 @@
             "nullable": true
           },
           "status": {
-            "enum": [
-              "Payable",
-              "PendingMaterialization",
-              "Satisfied",
-              "NoOpenObligation"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SubscriptionPayableObligationStatus"
           },
           "obligationType": {
-            "enum": [
-              "Invoice"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentObligationType"
           },
           "obligationReference": {
             "type": "string",
@@ -3094,13 +3085,7 @@
             "format": "uuid"
           },
           "billToMode": {
-            "enum": [
-              "Unknown",
-              "BusinessToConsumer",
-              "BusinessToBusiness",
-              "TenantToTenant"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PayerRelationshipMode"
           },
           "billToReference": {
             "minLength": 1,
@@ -3315,6 +3300,21 @@
         },
         "additionalProperties": false
       },
+      "PayerRelationshipMode": {
+        "enum": [
+          "Unknown",
+          "BusinessToConsumer",
+          "BusinessToBusiness",
+          "TenantToTenant"
+        ],
+        "type": "string"
+      },
+      "PaymentObligationType": {
+        "enum": [
+          "Invoice"
+        ],
+        "type": "string"
+      },
       "PlatformPlanPriceDto": {
         "type": "object",
         "properties": {
@@ -3323,11 +3323,7 @@
             "nullable": true
           },
           "billingCycle": {
-            "enum": [
-              "Monthly",
-              "Annual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BillingCycle"
           },
           "planSku": {
             "type": "string",
@@ -3453,11 +3449,7 @@
             "type": "string"
           },
           "billingCycle": {
-            "enum": [
-              "Monthly",
-              "Annual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BillingCycle"
           },
           "periodStartUtc": {
             "type": "string",
@@ -3553,6 +3545,13 @@
         },
         "additionalProperties": false
       },
+      "SubscriptionClass": {
+        "enum": [
+          "Trial",
+          "Standard"
+        ],
+        "type": "string"
+      },
       "SubscriptionCreateDto": {
         "type": "object",
         "properties": {
@@ -3577,11 +3576,7 @@
             "nullable": true
           },
           "subscriptionClass": {
-            "enum": [
-              "Trial",
-              "Standard"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SubscriptionClass"
           }
         },
         "additionalProperties": false
@@ -3611,11 +3606,7 @@
             "nullable": true
           },
           "subscriptionClass": {
-            "enum": [
-              "Trial",
-              "Standard"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SubscriptionClass"
           }
         },
         "additionalProperties": false
@@ -3768,6 +3759,24 @@
           }
         },
         "additionalProperties": false
+      },
+      "SubscriptionLifecycleState": {
+        "enum": [
+          "Pending",
+          "Active",
+          "Suspended",
+          "Ended"
+        ],
+        "type": "string"
+      },
+      "SubscriptionPayableObligationStatus": {
+        "enum": [
+          "Payable",
+          "PendingMaterialization",
+          "Satisfied",
+          "NoOpenObligation"
+        ],
+        "type": "string"
       },
       "SubscriptionPlanCreateDto": {
         "type": "object",
@@ -6017,11 +6026,7 @@
             "nullable": true
           },
           "subscriptionClass": {
-            "enum": [
-              "Trial",
-              "Standard"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SubscriptionClass"
           }
         },
         "additionalProperties": false

@@ -1600,6 +1600,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BillingCycle:
+      enum:
+        - Monthly
+        - Annual
+      type: string
     CommercialSubscriptionDto:
       type: object
       properties:
@@ -1614,13 +1619,7 @@ components:
           type: string
           nullable: true
         lifecycleState:
-          enum:
-            - Pending
-            - Active
-            - Suspended
-            - Ended
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SubscriptionLifecycleState'
         quantity:
           type: integer
           format: int32
@@ -1775,16 +1774,9 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Payable
-            - PendingMaterialization
-            - Satisfied
-            - NoOpenObligation
-          type: string
+          $ref: '#/components/schemas/SubscriptionPayableObligationStatus'
         obligationType:
-          enum:
-            - Invoice
-          type: string
+          $ref: '#/components/schemas/PaymentObligationType'
         obligationReference:
           type: string
           nullable: true
@@ -1955,12 +1947,7 @@ components:
           type: string
           format: uuid
         billToMode:
-          enum:
-            - Unknown
-            - BusinessToConsumer
-            - BusinessToBusiness
-            - TenantToTenant
-          type: string
+          $ref: '#/components/schemas/PayerRelationshipMode'
         billToReference:
           minLength: 1
           type: string
@@ -2117,6 +2104,17 @@ components:
           nullable: true
         value: { }
       additionalProperties: false
+    PayerRelationshipMode:
+      enum:
+        - Unknown
+        - BusinessToConsumer
+        - BusinessToBusiness
+        - TenantToTenant
+      type: string
+    PaymentObligationType:
+      enum:
+        - Invoice
+      type: string
     PlatformPlanPriceDto:
       type: object
       properties:
@@ -2124,10 +2122,7 @@ components:
           type: string
           nullable: true
         billingCycle:
-          enum:
-            - Monthly
-            - Annual
-          type: string
+          $ref: '#/components/schemas/BillingCycle'
         planSku:
           type: string
           nullable: true
@@ -2220,10 +2215,7 @@ components:
           minLength: 1
           type: string
         billingCycle:
-          enum:
-            - Monthly
-            - Annual
-          type: string
+          $ref: '#/components/schemas/BillingCycle'
         periodStartUtc:
           type: string
           format: date-time
@@ -2292,6 +2284,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SubscriptionClass:
+      enum:
+        - Trial
+        - Standard
+      type: string
     SubscriptionCreateDto:
       type: object
       properties:
@@ -2311,10 +2308,7 @@ components:
           type: string
           nullable: true
         subscriptionClass:
-          enum:
-            - Trial
-            - Standard
-          type: string
+          $ref: '#/components/schemas/SubscriptionClass'
       additionalProperties: false
     SubscriptionDto:
       type: object
@@ -2336,10 +2330,7 @@ components:
           type: string
           nullable: true
         subscriptionClass:
-          enum:
-            - Trial
-            - Standard
-          type: string
+          $ref: '#/components/schemas/SubscriptionClass'
       additionalProperties: false
     SubscriptionDtoCollectionQueryParameters:
       type: object
@@ -2452,6 +2443,20 @@ components:
             $ref: '#/components/schemas/SubscriptionDto'
           nullable: true
       additionalProperties: false
+    SubscriptionLifecycleState:
+      enum:
+        - Pending
+        - Active
+        - Suspended
+        - Ended
+      type: string
+    SubscriptionPayableObligationStatus:
+      enum:
+        - Payable
+        - PendingMaterialization
+        - Satisfied
+        - NoOpenObligation
+      type: string
     SubscriptionPlanCreateDto:
       type: object
       properties:
@@ -4110,10 +4115,7 @@ components:
           type: string
           nullable: true
         subscriptionClass:
-          enum:
-            - Trial
-            - Standard
-          type: string
+          $ref: '#/components/schemas/SubscriptionClass'
       additionalProperties: false
     TwoFactorRequest:
       type: object

@@ -1068,6 +1068,68 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/AiRunDtoEnvelope'
+  /api/v2/IntelligenceService/AiUsage/Summary:
+    get:
+      tags:
+        - AiUsage
+      summary: Get the AI usage summary
+      description: 'Returns the tenant''s AI usage summary over the half-open UTC window [fromUtc, toUtc): quantities only, split managed, BYOK and unresolved, with one point per UTC day (read-only, tenant-scoped).'
+      operationId: AiUsage_GetAiUsageSummary
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fromUtc
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: toUtc
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiUsageSummaryDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AiUsageSummaryDtoEnvelope'
   /api/v2/IntelligenceService/AiUsageObservations:
     get:
       tags:
@@ -1420,16 +1482,7 @@ paths:
         - name: surface
           in: query
           schema:
-            enum:
-              - None
-              - Workflow
-              - AI
-              - Mcp
-              - Job
-              - Integration
-              - Webhook
-              - Admin
-            type: string
+            $ref: '#/components/schemas/CapabilitySurface'
         - name: api-version
           in: query
           schema:
@@ -1474,16 +1527,7 @@ paths:
         - name: surface
           in: query
           schema:
-            enum:
-              - None
-              - Workflow
-              - AI
-              - Mcp
-              - Job
-              - Integration
-              - Webhook
-              - Admin
-            type: string
+            $ref: '#/components/schemas/CapabilitySurface'
         - name: api-version
           in: query
           schema:
@@ -1672,11 +1716,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -1791,11 +1831,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -1860,11 +1896,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -1929,11 +1961,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -1999,11 +2027,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -2062,11 +2086,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -2131,11 +2151,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -2206,11 +2222,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -2276,11 +2288,7 @@ paths:
         - name: scope
           in: query
           schema:
-            enum:
-              - Mine
-              - AllUsers
-            type: string
-            default: Mine
+            $ref: '#/components/schemas/ConversationAccessScope'
         - name: api-version
           in: query
           schema:
@@ -4158,11 +4166,7 @@ paths:
         - name: kind
           in: query
           schema:
-            enum:
-              - Agent
-              - Skill
-              - Workflow
-            type: string
+            $ref: '#/components/schemas/DefinitionKind'
         - name: api-version
           in: query
           schema:
@@ -4575,6 +4579,17 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    AgentExecutionAnomalyCode:
+      enum:
+        - None
+        - WaitingForApproval
+        - RetryableInfrastructure
+        - StaleFence
+        - OutcomeUnknown
+        - AlreadyFinalized
+        - ClaimNotFound
+        - StuckOrphaned
+      type: string
     AgentExecutionDiagnosticDto:
       type: object
       properties:
@@ -4589,13 +4604,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Pending
-            - Claimed
-            - Completed
-            - Failed
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/AgentWorkOrderStatus'
         statusName:
           type: string
           nullable: true
@@ -4608,12 +4617,7 @@ components:
           format: int32
           nullable: true
         currentLeaseStatus:
-          enum:
-            - Claimed
-            - Completed
-            - Failed
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AgentWorkLeaseStatus'
         currentLeaseStatusName:
           type: string
           nullable: true
@@ -4629,28 +4633,13 @@ components:
           type: string
           format: date-time
         anomalyCode:
-          enum:
-            - None
-            - WaitingForApproval
-            - RetryableInfrastructure
-            - StaleFence
-            - OutcomeUnknown
-            - AlreadyFinalized
-            - ClaimNotFound
-            - StuckOrphaned
-          type: string
+          $ref: '#/components/schemas/AgentExecutionAnomalyCode'
         anomalyCodeName:
           type: string
           nullable: true
           readOnly: true
         recommendedAction:
-          enum:
-            - Wait
-            - Retry
-            - Reconcile
-            - Completed
-            - ManualAction
-          type: string
+          $ref: '#/components/schemas/AgentExecutionRecoveryAction'
         recommendedActionName:
           type: string
           nullable: true
@@ -4662,15 +4651,7 @@ components:
           type: boolean
           nullable: true
         claimState:
-          enum:
-            - Pending
-            - Claimed
-            - Executing
-            - Finalized
-            - Failed
-            - OutcomeUnknown
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/GovernedInvocationClaimState'
         claimFingerprintRecorded:
           type: boolean
           nullable: true
@@ -4786,6 +4767,14 @@ components:
             $ref: '#/components/schemas/AgentExecutionDiagnosticDto'
           nullable: true
       additionalProperties: false
+    AgentExecutionRecoveryAction:
+      enum:
+        - Wait
+        - Retry
+        - Reconcile
+        - Completed
+        - ManualAction
+      type: string
     AgentPermissionReadinessDto:
       type: object
       properties:
@@ -5009,6 +4998,12 @@ components:
         result:
           $ref: '#/components/schemas/AgentWorkAssignmentDto'
       additionalProperties: false
+    AgentWorkLeaseStatus:
+      enum:
+        - Claimed
+        - Completed
+        - Failed
+      type: string
     AgentWorkOrderCancellationDto:
       type: object
       properties:
@@ -5053,6 +5048,14 @@ components:
         result:
           $ref: '#/components/schemas/AgentWorkOrderCancellationDto'
       additionalProperties: false
+    AgentWorkOrderStatus:
+      enum:
+        - Pending
+        - Claimed
+        - Completed
+        - Failed
+        - Cancelled
+      type: string
     AgentWorkOrderStatusDto:
       type: object
       properties:
@@ -5070,13 +5073,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Pending
-            - Claimed
-            - Completed
-            - Failed
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/AgentWorkOrderStatus'
         statusName:
           type: string
           nullable: true
@@ -5092,12 +5089,7 @@ components:
           format: int32
           nullable: true
         currentLeaseStatus:
-          enum:
-            - Claimed
-            - Completed
-            - Failed
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AgentWorkLeaseStatus'
         currentLeaseStatusName:
           type: string
           nullable: true
@@ -5254,11 +5246,7 @@ components:
         available:
           type: boolean
         connectionScope:
-          enum:
-            - Instance
-            - Tenant
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AiProviderConnectionScope'
       additionalProperties: false
     AiModelCategoryDto:
       type: object
@@ -5287,11 +5275,7 @@ components:
         available:
           type: boolean
         connectionScope:
-          enum:
-            - Instance
-            - Tenant
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AiProviderConnectionScope'
         categories:
           type: array
           items:
@@ -5339,6 +5323,11 @@ components:
             $ref: '#/components/schemas/AiProviderAvailabilityDto'
           nullable: true
       additionalProperties: false
+    AiProviderConnectionScope:
+      enum:
+        - Instance
+        - Tenant
+      type: string
     AiProviderDto:
       type: object
       properties:
@@ -5416,11 +5405,7 @@ components:
           type: string
           nullable: true
         fundingScope:
-          enum:
-            - Instance
-            - Tenant
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AiProviderConnectionScope'
         fundingScopeName:
           type: string
           nullable: true
@@ -5435,23 +5420,13 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Started
-            - Succeeded
-            - Failed
-            - Rejected
-            - AwaitingApproval
-            - InDoubt
-          type: string
+          $ref: '#/components/schemas/AiRunStatus'
         statusName:
           type: string
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Chat
-            - ToolAugmented
-          type: string
+          $ref: '#/components/schemas/AiRunKind'
         startedAt:
           type: string
           format: date-time
@@ -5492,20 +5467,9 @@ components:
           format: int64
           nullable: true
         runAs:
-          enum:
-            - Invoker
-            - Application
-            - System
-            - Service
-          type: string
+          $ref: '#/components/schemas/RunAs'
         principalKind:
-          enum:
-            - Human
-            - Agent
-            - Application
-            - Service
-            - System
-          type: string
+          $ref: '#/components/schemas/PrincipalKind'
         tenantId:
           type: string
           nullable: true
@@ -5627,6 +5591,53 @@ components:
             $ref: '#/components/schemas/AiRunDto'
           nullable: true
       additionalProperties: false
+    AiRunKind:
+      enum:
+        - Chat
+        - ToolAugmented
+      type: string
+    AiRunStatus:
+      enum:
+        - Started
+        - Succeeded
+        - Failed
+        - Rejected
+        - AwaitingApproval
+        - InDoubt
+      type: string
+    AiUsageBreakdownDto:
+      type: object
+      properties:
+        managed:
+          type: integer
+          format: int64
+        byok:
+          type: integer
+          format: int64
+        unresolved:
+          type: integer
+          format: int64
+        unmeasuredEvents:
+          type: integer
+          format: int64
+        daily:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiUsageDailyDto'
+          nullable: true
+      additionalProperties: false
+    AiUsageDailyDto:
+      type: object
+      properties:
+        dateUtc:
+          type: string
+          format: date-time
+        managed:
+          type: integer
+          format: int64
+        missing:
+          type: boolean
+      additionalProperties: false
     AiUsageObservationDto:
       type: object
       properties:
@@ -5647,11 +5658,7 @@ components:
           type: string
           nullable: true
         connectionScope:
-          enum:
-            - Instance
-            - Tenant
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AiProviderConnectionScope'
         connectionScopeName:
           type: string
           nullable: true
@@ -5672,11 +5679,7 @@ components:
           type: string
           format: date-time
         usageState:
-          enum:
-            - Measured
-            - Unknown
-            - LateMeasured
-          type: string
+          $ref: '#/components/schemas/AiUsageObservationState'
         usageStateName:
           type: string
           nullable: true
@@ -5803,6 +5806,74 @@ components:
             $ref: '#/components/schemas/AiUsageObservationDto'
           nullable: true
       additionalProperties: false
+    AiUsageObservationState:
+      enum:
+        - Measured
+        - Unknown
+        - LateMeasured
+      type: string
+    AiUsageSummaryDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        fromUtc:
+          type: string
+          format: date-time
+        toUtc:
+          type: string
+          format: date-time
+        asOfUtc:
+          type: string
+          format: date-time
+        inputTokens:
+          $ref: '#/components/schemas/AiUsageBreakdownDto'
+        outputTokens:
+          $ref: '#/components/schemas/AiUsageBreakdownDto'
+        runs:
+          $ref: '#/components/schemas/AiUsageBreakdownDto'
+        decisionCalls:
+          $ref: '#/components/schemas/AiUsageBreakdownDto'
+      additionalProperties: false
+    AiUsageSummaryDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/AiUsageSummaryDto'
+      additionalProperties: false
     ApprovalAdviceAdvisorDisclosureDto:
       type: object
       properties:
@@ -5858,11 +5929,7 @@ components:
           type: string
           nullable: true
         state:
-          enum:
-            - OptedIn
-            - OptedOut
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/ApprovalAdviceConsentState'
         isOptedIn:
           type: boolean
         disclosureFingerprint:
@@ -5901,6 +5968,12 @@ components:
         optedOutAt:
           type: string
           format: date-time
+          nullable: true
+        optedInByDisplayName:
+          type: string
+          nullable: true
+        optedOutByDisplayName:
+          type: string
           nullable: true
       additionalProperties: false
     ApprovalAdviceConsentDtoEnvelope:
@@ -5941,6 +6014,11 @@ components:
         result:
           $ref: '#/components/schemas/ApprovalAdviceConsentDto'
       additionalProperties: false
+    ApprovalAdviceConsentState:
+      enum:
+        - OptedIn
+        - OptedOut
+      type: string
     ApprovalAdviceDisclosureDto:
       type: object
       properties:
@@ -6044,10 +6122,7 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - SelfState
-            - CurrentContext
-          type: string
+          $ref: '#/components/schemas/BuiltInAgentCapabilityKind'
       additionalProperties: false
     BuiltInAgentCapabilityDtoListEnvelope:
       type: object
@@ -6090,6 +6165,11 @@ components:
             $ref: '#/components/schemas/BuiltInAgentCapabilityDto'
           nullable: true
       additionalProperties: false
+    BuiltInAgentCapabilityKind:
+      enum:
+        - SelfState
+        - CurrentContext
+      type: string
     CapabilityDto:
       type: object
       properties:
@@ -6235,6 +6315,17 @@ components:
             $ref: '#/components/schemas/CapabilityDto'
           nullable: true
       additionalProperties: false
+    CapabilitySurface:
+      enum:
+        - None
+        - Workflow
+        - AI
+        - Mcp
+        - Job
+        - Integration
+        - Webhook
+        - Admin
+      type: string
     ClaimNextAgentWorkerRequest:
       type: object
       properties:
@@ -7433,6 +7524,11 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    ConversationAccessScope:
+      enum:
+        - Mine
+        - AllUsers
+      type: string
     ConversationAttachmentUploadResultDto:
       type: object
       properties:
@@ -7569,11 +7665,7 @@ components:
           minLength: 1
           type: string
         kind:
-          enum:
-            - Agent
-            - Skill
-            - Workflow
-          type: string
+          $ref: '#/components/schemas/DefinitionKind'
         key:
           minLength: 1
           type: string
@@ -7584,6 +7676,18 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
+    DefinitionInstallStatus:
+      enum:
+        - Installed
+        - UpdateAvailable
+        - MissingFromSource
+      type: string
+    DefinitionKind:
+      enum:
+        - Agent
+        - Skill
+        - Workflow
+      type: string
     DefinitionSkillReferenceDto:
       type: object
       properties:
@@ -7598,11 +7702,7 @@ components:
       type: object
       properties:
         kind:
-          enum:
-            - Agent
-            - Skill
-            - Workflow
-          type: string
+          $ref: '#/components/schemas/DefinitionKind'
         key:
           type: string
           nullable: true
@@ -7648,12 +7748,7 @@ components:
         alreadyInstalled:
           type: boolean
         installedStatus:
-          enum:
-            - Installed
-            - UpdateAvailable
-            - MissingFromSource
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DefinitionInstallStatus'
         message:
           type: string
           nullable: true
@@ -7866,6 +7961,15 @@ components:
         result:
           $ref: '#/components/schemas/GovernedAgentEffectDto'
       additionalProperties: false
+    GovernedInvocationClaimState:
+      enum:
+        - Pending
+        - Claimed
+        - Executing
+        - Finalized
+        - Failed
+        - OutcomeUnknown
+      type: string
     GrantAgentToolPermissionsRequestDto:
       type: object
       properties:
@@ -7934,11 +8038,7 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - Agent
-            - Skill
-            - Workflow
-          type: string
+          $ref: '#/components/schemas/DefinitionKind'
         definitionKey:
           type: string
           nullable: true
@@ -7961,11 +8061,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Installed
-            - UpdateAvailable
-            - MissingFromSource
-          type: string
+          $ref: '#/components/schemas/DefinitionInstallStatus'
         installedAt:
           type: string
           format: date-time
@@ -8112,6 +8208,14 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    PrincipalKind:
+      enum:
+        - Human
+        - Agent
+        - Application
+        - Service
+        - System
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -8182,6 +8286,13 @@ components:
             type: string
           nullable: true
       additionalProperties: false
+    RunAs:
+      enum:
+        - Invoker
+        - Application
+        - System
+        - Service
+      type: string
     TwoFactorRequest:
       type: object
       properties:
@@ -8232,12 +8343,7 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - Agent
-            - Skill
-            - Workflow
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DefinitionKind'
         key:
           type: string
           nullable: true
@@ -8248,6 +8354,7 @@ tags:
   - name: AgentRuntimeStatus
   - name: AiProviders
   - name: AiRuns
+  - name: AiUsage
   - name: AiUsageObservations
   - name: ApprovalAdvice
   - name: Capabilities

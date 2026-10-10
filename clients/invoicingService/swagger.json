@@ -661,6 +661,142 @@
         }
       }
     },
+    "/api/v2/InvoicingService/Invoices/{invoiceId}/EstablishmentRepost": {
+      "post": {
+        "tags": [
+          "InvoiceEstablishmentRepost"
+        ],
+        "summary": "Re-post an issued invoice's establishment.",
+        "description": "Re-delivers the establishment posting of an issued invoice whose posting ended pending (for example a missing account mapping), after the cause is fixed. The posting is rebuilt from the issued invoice and checked against the total pinned when it was issued; an invoice already established posts nothing. Requires journals_post in the invoice's tenant and a reason in the body, and records an audit entry. At most 3 re-posts per invoice in 24 hours.",
+        "operationId": "InvoiceEstablishmentRepost_RepostInvoiceEstablishment",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceEstablishmentRepostRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceEstablishmentRepostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceEstablishmentRepostResultDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceEstablishmentRepostResultDtoEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/InvoicingService/Invoices": {
       "get": {
         "tags": [
@@ -4513,6 +4649,40 @@
         },
         "additionalProperties": false
       },
+      "BillingNoteReason": {
+        "enum": [
+          "Return",
+          "Annulment",
+          "Discount",
+          "PriceAdjustment",
+          "Other",
+          "Interest",
+          "Charges",
+          "ValueChange"
+        ],
+        "type": "string"
+      },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "CostCalculationMethod": {
+        "enum": [
+          "Automatic",
+          "Custom"
+        ],
+        "type": "string"
+      },
       "CreditNoteCreateDto": {
         "type": "object",
         "properties": {
@@ -4521,17 +4691,7 @@
             "format": "double"
           },
           "reason": {
-            "enum": [
-              "Return",
-              "Annulment",
-              "Discount",
-              "PriceAdjustment",
-              "Other",
-              "Interest",
-              "Charges",
-              "ValueChange"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BillingNoteReason"
           },
           "reasonDescription": {
             "type": "string",
@@ -4567,17 +4727,7 @@
             "format": "double"
           },
           "reason": {
-            "enum": [
-              "Return",
-              "Annulment",
-              "Discount",
-              "PriceAdjustment",
-              "Other",
-              "Interest",
-              "Charges",
-              "ValueChange"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BillingNoteReason"
           },
           "reasonDescription": {
             "type": "string",
@@ -4585,6 +4735,26 @@
           }
         },
         "additionalProperties": false
+      },
+      "DocumentType": {
+        "enum": [
+          "Standard",
+          "DebitNote",
+          "CreditNote"
+        ],
+        "type": "string"
+      },
+      "EmailAlertType": {
+        "enum": [
+          "None",
+          "Info",
+          "Error",
+          "Warning",
+          "Success",
+          "Action",
+          "Alert"
+        ],
+        "type": "string"
       },
       "EmailDispatchRequest": {
         "required": [
@@ -4621,16 +4791,7 @@
             "nullable": true
           },
           "alertType": {
-            "enum": [
-              "None",
-              "Info",
-              "Error",
-              "Warning",
-              "Success",
-              "Action",
-              "Alert"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/EmailAlertType"
           },
           "culture": {
             "minLength": 1,
@@ -4930,18 +5091,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -5102,6 +5255,11 @@
           "paid": {
             "type": "boolean"
           },
+          "issuedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "number": {
             "type": "integer",
             "format": "int64"
@@ -5148,31 +5306,13 @@
             "nullable": true
           },
           "invoiceType": {
-            "enum": [
-              "PurchaseInvoice",
-              "SalesInvoice",
-              "CreditNote",
-              "DebitNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceType"
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "invoiceStatus": {
-            "enum": [
-              "Draft",
-              "Closed",
-              "Signed",
-              "Expired",
-              "Paid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceStatus"
           },
           "tenant": {
             "$ref": "#/components/schemas/TenantDto"
@@ -5528,11 +5668,7 @@
             "format": "double"
           },
           "type": {
-            "enum": [
-              "Discount",
-              "Surcharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceAdjustmentType"
           }
         },
         "additionalProperties": false
@@ -5602,11 +5738,7 @@
             "format": "double"
           },
           "type": {
-            "enum": [
-              "Discount",
-              "Surcharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceAdjustmentType"
           }
         },
         "additionalProperties": false
@@ -5760,6 +5892,13 @@
         },
         "additionalProperties": false
       },
+      "InvoiceAdjustmentType": {
+        "enum": [
+          "Discount",
+          "Surcharge"
+        ],
+        "type": "string"
+      },
       "InvoiceAdjustmentUpdateDto": {
         "type": "object",
         "properties": {
@@ -5804,11 +5943,7 @@
             "format": "double"
           },
           "type": {
-            "enum": [
-              "Discount",
-              "Surcharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceAdjustmentType"
           }
         },
         "additionalProperties": false
@@ -6000,18 +6135,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "paid": {
             "type": "boolean"
@@ -6061,31 +6188,13 @@
             "nullable": true
           },
           "invoiceType": {
-            "enum": [
-              "PurchaseInvoice",
-              "SalesInvoice",
-              "CreditNote",
-              "DebitNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceType"
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "invoiceStatus": {
-            "enum": [
-              "Draft",
-              "Closed",
-              "Signed",
-              "Expired",
-              "Paid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceStatus"
           },
           "paymentDue": {
             "type": "string",
@@ -6295,18 +6404,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -6467,6 +6568,11 @@
           "paid": {
             "type": "boolean"
           },
+          "issuedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "number": {
             "type": "integer",
             "format": "int64"
@@ -6513,31 +6619,13 @@
             "nullable": true
           },
           "invoiceType": {
-            "enum": [
-              "PurchaseInvoice",
-              "SalesInvoice",
-              "CreditNote",
-              "DebitNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceType"
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "invoiceStatus": {
-            "enum": [
-              "Draft",
-              "Closed",
-              "Signed",
-              "Expired",
-              "Paid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceStatus"
           }
         },
         "additionalProperties": false
@@ -6752,15 +6840,115 @@
             "nullable": true
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
+          },
+          "remainingNumbers": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "health": {
+            "$ref": "#/components/schemas/InvoiceEnumerationRangeHealth"
           }
         },
         "additionalProperties": false
+      },
+      "InvoiceEnumerationRangeHealth": {
+        "enum": [
+          "Active",
+          "ExpiringSoon",
+          "NearlyExhausted",
+          "Exhausted",
+          "Expired",
+          "NotYetValid"
+        ],
+        "type": "string"
+      },
+      "InvoiceEstablishmentRepostRequest": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceEstablishmentRepostResultDto": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "$ref": "#/components/schemas/InvoiceId"
+          },
+          "repostNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalOutboxMessageId": {
+            "$ref": "#/components/schemas/OutboxMessageId"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceEstablishmentRepostResultDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/InvoiceEstablishmentRepostResultDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceId": {
+        "type": "string",
+        "additionalProperties": false,
+        "format": "uuid"
       },
       "InvoiceIssuedAtBackfillResultDto": {
         "type": "object",
@@ -7202,18 +7390,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "quantity": {
             "type": "integer",
@@ -7334,18 +7514,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -7526,6 +7698,11 @@
           "quantity": {
             "type": "number",
             "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
           },
           "free": {
             "type": "boolean"
@@ -8096,18 +8273,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "quantity": {
             "type": "integer",
@@ -8148,26 +8317,10 @@
             "nullable": true
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "reason": {
-            "enum": [
-              "Return",
-              "Annulment",
-              "Discount",
-              "PriceAdjustment",
-              "Other",
-              "Interest",
-              "Charges",
-              "ValueChange"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BillingNoteReason"
           },
           "reasonDescription": {
             "type": "string",
@@ -8510,6 +8663,25 @@
         },
         "additionalProperties": false
       },
+      "InvoiceStatus": {
+        "enum": [
+          "Draft",
+          "Closed",
+          "Signed",
+          "Expired",
+          "Paid"
+        ],
+        "type": "string"
+      },
+      "InvoiceType": {
+        "enum": [
+          "PurchaseInvoice",
+          "SalesInvoice",
+          "CreditNote",
+          "DebitNote"
+        ],
+        "type": "string"
+      },
       "InvoiceUpdateDto": {
         "type": "object",
         "properties": {
@@ -8705,18 +8877,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "paid": {
             "type": "boolean"
@@ -8766,31 +8930,13 @@
             "nullable": true
           },
           "invoiceType": {
-            "enum": [
-              "PurchaseInvoice",
-              "SalesInvoice",
-              "CreditNote",
-              "DebitNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceType"
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "invoiceStatus": {
-            "enum": [
-              "Draft",
-              "Closed",
-              "Signed",
-              "Expired",
-              "Paid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceStatus"
           },
           "paymentDue": {
             "type": "string",
@@ -8921,6 +9067,20 @@
         },
         "additionalProperties": false
       },
+      "OnBehalfOf": {
+        "enum": [
+          "Self",
+          "Tenant",
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "OutboxMessageId": {
+        "type": "string",
+        "additionalProperties": false,
+        "format": "uuid"
+      },
       "PatchOperation": {
         "type": "object",
         "properties": {
@@ -9027,38 +9187,13 @@
             "format": "date-time"
           },
           "onBehalfOf": {
-            "enum": [
-              "Self",
-              "Tenant",
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/OnBehalfOf"
           },
           "paymentType": {
-            "enum": [
-              "Paid",
-              "Received",
-              "Internal"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentType"
           },
           "paymentStatus": {
-            "enum": [
-              "Unset",
-              "Accepted",
-              "Rejected",
-              "OnHold",
-              "Failed",
-              "Reversed",
-              "Retained",
-              "Initialized",
-              "Expired",
-              "Abandoned",
-              "Cancelled",
-              "AcceptedRetained"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentStatus"
           },
           "baseCost": {
             "type": "number",
@@ -9304,6 +9439,31 @@
         },
         "additionalProperties": false
       },
+      "PaymentStatus": {
+        "enum": [
+          "Unset",
+          "Accepted",
+          "Rejected",
+          "OnHold",
+          "Failed",
+          "Reversed",
+          "Retained",
+          "Initialized",
+          "Expired",
+          "Abandoned",
+          "Cancelled",
+          "AcceptedRetained"
+        ],
+        "type": "string"
+      },
+      "PaymentType": {
+        "enum": [
+          "Paid",
+          "Received",
+          "Internal"
+        ],
+        "type": "string"
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -9393,11 +9553,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -9622,6 +9778,13 @@
         },
         "additionalProperties": false
       },
+      "TaxCalculationMethod": {
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string"
+      },
       "TenantDto": {
         "type": "object",
         "properties": {
@@ -9640,11 +9803,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -9928,6 +10087,9 @@
     },
     {
       "name": "FenixAlliance.ABS.Web"
+    },
+    {
+      "name": "InvoiceEstablishmentRepost"
     },
     {
       "name": "Invoices"

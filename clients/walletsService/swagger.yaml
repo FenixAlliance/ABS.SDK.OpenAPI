@@ -3572,6 +3572,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BusinessEntityKind:
+      enum:
+        - Organization
+        - Individual
+      type: string
     ContactDto:
       type: object
       properties:
@@ -3590,10 +3595,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -3771,6 +3773,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
+          type: string
+          format: date-time
+          nullable: true
         tikTokUsername:
           type: string
           nullable: true
@@ -3778,6 +3788,36 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
+    CostCalculationMethod:
+      enum:
+        - Automatic
+        - Custom
+      type: string
+    DocumentType:
+      enum:
+        - Standard
+        - DebitNote
+        - CreditNote
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -3976,15 +4016,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -4136,23 +4170,19 @@ components:
           type: string
           nullable: true
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
         requestedDeliveryDate:
           type: string
           format: date-time
@@ -4195,6 +4225,21 @@ components:
           $ref: '#/components/schemas/TenantDto'
         enrollment:
           $ref: '#/components/schemas/TenantEnrollmentDto'
+        effectiveDiscountPercent:
+          type: number
+          format: double
+        effectiveSurchargePercent:
+          type: number
+          format: double
+        effectiveTaxesPercent:
+          type: number
+          format: double
+        effectiveGlobalDiscountPercent:
+          type: number
+          format: double
+        effectiveGlobalSurchargePercent:
+          type: number
+          format: double
       additionalProperties: false
     ExtendedOrderDtoCollectionQueryParameters:
       type: object
@@ -4278,6 +4323,18 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    FreightTerms:
+      enum:
+        - FOB
+        - NoCharge
+      type: string
+    Gender:
+      enum:
+        - Unknown
+        - Male
+        - Female
+        - PreferNotToSay
+      type: string
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -4445,15 +4502,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -4573,6 +4624,10 @@ components:
           format: double
         paid:
           type: boolean
+        issuedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
         number:
           type: integer
           format: int64
@@ -4608,26 +4663,11 @@ components:
           format: date-time
           nullable: true
         invoiceType:
-          enum:
-            - PurchaseInvoice
-            - SalesInvoice
-            - CreditNote
-            - DebitNote
-          type: string
+          $ref: '#/components/schemas/InvoiceType'
         documentType:
-          enum:
-            - Standard
-            - DebitNote
-            - CreditNote
-          type: string
+          $ref: '#/components/schemas/DocumentType'
         invoiceStatus:
-          enum:
-            - Draft
-            - Closed
-            - Signed
-            - Expired
-            - Paid
-          type: string
+          $ref: '#/components/schemas/InvoiceStatus'
       additionalProperties: false
     InvoiceDtoCollectionQueryParameters:
       type: object
@@ -4702,6 +4742,21 @@ components:
             $ref: '#/components/schemas/InvoiceDto'
           nullable: true
       additionalProperties: false
+    InvoiceStatus:
+      enum:
+        - Draft
+        - Closed
+        - Signed
+        - Expired
+        - Paid
+      type: string
+    InvoiceType:
+      enum:
+        - PurchaseInvoice
+        - SalesInvoice
+        - CreditNote
+        - DebitNote
+      type: string
     LocationCreateDto:
       type: object
       properties:
@@ -5034,6 +5089,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    OnBehalfOf:
+      enum:
+        - Self
+        - Tenant
+        - Individual
+        - Organization
+      type: string
     OrderDto:
       type: object
       properties:
@@ -5110,15 +5172,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -5270,23 +5326,19 @@ components:
           type: string
           nullable: true
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
         requestedDeliveryDate:
           type: string
           format: date-time
@@ -5391,6 +5443,19 @@ components:
             $ref: '#/components/schemas/OrderDto'
           nullable: true
       additionalProperties: false
+    OrderStatus:
+      enum:
+        - New
+        - Processing
+        - Accepted
+        - Declined
+        - Shipped
+        - Delivered
+        - OnHold
+        - Failed
+        - Fulfilled
+        - Cancelled
+      type: string
     PatchOperation:
       type: object
       properties:
@@ -5570,33 +5635,11 @@ components:
           type: string
           format: date-time
         onBehalfOf:
-          enum:
-            - Self
-            - Tenant
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/OnBehalfOf'
         paymentType:
-          enum:
-            - Paid
-            - Received
-            - Internal
-          type: string
+          $ref: '#/components/schemas/PaymentType'
         paymentStatus:
-          enum:
-            - Unset
-            - Accepted
-            - Rejected
-            - OnHold
-            - Failed
-            - Reversed
-            - Retained
-            - Initialized
-            - Expired
-            - Abandoned
-            - Cancelled
-            - AcceptedRetained
-          type: string
+          $ref: '#/components/schemas/PaymentStatus'
         baseCost:
           type: number
           format: double
@@ -5791,33 +5834,11 @@ components:
           type: string
           format: date-time
         onBehalfOf:
-          enum:
-            - Self
-            - Tenant
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/OnBehalfOf'
         paymentType:
-          enum:
-            - Paid
-            - Received
-            - Internal
-          type: string
+          $ref: '#/components/schemas/PaymentType'
         paymentStatus:
-          enum:
-            - Unset
-            - Accepted
-            - Rejected
-            - OnHold
-            - Failed
-            - Reversed
-            - Retained
-            - Initialized
-            - Expired
-            - Abandoned
-            - Cancelled
-            - AcceptedRetained
-          type: string
+          $ref: '#/components/schemas/PaymentStatus'
         baseCost:
           type: number
           format: double
@@ -6094,6 +6115,21 @@ components:
             $ref: '#/components/schemas/PaymentRefundDto'
           nullable: true
       additionalProperties: false
+    PaymentStatus:
+      enum:
+        - Unset
+        - Accepted
+        - Rejected
+        - OnHold
+        - Failed
+        - Reversed
+        - Retained
+        - Initialized
+        - Expired
+        - Abandoned
+        - Cancelled
+        - AcceptedRetained
+      type: string
     PaymentTokenCreateDto:
       required:
         - cardExpirationMonth
@@ -6315,6 +6351,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    PaymentType:
+      enum:
+        - Paid
+        - Received
+        - Internal
+      type: string
     QuoteDto:
       type: object
       properties:
@@ -6391,15 +6433,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -6532,18 +6568,9 @@ components:
           format: date-time
           nullable: true
         quoteStatus:
-          enum:
-            - Draft
-            - New
-            - Accepted
-            - Declined
-            - Expired
-          type: string
+          $ref: '#/components/schemas/QuoteStatus'
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         customDiscountsAmount:
           type: number
           format: double
@@ -6621,6 +6648,14 @@ components:
             $ref: '#/components/schemas/QuoteDto'
           nullable: true
       additionalProperties: false
+    QuoteStatus:
+      enum:
+        - Draft
+        - New
+        - Accepted
+        - Declined
+        - Expired
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -6669,6 +6704,23 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
+    SiteTheme:
+      enum:
+        - System
+        - Light
+        - Dark
+      type: string
+    TaxCalculationMethod:
+      enum:
+        - Included
+        - Excluded
+      type: string
     TenantDto:
       type: object
       properties:
@@ -6684,10 +6736,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -6860,6 +6909,14 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UserAvailability:
+      enum:
+        - DND
+        - Busy
+        - Away
+        - Offline
+        - Available
+      type: string
     UserDto:
       type: object
       properties:
@@ -6936,13 +6993,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Gender'
         cityId:
           type: string
           nullable: true
@@ -6996,14 +7047,7 @@ components:
         emailConfirmed:
           type: boolean
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/UserAvailability'
         lockoutEnabled:
           type: boolean
         lockoutEnd:
@@ -7015,12 +7059,7 @@ components:
           format: int32
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SiteTheme'
       additionalProperties: false
     WalletDto:
       type: object
@@ -7120,13 +7159,7 @@ components:
           format: date-time
           nullable: true
         withdrawStatus:
-          enum:
-            - OnHold
-            - Retained
-            - Processing
-            - OnValidation
-            - Processed
-          type: string
+          $ref: '#/components/schemas/WithdrawStatus'
         walletAccountId:
           type: string
           nullable: true
@@ -7256,13 +7289,7 @@ components:
           type: number
           format: double
         walletWithdrawRequestStatus:
-          enum:
-            - Pending
-            - Processed
-            - Cancelled
-            - OnHold
-            - Denied
-          type: string
+          $ref: '#/components/schemas/WalletWithdrawRequestStatus'
         currencyId:
           type: string
           nullable: true
@@ -7349,6 +7376,22 @@ components:
             $ref: '#/components/schemas/WalletWithdrawRequestDto'
           nullable: true
       additionalProperties: false
+    WalletWithdrawRequestStatus:
+      enum:
+        - Pending
+        - Processed
+        - Cancelled
+        - OnHold
+        - Denied
+      type: string
+    WithdrawStatus:
+      enum:
+        - OnHold
+        - Retained
+        - Processing
+        - OnValidation
+        - Processed
+      type: string
 tags:
   - name: FenixAlliance.ABS.Web
   - name: Me

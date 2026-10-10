@@ -4252,6 +4252,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    AssetClass:
+      enum:
+        - Fixed
+        - Stock
+      type: string
     AssetCreateDto:
       type: object
       properties:
@@ -4268,17 +4273,9 @@ components:
           type: string
           nullable: true
         assetClass:
-          enum:
-            - Fixed
-            - Stock
-          type: string
+          $ref: '#/components/schemas/AssetClass'
         assetOwner:
-          enum:
-            - Business
-            - Organization
-            - Contact
-            - Supplier
-          type: string
+          $ref: '#/components/schemas/AssetOwner'
         isExistingAsset:
           type: boolean
         calculateDepreciation:
@@ -4588,17 +4585,9 @@ components:
           type: string
           nullable: true
         assetClass:
-          enum:
-            - Fixed
-            - Stock
-          type: string
+          $ref: '#/components/schemas/AssetClass'
         assetOwner:
-          enum:
-            - Business
-            - Organization
-            - Contact
-            - Supplier
-          type: string
+          $ref: '#/components/schemas/AssetOwner'
         isExistingAsset:
           type: boolean
         calculateDepreciation:
@@ -4777,6 +4766,13 @@ components:
             $ref: '#/components/schemas/AssetDto'
           nullable: true
       additionalProperties: false
+    AssetOwner:
+      enum:
+        - Business
+        - Organization
+        - Contact
+        - Supplier
+      type: string
     AssetRepairCreateDto:
       type: object
       properties:
@@ -4790,12 +4786,7 @@ components:
           type: string
           nullable: true
         repairStatus:
-          enum:
-            - Scheduled
-            - InProgress
-            - Completed
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/RepairStatusDto'
         scheduledDate:
           type: string
           format: date-time
@@ -4848,12 +4839,7 @@ components:
           type: string
           nullable: true
         repairStatus:
-          enum:
-            - Scheduled
-            - InProgress
-            - Completed
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/RepairStatusDto'
         scheduledDate:
           type: string
           format: date-time
@@ -5002,13 +4988,7 @@ components:
       type: object
       properties:
         repairStatus:
-          enum:
-            - Scheduled
-            - InProgress
-            - Completed
-            - Cancelled
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/RepairStatusDto'
         scheduledDate:
           type: string
           format: date-time
@@ -5463,19 +5443,9 @@ components:
           type: string
           nullable: true
         assetClass:
-          enum:
-            - Fixed
-            - Stock
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AssetClass'
         assetOwner:
-          enum:
-            - Business
-            - Organization
-            - Contact
-            - Supplier
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AssetOwner'
         calculateDepreciation:
           type: boolean
         allowMonthlyDepreciation:
@@ -5941,6 +5911,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    RepairStatusDto:
+      enum:
+        - Scheduled
+        - InProgress
+        - Completed
+        - Cancelled
+      type: string
     ResendConfirmationEmailRequest:
       required:
         - email

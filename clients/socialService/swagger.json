@@ -11270,6 +11270,13 @@
         },
         "additionalProperties": false
       },
+      "BodyFormat": {
+        "enum": [
+          "PlainText",
+          "Html"
+        ],
+        "type": "string"
+      },
       "BooleanEnvelope": {
         "type": "object",
         "properties": {
@@ -11396,13 +11403,7 @@
             "nullable": true
           },
           "counterpartyType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "unreadCount": {
             "type": "integer",
@@ -12495,6 +12496,15 @@
         },
         "additionalProperties": false
       },
+      "FileUploadPublicAccessType": {
+        "enum": [
+          "Off",
+          "Container",
+          "Blob",
+          "Unknown"
+        ],
+        "type": "string"
+      },
       "FollowRecordDto": {
         "type": "object",
         "properties": {
@@ -12818,12 +12828,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Event",
-              "Alert",
-              "Log"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/NotificationType"
           },
           "socialProfileId": {
             "type": "string",
@@ -13062,6 +13067,14 @@
         },
         "additionalProperties": false
       },
+      "NotificationType": {
+        "enum": [
+          "Event",
+          "Alert",
+          "Log"
+        ],
+        "type": "string"
+      },
       "PatchOperation": {
         "type": "object",
         "properties": {
@@ -13171,13 +13184,7 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           }
         },
         "additionalProperties": false
@@ -13294,6 +13301,19 @@
         },
         "additionalProperties": false
       },
+      "Reaction": {
+        "enum": [
+          "Like",
+          "Happy",
+          "HaHa",
+          "Love",
+          "Sad",
+          "Angry",
+          "Wow",
+          "Afraid"
+        ],
+        "type": "string"
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -13395,11 +13415,7 @@
             "nullable": true
           },
           "skillType": {
-            "enum": [
-              "Skill",
-              "Certification"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SkillType"
           }
         },
         "additionalProperties": false
@@ -13437,11 +13453,7 @@
             "nullable": true
           },
           "skillType": {
-            "enum": [
-              "Skill",
-              "Certification"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SkillType"
           },
           "tenantId": {
             "type": "string",
@@ -13603,6 +13615,13 @@
         },
         "additionalProperties": false
       },
+      "SkillType": {
+        "enum": [
+          "Skill",
+          "Certification"
+        ],
+        "type": "string"
+      },
       "SkillUpdateDto": {
         "type": "object",
         "properties": {
@@ -13627,11 +13646,7 @@
             "nullable": true
           },
           "skillType": {
-            "enum": [
-              "Skill",
-              "Certification"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SkillType"
           }
         },
         "additionalProperties": false
@@ -13649,17 +13664,7 @@
             "nullable": true
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           },
           "reactionValue": {
             "type": "string",
@@ -13678,13 +13683,7 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "socialCommentId": {
             "type": "string",
@@ -14047,12 +14046,7 @@
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "backgroundStyle": {
             "maxLength": 64,
@@ -14103,25 +14097,14 @@
             "format": "int32"
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "bodyHtml": {
             "type": "string",
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "backgroundStyle": {
             "type": "string",
@@ -14146,18 +14129,7 @@
             "nullable": true
           },
           "myReaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Reaction"
           },
           "myReactionId": {
             "type": "string",
@@ -14332,12 +14304,7 @@
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "backgroundStyle": {
             "maxLength": 64,
@@ -14633,13 +14600,7 @@
             "nullable": true
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "socialPostId": {
             "type": "string",
@@ -14747,25 +14708,10 @@
             "nullable": true
           },
           "scanStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Clean",
-              "Infected",
-              "Failed",
-              "Quarantined"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageScanStatus"
           },
           "thumbnailStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Ready",
-              "Failed",
-              "Unsupported"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageThumbnailStatus"
           },
           "hasThumbnail": {
             "type": "boolean",
@@ -14788,13 +14734,7 @@
             "format": "int32"
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "socialPostId": {
             "type": "string",
@@ -15043,12 +14983,7 @@
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "parentCommentId": {
             "type": "string",
@@ -15106,25 +15041,14 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "bodyHtml": {
             "type": "string",
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "replyCount": {
             "type": "integer",
@@ -15146,18 +15070,7 @@
             "nullable": true
           },
           "myReaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Reaction"
           },
           "myReactionId": {
             "type": "string",
@@ -15400,25 +15313,14 @@
             "format": "int32"
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "bodyHtml": {
             "type": "string",
             "nullable": true
           },
           "bodyFormat": {
-            "enum": [
-              "PlainText",
-              "Html"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BodyFormat"
           },
           "backgroundStyle": {
             "type": "string",
@@ -15589,17 +15491,7 @@
             "nullable": true
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           },
           "reactionValue": {
             "type": "string",
@@ -15618,13 +15510,7 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "socialPostId": {
             "type": "string",
@@ -15743,26 +15629,10 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           }
         },
         "additionalProperties": false
@@ -15852,13 +15722,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "socialFeedId": {
             "type": "string",
@@ -16052,6 +15916,14 @@
         },
         "additionalProperties": false
       },
+      "SocialProfileType": {
+        "enum": [
+          "User",
+          "Tenant",
+          "Contact"
+        ],
+        "type": "string"
+      },
       "SocialReactionCreateDto": {
         "type": "object",
         "properties": {
@@ -16064,17 +15936,7 @@
             "format": "date-time"
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           },
           "reactionValue": {
             "type": "string",
@@ -16100,17 +15962,7 @@
             "nullable": true
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           },
           "reactionValue": {
             "type": "string",
@@ -16129,13 +15981,7 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           }
         },
         "additionalProperties": false
@@ -16259,17 +16105,7 @@
             "nullable": true
           },
           "reaction": {
-            "enum": [
-              "Like",
-              "Happy",
-              "HaHa",
-              "Love",
-              "Sad",
-              "Angry",
-              "Wow",
-              "Afraid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Reaction"
           },
           "reactionValue": {
             "type": "string",
@@ -16277,6 +16113,27 @@
           }
         },
         "additionalProperties": false
+      },
+      "StorageScanStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Clean",
+          "Infected",
+          "Failed",
+          "Quarantined"
+        ],
+        "type": "string"
+      },
+      "StorageThumbnailStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Ready",
+          "Failed",
+          "Unsupported"
+        ],
+        "type": "string"
       },
       "StringEnvelope": {
         "type": "object",

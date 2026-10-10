@@ -3118,10 +3118,7 @@ components:
           type: string
           nullable: true
         discountListType:
-          enum:
-            - Amount
-            - Percentage
-          type: string
+          $ref: '#/components/schemas/DiscountListType'
         currencyId:
           type: string
           nullable: true
@@ -3140,10 +3137,7 @@ components:
           type: string
           nullable: true
         discountListType:
-          enum:
-            - Amount
-            - Percentage
-          type: string
+          $ref: '#/components/schemas/DiscountListType'
         currencyId:
           type: string
           nullable: true
@@ -3265,6 +3259,11 @@ components:
             $ref: '#/components/schemas/DiscountListDto'
           nullable: true
       additionalProperties: false
+    DiscountListType:
+      enum:
+        - Amount
+        - Percentage
+      type: string
     DiscountListUpdateDto:
       type: object
       properties:
@@ -3274,10 +3273,7 @@ components:
           type: string
           nullable: true
         discountListType:
-          enum:
-            - Amount
-            - Percentage
-          type: string
+          $ref: '#/components/schemas/DiscountListType'
         currencyId:
           type: string
           nullable: true
@@ -3904,6 +3900,12 @@ components:
           nullable: true
         value: { }
       additionalProperties: false
+    PriceListContext:
+      enum:
+        - Sales
+        - Purchase
+        - Cost
+      type: string
     PriceListCreateDto:
       required:
         - name
@@ -3925,11 +3927,7 @@ components:
           type: string
           nullable: true
         context:
-          enum:
-            - Sales
-            - Purchase
-            - Cost
-          type: string
+          $ref: '#/components/schemas/PriceListContext'
         startDate:
           type: string
           format: date-time
@@ -3973,11 +3971,7 @@ components:
           type: string
           nullable: true
         context:
-          enum:
-            - Sales
-            - Purchase
-            - Cost
-          type: string
+          $ref: '#/components/schemas/PriceListContext'
         currencyId:
           type: string
           nullable: true
@@ -4124,11 +4118,7 @@ components:
           type: string
           nullable: true
         context:
-          enum:
-            - Sales
-            - Purchase
-            - Cost
-          type: string
+          $ref: '#/components/schemas/PriceListContext'
         startDate:
           type: string
           format: date-time

@@ -4993,11 +4993,7 @@
             "nullable": true
           },
           "discountListType": {
-            "enum": [
-              "Amount",
-              "Percentage"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DiscountListType"
           },
           "currencyId": {
             "type": "string",
@@ -5023,11 +5019,7 @@
             "nullable": true
           },
           "discountListType": {
-            "enum": [
-              "Amount",
-              "Percentage"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DiscountListType"
           },
           "currencyId": {
             "type": "string",
@@ -5193,6 +5185,13 @@
         },
         "additionalProperties": false
       },
+      "DiscountListType": {
+        "enum": [
+          "Amount",
+          "Percentage"
+        ],
+        "type": "string"
+      },
       "DiscountListUpdateDto": {
         "type": "object",
         "properties": {
@@ -5203,11 +5202,7 @@
             "nullable": true
           },
           "discountListType": {
-            "enum": [
-              "Amount",
-              "Percentage"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DiscountListType"
           },
           "currencyId": {
             "type": "string",
@@ -6058,6 +6053,14 @@
         },
         "additionalProperties": false
       },
+      "PriceListContext": {
+        "enum": [
+          "Sales",
+          "Purchase",
+          "Cost"
+        ],
+        "type": "string"
+      },
       "PriceListCreateDto": {
         "required": [
           "name"
@@ -6084,12 +6087,7 @@
             "nullable": true
           },
           "context": {
-            "enum": [
-              "Sales",
-              "Purchase",
-              "Cost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PriceListContext"
           },
           "startDate": {
             "type": "string",
@@ -6149,12 +6147,7 @@
             "nullable": true
           },
           "context": {
-            "enum": [
-              "Sales",
-              "Purchase",
-              "Cost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PriceListContext"
           },
           "currencyId": {
             "type": "string",
@@ -6352,12 +6345,7 @@
             "nullable": true
           },
           "context": {
-            "enum": [
-              "Sales",
-              "Purchase",
-              "Cost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PriceListContext"
           },
           "startDate": {
             "type": "string",

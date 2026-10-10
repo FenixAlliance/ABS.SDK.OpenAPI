@@ -5330,20 +5330,7 @@ components:
           type: string
           format: date-time
         shippingTerms:
-          enum:
-            - NC
-            - EXW
-            - FCA
-            - FOB
-            - FAS
-            - CFR
-            - CIF
-            - CPT
-            - CIP
-            - DDP
-            - DAP
-            - DPU
-          type: string
+          $ref: '#/components/schemas/ShippingTerms'
         orderId:
           type: string
           nullable: true
@@ -5380,20 +5367,7 @@ components:
           type: string
           format: date-time
         shippingTerms:
-          enum:
-            - NC
-            - EXW
-            - FCA
-            - FOB
-            - FAS
-            - CFR
-            - CIF
-            - CPT
-            - CIP
-            - DDP
-            - DAP
-            - DPU
-          type: string
+          $ref: '#/components/schemas/ShippingTerms'
         orderId:
           type: string
           nullable: true
@@ -5543,24 +5517,16 @@ components:
           type: string
           format: date-time
         shippingTerms:
-          enum:
-            - NC
-            - EXW
-            - FCA
-            - FOB
-            - FAS
-            - CFR
-            - CIF
-            - CPT
-            - CIP
-            - DDP
-            - DAP
-            - DPU
-          type: string
+          $ref: '#/components/schemas/ShippingTerms'
         orderId:
           type: string
           nullable: true
       additionalProperties: false
+    ShippingClassCalculationType:
+      enum:
+        - PerClass
+        - PerOrder
+      type: string
     ShippingClassCreateDto:
       required:
         - name
@@ -6105,10 +6071,7 @@ components:
           type: string
           nullable: true
         shippingClassCalculationType:
-          enum:
-            - PerClass
-            - PerOrder
-          type: string
+          $ref: '#/components/schemas/ShippingClassCalculationType'
       additionalProperties: false
     ShippingMethodDto:
       type: object
@@ -6140,10 +6103,7 @@ components:
           type: string
           nullable: true
         shippingClassCalculationType:
-          enum:
-            - PerClass
-            - PerOrder
-          type: string
+          $ref: '#/components/schemas/ShippingClassCalculationType'
       additionalProperties: false
     ShippingMethodDtoCollectionQueryParameters:
       type: object
@@ -6276,10 +6236,7 @@ components:
           type: string
           nullable: true
         shippingClassCalculationType:
-          enum:
-            - PerClass
-            - PerOrder
-          type: string
+          $ref: '#/components/schemas/ShippingClassCalculationType'
       additionalProperties: false
     ShippingRegionCreateDto:
       required:
@@ -6440,6 +6397,21 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ShippingTerms:
+      enum:
+        - NC
+        - EXW
+        - FCA
+        - FOB
+        - FAS
+        - CFR
+        - CIF
+        - CPT
+        - CIP
+        - DDP
+        - DAP
+        - DPU
+      type: string
     ShippingZoneCreateDto:
       required:
         - name

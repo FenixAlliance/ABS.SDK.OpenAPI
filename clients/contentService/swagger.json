@@ -12875,6 +12875,14 @@
         },
         "additionalProperties": false
       },
+      "Alignment": {
+        "enum": [
+          "Center",
+          "Right",
+          "Left"
+        ],
+        "type": "string"
+      },
       "AllianceBusinessSuiteIntegrationOptions": {
         "type": "object",
         "properties": {
@@ -12989,23 +12997,10 @@
             "nullable": true
           },
           "runAs": {
-            "enum": [
-              "Invoker",
-              "Application",
-              "System",
-              "Service"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RunAs"
           },
           "principalKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "provenance": {
             "$ref": "#/components/schemas/ExecutionProvenance"
@@ -13127,27 +13122,10 @@
         "type": "object",
         "properties": {
           "bgRepeat": {
-            "enum": [
-              "All",
-              "Horizontally",
-              "Vertically",
-              "NoRepeat"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BgRepeat"
           },
           "bgPosition": {
-            "enum": [
-              "TopLeft",
-              "TopRight",
-              "TopCenter",
-              "CenterLeft",
-              "CenterRight",
-              "CenterCenter",
-              "BottomLeft",
-              "BottomRight",
-              "BottomCenter"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BgPosition"
           },
           "backgroundColor": {
             "type": "string",
@@ -13192,6 +13170,11 @@
         },
         "additionalProperties": false
       },
+      "BannerSetId": {
+        "type": "string",
+        "additionalProperties": false,
+        "format": "uuid"
+      },
       "BaseThemePackageOptions": {
         "type": "object",
         "properties": {
@@ -13205,6 +13188,29 @@
           }
         },
         "additionalProperties": false
+      },
+      "BgPosition": {
+        "enum": [
+          "TopLeft",
+          "TopRight",
+          "TopCenter",
+          "CenterLeft",
+          "CenterRight",
+          "CenterCenter",
+          "BottomLeft",
+          "BottomRight",
+          "BottomCenter"
+        ],
+        "type": "string"
+      },
+      "BgRepeat": {
+        "enum": [
+          "All",
+          "Horizontally",
+          "Vertically",
+          "NoRepeat"
+        ],
+        "type": "string"
       },
       "BlogAuthorDto": {
         "type": "object",
@@ -13311,13 +13317,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Gender"
           },
           "walletId": {
             "type": "string",
@@ -13339,14 +13339,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/UserAvailability"
           }
         },
         "additionalProperties": false
@@ -13509,6 +13502,19 @@
           },
           "enableBlogPostComments": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlogPostBannerSlotDto": {
+        "type": "object",
+        "properties": {
+          "placementKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "bannerSetId": {
+            "$ref": "#/components/schemas/BannerSetId"
           }
         },
         "additionalProperties": false
@@ -14067,17 +14073,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "slug": {
             "type": "string",
@@ -14089,6 +14085,13 @@
           },
           "webTemplateId": {
             "type": "string",
+            "nullable": true
+          },
+          "bannerSlots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlogPostBannerSlotDto"
+            },
             "nullable": true
           }
         },
@@ -14107,17 +14110,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "order": {
             "type": "integer",
@@ -14941,17 +14934,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "cSharpContent": {
             "type": "string",
@@ -15050,6 +15033,13 @@
           },
           "webTemplateId": {
             "type": "string",
+            "nullable": true
+          },
+          "bannerSlots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlogPostBannerSlotDto"
+            },
             "nullable": true
           }
         },
@@ -15342,6 +15332,13 @@
         },
         "additionalProperties": false
       },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
       "CartDto": {
         "type": "object",
         "properties": {
@@ -15395,6 +15392,13 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "saleChannel": {
+            "$ref": "#/components/schemas/SaleChannel"
+          },
+          "directSellerTenantId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -15419,15 +15423,23 @@
         "type": "object",
         "additionalProperties": false
       },
+      "CodeFileType": {
+        "enum": [
+          "Razor",
+          "CSharp",
+          "CSHtml",
+          "Liquid",
+          "Html5",
+          "Markdown",
+          "Markup"
+        ],
+        "type": "string"
+      },
       "ColorOptions": {
         "type": "object",
         "properties": {
           "primarySkin": {
-            "enum": [
-              "Dark",
-              "Light"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Skin"
           },
           "primaryColor": {
             "type": "string",
@@ -15511,11 +15523,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -15748,6 +15756,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -15842,6 +15861,31 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
       },
       "CountryDto": {
         "type": "object",
@@ -15989,6 +16033,15 @@
         },
         "additionalProperties": false
       },
+      "CurrencyPosition": {
+        "enum": [
+          "Left",
+          "Right",
+          "LeftWithSpace",
+          "RightWithSpace"
+        ],
+        "type": "string"
+      },
       "CustomFont": {
         "type": "object",
         "properties": {
@@ -16044,6 +16097,36 @@
           }
         },
         "additionalProperties": false
+      },
+      "DefaultCustomerLocation": {
+        "enum": [
+          "None",
+          "Geolocate",
+          "StoreAddressBased",
+          "GeolocateWithCaching"
+        ],
+        "type": "string"
+      },
+      "DimensionUInit": {
+        "enum": [
+          "cms",
+          "m",
+          "mm",
+          "inc",
+          "yr"
+        ],
+        "type": "string"
+      },
+      "Divider": {
+        "enum": [
+          "None",
+          "Solid",
+          "Dotted",
+          "Double",
+          "Groove",
+          "Ridge"
+        ],
+        "type": "string"
       },
       "DownloadablesOptions": {
         "type": "object",
@@ -16533,33 +16616,13 @@
         "type": "object",
         "properties": {
           "initiation": {
-            "enum": [
-              "Unknown",
-              "Http",
-              "Workflow",
-              "ScheduledJob",
-              "Event",
-              "AiTool",
-              "Mcp",
-              "Integration",
-              "System",
-              "Manual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RunInitiation"
           },
           "onBehalfOfActorId": {
             "$ref": "#/components/schemas/UserId"
           },
           "onBehalfOfActorKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "causationId": {
             "type": "string",
@@ -16644,11 +16707,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -16943,14 +17002,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Gender"
           },
           "cityId": {
             "type": "string",
@@ -17023,15 +17075,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/UserAvailability"
           },
           "lockoutEnabled": {
             "type": "boolean"
@@ -17047,13 +17091,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SiteTheme"
           },
           "cart": {
             "$ref": "#/components/schemas/CartDto"
@@ -17206,15 +17244,7 @@
             "nullable": true
           },
           "widgetDivider": {
-            "enum": [
-              "None",
-              "Solid",
-              "Dotted",
-              "Double",
-              "Groove",
-              "Ridge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Divider"
           },
           "copyrightPadding": {
             "$ref": "#/components/schemas/Padding"
@@ -17258,12 +17288,7 @@
             "format": "int32"
           },
           "stalenessMode": {
-            "enum": [
-              "Off",
-              "Flag",
-              "Block"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ForexStalenessMode"
           }
         },
         "additionalProperties": false
@@ -17310,6 +17335,14 @@
         },
         "additionalProperties": false
       },
+      "ForexStalenessMode": {
+        "enum": [
+          "Off",
+          "Flag",
+          "Block"
+        ],
+        "type": "string"
+      },
       "ForgotPasswordRequest": {
         "required": [
           "email"
@@ -17349,6 +17382,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "Gender": {
+        "enum": [
+          "Unknown",
+          "Male",
+          "Female",
+          "PreferNotToSay"
+        ],
+        "type": "string"
       },
       "GoogleAnalytics": {
         "type": "object",
@@ -17519,6 +17561,27 @@
         "type": "object",
         "additionalProperties": false
       },
+      "HeaderContentType": {
+        "enum": [
+          "NavigationMenu",
+          "AccountMenu",
+          "ContactInfo",
+          "SocialLinks",
+          "LeaveEmpty"
+        ],
+        "type": "string"
+      },
+      "HeaderLayout": {
+        "enum": [
+          "_01",
+          "_02",
+          "_03",
+          "_04",
+          "_05",
+          "_06"
+        ],
+        "type": "string"
+      },
       "HeaderOptions": {
         "type": "object",
         "properties": {
@@ -17547,43 +17610,16 @@
             "type": "boolean"
           },
           "headerLayout": {
-            "enum": [
-              "_01",
-              "_02",
-              "_03",
-              "_04",
-              "_05",
-              "_06"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/HeaderLayout"
           },
           "headerPosition": {
-            "enum": [
-              "Top",
-              "Right",
-              "Center"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/HeaderPosition"
           },
           "topHeaderContentType2": {
-            "enum": [
-              "NavigationMenu",
-              "AccountMenu",
-              "ContactInfo",
-              "SocialLinks",
-              "LeaveEmpty"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/HeaderContentType"
           },
           "topHeaderContentType1": {
-            "enum": [
-              "NavigationMenu",
-              "AccountMenu",
-              "ContactInfo",
-              "SocialLinks",
-              "LeaveEmpty"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/HeaderContentType"
           },
           "topHeaderBackgroundColor": {
             "type": "string",
@@ -17599,6 +17635,14 @@
           }
         },
         "additionalProperties": false
+      },
+      "HeaderPosition": {
+        "enum": [
+          "Top",
+          "Right",
+          "Center"
+        ],
+        "type": "string"
       },
       "HttpValidationProblemDetails": {
         "type": "object",
@@ -17664,13 +17708,7 @@
             "nullable": true
           },
           "defaultCustomerLocation": {
-            "enum": [
-              "None",
-              "Geolocate",
-              "StoreAddressBased",
-              "GeolocateWithCaching"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DefaultCustomerLocation"
           },
           "inactiveCartsRetentionPolicy": {
             "$ref": "#/components/schemas/StoreDataRetentionPolicy"
@@ -17884,15 +17922,17 @@
             "format": "int32"
           },
           "stockDisplayFormat": {
-            "enum": [
-              "AlwaysDisplayRemainingQuantity",
-              "OnlyDisplayRemainingQuantityWhenStockIsLow",
-              "NeverDisplayRemainingQuantity"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StoreStockDisplayFormat"
           }
         },
         "additionalProperties": false
+      },
+      "Layout": {
+        "enum": [
+          "Boxed",
+          "Wide"
+        ],
+        "type": "string"
       },
       "LayoutOptions": {
         "type": "object",
@@ -17934,11 +17974,7 @@
             "nullable": true
           },
           "layout": {
-            "enum": [
-              "Boxed",
-              "Wide"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Layout"
           }
         },
         "additionalProperties": false
@@ -18208,12 +18244,7 @@
             "$ref": "#/components/schemas/Margin"
           },
           "alignment": {
-            "enum": [
-              "Center",
-              "Right",
-              "Left"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Alignment"
           },
           "width": {
             "type": "integer",
@@ -18316,6 +18347,13 @@
         },
         "additionalProperties": false
       },
+      "MainMenuSearchLayout": {
+        "enum": [
+          "Dropdown",
+          "Overlay"
+        ],
+        "type": "string"
+      },
       "MansoryOptions": {
         "type": "object",
         "additionalProperties": false
@@ -18346,23 +18384,10 @@
         "type": "object",
         "properties": {
           "defaultWeightUnit": {
-            "enum": [
-              "Kg",
-              "g",
-              "lbs",
-              "oz"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/WeightUnit"
           },
           "defaultDimensionUInit": {
-            "enum": [
-              "cms",
-              "m",
-              "mm",
-              "inc",
-              "yr"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DimensionUInit"
           }
         },
         "additionalProperties": false
@@ -18743,6 +18768,31 @@
         },
         "additionalProperties": false
       },
+      "MenuDropdownAnimation": {
+        "enum": [
+          "Fade",
+          "Slide"
+        ],
+        "type": "string"
+      },
+      "MenuDropdownIndicator": {
+        "enum": [
+          "None",
+          "Parent",
+          "ParentAndChild"
+        ],
+        "type": "string"
+      },
+      "MenuHighlightStyle": {
+        "enum": [
+          "TopBar",
+          "BottomBar",
+          "Arrow",
+          "ColorOnly",
+          "Background"
+        ],
+        "type": "string"
+      },
       "MenuOptions": {
         "type": "object",
         "properties": {
@@ -18832,36 +18882,16 @@
             "$ref": "#/components/schemas/Typography"
           },
           "menuHighlightStyle": {
-            "enum": [
-              "TopBar",
-              "BottomBar",
-              "Arrow",
-              "ColorOnly",
-              "Background"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/MenuHighlightStyle"
           },
           "mainMenuSearchLayout": {
-            "enum": [
-              "Dropdown",
-              "Overlay"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/MainMenuSearchLayout"
           },
           "menuDropdownAnimation": {
-            "enum": [
-              "Fade",
-              "Slide"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/MenuDropdownAnimation"
           },
           "menuDropdownIndicator": {
-            "enum": [
-              "None",
-              "Parent",
-              "ParentAndChild"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/MenuDropdownIndicator"
           }
         },
         "additionalProperties": false
@@ -18994,6 +19024,22 @@
         },
         "additionalProperties": false
       },
+      "PageTitleBar": {
+        "enum": [
+          "ShowBarAndContent",
+          "ShowContentOnly",
+          "Hide"
+        ],
+        "type": "string"
+      },
+      "PageTitleBarContent": {
+        "enum": [
+          "None",
+          "SearchBar",
+          "Breadcrumbs"
+        ],
+        "type": "string"
+      },
       "PaginationOptions": {
         "type": "object",
         "additionalProperties": false
@@ -19082,12 +19128,7 @@
             "nullable": true
           },
           "portalUiEngine": {
-            "enum": [
-              "Angular",
-              "React",
-              "Razor"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PortalUiEngine"
           },
           "seo": {
             "$ref": "#/components/schemas/SeoOptions"
@@ -19269,6 +19310,13 @@
           },
           "baseThemePackage": {
             "$ref": "#/components/schemas/BaseThemePackageOptions"
+          },
+          "codeAuthoringTenantIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -19324,9 +19372,26 @@
         },
         "additionalProperties": false
       },
+      "PortalUiEngine": {
+        "enum": [
+          "Angular",
+          "React",
+          "Razor"
+        ],
+        "type": "string"
+      },
       "PortfolioOptions": {
         "type": "object",
         "additionalProperties": false
+      },
+      "Position": {
+        "enum": [
+          "Bottom",
+          "Right",
+          "Left",
+          "Top"
+        ],
+        "type": "string"
       },
       "PriceCalculationOptions": {
         "type": "object",
@@ -19337,6 +19402,16 @@
           }
         },
         "additionalProperties": false
+      },
+      "PrincipalKind": {
+        "enum": [
+          "Human",
+          "Agent",
+          "Application",
+          "Service",
+          "System"
+        ],
+        "type": "string"
       },
       "PrivacyOptions": {
         "type": "object",
@@ -19351,6 +19426,18 @@
       "ProductOptions": {
         "type": "object",
         "additionalProperties": false
+      },
+      "ProrateFirstRenewal": {
+        "enum": [
+          "AlwaysAndNoCharge",
+          "NeverAndNoCharge",
+          "NeverAndFullCharge",
+          "AlwaysAndFullCharge",
+          "ForVirtualProductsOnly",
+          "ForServiceProductsOnly",
+          "ForSubscriptionProductsOnly"
+        ],
+        "type": "string"
       },
       "PublicBlogAuthorDto": {
         "type": "object",
@@ -19436,6 +19523,13 @@
           },
           "author": {
             "$ref": "#/components/schemas/PublicBlogAuthorDto"
+          },
+          "bannerSlots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlogPostBannerSlotDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -19601,12 +19695,7 @@
             "nullable": true
           },
           "portalUiEngine": {
-            "enum": [
-              "Angular",
-              "React",
-              "Razor"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PortalUiEngine"
           },
           "seo": {
             "$ref": "#/components/schemas/SeoOptions"
@@ -19992,6 +20081,15 @@
         },
         "additionalProperties": false
       },
+      "RetentionTimeSpan": {
+        "enum": [
+          "Days",
+          "Weeks",
+          "Months",
+          "Years"
+        ],
+        "type": "string"
+      },
       "ReviewsOptions": {
         "type": "object",
         "properties": {
@@ -20012,6 +20110,38 @@
           }
         },
         "additionalProperties": false
+      },
+      "RunAs": {
+        "enum": [
+          "Invoker",
+          "Application",
+          "System",
+          "Service"
+        ],
+        "type": "string"
+      },
+      "RunInitiation": {
+        "enum": [
+          "Unknown",
+          "Http",
+          "Workflow",
+          "ScheduledJob",
+          "Event",
+          "AiTool",
+          "Mcp",
+          "Integration",
+          "System",
+          "Manual"
+        ],
+        "type": "string"
+      },
+      "SaleChannel": {
+        "enum": [
+          "Unset",
+          "Marketplace",
+          "Direct"
+        ],
+        "type": "string"
       },
       "SearchOptions": {
         "type": "object",
@@ -20144,16 +20274,7 @@
             "format": "int32"
           },
           "prorateFirstRenewal": {
-            "enum": [
-              "AlwaysAndNoCharge",
-              "NeverAndNoCharge",
-              "NeverAndFullCharge",
-              "AlwaysAndFullCharge",
-              "ForVirtualProductsOnly",
-              "ForServiceProductsOnly",
-              "ForSubscriptionProductsOnly"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ProrateFirstRenewal"
           }
         },
         "additionalProperties": false
@@ -20161,6 +20282,21 @@
       "SidebarOptions": {
         "type": "object",
         "additionalProperties": false
+      },
+      "SiteTheme": {
+        "enum": [
+          "System",
+          "Light",
+          "Dark"
+        ],
+        "type": "string"
+      },
+      "Skin": {
+        "enum": [
+          "Dark",
+          "Light"
+        ],
+        "type": "string"
       },
       "SliderOptions": {
         "type": "object",
@@ -20174,24 +20310,13 @@
         "type": "object",
         "properties": {
           "position": {
-            "enum": [
-              "Bottom",
-              "Right",
-              "Left",
-              "Top"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Position"
           },
           "contentPadding": {
             "$ref": "#/components/schemas/Padding"
           },
           "contentAlignment": {
-            "enum": [
-              "Center",
-              "Right",
-              "Left"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Alignment"
           },
           "columnsCount": {
             "type": "integer",
@@ -20333,13 +20458,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "socialFeedId": {
             "type": "string",
@@ -20384,6 +20503,14 @@
         },
         "additionalProperties": false
       },
+      "SocialProfileType": {
+        "enum": [
+          "User",
+          "Tenant",
+          "Contact"
+        ],
+        "type": "string"
+      },
       "StoreDataRetentionPolicy": {
         "type": "object",
         "properties": {
@@ -20392,13 +20519,7 @@
             "format": "int32"
           },
           "retentionTimeSpan": {
-            "enum": [
-              "Days",
-              "Weeks",
-              "Months",
-              "Years"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RetentionTimeSpan"
           }
         },
         "additionalProperties": false
@@ -20548,16 +20669,18 @@
             "nullable": true
           },
           "currencyPosition": {
-            "enum": [
-              "Left",
-              "Right",
-              "LeftWithSpace",
-              "RightWithSpace"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CurrencyPosition"
           }
         },
         "additionalProperties": false
+      },
+      "StoreStockDisplayFormat": {
+        "enum": [
+          "AlwaysDisplayRemainingQuantity",
+          "OnlyDisplayRemainingQuantityWhenStockIsLow",
+          "NeverDisplayRemainingQuantity"
+        ],
+        "type": "string"
       },
       "StudioOptions": {
         "type": "object",
@@ -20656,16 +20779,7 @@
             "format": "int32"
           },
           "prorateFirstRenewal": {
-            "enum": [
-              "AlwaysAndNoCharge",
-              "NeverAndNoCharge",
-              "NeverAndFullCharge",
-              "AlwaysAndFullCharge",
-              "ForVirtualProductsOnly",
-              "ForServiceProductsOnly",
-              "ForSubscriptionProductsOnly"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ProrateFirstRenewal"
           }
         },
         "additionalProperties": false
@@ -20753,11 +20867,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -21019,28 +21129,13 @@
             "nullable": true
           },
           "pageTitleBar": {
-            "enum": [
-              "ShowBarAndContent",
-              "ShowContentOnly",
-              "Hide"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PageTitleBar"
           },
           "pageTitleBarContent": {
-            "enum": [
-              "None",
-              "SearchBar",
-              "Breadcrumbs"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PageTitleBarContent"
           },
           "pageTitleBarTextAlignment": {
-            "enum": [
-              "Center",
-              "Right",
-              "Left"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Alignment"
           }
         },
         "additionalProperties": false
@@ -21158,6 +21253,16 @@
         },
         "additionalProperties": false
       },
+      "UserAvailability": {
+        "enum": [
+          "DND",
+          "Busy",
+          "Away",
+          "Offline",
+          "Available"
+        ],
+        "type": "string"
+      },
       "UserDto": {
         "type": "object",
         "properties": {
@@ -21257,14 +21362,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Gender"
           },
           "cityId": {
             "type": "string",
@@ -21337,15 +21435,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/UserAvailability"
           },
           "lockoutEnabled": {
             "type": "boolean"
@@ -21361,13 +21451,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SiteTheme"
           }
         },
         "additionalProperties": false
@@ -21406,12 +21490,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SiteTheme"
           }
         },
         "additionalProperties": false
@@ -21530,17 +21609,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "published": {
             "type": "boolean"
@@ -21596,17 +21665,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "published": {
             "type": "boolean"
@@ -21810,17 +21869,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "published": {
             "type": "boolean"
@@ -21874,17 +21923,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           }
         },
         "additionalProperties": false
@@ -21902,17 +21941,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "order": {
             "type": "integer",
@@ -22386,17 +22415,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "cSharpContent": {
             "type": "string",
@@ -22857,17 +22876,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "slug": {
             "type": "string",
@@ -22901,17 +22910,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "order": {
             "type": "integer",
@@ -23753,17 +23752,7 @@
             "nullable": true
           },
           "codeType": {
-            "enum": [
-              "Razor",
-              "CSharp",
-              "CSHtml",
-              "Liquid",
-              "Html5",
-              "Markdown",
-              "Markup"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CodeFileType"
           },
           "cSharpContent": {
             "type": "string",
@@ -24744,6 +24733,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "WeightUnit": {
+        "enum": [
+          "Kg",
+          "g",
+          "lbs",
+          "oz"
+        ],
+        "type": "string"
       }
     }
   },

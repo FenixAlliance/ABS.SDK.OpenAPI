@@ -2629,6 +2629,13 @@
         },
         "additionalProperties": false
       },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
       "EmptyEnvelope": {
         "type": "object",
         "properties": {
@@ -4165,11 +4172,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",

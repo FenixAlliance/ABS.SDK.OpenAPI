@@ -1541,23 +1541,10 @@
             "nullable": true
           },
           "runAs": {
-            "enum": [
-              "Invoker",
-              "Application",
-              "System",
-              "Service"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RunAs"
           },
           "principalKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "provenance": {
             "$ref": "#/components/schemas/ExecutionProvenance"
@@ -1686,33 +1673,13 @@
         "type": "object",
         "properties": {
           "initiation": {
-            "enum": [
-              "Unknown",
-              "Http",
-              "Workflow",
-              "ScheduledJob",
-              "Event",
-              "AiTool",
-              "Mcp",
-              "Integration",
-              "System",
-              "Manual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RunInitiation"
           },
           "onBehalfOfActorId": {
             "$ref": "#/components/schemas/UserId"
           },
           "onBehalfOfActorKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "causationId": {
             "type": "string",
@@ -1742,6 +1709,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "Gender": {
+        "enum": [
+          "Unknown",
+          "Male",
+          "Female",
+          "PreferNotToSay"
+        ],
+        "type": "string"
       },
       "HttpValidationProblemDetails": {
         "type": "object",
@@ -2242,6 +2218,16 @@
         "additionalProperties": false,
         "format": "uuid"
       },
+      "PrincipalKind": {
+        "enum": [
+          "Human",
+          "Agent",
+          "Application",
+          "Service",
+          "System"
+        ],
+        "type": "string"
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -2308,6 +2294,30 @@
           }
         },
         "additionalProperties": false
+      },
+      "RunAs": {
+        "enum": [
+          "Invoker",
+          "Application",
+          "System",
+          "Service"
+        ],
+        "type": "string"
+      },
+      "RunInitiation": {
+        "enum": [
+          "Unknown",
+          "Http",
+          "Workflow",
+          "ScheduledJob",
+          "Event",
+          "AiTool",
+          "Mcp",
+          "Integration",
+          "System",
+          "Manual"
+        ],
+        "type": "string"
       },
       "SigninModel": {
         "type": "object",
@@ -2475,13 +2485,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/Gender"
           },
           "email": {
             "type": "string",

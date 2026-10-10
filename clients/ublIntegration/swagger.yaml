@@ -45,11 +45,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -128,11 +124,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -211,11 +203,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -631,11 +619,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -714,11 +698,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -797,11 +777,7 @@ paths:
         - name: profile
           in: query
           schema:
-            enum:
-              - Generic
-              - Dian
-            type: string
-            default: Generic
+            $ref: '#/components/schemas/UblProfileType'
         - name: api-version
           in: query
           schema:
@@ -1083,6 +1059,11 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UblProfileType:
+      enum:
+        - Generic
+        - Dian
+      type: string
     UblRenderedDocumentModel:
       type: object
       properties:

@@ -6767,6 +6767,13 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "saleChannel": {
+            "$ref": "#/components/schemas/SaleChannel"
+          },
+          "directSellerTenantId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6835,6 +6842,13 @@
           }
         },
         "additionalProperties": false
+      },
+      "CostCalculationMethod": {
+        "enum": [
+          "Automatic",
+          "Custom"
+        ],
+        "type": "string"
       },
       "CountryDto": {
         "type": "object",
@@ -7338,18 +7352,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -7530,6 +7536,11 @@
           "quantity": {
             "type": "number",
             "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
           },
           "free": {
             "type": "boolean"
@@ -8252,6 +8263,21 @@
           }
         },
         "additionalProperties": false
+      },
+      "SaleChannel": {
+        "enum": [
+          "Unset",
+          "Marketplace",
+          "Direct"
+        ],
+        "type": "string"
+      },
+      "TaxCalculationMethod": {
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string"
       },
       "TwoFactorRequest": {
         "type": "object",

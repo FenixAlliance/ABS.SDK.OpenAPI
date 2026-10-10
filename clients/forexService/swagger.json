@@ -2028,6 +2028,15 @@
         },
         "additionalProperties": false
       },
+      "ForexSetRepairAction": {
+        "enum": [
+          "Create",
+          "Replace",
+          "Unchanged",
+          "NoSnapshot"
+        ],
+        "type": "string"
+      },
       "ForexSetRepairDay": {
         "type": "object",
         "properties": {
@@ -2036,13 +2045,7 @@
             "format": "date-time"
           },
           "action": {
-            "enum": [
-              "Create",
-              "Replace",
-              "Unchanged",
-              "NoSnapshot"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ForexSetRepairAction"
           },
           "snapshotRevision": {
             "type": "string",

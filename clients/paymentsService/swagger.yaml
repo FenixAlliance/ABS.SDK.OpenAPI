@@ -2571,6 +2571,72 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProviderOperationOutcomeReconciliationEnvelope'
+  '/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/Refund':
+    post:
+      tags:
+        - ProviderOperations
+      summary: Refunds one collection through its own rail
+      description: "Returns the money of ONE succeeded collection instruction through the rail that collected it, on the governed refund path (the same use case the ePayco connector route dispatches; the rail is chosen from the collection, never from the route). Gated on payment_refunds_create; the operation is re-checked against the acting tenant, and a missing instruction and another tenant's instruction answer identically. \n\nA POST because it is an external effect on money. A refund is SINGLE-SHOT unless the rail certifies idempotent replay for refunds: the refund intent is committed before the rail is contacted, so a repeated call is refused with a conflict and a lost answer is reconciled, never re-sent. Read the outcome's Certainty."
+      operationId: ProviderOperations_RefundCollection
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: providerOperationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderOperationRefundOutcomeEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProviderOperationRefundOutcomeEnvelope'
   /api/v2/PaymentsService/PublicPaymentLinks:
     post:
       tags:
@@ -2730,6 +2796,15 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    CanonicalPaymentStatus:
+      enum:
+        - Pending
+        - RequiresAction
+        - Authorized
+        - Succeeded
+        - Failed
+        - Cancelled
+      type: string
     CreateProviderWebhookRegistrationRequest:
       type: object
       properties:
@@ -2743,23 +2818,13 @@ components:
           type: string
           nullable: true
         environment:
-          enum:
-            - Unknown
-            - Test
-            - Live
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PaymentEnvironment'
       additionalProperties: false
     DeclarePaymentProviderEnvironmentRequest:
       type: object
       properties:
         environment:
-          enum:
-            - Unknown
-            - Test
-            - Live
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PaymentEnvironment'
       additionalProperties: false
     EmptyEnvelope:
       type: object
@@ -2937,9 +3002,7 @@ components:
       type: object
       properties:
         obligationType:
-          enum:
-            - Invoice
-          type: string
+          $ref: '#/components/schemas/PaymentObligationType'
         obligationId:
           type: string
           format: uuid
@@ -2952,9 +3015,7 @@ components:
       type: object
       properties:
         obligationType:
-          enum:
-            - Invoice
-          type: string
+          $ref: '#/components/schemas/PaymentObligationType'
         obligationId:
           type: string
           format: uuid
@@ -2966,9 +3027,7 @@ components:
           type: string
           nullable: true
         obligationType:
-          enum:
-            - Invoice
-          type: string
+          $ref: '#/components/schemas/PaymentObligationType'
         obligationId:
           type: string
           nullable: true
@@ -3043,6 +3102,27 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    OnBehalfOf:
+      enum:
+        - Self
+        - Tenant
+        - Individual
+        - Organization
+      type: string
+    OperationOutcomeCertainty:
+      enum:
+        - Unknown
+        - KnownNoEffect
+        - KnownSucceeded
+        - KnownFailed
+      type: string
+    OutcomeReconciliationAvailability:
+      enum:
+        - Unknown
+        - Unavailable
+        - Available
+        - AlreadyEstablished
+      type: string
     PatchOperation:
       type: object
       properties:
@@ -3123,33 +3203,11 @@ components:
           type: string
           format: date-time
         onBehalfOf:
-          enum:
-            - Self
-            - Tenant
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/OnBehalfOf'
         paymentType:
-          enum:
-            - Paid
-            - Received
-            - Internal
-          type: string
+          $ref: '#/components/schemas/PaymentType'
         paymentStatus:
-          enum:
-            - Unset
-            - Accepted
-            - Rejected
-            - OnHold
-            - Failed
-            - Reversed
-            - Retained
-            - Initialized
-            - Expired
-            - Abandoned
-            - Cancelled
-            - AcceptedRetained
-          type: string
+          $ref: '#/components/schemas/PaymentStatus'
         baseCost:
           type: number
           format: double
@@ -3344,33 +3402,11 @@ components:
           type: string
           format: date-time
         onBehalfOf:
-          enum:
-            - Self
-            - Tenant
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/OnBehalfOf'
         paymentType:
-          enum:
-            - Paid
-            - Received
-            - Internal
-          type: string
+          $ref: '#/components/schemas/PaymentType'
         paymentStatus:
-          enum:
-            - Unset
-            - Accepted
-            - Rejected
-            - OnHold
-            - Failed
-            - Reversed
-            - Retained
-            - Initialized
-            - Expired
-            - Abandoned
-            - Cancelled
-            - AcceptedRetained
-          type: string
+          $ref: '#/components/schemas/PaymentStatus'
         baseCost:
           type: number
           format: double
@@ -3551,6 +3587,12 @@ components:
             $ref: '#/components/schemas/PaymentDto'
           nullable: true
       additionalProperties: false
+    PaymentEnvironment:
+      enum:
+        - Unknown
+        - Test
+        - Live
+      type: string
     PaymentMethodCreateDto:
       required:
         - name
@@ -3898,6 +3940,30 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    PaymentObligationType:
+      enum:
+        - Invoice
+      type: string
+    PaymentProviderCapability:
+      enum:
+        - None
+        - Collection
+        - Authorization
+        - Capture
+        - Refund
+        - Void
+        - SplitPayment
+        - Transfer
+        - Payout
+        - RecipientOnboarding
+        - BalanceInquiry
+      type: string
+    PaymentProviderCredentialMode:
+      enum:
+        - TenantManaged
+        - PlatformManaged
+        - ExternalReference
+      type: string
     PaymentProviderRegistrationDto:
       type: object
       properties:
@@ -3926,41 +3992,16 @@ components:
         hasCredential:
           type: boolean
         credentialMode:
-          enum:
-            - TenantManaged
-            - PlatformManaged
-            - ExternalReference
-          type: string
+          $ref: '#/components/schemas/PaymentProviderCredentialMode'
         environment:
-          enum:
-            - Unknown
-            - Test
-            - Live
-          type: string
+          $ref: '#/components/schemas/PaymentEnvironment'
         externalAccountId:
           type: string
           nullable: true
         enabledCapabilities:
-          enum:
-            - None
-            - Collection
-            - Authorization
-            - Capture
-            - Refund
-            - Void
-            - SplitPayment
-            - Transfer
-            - Payout
-            - RecipientOnboarding
-            - BalanceInquiry
-          type: string
+          $ref: '#/components/schemas/PaymentProviderCapability'
         status:
-          enum:
-            - Draft
-            - Active
-            - Disabled
-            - Suspended
-          type: string
+          $ref: '#/components/schemas/PaymentProviderRegistrationStatus'
       additionalProperties: false
     PaymentProviderRegistrationDtoCollectionQueryParameters:
       type: object
@@ -4035,27 +4076,37 @@ components:
             $ref: '#/components/schemas/PaymentProviderRegistrationDto'
           nullable: true
       additionalProperties: false
+    PaymentProviderRegistrationStatus:
+      enum:
+        - Draft
+        - Active
+        - Disabled
+        - Suspended
+      type: string
     PaymentProviderRegistrationUpdateDto:
       type: object
       properties:
         enabledCapabilities:
-          enum:
-            - None
-            - Collection
-            - Authorization
-            - Capture
-            - Refund
-            - Void
-            - SplitPayment
-            - Transfer
-            - Payout
-            - RecipientOnboarding
-            - BalanceInquiry
-          type: string
+          $ref: '#/components/schemas/PaymentProviderCapability'
         externalAccountId:
           type: string
           nullable: true
       additionalProperties: false
+    PaymentStatus:
+      enum:
+        - Unset
+        - Accepted
+        - Rejected
+        - OnHold
+        - Failed
+        - Reversed
+        - Retained
+        - Initialized
+        - Expired
+        - Abandoned
+        - Cancelled
+        - AcceptedRetained
+      type: string
     PaymentTermCreateDto:
       required:
         - name
@@ -4295,6 +4346,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    PaymentType:
+      enum:
+        - Paid
+        - Received
+        - Internal
+      type: string
     PaymentUpdateDto:
       type: object
       properties:
@@ -4355,33 +4412,11 @@ components:
           type: string
           format: date-time
         onBehalfOf:
-          enum:
-            - Self
-            - Tenant
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/OnBehalfOf'
         paymentType:
-          enum:
-            - Paid
-            - Received
-            - Internal
-          type: string
+          $ref: '#/components/schemas/PaymentType'
         paymentStatus:
-          enum:
-            - Unset
-            - Accepted
-            - Rejected
-            - OnHold
-            - Failed
-            - Reversed
-            - Retained
-            - Initialized
-            - Expired
-            - Abandoned
-            - Cancelled
-            - AcceptedRetained
-          type: string
+          $ref: '#/components/schemas/PaymentStatus'
         baseCost:
           type: number
           format: double
@@ -4517,33 +4552,14 @@ components:
           type: string
           nullable: true
         operationKind:
-          enum:
-            - Collection
-            - Refund
-            - Payout
-            - FxQuote
-            - Tokenization
-            - VirtualAccountIssuance
-            - Void
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/ProviderOperationType'
         providerCode:
           type: string
           nullable: true
         certainty:
-          enum:
-            - Unknown
-            - KnownNoEffect
-            - KnownSucceeded
-            - KnownFailed
-          type: string
+          $ref: '#/components/schemas/OperationOutcomeCertainty'
         availability:
-          enum:
-            - Unknown
-            - Unavailable
-            - Available
-            - AlreadyEstablished
-          type: string
+          $ref: '#/components/schemas/OutcomeReconciliationAvailability'
         disposition:
           type: string
           nullable: true
@@ -4608,40 +4624,13 @@ components:
           type: string
           nullable: true
         operationKind:
-          enum:
-            - Collection
-            - Refund
-            - Payout
-            - FxQuote
-            - Tokenization
-            - VirtualAccountIssuance
-            - Void
-          type: string
+          $ref: '#/components/schemas/ProviderOperationType'
         environment:
-          enum:
-            - Unknown
-            - Test
-            - Live
-          type: string
+          $ref: '#/components/schemas/PaymentEnvironment'
         state:
-          enum:
-            - Prepared
-            - Dispatched
-            - Observed
-            - Settled
-            - Failed
-            - Discontinued
-          type: string
+          $ref: '#/components/schemas/ProviderOperationState'
         canonicalStatus:
-          enum:
-            - Pending
-            - RequiresAction
-            - Authorized
-            - Succeeded
-            - Failed
-            - Cancelled
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CanonicalPaymentStatus'
         requestedAmount:
           type: number
           format: double
@@ -4665,12 +4654,7 @@ components:
           format: date-time
           nullable: true
         outcomeReconciliation:
-          enum:
-            - Unknown
-            - Unavailable
-            - Available
-            - AlreadyEstablished
-          type: string
+          $ref: '#/components/schemas/OutcomeReconciliationAvailability'
         reconciliationDisposition:
           type: string
           nullable: true
@@ -4748,6 +4732,86 @@ components:
             $ref: '#/components/schemas/ProviderOperationOutcomeReviewDto'
           nullable: true
       additionalProperties: false
+    ProviderOperationRefundOutcome:
+      type: object
+      properties:
+        providerOperationId:
+          type: string
+          nullable: true
+        refundedProviderOperationId:
+          type: string
+          nullable: true
+        providerResourceId:
+          type: string
+          nullable: true
+        canonicalStatus:
+          $ref: '#/components/schemas/CanonicalPaymentStatus'
+        certainty:
+          $ref: '#/components/schemas/OperationOutcomeCertainty'
+        message:
+          type: string
+          nullable: true
+        requiresReconciliation:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ProviderOperationRefundOutcomeEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ProviderOperationRefundOutcome'
+      additionalProperties: false
+    ProviderOperationState:
+      enum:
+        - Prepared
+        - Dispatched
+        - Observed
+        - Settled
+        - Failed
+        - Discontinued
+      type: string
+    ProviderOperationType:
+      enum:
+        - Collection
+        - Refund
+        - Payout
+        - FxQuote
+        - Tokenization
+        - VirtualAccountIssuance
+        - Void
+      type: string
     ProviderWebhookRegistrationCreatedDto:
       type: object
       properties:
@@ -4758,12 +4822,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Draft
-            - Active
-            - Disabled
-            - Suspended
-          type: string
+          $ref: '#/components/schemas/PaymentProviderRegistrationStatus'
         webhookRegistrationKey:
           type: string
           nullable: true
@@ -4819,9 +4878,7 @@ components:
           type: string
           nullable: true
         obligationType:
-          enum:
-            - Invoice
-          type: string
+          $ref: '#/components/schemas/PaymentObligationType'
         obligationId:
           type: string
           nullable: true
@@ -4832,12 +4889,7 @@ components:
           type: string
           nullable: true
         state:
-          enum:
-            - Unminted
-            - Active
-            - Revoked
-            - Rotated
-          type: string
+          $ref: '#/components/schemas/PublicPaymentReferenceState'
         mintedAt:
           type: string
           format: date-time
@@ -4881,6 +4933,13 @@ components:
         result:
           $ref: '#/components/schemas/PublicPaymentReferenceDto'
       additionalProperties: false
+    PublicPaymentReferenceState:
+      enum:
+        - Unminted
+        - Active
+        - Revoked
+        - Rotated
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -4933,12 +4992,7 @@ components:
       type: object
       properties:
         credentialMode:
-          enum:
-            - TenantManaged
-            - PlatformManaged
-            - ExternalReference
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PaymentProviderCredentialMode'
       additionalProperties: false
     TwoFactorRequest:
       type: object

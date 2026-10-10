@@ -1712,6 +1712,76 @@
         }
       }
     },
+    "/api/v2/DealsService/DealUnits/{dealUnitId}/Close": {
+      "put": {
+        "tags": [
+          "DealUnits"
+        ],
+        "summary": "Close a deal unit",
+        "description": "Closes the specified deal unit for the tenant as won (won=true) or lost (won=false).",
+        "operationId": "DealUnits_CloseDealUnit",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "dealUnitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "won",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines": {
       "get": {
         "tags": [
@@ -2918,6 +2988,13 @@
         },
         "additionalProperties": false
       },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
       "ContactDto": {
         "type": "object",
         "properties": {
@@ -2940,11 +3017,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -3177,6 +3250,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -3187,6 +3271,45 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "CostCalculationMethod": {
+        "enum": [
+          "Automatic",
+          "Custom"
+        ],
+        "type": "string"
+      },
+      "DealUnitAmountsCalculation": {
+        "enum": [
+          "UserProvided",
+          "SystemCalculated"
+        ],
+        "type": "string"
       },
       "DealUnitCreateDto": {
         "type": "object",
@@ -3375,18 +3498,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "dealUnitFlowId": {
             "type": "string",
@@ -3439,41 +3554,16 @@
             "format": "date-time"
           },
           "dealUnitStatus": {
-            "enum": [
-              "Open",
-              "Won",
-              "Lost",
-              "Frozen"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitStatus"
           },
           "dealUnitPurchaseProcess": {
-            "enum": [
-              "None",
-              "Individual",
-              "Commitee",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitPurchaseProcess"
           },
           "dealUnitForecastCategory": {
-            "enum": [
-              "None",
-              "Pipeline",
-              "BestCase",
-              "Commited",
-              "Ommited",
-              "Won",
-              "Lost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitForecastCategory"
           },
           "dealUnitAmountsCalculation": {
-            "enum": [
-              "UserProvided",
-              "SystemCalculated"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitAmountsCalculation"
           },
           "dealUnitLines": {
             "type": "array",
@@ -3585,18 +3675,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -3820,41 +3902,16 @@
             "format": "date-time"
           },
           "dealUnitStatus": {
-            "enum": [
-              "Open",
-              "Won",
-              "Lost",
-              "Frozen"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitStatus"
           },
           "dealUnitPurchaseProcess": {
-            "enum": [
-              "None",
-              "Individual",
-              "Commitee",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitPurchaseProcess"
           },
           "dealUnitForecastCategory": {
-            "enum": [
-              "None",
-              "Pipeline",
-              "BestCase",
-              "Commited",
-              "Ommited",
-              "Won",
-              "Lost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitForecastCategory"
           },
           "dealUnitAmountsCalculation": {
-            "enum": [
-              "UserProvided",
-              "SystemCalculated"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitAmountsCalculation"
           },
           "linesCount": {
             "type": "integer",
@@ -4536,6 +4593,18 @@
         },
         "additionalProperties": false
       },
+      "DealUnitForecastCategory": {
+        "enum": [
+          "None",
+          "Pipeline",
+          "BestCase",
+          "Commited",
+          "Ommited",
+          "Won",
+          "Lost"
+        ],
+        "type": "string"
+      },
       "DealUnitLineCreateDto": {
         "type": "object",
         "properties": {
@@ -4723,18 +4792,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "itemId": {
             "type": "string",
@@ -5086,18 +5147,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -5278,6 +5331,11 @@
           "quantity": {
             "type": "number",
             "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
           },
           "free": {
             "type": "boolean"
@@ -5793,18 +5851,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "itemId": {
             "type": "string",
@@ -6048,6 +6098,24 @@
         },
         "additionalProperties": false
       },
+      "DealUnitPurchaseProcess": {
+        "enum": [
+          "None",
+          "Individual",
+          "Commitee",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "DealUnitStatus": {
+        "enum": [
+          "Open",
+          "Won",
+          "Lost",
+          "Frozen"
+        ],
+        "type": "string"
+      },
       "DealUnitUpdateDto": {
         "type": "object",
         "properties": {
@@ -6243,18 +6311,10 @@
             "nullable": true
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "ordered": {
             "type": "boolean"
@@ -6318,41 +6378,16 @@
             "format": "date-time"
           },
           "dealUnitStatus": {
-            "enum": [
-              "Open",
-              "Won",
-              "Lost",
-              "Frozen"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitStatus"
           },
           "dealUnitPurchaseProcess": {
-            "enum": [
-              "None",
-              "Individual",
-              "Commitee",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitPurchaseProcess"
           },
           "dealUnitForecastCategory": {
-            "enum": [
-              "None",
-              "Pipeline",
-              "BestCase",
-              "Commited",
-              "Ommited",
-              "Won",
-              "Lost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitForecastCategory"
           },
           "dealUnitAmountsCalculation": {
-            "enum": [
-              "UserProvided",
-              "SystemCalculated"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitAmountsCalculation"
           }
         },
         "additionalProperties": false
@@ -6553,18 +6588,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -6788,41 +6815,16 @@
             "format": "date-time"
           },
           "dealUnitStatus": {
-            "enum": [
-              "Open",
-              "Won",
-              "Lost",
-              "Frozen"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitStatus"
           },
           "dealUnitPurchaseProcess": {
-            "enum": [
-              "None",
-              "Individual",
-              "Commitee",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitPurchaseProcess"
           },
           "dealUnitForecastCategory": {
-            "enum": [
-              "None",
-              "Pipeline",
-              "BestCase",
-              "Commited",
-              "Ommited",
-              "Won",
-              "Lost"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitForecastCategory"
           },
           "dealUnitAmountsCalculation": {
-            "enum": [
-              "UserProvided",
-              "SystemCalculated"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DealUnitAmountsCalculation"
           },
           "linesCount": {
             "type": "integer",
@@ -7042,6 +7044,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "Gender": {
+        "enum": [
+          "Unknown",
+          "Male",
+          "Female",
+          "PreferNotToSay"
+        ],
+        "type": "string"
       },
       "HttpValidationProblemDetails": {
         "type": "object",
@@ -7279,6 +7290,21 @@
         },
         "additionalProperties": false
       },
+      "SiteTheme": {
+        "enum": [
+          "System",
+          "Light",
+          "Dark"
+        ],
+        "type": "string"
+      },
+      "TaxCalculationMethod": {
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string"
+      },
       "TenantDto": {
         "type": "object",
         "properties": {
@@ -7297,11 +7323,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -7538,6 +7560,16 @@
         },
         "additionalProperties": false
       },
+      "UserAvailability": {
+        "enum": [
+          "DND",
+          "Busy",
+          "Away",
+          "Offline",
+          "Available"
+        ],
+        "type": "string"
+      },
       "UserDto": {
         "type": "object",
         "properties": {
@@ -7637,14 +7669,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Gender"
           },
           "cityId": {
             "type": "string",
@@ -7717,15 +7742,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/UserAvailability"
           },
           "lockoutEnabled": {
             "type": "boolean"
@@ -7741,13 +7758,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SiteTheme"
           }
         },
         "additionalProperties": false

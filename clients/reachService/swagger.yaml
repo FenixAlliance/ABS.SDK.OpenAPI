@@ -1,0 +1,4524 @@
+openapi: 3.0.4
+info:
+  title: ReachService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
+paths:
+  /api/v2/ReachService/Categories:
+    get:
+      tags:
+        - Categories
+      summary: Gets the declared Reach categories
+      description: 'Returns the code-authoritative category catalog: key, scope, class, whether it is mandatory and why, its platform default and its description. Global reference data - no tenant, and no permission beyond a resolved identity.'
+      operationId: Categories_GetReachCategories
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachCategoryDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachCategoryDtoListEnvelope'
+  /api/v2/ReachService/Categories/Reconciliation:
+    get:
+      tags:
+        - Categories
+      summary: Reports Reach rules and occurrences on categories this build no longer declares
+      description: 'Inventories the acting tenant''s stored CategoryKey values against the declared catalog and returns every key that is RETIRED or unknown, with the rules behind it, the occurrence count, and the reclassification decision each one needs. Rules listed here can still be read and disabled, but cannot be created, re-pointed or enabled until they are re-authored on a declared category. The report MUTATES NOTHING and deliberately performs no automatic mapping: a retired key''s successors can differ on disclosure - ''legal.notice'' split into a tenant-wide ''legal.terms_update'' and a restricted ''legal.data_subject'' - and nothing stored on a rule records which its author meant, so a guess could widen a communication addressed to one person into a workspace-wide bulletin. Requires notifications_manage.'
+      operationId: Categories_GetReachCategoryReconciliation
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachCategoryReconciliationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachCategoryReconciliationDtoEnvelope'
+  /api/v2/ReachService/Decisions:
+    get:
+      tags:
+        - Decisions
+      summary: Gets the current tenant Reach decisions
+      description: 'Lists the currently acting tenant''s raw decision rows. Supports OData filtering, ordering and paging - filter on Outcome, Channel, RecipientKey or ReachOccurrenceId to narrow. For the explained view, use the Explain actions.'
+      operationId: Decisions_GetReachDecisions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachDecisionDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachDecisionDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachDecisionDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachDecisionDtoListEnvelope'
+  /api/v2/ReachService/Decisions/Count:
+    get:
+      tags:
+        - Decisions
+      summary: Gets the current tenant Reach decision count
+      description: 'Counts the currently acting tenant''s decision rows under the same OData filter the list applies. Decisions are high-cardinality by design, so a console pages against this rather than sizing the set by materializing it.'
+      operationId: Decisions_GetReachDecisionsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachDecisionDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachDecisionDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ReachService/Decisions/{reachDecisionId}':
+    get:
+      tags:
+        - Decisions
+      summary: Gets one Reach decision
+      description: Reads one decision row owned by the currently acting tenant.
+      operationId: Decisions_GetReachDecision
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachDecisionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachDecisionDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachDecisionDtoEnvelope'
+  /api/v2/ReachService/Decisions/Explain:
+    get:
+      tags:
+        - Decisions
+      summary: Explains why a person did or did not receive a notification
+      description: 'Returns every gate''s verdict for one recipient, over one occurrence or one half-open time window, each explained in plain language. Covers Unauthorized, OptedOut, Suppressed, ActorSuppressed, NoAddress, Duplicate and SatisfiedAtSource. An empty decision set is itself an answer and comes back with the sentence that says so: the person was never evaluated, rather than evaluated and denied. Name the recipient by principalId or contactId, and ask about one occurrence or one window, never both.'
+      operationId: Decisions_ExplainReachRecipientOutcomes
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: principalId
+          in: query
+          schema:
+            type: string
+        - name: contactId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: reachOccurrenceId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: fromUtc
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: toUtc
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachRecipientOutcomeExplanationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachRecipientOutcomeExplanationDtoEnvelope'
+  /api/v2/ReachService/Deliveries:
+    get:
+      tags:
+        - Deliveries
+      summary: Gets the current tenant Reach deliveries
+      description: 'Lists the currently acting tenant''s deliveries. Supports OData filtering, ordering and paging - filter on State to find what is stuck, failed or awaiting dispatch.'
+      operationId: Deliveries_GetReachDeliveries
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachDeliveryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachDeliveryDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachDeliveryDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachDeliveryDtoListEnvelope'
+  /api/v2/ReachService/Deliveries/Count:
+    get:
+      tags:
+        - Deliveries
+      summary: Gets the current tenant Reach delivery count
+      description: Counts the currently acting tenant's deliveries under the same OData filter the list applies.
+      operationId: Deliveries_GetReachDeliveriesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachDeliveryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachDeliveryDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ReachService/Deliveries/{reachDeliveryId}':
+    get:
+      tags:
+        - Deliveries
+      summary: Gets one Reach delivery
+      description: Reads one delivery owned by the currently acting tenant - the follow-up read for a caller holding a delivery coordinate returned by an accepted send.
+      operationId: Deliveries_GetReachDelivery
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachDeliveryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachDeliveryDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachDeliveryDtoEnvelope'
+  /version:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_MapIdentityApiConfirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
+      responses:
+        '200':
+          description: OK
+  /api/v2/ReachService/Occurrences:
+    get:
+      tags:
+        - Occurrences
+      summary: Gets the current tenant Reach occurrences
+      description: 'Lists the currently acting tenant''s Reach occurrences. Supports OData filtering, ordering and paging.'
+      operationId: Occurrences_GetReachOccurrences
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachOccurrenceDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachOccurrenceDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceDtoListEnvelope'
+  /api/v2/ReachService/Occurrences/Count:
+    get:
+      tags:
+        - Occurrences
+      summary: Gets the current tenant Reach occurrence count
+      description: Counts the currently acting tenant's Reach occurrences under the same OData filter the list applies.
+      operationId: Occurrences_GetReachOccurrencesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachOccurrenceDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachOccurrenceDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ReachService/Occurrences/{reachOccurrenceId}':
+    get:
+      tags:
+        - Occurrences
+      summary: Gets one Reach occurrence
+      description: Reads one Reach occurrence owned by the currently acting tenant.
+      operationId: Occurrences_GetReachOccurrence
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachOccurrenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceDtoEnvelope'
+  '/api/v2/ReachService/Occurrences/{reachOccurrenceId}/Explain':
+    get:
+      tags:
+        - Occurrences
+      summary: 'Explains who a notification reached, and who it did not'
+      description: 'Returns every decision recorded for one occurrence, tallied by outcome and each one explained in plain language, together with the occurrence''s own status. The status matters: ''nobody was told'' can mean the audience resolved and everyone was denied, or that the occurrence never resolved at all.'
+      operationId: Occurrences_ExplainReachOccurrence
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachOccurrenceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceExplanationDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachOccurrenceExplanationDtoEnvelope'
+  /api/v2/ReachService/Policy:
+    get:
+      tags:
+        - Policy
+      summary: Gets the workspace notification policy
+      description: 'Returns both tenant axes for every tenant-governed category on every channel: the workspace ruling (level 1), the workspace default (level 2), what a member who has not chosen currently gets, which level decided that, and whether the ruling blocks members from opting back in. Each axis is nullable, and null means no opinion rather than off.'
+      operationId: Policy_GetReachPolicy
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachPolicySurfaceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachPolicySurfaceDtoEnvelope'
+    put:
+      tags:
+        - Policy
+      summary: Sets the workspace notification ruling
+      description: 'Upserts the workspace ruling (level 1) for one category and channel. Storing false overrides every member''s own choice: a member who explicitly opts in still receives nothing, and the decision surface will name this ruling as the reason.'
+      operationId: Policy_SetReachPolicy
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Policy
+      summary: Withdraws the workspace notification ruling
+      description: 'Removes the workspace ruling (level 1) for one category and channel, returning the decision to the workspace default and to members. This is the only way out of a level-1 refusal: setting the ruling to true replaces a refusal with an instruction that also overrides the default beneath it.'
+      operationId: Policy_ClearReachPolicy
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: categoryKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ReachChannel'
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ReachService/Policy/Defaults:
+    put:
+      tags:
+        - Policy
+      summary: Sets the workspace notification default
+      description: Upserts the workspace default (level 2) for one category and channel. It applies only to members who have not chosen for themselves; any member preference overrides it.
+      operationId: Policy_SetReachPolicyDefault
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Policy
+      summary: Withdraws the workspace notification default
+      description: 'Removes the workspace default (level 2) for one category and channel, so the category''s declared platform default decides again for members who have not chosen.'
+      operationId: Policy_ClearReachPolicyDefault
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: categoryKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ReachChannel'
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ReachService/Preferences:
+    get:
+      tags:
+        - Preferences
+      summary: Gets the current tenant Reach preference rows
+      description: 'Lists every preference row in the acting tenant''s scope: the workspace''s own policy and defaults alongside every member''s preference for that workspace. Administrative - requires the notification management permission. Supports OData filtering, ordering and paging.'
+      operationId: Preferences_GetReachPreferences
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceDtoListEnvelope'
+  /api/v2/ReachService/Preferences/Count:
+    get:
+      tags:
+        - Preferences
+      summary: Gets the current tenant Reach preference count
+      description: Counts the acting tenant's preference rows under the same OData filter the administrative list applies.
+      operationId: Preferences_GetReachPreferencesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  /api/v2/ReachService/Preferences/Personal:
+    get:
+      tags:
+        - Preferences
+      summary: Gets the calling person personal notification settings
+      description: 'Returns the caller''s personal (level 4) preference surface: one row per personal-scoped category per channel, with the value stored at this level, the effective value, which level decided it, and whether it may be changed. No tenant: a personal category resolves in the person''s own account scope and never reads tenant policy.'
+      operationId: Preferences_GetPersonalReachPreferences
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceSurfaceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceSurfaceDtoEnvelope'
+    put:
+      tags:
+        - Preferences
+      summary: Sets one personal notification setting
+      description: 'Upserts the caller''s personal (level 4) preference for one category and channel. The level, scope and subject are derived server-side; the payload names only category, channel and allowed.'
+      operationId: Preferences_SetPersonalReachPreference
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Preferences
+      summary: Clears one personal notification setting
+      description: 'Returns the caller''s personal (level 4) preference for one category and channel to no opinion, so the platform default decides again. This is a different state from storing false, and the only way back to it. Clearing a setting that is not there succeeds.'
+      operationId: Preferences_ClearPersonalReachPreference
+      parameters:
+        - name: categoryKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ReachChannel'
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ReachService/Preferences/Member:
+    get:
+      tags:
+        - Preferences
+      summary: Gets the calling person notification settings for one workspace
+      description: 'Returns the caller''s member (level 3) preference surface for this workspace: one row per tenant-governed category per channel, showing what they stored, what actually happens, which level decided, and whether a workspace ruling blocks them from changing it.'
+      operationId: Preferences_GetMemberReachPreferences
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceSurfaceDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachPreferenceSurfaceDtoEnvelope'
+    put:
+      tags:
+        - Preferences
+      summary: Sets one notification setting for the calling person in one workspace
+      description: 'Upserts the caller''s member (level 3) preference for one category and channel inside this workspace. The subject is their enrollment, derived server-side. A workspace ruling that stores false still overrides it.'
+      operationId: Preferences_SetMemberReachPreference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachPreferenceWriteDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - Preferences
+      summary: Clears one notification setting for the calling person in one workspace
+      description: 'Returns the caller''s member (level 3) preference for one category and channel to no opinion, so the workspace default decides for them again. Clearing a setting that is not there succeeds.'
+      operationId: Preferences_ClearMemberReachPreference
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: categoryKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ReachChannel'
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ReachService/Rules:
+    get:
+      tags:
+        - Rules
+      summary: Gets the current tenant Reach rules
+      description: 'Lists the currently acting tenant''s Reach rules. Supports OData filtering, ordering and paging.'
+      operationId: Rules_GetReachRules
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachRuleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachRuleDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoListEnvelope'
+    post:
+      tags:
+        - Rules
+      summary: Authors a Reach rule
+      description: 'Authors a DISABLED Reach rule in the acting tenant''s scope, after validating its event contract, its audience specification and, for a tenant bulletin, the disclosure invariant. Arming it is a separate call.'
+      operationId: Rules_CreateReachRule
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachRuleCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachRuleCreateDto'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoEnvelope'
+  /api/v2/ReachService/Rules/Count:
+    get:
+      tags:
+        - Rules
+      summary: Gets the current tenant Reach rule count
+      description: Counts the currently acting tenant's Reach rules under the same OData filter the list applies.
+      operationId: Rules_GetReachRulesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachRuleDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachRuleDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/ReachService/Rules/{reachRuleId}':
+    get:
+      tags:
+        - Rules
+      summary: Gets one Reach rule
+      description: Reads one Reach rule owned by the currently acting tenant.
+      operationId: Rules_GetReachRule
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachRuleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachRuleDtoEnvelope'
+    put:
+      tags:
+        - Rules
+      summary: Re-points a Reach rule audience
+      description: 'Re-points an existing rule''s audience, re-running the full authoring validation. A rule''s event contract, category and template are immutable: author a new rule and disable the old one instead.'
+      operationId: Rules_UpdateReachRuleAudience
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachRuleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachRuleUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachRuleUpdateDto'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/ReachService/Rules/{reachRuleId}/Enable':
+    post:
+      tags:
+        - Rules
+      summary: Arms a Reach rule
+      description: 'Arms a rule after re-running the full authoring validation against the world as it is now. A contract can be withdrawn and a category reclassified under a rule authored months earlier, so enabling asks again.'
+      operationId: Rules_EnableReachRule
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachRuleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/ReachService/Rules/{reachRuleId}/Disable':
+    post:
+      tags:
+        - Rules
+      summary: Disarms a Reach rule
+      description: 'Stops a rule matching events. It runs no authoring validation, deliberately: a rule reaching the wrong audience must be stoppable precisely when its contract or category no longer validates.'
+      operationId: Rules_DisableReachRule
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reachRuleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/ReachService/Suppressions:
+    get:
+      tags:
+        - Suppressions
+      summary: Gets the current tenant Reach suppressions
+      description: 'Lists the currently acting tenant''s suppression entries. Supports OData filtering, ordering and paging - filter on Reason, or on BindsMandatoryCategories to separate deliverability facts from consent facts.'
+      operationId: Suppressions_GetReachSuppressions
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachSuppressionEntryDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReachSuppressionEntryDtoListEnvelope'
+    post:
+      tags:
+        - Suppressions
+      summary: Suppresses an address
+      description: 'Deliberately suppresses one address for the acting tenant, as a manual suppression. The reason is not a parameter: provider evidence such as a hard bounce is written by the feedback path, never posted. Suppressing an already-suppressed address succeeds and changes nothing.'
+      operationId: Suppressions_CreateReachSuppression
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryCreateDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StringEnvelope'
+  /api/v2/ReachService/Suppressions/Count:
+    get:
+      tags:
+        - Suppressions
+      summary: Gets the current tenant Reach suppression count
+      description: Counts the currently acting tenant's suppression entries under the same OData filter the list applies.
+      operationId: Suppressions_GetReachSuppressionsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ReachSuppressionEntryDtoCollectionQueryParameters'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmptyEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    Int32Envelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachAudienceKind:
+      enum:
+        - Principals
+        - Role
+        - PermissionHolders
+        - RecordOwner
+        - Watchers
+        - Contacts
+        - TenantBulletin
+      type: string
+    ReachCategoryClass:
+      enum:
+        - Transactional
+        - Commercial
+      type: string
+    ReachCategoryDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        scope:
+          $ref: '#/components/schemas/ReachCategoryScope'
+        class:
+          $ref: '#/components/schemas/ReachCategoryClass'
+        mandatory:
+          type: boolean
+        mandatoryReason:
+          type: string
+          nullable: true
+        defaultAllowed:
+          type: boolean
+        description:
+          type: string
+          nullable: true
+        boundByConsentSuppression:
+          type: boolean
+        isTenantGoverned:
+          type: boolean
+      additionalProperties: false
+    ReachCategoryDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachCategoryDto'
+          nullable: true
+      additionalProperties: false
+    ReachCategoryReconciliationDto:
+      type: object
+      properties:
+        scopeKey:
+          type: string
+          nullable: true
+        generatedAtUtc:
+          type: string
+          format: date-time
+        declaredCategoryCount:
+          type: integer
+          format: int32
+        totalRuleCount:
+          type: integer
+          format: int32
+        affectedRuleCount:
+          type: integer
+          format: int32
+        affectedEnabledRuleCount:
+          type: integer
+          format: int32
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachCategoryReconciliationEntryDto'
+          nullable: true
+      additionalProperties: false
+    ReachCategoryReconciliationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachCategoryReconciliationDto'
+      additionalProperties: false
+    ReachCategoryReconciliationEntryDto:
+      type: object
+      properties:
+        categoryKey:
+          type: string
+          nullable: true
+        isRetired:
+          type: boolean
+        retiredReason:
+          type: string
+          nullable: true
+        successorCandidates:
+          type: array
+          items:
+            type: string
+          nullable: true
+        reclassificationGuidance:
+          type: string
+          nullable: true
+        ruleCount:
+          type: integer
+          format: int32
+        enabledRuleCount:
+          type: integer
+          format: int32
+        occurrenceCount:
+          type: integer
+          format: int32
+        enableable:
+          type: boolean
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachCategoryReconciliationRuleDto'
+          nullable: true
+      additionalProperties: false
+    ReachCategoryReconciliationRuleDto:
+      type: object
+      properties:
+        reachRuleId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        eventContractKey:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+        createdAtUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ReachCategoryScope:
+      enum:
+        - TenantScoped
+        - PersonalScoped
+      type: string
+    ReachChannel:
+      enum:
+        - InApp
+        - Email
+      type: string
+    ReachDecisionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        reachOccurrenceId:
+          type: string
+          nullable: true
+        recipientKey:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        outcome:
+          $ref: '#/components/schemas/ReachDecisionOutcome'
+        allowed:
+          type: boolean
+        preferenceLevel:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        suppressionReason:
+          $ref: '#/components/schemas/ReachSuppressionReason'
+        reachDeliveryId:
+          type: string
+          nullable: true
+        principalId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        reasonsJson:
+          type: string
+          nullable: true
+        decidedAtUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ReachDecisionDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachDecisionDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachDecisionDto'
+      additionalProperties: false
+    ReachDecisionDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachDecisionDto'
+          nullable: true
+      additionalProperties: false
+    ReachDecisionExplanationDto:
+      type: object
+      properties:
+        reachDecisionId:
+          type: string
+          nullable: true
+        reachOccurrenceId:
+          type: string
+          nullable: true
+        reachDeliveryId:
+          type: string
+          nullable: true
+        recipientKey:
+          type: string
+          nullable: true
+        principalId:
+          type: string
+          nullable: true
+        contactId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+        socialProfileId:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        outcome:
+          $ref: '#/components/schemas/ReachDecisionOutcome'
+        allowed:
+          type: boolean
+        preferenceLevel:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        suppressionReason:
+          $ref: '#/components/schemas/ReachSuppressionReason'
+        categoryKey:
+          type: string
+          nullable: true
+        categoryDescription:
+          type: string
+          nullable: true
+        categoryMandatory:
+          type: boolean
+        explanation:
+          type: string
+          nullable: true
+        reasonsJson:
+          type: string
+          nullable: true
+        decidedAtUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ReachDecisionOutcome:
+      enum:
+        - Allowed
+        - SatisfiedAtSource
+        - OptedOut
+        - Unauthorized
+        - ActorSuppressed
+        - Suppressed
+        - Duplicate
+        - NoAddress
+        - ChannelUnavailable
+        - NotLicensed
+        - CategoryNotDeclared
+      type: string
+    ReachDeliveryDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        reachOccurrenceId:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        addressDigest:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/ReachDeliveryState'
+        isTerminal:
+          type: boolean
+        coalesceKey:
+          type: string
+          nullable: true
+        availableAtUtc:
+          type: string
+          format: date-time
+        deliveryUnitId:
+          type: string
+          nullable: true
+        lastFailureCode:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        lastTransitionAtUtc:
+          type: string
+          format: date-time
+        finalizedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ReachDeliveryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachDeliveryDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachDeliveryDto'
+      additionalProperties: false
+    ReachDeliveryDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachDeliveryDto'
+          nullable: true
+      additionalProperties: false
+    ReachDeliveryState:
+      enum:
+        - Pending
+        - Claimed
+        - Dispatched
+        - Delivered
+        - Failed
+        - Superseded
+        - OutcomeUnknown
+      type: string
+    ReachOccurrenceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        ruleRef:
+          type: string
+          nullable: true
+        occurrenceKey:
+          type: string
+          nullable: true
+        reachRuleId:
+          type: string
+          nullable: true
+        reachIntentId:
+          type: string
+          nullable: true
+        eventContractKey:
+          type: string
+          nullable: true
+        businessEventId:
+          type: string
+          nullable: true
+        categoryKey:
+          type: string
+          nullable: true
+        audienceKind:
+          $ref: '#/components/schemas/ReachAudienceKind'
+        subjectRef:
+          type: string
+          nullable: true
+        originatingActorRef:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ReachOccurrenceStatus'
+        availableAtUtc:
+          type: string
+          format: date-time
+        attempts:
+          type: integer
+          format: int32
+        maxAttempts:
+          type: integer
+          format: int32
+        lastFailureCode:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        lastTransitionAtUtc:
+          type: string
+          format: date-time
+        resolvedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ReachOccurrenceDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachOccurrenceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachOccurrenceDto'
+      additionalProperties: false
+    ReachOccurrenceDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachOccurrenceDto'
+          nullable: true
+      additionalProperties: false
+    ReachOccurrenceExplanationDto:
+      type: object
+      properties:
+        reachOccurrenceId:
+          type: string
+          nullable: true
+        ruleRef:
+          type: string
+          nullable: true
+        reachRuleId:
+          type: string
+          nullable: true
+        eventContractKey:
+          type: string
+          nullable: true
+        categoryKey:
+          type: string
+          nullable: true
+        categoryDescription:
+          type: string
+          nullable: true
+        audienceKind:
+          $ref: '#/components/schemas/ReachAudienceKind'
+        status:
+          $ref: '#/components/schemas/ReachOccurrenceStatus'
+        lastFailureCode:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        resolvedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        evaluatedCount:
+          type: integer
+          format: int32
+        allowedCount:
+          type: integer
+          format: int32
+        summary:
+          type: string
+          nullable: true
+        outcomeTally:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachOutcomeTallyDto'
+          nullable: true
+        decisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachDecisionExplanationDto'
+          nullable: true
+      additionalProperties: false
+    ReachOccurrenceExplanationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachOccurrenceExplanationDto'
+      additionalProperties: false
+    ReachOccurrenceStatus:
+      enum:
+        - Pending
+        - Resolved
+        - RetryableFailure
+        - TerminalFailure
+        - ResolvedEmpty
+      type: string
+    ReachOutcomeTallyDto:
+      type: object
+      properties:
+        outcome:
+          $ref: '#/components/schemas/ReachDecisionOutcome'
+        count:
+          type: integer
+          format: int32
+        explanation:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachPolicySurfaceDto:
+      type: object
+      properties:
+        scopeKey:
+          type: string
+          nullable: true
+        subjectRef:
+          type: string
+          nullable: true
+        caveat:
+          type: string
+          nullable: true
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachPolicySurfaceRowDto'
+          nullable: true
+      additionalProperties: false
+    ReachPolicySurfaceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachPolicySurfaceDto'
+      additionalProperties: false
+    ReachPolicySurfaceRowDto:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/ReachCategoryDto'
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        policyAllowed:
+          type: boolean
+          nullable: true
+        tenantDefaultAllowed:
+          type: boolean
+          nullable: true
+        effectiveAllowed:
+          type: boolean
+        decidedByLevel:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        decidedByExplanation:
+          type: string
+          nullable: true
+        blocksMembers:
+          type: boolean
+        editable:
+          type: boolean
+        notEditableReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachPreferenceDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        preferenceKey:
+          type: string
+          nullable: true
+        preferenceLevel:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        subjectRef:
+          type: string
+          nullable: true
+        categoryKey:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        eventContractKey:
+          type: string
+          nullable: true
+        allowed:
+          type: boolean
+        createdAtUtc:
+          type: string
+          format: date-time
+        lastModifiedAtUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ReachPreferenceDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachPreferenceDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachPreferenceDto'
+          nullable: true
+      additionalProperties: false
+    ReachPreferenceLevel:
+      enum:
+        - PlatformFloor
+        - TenantPolicy
+        - TenantDefault
+        - MemberPreference
+        - PersonalPreference
+        - EventKeyOverride
+      type: string
+    ReachPreferenceSurfaceDto:
+      type: object
+      properties:
+        level:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        scopeKey:
+          type: string
+          nullable: true
+        subjectRef:
+          type: string
+          nullable: true
+        caveat:
+          type: string
+          nullable: true
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachPreferenceSurfaceRowDto'
+          nullable: true
+      additionalProperties: false
+    ReachPreferenceSurfaceDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachPreferenceSurfaceDto'
+      additionalProperties: false
+    ReachPreferenceSurfaceRowDto:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/ReachCategoryDto'
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        level:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        storedAllowed:
+          type: boolean
+          nullable: true
+        effectiveAllowed:
+          type: boolean
+        decidedByLevel:
+          $ref: '#/components/schemas/ReachPreferenceLevel'
+        decidedByExplanation:
+          type: string
+          nullable: true
+        editable:
+          type: boolean
+        notEditableReason:
+          type: string
+          nullable: true
+        blocked:
+          type: boolean
+        blockedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachPreferenceWriteDto:
+      type: object
+      properties:
+        categoryKey:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        allowed:
+          type: boolean
+      additionalProperties: false
+    ReachRecipientOutcomeExplanationDto:
+      type: object
+      properties:
+        recipientKey:
+          type: string
+          nullable: true
+        reachOccurrenceId:
+          type: string
+          nullable: true
+        fromUtc:
+          type: string
+          format: date-time
+          nullable: true
+        toUtc:
+          type: string
+          format: date-time
+          nullable: true
+        wasEvaluated:
+          type: boolean
+        anyAllowed:
+          type: boolean
+        summary:
+          type: string
+          nullable: true
+        outcomeTally:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachOutcomeTallyDto'
+          nullable: true
+        decisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachDecisionExplanationDto'
+          nullable: true
+      additionalProperties: false
+    ReachRecipientOutcomeExplanationDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachRecipientOutcomeExplanationDto'
+      additionalProperties: false
+    ReachRuleCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        name:
+          type: string
+          nullable: true
+        eventContractKey:
+          type: string
+          nullable: true
+        categoryKey:
+          type: string
+          nullable: true
+        audienceKind:
+          $ref: '#/components/schemas/ReachAudienceKind'
+        templateKey:
+          type: string
+          nullable: true
+        audienceSpecJson:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        eventContractKey:
+          type: string
+          nullable: true
+        categoryKey:
+          type: string
+          nullable: true
+        templateKey:
+          type: string
+          nullable: true
+        audienceKind:
+          $ref: '#/components/schemas/ReachAudienceKind'
+        audienceSpecJson:
+          type: string
+          nullable: true
+        mergeAcrossRecipients:
+          type: boolean
+        excludeOriginatingActor:
+          type: boolean
+        enabled:
+          type: boolean
+        createdAtUtc:
+          type: string
+          format: date-time
+        lastModifiedAtUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ReachRuleDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachRuleDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/ReachRuleDto'
+      additionalProperties: false
+    ReachRuleDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachRuleDto'
+          nullable: true
+      additionalProperties: false
+    ReachRuleUpdateDto:
+      type: object
+      properties:
+        audienceKind:
+          $ref: '#/components/schemas/ReachAudienceKind'
+        audienceSpecJson:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachSuppressionEntryCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        address:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachSuppressionEntryDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        scopeKey:
+          type: string
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/ReachChannel'
+        addressDigest:
+          type: string
+          nullable: true
+        reason:
+          $ref: '#/components/schemas/ReachSuppressionReason'
+        bindsMandatoryCategories:
+          type: boolean
+        suppressedAtUtc:
+          type: string
+          format: date-time
+        sourceReachDeliveryId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReachSuppressionEntryDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ReachSuppressionEntryDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReachSuppressionEntryDto'
+          nullable: true
+      additionalProperties: false
+    ReachSuppressionReason:
+      enum:
+        - HardBounce
+        - Complaint
+        - Unsubscribe
+        - ManualSuppression
+        - InvalidAddress
+      type: string
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: Categories
+  - name: Decisions
+  - name: Deliveries
+  - name: FenixAlliance.ABS.Web
+  - name: Occurrences
+  - name: Policy
+  - name: Preferences
+  - name: Rules
+  - name: Suppressions

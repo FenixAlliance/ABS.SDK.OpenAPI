@@ -21554,6 +21554,15 @@
         },
         "additionalProperties": false
       },
+      "FileUploadPublicAccessType": {
+        "enum": [
+          "Off",
+          "Container",
+          "Blob",
+          "Unknown"
+        ],
+        "type": "string"
+      },
       "ForgotPasswordRequest": {
         "required": [
           "email"
@@ -21741,13 +21750,7 @@
             "nullable": true
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "itemId": {
             "type": "string",
@@ -21855,25 +21858,10 @@
             "nullable": true
           },
           "scanStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Clean",
-              "Infected",
-              "Failed",
-              "Quarantined"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageScanStatus"
           },
           "thumbnailStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Ready",
-              "Failed",
-              "Unsupported"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageThumbnailStatus"
           },
           "hasThumbnail": {
             "type": "boolean",
@@ -21896,13 +21884,7 @@
             "format": "int32"
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "itemId": {
             "type": "string",
@@ -27431,6 +27413,27 @@
           }
         },
         "additionalProperties": false
+      },
+      "StorageScanStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Clean",
+          "Infected",
+          "Failed",
+          "Quarantined"
+        ],
+        "type": "string"
+      },
+      "StorageThumbnailStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Ready",
+          "Failed",
+          "Unsupported"
+        ],
+        "type": "string"
       },
       "TwoFactorRequest": {
         "type": "object",

@@ -5799,6 +5799,13 @@
         },
         "additionalProperties": false
       },
+      "BusinessEntityKind": {
+        "enum": [
+          "Organization",
+          "Individual"
+        ],
+        "type": "string"
+      },
       "ContactDto": {
         "type": "object",
         "properties": {
@@ -5821,11 +5828,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -6058,6 +6061,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -6068,6 +6082,46 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "CostCalculationMethod": {
+        "enum": [
+          "Automatic",
+          "Custom"
+        ],
+        "type": "string"
+      },
+      "DocumentType": {
+        "enum": [
+          "Standard",
+          "DebitNote",
+          "CreditNote"
+        ],
+        "type": "string"
       },
       "EmptyEnvelope": {
         "type": "object",
@@ -6333,18 +6387,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -6547,26 +6593,23 @@
             "nullable": true
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "orderStatus": {
-            "enum": [
-              "New",
-              "Processing",
-              "Accepted",
-              "Declined",
-              "Shipped",
-              "Delivered",
-              "OnHold",
-              "Failed",
-              "Fulfilled",
-              "Cancelled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "numberLabel": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "saleChannel": {
+            "$ref": "#/components/schemas/SaleChannel"
           },
           "requestedDeliveryDate": {
             "type": "string",
@@ -6625,6 +6668,26 @@
           },
           "enrollment": {
             "$ref": "#/components/schemas/TenantEnrollmentDto"
+          },
+          "effectiveDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveSurchargePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveTaxesPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalDiscountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "effectiveGlobalSurchargePercent": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -6739,6 +6802,22 @@
           }
         },
         "additionalProperties": false
+      },
+      "FreightTerms": {
+        "enum": [
+          "FOB",
+          "NoCharge"
+        ],
+        "type": "string"
+      },
+      "Gender": {
+        "enum": [
+          "Unknown",
+          "Male",
+          "Female",
+          "PreferNotToSay"
+        ],
+        "type": "string"
       },
       "HttpValidationProblemDetails": {
         "type": "object",
@@ -6964,18 +7043,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -7136,6 +7207,11 @@
           "paid": {
             "type": "boolean"
           },
+          "issuedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "number": {
             "type": "integer",
             "format": "int64"
@@ -7182,31 +7258,13 @@
             "nullable": true
           },
           "invoiceType": {
-            "enum": [
-              "PurchaseInvoice",
-              "SalesInvoice",
-              "CreditNote",
-              "DebitNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceType"
           },
           "documentType": {
-            "enum": [
-              "Standard",
-              "DebitNote",
-              "CreditNote"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DocumentType"
           },
           "invoiceStatus": {
-            "enum": [
-              "Draft",
-              "Closed",
-              "Signed",
-              "Expired",
-              "Paid"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/InvoiceStatus"
           }
         },
         "additionalProperties": false
@@ -7308,6 +7366,25 @@
           }
         },
         "additionalProperties": false
+      },
+      "InvoiceStatus": {
+        "enum": [
+          "Draft",
+          "Closed",
+          "Signed",
+          "Expired",
+          "Paid"
+        ],
+        "type": "string"
+      },
+      "InvoiceType": {
+        "enum": [
+          "PurchaseInvoice",
+          "SalesInvoice",
+          "CreditNote",
+          "DebitNote"
+        ],
+        "type": "string"
       },
       "LocationCreateDto": {
         "type": "object",
@@ -7762,6 +7839,15 @@
         },
         "additionalProperties": false
       },
+      "OnBehalfOf": {
+        "enum": [
+          "Self",
+          "Tenant",
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
       "OrderDto": {
         "type": "object",
         "properties": {
@@ -7862,18 +7948,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -8076,26 +8154,23 @@
             "nullable": true
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "orderStatus": {
-            "enum": [
-              "New",
-              "Processing",
-              "Accepted",
-              "Declined",
-              "Shipped",
-              "Delivered",
-              "OnHold",
-              "Failed",
-              "Fulfilled",
-              "Cancelled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "numberLabel": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "saleChannel": {
+            "$ref": "#/components/schemas/SaleChannel"
           },
           "requestedDeliveryDate": {
             "type": "string",
@@ -8237,6 +8312,21 @@
           }
         },
         "additionalProperties": false
+      },
+      "OrderStatus": {
+        "enum": [
+          "New",
+          "Processing",
+          "Accepted",
+          "Declined",
+          "Shipped",
+          "Delivered",
+          "OnHold",
+          "Failed",
+          "Fulfilled",
+          "Cancelled"
+        ],
+        "type": "string"
       },
       "PatchOperation": {
         "type": "object",
@@ -8475,38 +8565,13 @@
             "format": "date-time"
           },
           "onBehalfOf": {
-            "enum": [
-              "Self",
-              "Tenant",
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/OnBehalfOf"
           },
           "paymentType": {
-            "enum": [
-              "Paid",
-              "Received",
-              "Internal"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentType"
           },
           "paymentStatus": {
-            "enum": [
-              "Unset",
-              "Accepted",
-              "Rejected",
-              "OnHold",
-              "Failed",
-              "Reversed",
-              "Retained",
-              "Initialized",
-              "Expired",
-              "Abandoned",
-              "Cancelled",
-              "AcceptedRetained"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentStatus"
           },
           "baseCost": {
             "type": "number",
@@ -8761,38 +8826,13 @@
             "format": "date-time"
           },
           "onBehalfOf": {
-            "enum": [
-              "Self",
-              "Tenant",
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/OnBehalfOf"
           },
           "paymentType": {
-            "enum": [
-              "Paid",
-              "Received",
-              "Internal"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentType"
           },
           "paymentStatus": {
-            "enum": [
-              "Unset",
-              "Accepted",
-              "Rejected",
-              "OnHold",
-              "Failed",
-              "Reversed",
-              "Retained",
-              "Initialized",
-              "Expired",
-              "Abandoned",
-              "Cancelled",
-              "AcceptedRetained"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PaymentStatus"
           },
           "baseCost": {
             "type": "number",
@@ -9167,6 +9207,23 @@
         },
         "additionalProperties": false
       },
+      "PaymentStatus": {
+        "enum": [
+          "Unset",
+          "Accepted",
+          "Rejected",
+          "OnHold",
+          "Failed",
+          "Reversed",
+          "Retained",
+          "Initialized",
+          "Expired",
+          "Abandoned",
+          "Cancelled",
+          "AcceptedRetained"
+        ],
+        "type": "string"
+      },
       "PaymentTokenCreateDto": {
         "required": [
           "cardExpirationMonth",
@@ -9462,6 +9519,14 @@
         },
         "additionalProperties": false
       },
+      "PaymentType": {
+        "enum": [
+          "Paid",
+          "Received",
+          "Internal"
+        ],
+        "type": "string"
+      },
       "QuoteDto": {
         "type": "object",
         "properties": {
@@ -9562,18 +9627,10 @@
             "nullable": true
           },
           "taxCalculationMethod": {
-            "enum": [
-              "Included",
-              "Excluded"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TaxCalculationMethod"
           },
           "costCalculationMethod": {
-            "enum": [
-              "Automatic",
-              "Custom"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CostCalculationMethod"
           },
           "forexRate": {
             "type": "number",
@@ -9750,21 +9807,10 @@
             "nullable": true
           },
           "quoteStatus": {
-            "enum": [
-              "Draft",
-              "New",
-              "Accepted",
-              "Declined",
-              "Expired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/QuoteStatus"
           },
           "freightTerms": {
-            "enum": [
-              "FOB",
-              "NoCharge"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FreightTerms"
           },
           "customDiscountsAmount": {
             "type": "number",
@@ -9871,6 +9917,16 @@
         },
         "additionalProperties": false
       },
+      "QuoteStatus": {
+        "enum": [
+          "Draft",
+          "New",
+          "Accepted",
+          "Declined",
+          "Expired"
+        ],
+        "type": "string"
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -9938,6 +9994,29 @@
         },
         "additionalProperties": false
       },
+      "SaleChannel": {
+        "enum": [
+          "Unset",
+          "Marketplace",
+          "Direct"
+        ],
+        "type": "string"
+      },
+      "SiteTheme": {
+        "enum": [
+          "System",
+          "Light",
+          "Dark"
+        ],
+        "type": "string"
+      },
+      "TaxCalculationMethod": {
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string"
+      },
       "TenantDto": {
         "type": "object",
         "properties": {
@@ -9956,11 +10035,7 @@
             "readOnly": true
           },
           "kind": {
-            "enum": [
-              "Organization",
-              "Individual"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/BusinessEntityKind"
           },
           "taxId": {
             "type": "string",
@@ -10197,6 +10272,16 @@
         },
         "additionalProperties": false
       },
+      "UserAvailability": {
+        "enum": [
+          "DND",
+          "Busy",
+          "Away",
+          "Offline",
+          "Available"
+        ],
+        "type": "string"
+      },
       "UserDto": {
         "type": "object",
         "properties": {
@@ -10296,14 +10381,7 @@
             "nullable": true
           },
           "gender": {
-            "enum": [
-              "Unknown",
-              "Male",
-              "Female",
-              "PreferNotToSay"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Gender"
           },
           "cityId": {
             "type": "string",
@@ -10376,15 +10454,7 @@
             "type": "boolean"
           },
           "availability": {
-            "enum": [
-              "DND",
-              "Busy",
-              "Away",
-              "Offline",
-              "Available"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/UserAvailability"
           },
           "lockoutEnabled": {
             "type": "boolean"
@@ -10400,13 +10470,7 @@
             "nullable": true
           },
           "siteTheme": {
-            "enum": [
-              "System",
-              "Light",
-              "Dark"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SiteTheme"
           }
         },
         "additionalProperties": false
@@ -10541,14 +10605,7 @@
             "nullable": true
           },
           "withdrawStatus": {
-            "enum": [
-              "OnHold",
-              "Retained",
-              "Processing",
-              "OnValidation",
-              "Processed"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/WithdrawStatus"
           },
           "walletAccountId": {
             "type": "string",
@@ -10723,14 +10780,7 @@
             "format": "double"
           },
           "walletWithdrawRequestStatus": {
-            "enum": [
-              "Pending",
-              "Processed",
-              "Cancelled",
-              "OnHold",
-              "Denied"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/WalletWithdrawRequestStatus"
           },
           "currencyId": {
             "type": "string",
@@ -10848,6 +10898,26 @@
           }
         },
         "additionalProperties": false
+      },
+      "WalletWithdrawRequestStatus": {
+        "enum": [
+          "Pending",
+          "Processed",
+          "Cancelled",
+          "OnHold",
+          "Denied"
+        ],
+        "type": "string"
+      },
+      "WithdrawStatus": {
+        "enum": [
+          "OnHold",
+          "Retained",
+          "Processing",
+          "OnValidation",
+          "Processed"
+        ],
+        "type": "string"
       }
     }
   },

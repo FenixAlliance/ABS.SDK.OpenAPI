@@ -5418,6 +5418,14 @@
         },
         "additionalProperties": false
       },
+      "ApprovalStatus": {
+        "enum": [
+          "Pending",
+          "Approved",
+          "Rejected"
+        ],
+        "type": "string"
+      },
       "EmptyEnvelope": {
         "type": "object",
         "properties": {
@@ -5974,12 +5982,7 @@
         "type": "object",
         "properties": {
           "approvalStatus": {
-            "enum": [
-              "Pending",
-              "Approved",
-              "Rejected"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ApprovalStatus"
           },
           "comments": {
             "type": "string",
@@ -6406,12 +6409,7 @@
             "type": "string"
           },
           "projectTimeLogRecordType": {
-            "enum": [
-              "RegularHours",
-              "OvertimeToPay",
-              "OvertimeToCompensate"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ProjectTimeLogRecordType"
           },
           "projectId": {
             "type": "string",
@@ -6457,12 +6455,7 @@
             "nullable": true
           },
           "recordType": {
-            "enum": [
-              "RegularHours",
-              "OvertimeToPay",
-              "OvertimeToCompensate"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ProjectTimeLogRecordType"
           },
           "timeSpan": {
             "type": "string",
@@ -6632,6 +6625,14 @@
         },
         "additionalProperties": false
       },
+      "ProjectTimeLogRecordType": {
+        "enum": [
+          "RegularHours",
+          "OvertimeToPay",
+          "OvertimeToCompensate"
+        ],
+        "type": "string"
+      },
       "ProjectTimeLogUpdateDto": {
         "type": "object",
         "properties": {
@@ -6656,12 +6657,7 @@
             "nullable": true
           },
           "projectTimeLogRecordType": {
-            "enum": [
-              "RegularHours",
-              "OvertimeToPay",
-              "OvertimeToCompensate"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ProjectTimeLogRecordType"
           }
         },
         "additionalProperties": false

@@ -10522,6 +10522,11 @@ components:
         result:
           type: boolean
       additionalProperties: false
+    BusinessEntityKind:
+      enum:
+        - Organization
+        - Individual
+      type: string
     BusinessRelationshipCreateDto:
       type: object
       properties:
@@ -10721,6 +10726,11 @@ components:
           type: integer
           format: int32
           nullable: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
+        directSellerTenantId:
+          type: string
+          nullable: true
       additionalProperties: false
     CartDtoEnvelope:
       type: object
@@ -10847,10 +10857,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -11110,6 +11117,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Gender:
+      enum:
+        - Unknown
+        - Male
+        - Female
+        - PreferNotToSay
+      type: string
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -11245,11 +11259,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Event
-            - Alert
-            - Log
-          type: string
+          $ref: '#/components/schemas/NotificationType'
         socialProfileId:
           type: string
           nullable: true
@@ -11339,6 +11349,12 @@ components:
             $ref: '#/components/schemas/NotificationDto'
           nullable: true
       additionalProperties: false
+    NotificationType:
+      enum:
+        - Event
+        - Alert
+        - Log
+      type: string
     OptionCreateDto:
       required:
         - key
@@ -11594,6 +11610,18 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
+    SiteTheme:
+      enum:
+        - System
+        - Light
+        - Dark
+      type: string
     SocialProfileDto:
       type: object
       properties:
@@ -11650,12 +11678,7 @@ components:
           format: int32
           nullable: true
         type:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialFeedId:
           type: string
           nullable: true
@@ -11725,6 +11748,12 @@ components:
         result:
           $ref: '#/components/schemas/SocialProfileDto'
       additionalProperties: false
+    SocialProfileType:
+      enum:
+        - User
+        - Tenant
+        - Contact
+      type: string
     StringListEnvelope:
       type: object
       properties:
@@ -11973,10 +12002,7 @@ components:
           type: string
           format: date-time
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         name:
           maxLength: 100
           minLength: 1
@@ -12255,10 +12281,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -14822,11 +14845,7 @@ components:
       type: object
       properties:
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BusinessEntityKind'
         name:
           maxLength: 100
           minLength: 1
@@ -15313,6 +15332,14 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    UserAvailability:
+      enum:
+        - DND
+        - Busy
+        - Away
+        - Offline
+        - Available
+      type: string
     UserDto:
       type: object
       properties:
@@ -15389,13 +15416,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Gender'
         cityId:
           type: string
           nullable: true
@@ -15449,14 +15470,7 @@ components:
         emailConfirmed:
           type: boolean
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/UserAvailability'
         lockoutEnabled:
           type: boolean
         lockoutEnd:
@@ -15468,12 +15482,7 @@ components:
           format: int32
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SiteTheme'
       additionalProperties: false
     UserDtoListEnvelope:
       type: object

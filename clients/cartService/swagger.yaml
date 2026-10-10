@@ -4162,6 +4162,11 @@ components:
           type: integer
           format: int32
           nullable: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
+        directSellerTenantId:
+          type: string
+          nullable: true
       additionalProperties: false
     CartDtoEnvelope:
       type: object
@@ -4211,6 +4216,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    CostCalculationMethod:
+      enum:
+        - Automatic
+        - Custom
+      type: string
     CountryDto:
       type: object
       properties:
@@ -4583,15 +4593,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -4727,6 +4731,10 @@ components:
         quantity:
           type: number
           format: double
+        unitPrice:
+          type: number
+          format: double
+          readOnly: true
         free:
           type: boolean
         freeReason:
@@ -5261,6 +5269,17 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
+    TaxCalculationMethod:
+      enum:
+        - Included
+        - Excluded
+      type: string
     TwoFactorRequest:
       type: object
       properties:

@@ -6839,6 +6839,13 @@
         },
         "additionalProperties": false
       },
+      "AssetClass": {
+        "enum": [
+          "Fixed",
+          "Stock"
+        ],
+        "type": "string"
+      },
       "AssetCreateDto": {
         "type": "object",
         "properties": {
@@ -6859,20 +6866,10 @@
             "nullable": true
           },
           "assetClass": {
-            "enum": [
-              "Fixed",
-              "Stock"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/AssetClass"
           },
           "assetOwner": {
-            "enum": [
-              "Business",
-              "Organization",
-              "Contact",
-              "Supplier"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/AssetOwner"
           },
           "isExistingAsset": {
             "type": "boolean"
@@ -7288,20 +7285,10 @@
             "nullable": true
           },
           "assetClass": {
-            "enum": [
-              "Fixed",
-              "Stock"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/AssetClass"
           },
           "assetOwner": {
-            "enum": [
-              "Business",
-              "Organization",
-              "Contact",
-              "Supplier"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/AssetOwner"
           },
           "isExistingAsset": {
             "type": "boolean"
@@ -7544,6 +7531,15 @@
         },
         "additionalProperties": false
       },
+      "AssetOwner": {
+        "enum": [
+          "Business",
+          "Organization",
+          "Contact",
+          "Supplier"
+        ],
+        "type": "string"
+      },
       "AssetRepairCreateDto": {
         "type": "object",
         "properties": {
@@ -7560,13 +7556,7 @@
             "nullable": true
           },
           "repairStatus": {
-            "enum": [
-              "Scheduled",
-              "InProgress",
-              "Completed",
-              "Cancelled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepairStatusDto"
           },
           "scheduledDate": {
             "type": "string",
@@ -7637,13 +7627,7 @@
             "nullable": true
           },
           "repairStatus": {
-            "enum": [
-              "Scheduled",
-              "InProgress",
-              "Completed",
-              "Cancelled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepairStatusDto"
           },
           "scheduledDate": {
             "type": "string",
@@ -7843,14 +7827,7 @@
         "type": "object",
         "properties": {
           "repairStatus": {
-            "enum": [
-              "Scheduled",
-              "InProgress",
-              "Completed",
-              "Cancelled"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/RepairStatusDto"
           },
           "scheduledDate": {
             "type": "string",
@@ -8463,22 +8440,10 @@
             "nullable": true
           },
           "assetClass": {
-            "enum": [
-              "Fixed",
-              "Stock"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/AssetClass"
           },
           "assetOwner": {
-            "enum": [
-              "Business",
-              "Organization",
-              "Contact",
-              "Supplier"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/AssetOwner"
           },
           "calculateDepreciation": {
             "type": "boolean"
@@ -9109,6 +9074,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "RepairStatusDto": {
+        "enum": [
+          "Scheduled",
+          "InProgress",
+          "Completed",
+          "Cancelled"
+        ],
+        "type": "string"
       },
       "ResendConfirmationEmailRequest": {
         "required": [

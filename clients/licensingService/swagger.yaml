@@ -2267,15 +2267,7 @@ paths:
         - name: minimumStatus
           in: query
           schema:
-            enum:
-              - Ok
-              - Near
-              - AtLimit
-              - Over
-              - NoAllowance
-              - Unavailable
-              - Unlicensed
-            type: string
+            $ref: '#/components/schemas/UsageMeterStatus'
         - name: search
           in: query
           schema:
@@ -2376,6 +2368,248 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/TenantUsageDtoEnvelope'
+  '/api/v2/LicensingService/Admin/Usage/{targetTenantId}/LimitOverrides':
+    get:
+      tags:
+        - Usage
+      summary: Get a tenant's usage limit overrides (root admin)
+      description: 'Root-admin audit read of one tenant''s usage limit overrides, active and past: the license and meter, the grant and pool before and after, the hard stop before and after, the actor, reason and expiry.'
+      operationId: Usage_GetTenantUsageLimitOverrides
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: targetTenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageLimitOverrideDtoIReadOnlyListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantUsageLimitOverrideDtoIReadOnlyListEnvelope'
+    post:
+      tags:
+        - Usage
+      summary: Override a tenant's usage limit (root admin)
+      description: 'Root-admin, audited change to ONE license''s grant of one meter: set or extend the allowance, or reset a reached hard stop for the current period. Requires ExpectedRevision (the grant''s Revision): 400 when missing, 409 when stale. Changes enforcement limits only. Returns the new override''s id.'
+      operationId: Usage_CreateTenantUsageLimitOverride
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: targetTenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json;odata.metadata=minimal;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=minimal;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=full;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.metadata=none;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=true;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=true;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=false;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;odata.streaming=false;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;IEEE754Compatible=false:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json;IEEE754Compatible=true:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/*+xml:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TenantUsageLimitOverrideCreateDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StringEnvelope'
 components:
   schemas:
     AccessTokenResponse:
@@ -2399,6 +2633,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BillingCycle:
+      enum:
+        - Monthly
+        - Annual
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -3433,6 +3672,45 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    StringEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: string
+          nullable: true
+      additionalProperties: false
     TenantUsageDto:
       type: object
       properties:
@@ -3510,6 +3788,45 @@ components:
         result:
           $ref: '#/components/schemas/TenantUsageDto'
       additionalProperties: false
+    TenantUsageLimitOverrideCreateDto:
+      required:
+        - expectedRevision
+        - kind
+        - licenseId
+        - meterKey
+        - reason
+      type: object
+      properties:
+        licenseId:
+          minLength: 1
+          type: string
+        meterKey:
+          minLength: 1
+          type: string
+        kind:
+          $ref: '#/components/schemas/UsageLimitOverrideKind'
+        quantity:
+          maximum: 1000000000000
+          minimum: 0
+          type: number
+          format: double
+          nullable: true
+        expectedRevision:
+          minLength: 1
+          type: string
+        expectedEffectiveAllowance:
+          type: number
+          format: double
+          nullable: true
+        expiresAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+        reason:
+          maxLength: 1024
+          minLength: 3
+          type: string
+      additionalProperties: false
     TenantUsageLimitOverrideDto:
       type: object
       properties:
@@ -3529,11 +3846,7 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - SetAllowance
-            - ExtendAllowance
-            - ResetHardStop
-          type: string
+          $ref: '#/components/schemas/UsageLimitOverrideKind'
         quantity:
           type: number
           format: double
@@ -3577,6 +3890,47 @@ components:
         active:
           type: boolean
       additionalProperties: false
+    TenantUsageLimitOverrideDtoIReadOnlyListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantUsageLimitOverrideDto'
+          nullable: true
+      additionalProperties: false
     TenantUsageSummaryDto:
       type: object
       properties:
@@ -3604,15 +3958,7 @@ components:
           type: string
           nullable: true
         worstStatus:
-          enum:
-            - Ok
-            - Near
-            - AtLimit
-            - Over
-            - NoAllowance
-            - Unavailable
-            - Unlicensed
-          type: string
+          $ref: '#/components/schemas/UsageMeterStatus'
         metersNear:
           type: integer
           format: int32
@@ -3706,6 +4052,20 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    UsageAggregationKind:
+      enum:
+        - PeriodCumulative
+        - Gauge
+        - TimeIntegral
+      type: string
+    UsageAllowanceKind:
+      enum:
+        - Finite
+        - Unlimited
+        - NotIncluded
+        - Unknown
+        - Unlicensed
+      type: string
     UsageBudgetDto:
       type: object
       properties:
@@ -3731,6 +4091,19 @@ components:
         canOverrideLimits:
           type: boolean
       additionalProperties: false
+    UsageCostStatus:
+      enum:
+        - NotRated
+        - Estimated
+        - Invoiced
+      type: string
+    UsageDataState:
+      enum:
+        - Measured
+        - Partial
+        - Delayed
+        - Unavailable
+      type: string
     UsageGrantDto:
       type: object
       properties:
@@ -3738,13 +4111,7 @@ components:
           type: string
           nullable: true
         allowanceKind:
-          enum:
-            - Finite
-            - Unlimited
-            - NotIncluded
-            - Unknown
-            - Unlicensed
-          type: string
+          $ref: '#/components/schemas/UsageAllowanceKind'
         planAllowance:
           type: number
           format: double
@@ -3787,6 +4154,18 @@ components:
             type: string
           nullable: true
       additionalProperties: false
+    UsageLimitBehavior:
+      enum:
+        - None
+        - HardStop
+        - Overage
+      type: string
+    UsageLimitOverrideKind:
+      enum:
+        - SetAllowance
+        - ExtendAllowance
+        - ResetHardStop
+      type: string
     UsageMeterDefinitionDto:
       type: object
       properties:
@@ -3803,11 +4182,7 @@ components:
           type: string
           nullable: true
         aggregation:
-          enum:
-            - PeriodCumulative
-            - Gauge
-            - TimeIntegral
-          type: string
+          $ref: '#/components/schemas/UsageAggregationKind'
         entitlementKey:
           type: string
           nullable: true
@@ -3890,19 +4265,9 @@ components:
           type: string
           nullable: true
         aggregation:
-          enum:
-            - PeriodCumulative
-            - Gauge
-            - TimeIntegral
-          type: string
+          $ref: '#/components/schemas/UsageAggregationKind'
         allowanceKind:
-          enum:
-            - Finite
-            - Unlimited
-            - NotIncluded
-            - Unknown
-            - Unlicensed
-          type: string
+          $ref: '#/components/schemas/UsageAllowanceKind'
         allowance:
           type: number
           format: double
@@ -3919,22 +4284,13 @@ components:
         allowedOverrides:
           type: array
           items:
-            enum:
-              - SetAllowance
-              - ExtendAllowance
-              - ResetHardStop
-            type: string
+            $ref: '#/components/schemas/UsageLimitOverrideKind'
           nullable: true
         overrideNote:
           type: string
           nullable: true
         dataState:
-          enum:
-            - Measured
-            - Partial
-            - Delayed
-            - Unavailable
-          type: string
+          $ref: '#/components/schemas/UsageDataState'
         consumed:
           type: number
           format: double
@@ -3962,21 +4318,9 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Ok
-            - Near
-            - AtLimit
-            - Over
-            - NoAllowance
-            - Unavailable
-            - Unlicensed
-          type: string
+          $ref: '#/components/schemas/UsageMeterStatus'
         limitBehavior:
-          enum:
-            - None
-            - HardStop
-            - Overage
-          type: string
+          $ref: '#/components/schemas/UsageLimitBehavior'
         stopped:
           type: boolean
         includedQuantity:
@@ -3988,11 +4332,7 @@ components:
           format: double
           nullable: true
         costStatus:
-          enum:
-            - NotRated
-            - Estimated
-            - Invoiced
-          type: string
+          $ref: '#/components/schemas/UsageCostStatus'
         overageCost:
           $ref: '#/components/schemas/UsageMoneyDto'
         costBasis:
@@ -4014,6 +4354,16 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    UsageMeterStatus:
+      enum:
+        - Ok
+        - Near
+        - AtLimit
+        - Over
+        - NoAllowance
+        - Unavailable
+        - Unlicensed
+      type: string
     UsageMoneyDto:
       type: object
       properties:
@@ -4059,10 +4409,7 @@ components:
           type: string
           nullable: true
         billingCycle:
-          enum:
-            - Monthly
-            - Annual
-          type: string
+          $ref: '#/components/schemas/BillingCycle'
         periodPrice:
           $ref: '#/components/schemas/UsageMoneyDto'
         hardStop:

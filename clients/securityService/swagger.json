@@ -7948,22 +7948,10 @@
             "nullable": true
           },
           "principalKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "principalStatus": {
-            "enum": [
-              "Active",
-              "Suspended",
-              "Disabled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalStatus"
           },
           "businessApplicationId": {
             "type": "string",
@@ -8072,22 +8060,10 @@
             "nullable": true
           },
           "principalKind": {
-            "enum": [
-              "Human",
-              "Agent",
-              "Application",
-              "Service",
-              "System"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalKind"
           },
           "principalStatus": {
-            "enum": [
-              "Active",
-              "Suspended",
-              "Disabled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PrincipalStatus"
           },
           "businessApplicationId": {
             "type": "string",
@@ -9218,6 +9194,72 @@
         },
         "additionalProperties": false
       },
+      "HttpStatusCode": {
+        "enum": [
+          "Continue",
+          "SwitchingProtocols",
+          "Processing",
+          "EarlyHints",
+          "OK",
+          "Created",
+          "Accepted",
+          "NonAuthoritativeInformation",
+          "NoContent",
+          "ResetContent",
+          "PartialContent",
+          "MultiStatus",
+          "AlreadyReported",
+          "IMUsed",
+          "MultipleChoices",
+          "MovedPermanently",
+          "Found",
+          "SeeOther",
+          "NotModified",
+          "UseProxy",
+          "Unused",
+          "TemporaryRedirect",
+          "PermanentRedirect",
+          "BadRequest",
+          "Unauthorized",
+          "PaymentRequired",
+          "Forbidden",
+          "NotFound",
+          "MethodNotAllowed",
+          "NotAcceptable",
+          "ProxyAuthenticationRequired",
+          "RequestTimeout",
+          "Conflict",
+          "Gone",
+          "LengthRequired",
+          "PreconditionFailed",
+          "RequestEntityTooLarge",
+          "RequestUriTooLong",
+          "UnsupportedMediaType",
+          "RequestedRangeNotSatisfiable",
+          "ExpectationFailed",
+          "MisdirectedRequest",
+          "UnprocessableEntity",
+          "Locked",
+          "FailedDependency",
+          "UpgradeRequired",
+          "PreconditionRequired",
+          "TooManyRequests",
+          "RequestHeaderFieldsTooLarge",
+          "UnavailableForLegalReasons",
+          "InternalServerError",
+          "NotImplemented",
+          "BadGateway",
+          "ServiceUnavailable",
+          "GatewayTimeout",
+          "HttpVersionNotSupported",
+          "VariantAlsoNegotiates",
+          "InsufficientStorage",
+          "LoopDetected",
+          "NotExtended",
+          "NetworkAuthenticationRequired"
+        ],
+        "type": "string"
+      },
       "HttpValidationProblemDetails": {
         "type": "object",
         "properties": {
@@ -9363,70 +9405,7 @@
             "nullable": true
           },
           "logType": {
-            "enum": [
-              "Continue",
-              "SwitchingProtocols",
-              "Processing",
-              "EarlyHints",
-              "OK",
-              "Created",
-              "Accepted",
-              "NonAuthoritativeInformation",
-              "NoContent",
-              "ResetContent",
-              "PartialContent",
-              "MultiStatus",
-              "AlreadyReported",
-              "IMUsed",
-              "MultipleChoices",
-              "MovedPermanently",
-              "Found",
-              "SeeOther",
-              "NotModified",
-              "UseProxy",
-              "Unused",
-              "TemporaryRedirect",
-              "PermanentRedirect",
-              "BadRequest",
-              "Unauthorized",
-              "PaymentRequired",
-              "Forbidden",
-              "NotFound",
-              "MethodNotAllowed",
-              "NotAcceptable",
-              "ProxyAuthenticationRequired",
-              "RequestTimeout",
-              "Conflict",
-              "Gone",
-              "LengthRequired",
-              "PreconditionFailed",
-              "RequestEntityTooLarge",
-              "RequestUriTooLong",
-              "UnsupportedMediaType",
-              "RequestedRangeNotSatisfiable",
-              "ExpectationFailed",
-              "MisdirectedRequest",
-              "UnprocessableEntity",
-              "Locked",
-              "FailedDependency",
-              "UpgradeRequired",
-              "PreconditionRequired",
-              "TooManyRequests",
-              "RequestHeaderFieldsTooLarge",
-              "UnavailableForLegalReasons",
-              "InternalServerError",
-              "NotImplemented",
-              "BadGateway",
-              "ServiceUnavailable",
-              "GatewayTimeout",
-              "HttpVersionNotSupported",
-              "VariantAlsoNegotiates",
-              "InsufficientStorage",
-              "LoopDetected",
-              "NotExtended",
-              "NetworkAuthenticationRequired"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/HttpStatusCode"
           },
           "businessID": {
             "type": "string",
@@ -10023,6 +10002,24 @@
           "value": { }
         },
         "additionalProperties": false
+      },
+      "PrincipalKind": {
+        "enum": [
+          "Human",
+          "Agent",
+          "Application",
+          "Service",
+          "System"
+        ],
+        "type": "string"
+      },
+      "PrincipalStatus": {
+        "enum": [
+          "Active",
+          "Suspended",
+          "Disabled"
+        ],
+        "type": "string"
       },
       "RefreshRequest": {
         "required": [

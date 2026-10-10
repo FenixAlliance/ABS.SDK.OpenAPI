@@ -4213,6 +4213,218 @@
         }
       }
     },
+    "/api/v2/HrmsService/Employers/{employerId}/Publish": {
+      "post": {
+        "tags": [
+          "Employers"
+        ],
+        "summary": "Publish an employer profile",
+        "description": "Opts the employer into the public employer directory.",
+        "operationId": "Employers_PublishEmployerProfile",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "employerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/HrmsService/Employers/{employerId}/Unpublish": {
+      "post": {
+        "tags": [
+          "Employers"
+        ],
+        "summary": "Unpublish an employer profile",
+        "description": "Withdraws the employer from the public employer directory.",
+        "operationId": "Employers_UnpublishEmployerProfile",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "employerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "tags": [
@@ -6338,6 +6550,430 @@
         }
       }
     },
+    "/api/v2/HrmsService/Gigs/{gigId}/Publish": {
+      "post": {
+        "tags": [
+          "Gigs"
+        ],
+        "summary": "Publish a gig",
+        "description": "Publishes a draft gig.",
+        "operationId": "Gigs_PublishGig",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gigId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/HrmsService/Gigs/{gigId}/Award": {
+      "post": {
+        "tags": [
+          "Gigs"
+        ],
+        "summary": "Award a gig",
+        "description": "Marks a published gig as awarded.",
+        "operationId": "Gigs_AwardGig",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gigId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/HrmsService/Gigs/{gigId}/Complete": {
+      "post": {
+        "tags": [
+          "Gigs"
+        ],
+        "summary": "Complete a gig",
+        "description": "Marks an awarded gig as completed.",
+        "operationId": "Gigs_CompleteGig",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gigId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/HrmsService/Gigs/{gigId}/Cancel": {
+      "post": {
+        "tags": [
+          "Gigs"
+        ],
+        "summary": "Cancel a gig",
+        "description": "Cancels a gig before it is completed.",
+        "operationId": "Gigs_CancelGig",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gigId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/HrmsService/JobApplicants": {
       "get": {
         "tags": [
@@ -7846,16 +8482,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "enum": [
-                "Submitted",
-                "UnderReview",
-                "Interviewing",
-                "Offered",
-                "Hired",
-                "Rejected",
-                "Withdrawn"
-              ],
-              "type": "string"
+              "$ref": "#/components/schemas/JobApplicationStatus"
             }
           },
           {
@@ -21225,6 +21852,16 @@
         },
         "additionalProperties": false
       },
+      "CareerLevel": {
+        "enum": [
+          "Junior",
+          "Intermediate",
+          "MidLevel",
+          "Executive",
+          "Senior"
+        ],
+        "type": "string"
+      },
       "ContactCreateDto": {
         "required": [
           "email",
@@ -21242,11 +21879,7 @@
             "format": "date-time"
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "firstName": {
             "maxLength": 50,
@@ -21446,11 +22079,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -21683,6 +22312,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -21693,6 +22333,44 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
+      "DayOfTheWeek": {
+        "enum": [
+          "All",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
       },
       "EmployeeAppraisalSessionCreateDto": {
         "required": [
@@ -22977,6 +23655,9 @@
           "data9Label": {
             "type": "string",
             "nullable": true
+          },
+          "isPublicProfile": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -23889,6 +24570,9 @@
             "type": "string",
             "nullable": true
           },
+          "status": {
+            "$ref": "#/components/schemas/GigStatus"
+          },
           "tenantId": {
             "type": "string",
             "nullable": true
@@ -24068,6 +24752,16 @@
           }
         },
         "additionalProperties": false
+      },
+      "GigStatus": {
+        "enum": [
+          "Draft",
+          "Published",
+          "Awarded",
+          "Completed",
+          "Cancelled"
+        ],
+        "type": "string"
       },
       "GigUpdateDto": {
         "type": "object",
@@ -24448,14 +25142,7 @@
             "type": "boolean"
           },
           "careerLevel": {
-            "enum": [
-              "Junior",
-              "Intermediate",
-              "MidLevel",
-              "Executive",
-              "Senior"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CareerLevel"
           },
           "experienceInYears": {
             "type": "integer",
@@ -24619,14 +25306,7 @@
             "type": "boolean"
           },
           "careerLevel": {
-            "enum": [
-              "Junior",
-              "Intermediate",
-              "MidLevel",
-              "Executive",
-              "Senior"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CareerLevel"
           },
           "experienceInYears": {
             "type": "integer",
@@ -24903,14 +25583,7 @@
             "type": "boolean"
           },
           "careerLevel": {
-            "enum": [
-              "Junior",
-              "Intermediate",
-              "MidLevel",
-              "Executive",
-              "Senior"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CareerLevel"
           },
           "experienceInYears": {
             "type": "integer",
@@ -24934,6 +25607,18 @@
           }
         },
         "additionalProperties": false
+      },
+      "JobApplicationStatus": {
+        "enum": [
+          "Submitted",
+          "UnderReview",
+          "Interviewing",
+          "Offered",
+          "Hired",
+          "Rejected",
+          "Withdrawn"
+        ],
+        "type": "string"
       },
       "JobFieldCreateDto": {
         "required": [
@@ -25236,16 +25921,7 @@
             "nullable": true
           },
           "status": {
-            "enum": [
-              "Submitted",
-              "UnderReview",
-              "Interviewing",
-              "Offered",
-              "Hired",
-              "Rejected",
-              "Withdrawn"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/JobApplicationStatus"
           },
           "start": {
             "type": "string",
@@ -25679,13 +26355,7 @@
             "nullable": true
           },
           "status": {
-            "enum": [
-              "Draft",
-              "Published",
-              "Closed",
-              "Filled"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/JobOfferStatus"
           },
           "remote": {
             "type": "boolean"
@@ -26520,6 +27190,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "JobOfferStatus": {
+        "enum": [
+          "Draft",
+          "Published",
+          "Closed",
+          "Filled"
+        ],
+        "type": "string"
       },
       "JobOfferUpdateDto": {
         "type": "object",
@@ -27781,11 +28460,7 @@
             "nullable": true
           },
           "status": {
-            "enum": [
-              "Open",
-              "Closed"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/PayrollPeriodStatus"
           }
         },
         "additionalProperties": false
@@ -27939,6 +28614,13 @@
         },
         "additionalProperties": false
       },
+      "PayrollPeriodStatus": {
+        "enum": [
+          "Open",
+          "Closed"
+        ],
+        "type": "string"
+      },
       "PayrollPeriodUpdateDto": {
         "type": "object",
         "properties": {
@@ -28045,6 +28727,16 @@
         },
         "additionalProperties": false
       },
+      "RepetitionCriteria": {
+        "enum": [
+          "NotRepeat",
+          "WorkWeek",
+          "Day",
+          "Month",
+          "Year"
+        ],
+        "type": "string"
+      },
       "RequiredSkillRecordCreateDto": {
         "required": [
           "skillId"
@@ -28080,11 +28772,7 @@
             "format": "double"
           },
           "requiredSkillRecordType": {
-            "enum": [
-              "MustHave",
-              "Optional"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RequiredSkillRecordType"
           }
         },
         "additionalProperties": false
@@ -28110,11 +28798,7 @@
             "format": "double"
           },
           "requiredSkillRecordType": {
-            "enum": [
-              "MustHave",
-              "Optional"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RequiredSkillRecordType"
           },
           "skillId": {
             "type": "string",
@@ -28288,6 +28972,13 @@
         },
         "additionalProperties": false
       },
+      "RequiredSkillRecordType": {
+        "enum": [
+          "MustHave",
+          "Optional"
+        ],
+        "type": "string"
+      },
       "RequiredSkillRecordUpdateDto": {
         "type": "object",
         "properties": {
@@ -28312,11 +29003,7 @@
             "format": "double"
           },
           "requiredSkillRecordType": {
-            "enum": [
-              "MustHave",
-              "Optional"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RequiredSkillRecordType"
           }
         },
         "additionalProperties": false
@@ -29034,14 +29721,7 @@
             "format": "int32"
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -29054,17 +29734,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",
@@ -29138,14 +29808,7 @@
             "format": "int32"
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -29158,17 +29821,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",
@@ -29397,15 +30050,7 @@
             "nullable": true
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -29418,18 +30063,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",
@@ -30286,14 +30920,7 @@
             "format": "int32"
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -30306,17 +30933,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",
@@ -30390,14 +31007,7 @@
             "format": "int32"
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -30410,17 +31020,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",
@@ -30653,15 +31253,7 @@
             "nullable": true
           },
           "repetitionCriteria": {
-            "enum": [
-              "NotRepeat",
-              "WorkWeek",
-              "Day",
-              "Month",
-              "Year"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/RepetitionCriteria"
           },
           "recurrenceStart": {
             "type": "string",
@@ -30674,18 +31266,7 @@
             "nullable": true
           },
           "dayOfTheWeek": {
-            "enum": [
-              "All",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/DayOfTheWeek"
           },
           "scheduleId": {
             "type": "string",

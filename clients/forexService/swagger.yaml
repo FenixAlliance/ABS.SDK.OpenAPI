@@ -1303,6 +1303,13 @@ components:
         result:
           $ref: '#/components/schemas/ForexRatesDto'
       additionalProperties: false
+    ForexSetRepairAction:
+      enum:
+        - Create
+        - Replace
+        - Unchanged
+        - NoSnapshot
+      type: string
     ForexSetRepairDay:
       type: object
       properties:
@@ -1310,12 +1317,7 @@ components:
           type: string
           format: date-time
         action:
-          enum:
-            - Create
-            - Replace
-            - Unchanged
-            - NoSnapshot
-          type: string
+          $ref: '#/components/schemas/ForexSetRepairAction'
         snapshotRevision:
           type: string
           nullable: true

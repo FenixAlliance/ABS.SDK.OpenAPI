@@ -24604,6 +24604,19 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    AccountBalanceCriteria:
+      enum:
+        - Debit
+        - Credit
+      type: string
+    AccountCategory:
+      enum:
+        - Assets
+        - Equity
+        - Revenue
+        - Expense
+        - Liabilities
+      type: string
     AccountCreateDto:
       required:
         - accountCategory
@@ -24646,25 +24659,13 @@ components:
           type: string
           nullable: true
         accountCategory:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
+          $ref: '#/components/schemas/AccountCategory'
         isContra:
           type: boolean
         isMonetary:
           type: boolean
         incomeStatementSubType:
-          enum:
-            - OperatingRevenue
-            - Gain
-            - OperatingExpense
-            - Loss
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/IncomeStatementSubType'
       additionalProperties: false
     AccountDto:
       type: object
@@ -24744,30 +24745,15 @@ components:
           type: integer
           format: int32
         accountCategory:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
+          $ref: '#/components/schemas/AccountCategory'
         isContra:
           type: boolean
         isMonetary:
           type: boolean
         incomeStatementSubType:
-          enum:
-            - OperatingRevenue
-            - Gain
-            - OperatingExpense
-            - Loss
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/IncomeStatementSubType'
         normalBalance:
-          enum:
-            - Debit
-            - Credit
-          type: string
+          $ref: '#/components/schemas/AccountBalanceCriteria'
         balanceAmount:
           $ref: '#/components/schemas/Money'
         creditsBalanceAmount:
@@ -25396,25 +25382,13 @@ components:
           type: string
           nullable: true
         accountCategory:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
+          $ref: '#/components/schemas/AccountCategory'
         isContra:
           type: boolean
         isMonetary:
           type: boolean
         incomeStatementSubType:
-          enum:
-            - OperatingRevenue
-            - Gain
-            - OperatingExpense
-            - Loss
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/IncomeStatementSubType'
       additionalProperties: false
     AccountingEntryCreateDto:
       required:
@@ -25437,10 +25411,7 @@ components:
           minLength: 1
           type: string
         direction:
-          enum:
-            - Debit
-            - Credit
-          type: string
+          $ref: '#/components/schemas/PostingDirection'
         transactionAmount:
           maximum: 9.999999999999999E+20
           minimum: 1E-16
@@ -25480,10 +25451,7 @@ components:
           type: string
           nullable: true
         direction:
-          enum:
-            - Debit
-            - Credit
-          type: string
+          $ref: '#/components/schemas/PostingDirection'
         description:
           type: string
           nullable: true
@@ -25654,10 +25622,7 @@ components:
           type: string
           nullable: true
         direction:
-          enum:
-            - Debit
-            - Credit
-          type: string
+          $ref: '#/components/schemas/PostingDirection'
         transactionAmount:
           maximum: 9.999999999999999E+20
           minimum: 1E-16
@@ -26653,10 +26618,7 @@ components:
           type: integer
           format: int32
         bankGuaranteeType:
-          enum:
-            - Receiving
-            - Providing
-          type: string
+          $ref: '#/components/schemas/BankGuaranteeType'
         contactId:
           maxLength: 36
           minLength: 0
@@ -26727,10 +26689,7 @@ components:
           type: string
           nullable: true
         bankGuaranteeType:
-          enum:
-            - Receiving
-            - Providing
-          type: string
+          $ref: '#/components/schemas/BankGuaranteeType'
         enrollmentId:
           type: string
           nullable: true
@@ -26864,6 +26823,11 @@ components:
             $ref: '#/components/schemas/BankGuaranteeDto'
           nullable: true
       additionalProperties: false
+    BankGuaranteeType:
+      enum:
+        - Receiving
+        - Providing
+      type: string
     BankGuaranteeUpdateDto:
       type: object
       properties:
@@ -26895,10 +26859,7 @@ components:
           type: integer
           format: int32
         bankGuaranteeType:
-          enum:
-            - Receiving
-            - Providing
-          type: string
+          $ref: '#/components/schemas/BankGuaranteeType'
         contactId:
           maxLength: 36
           minLength: 0
@@ -27493,10 +27454,7 @@ components:
         isFactaCustomer:
           type: boolean
         taxPayerType:
-          enum:
-            - Individual
-            - Business
-          type: string
+          $ref: '#/components/schemas/TaxPayerType'
         countryId:
           minLength: 1
           type: string
@@ -27675,10 +27633,7 @@ components:
         isFactaCustomer:
           type: boolean
         taxPayerType:
-          enum:
-            - Individual
-            - Business
-          type: string
+          $ref: '#/components/schemas/TaxPayerType'
         countryId:
           minLength: 1
           type: string
@@ -27877,10 +27832,7 @@ components:
         isFactaCustomer:
           type: boolean
         taxPayerType:
-          enum:
-            - Individual
-            - Business
-          type: string
+          $ref: '#/components/schemas/TaxPayerType'
         countryId:
           type: string
           nullable: true
@@ -28613,10 +28565,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -28794,6 +28743,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
+          type: string
+          format: date-time
+          nullable: true
         tikTokUsername:
           type: string
           nullable: true
@@ -28801,6 +28758,30 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
+    CostCalculationMethod:
+      enum:
+        - Automatic
+        - Custom
+      type: string
     CostCentreBudgetCreateDto:
       type: object
       properties:
@@ -28993,10 +28974,7 @@ components:
           type: string
           nullable: true
         costCentreType:
-          enum:
-            - Service
-            - Production
-          type: string
+          $ref: '#/components/schemas/CostCentreType'
         costCentresGroupId:
           maxLength: 36
           minLength: 0
@@ -29027,10 +29005,7 @@ components:
           type: string
           nullable: true
         costCentreType:
-          enum:
-            - Service
-            - Production
-          type: string
+          $ref: '#/components/schemas/CostCentreType'
         tenantId:
           type: string
           nullable: true
@@ -29336,6 +29311,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    CostCentreType:
+      enum:
+        - Service
+        - Production
+      type: string
     CostCentreUpdateDto:
       type: object
       properties:
@@ -29352,10 +29332,7 @@ components:
           type: string
           nullable: true
         costCentreType:
-          enum:
-            - Service
-            - Production
-          type: string
+          $ref: '#/components/schemas/CostCentreType'
         costCentresGroupId:
           maxLength: 36
           minLength: 0
@@ -29448,6 +29425,12 @@ components:
           type: number
           format: double
       additionalProperties: false
+    DocumentType:
+      enum:
+        - Standard
+        - DebitNote
+        - CreditNote
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -30422,11 +30405,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Open
-            - Closed
-            - Locked
-          type: string
+          $ref: '#/components/schemas/FiscalPeriodStatus'
       additionalProperties: false
     FiscalPeriodDtoCollectionQueryParameters:
       type: object
@@ -30539,6 +30518,12 @@ components:
             $ref: '#/components/schemas/FiscalPeriodDto'
           nullable: true
       additionalProperties: false
+    FiscalPeriodStatus:
+      enum:
+        - Open
+        - Closed
+        - Locked
+      type: string
     FiscalPeriodUpdateDto:
       required:
         - fiscalYearId
@@ -31499,6 +31484,13 @@ components:
               type: string
           nullable: true
       additionalProperties: { }
+    IncomeStatementSubType:
+      enum:
+        - OperatingRevenue
+        - Gain
+        - OperatingExpense
+        - Loss
+      type: string
     InfoRequest:
       type: object
       properties:
@@ -31606,11 +31598,7 @@ components:
           type: string
           nullable: true
         documentType:
-          enum:
-            - Standard
-            - DebitNote
-            - CreditNote
-          type: string
+          $ref: '#/components/schemas/DocumentType'
       additionalProperties: false
     InvoiceEnumerationRangeDto:
       type: object
@@ -31659,11 +31647,13 @@ components:
           type: string
           nullable: true
         documentType:
-          enum:
-            - Standard
-            - DebitNote
-            - CreditNote
-          type: string
+          $ref: '#/components/schemas/DocumentType'
+        remainingNumbers:
+          type: integer
+          format: int64
+          readOnly: true
+        health:
+          $ref: '#/components/schemas/InvoiceEnumerationRangeHealth'
       additionalProperties: false
     InvoiceEnumerationRangeDtoCollectionQueryParameters:
       type: object
@@ -31776,6 +31766,15 @@ components:
             $ref: '#/components/schemas/InvoiceEnumerationRangeDto'
           nullable: true
       additionalProperties: false
+    InvoiceEnumerationRangeHealth:
+      enum:
+        - Active
+        - ExpiringSoon
+        - NearlyExhausted
+        - Exhausted
+        - Expired
+        - NotYetValid
+      type: string
     InvoiceEnumerationRangeUpdateDto:
       type: object
       properties:
@@ -31810,11 +31809,7 @@ components:
           type: string
           nullable: true
         documentType:
-          enum:
-            - Standard
-            - DebitNote
-            - CreditNote
-          type: string
+          $ref: '#/components/schemas/DocumentType'
       additionalProperties: false
     ItemTaxPolicyRecordCreateDto:
       type: object
@@ -32277,19 +32272,9 @@ components:
           type: string
           nullable: true
         entryType:
-          enum:
-            - Simple
-            - Compound
-            - Adjusting
-            - Reversing
-          type: string
+          $ref: '#/components/schemas/JournalEntryType'
         status:
-          enum:
-            - Draft
-            - Posted
-            - Reversed
-            - Voided
-          type: string
+          $ref: '#/components/schemas/JournalEntryStatus'
         postingDate:
           type: string
           format: date-time
@@ -32318,25 +32303,12 @@ components:
           type: string
           nullable: true
         executionPrincipalKind:
-          enum:
-            - Human
-            - Agent
-            - Application
-            - Service
-            - System
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PrincipalKind'
         executionPrincipalEnrollmentId:
           type: string
           nullable: true
         runAs:
-          enum:
-            - Invoker
-            - Application
-            - System
-            - Service
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/RunAs'
         applicationId:
           type: string
           nullable: true
@@ -32344,14 +32316,7 @@ components:
           type: string
           nullable: true
         onBehalfOfActorKind:
-          enum:
-            - Human
-            - Agent
-            - Application
-            - Service
-            - System
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PrincipalKind'
         hasDualAxisIdentity:
           type: boolean
           readOnly: true
@@ -32500,6 +32465,20 @@ components:
             $ref: '#/components/schemas/JournalEntryDto'
           nullable: true
       additionalProperties: false
+    JournalEntryStatus:
+      enum:
+        - Draft
+        - Posted
+        - Reversed
+        - Voided
+      type: string
+    JournalEntryType:
+      enum:
+        - Simple
+        - Compound
+        - Adjusting
+        - Reversing
+      type: string
     JournalEntryUpdateDto:
       required:
         - description
@@ -32709,6 +32688,14 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    LedgerClass:
+      enum:
+        - Assets
+        - Equity
+        - Revenue
+        - Expense
+        - Liabilities
+      type: string
     LedgerDto:
       type: object
       properties:
@@ -32865,13 +32852,7 @@ components:
           minLength: 0
           type: string
         ledgerClass:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
+          $ref: '#/components/schemas/LedgerClass'
       additionalProperties: false
     LedgerTypeDto:
       type: object
@@ -32887,13 +32868,7 @@ components:
           type: string
           nullable: true
         ledgerClass:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
+          $ref: '#/components/schemas/LedgerClass'
         tenantId:
           type: string
           nullable: true
@@ -33021,14 +32996,7 @@ components:
           type: string
           nullable: true
         ledgerClass:
-          enum:
-            - Assets
-            - Equity
-            - Revenue
-            - Expense
-            - Liabilities
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/LedgerClass'
       additionalProperties: false
     LoanApplicationCreateDto:
       type: object
@@ -33872,11 +33840,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Posted
-            - Duplicate
-            - Rejected
-          type: string
+          $ref: '#/components/schemas/PostingBookResultStatus'
         journalEntryId:
           type: string
           nullable: true
@@ -33884,6 +33848,17 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    PostingBookResultStatus:
+      enum:
+        - Posted
+        - Duplicate
+        - Rejected
+      type: string
+    PostingDirection:
+      enum:
+        - Debit
+        - Credit
+      type: string
     PostingExecutionDto:
       type: object
       properties:
@@ -33919,35 +33894,9 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Received
-            - Processing
-            - Posted
-            - Duplicate
-            - PendingMapping
-            - PendingPeriod
-            - PendingRate
-            - Rejected
-          type: string
+          $ref: '#/components/schemas/PostingExecutionStatus'
         failureKind:
-          enum:
-            - UnknownOperation
-            - UnknownRole
-            - AmbiguousPolicy
-            - MissingAccountMapping
-            - MissingFinancialBook
-            - MissingJournal
-            - ClosedPeriod
-            - MissingFxRate
-            - InvalidFxEvidence
-            - UnbalancedPlan
-            - DuplicateIntent
-            - DuplicateBookPosting
-            - InvalidPartyReference
-            - InvalidCustodyContext
-            - PolicyConfigurationError
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/PostingFailureKind'
         failureCode:
           type: string
           nullable: true
@@ -33976,14 +33925,7 @@ components:
             $ref: '#/components/schemas/PostingBookResultDto'
           nullable: true
         failureClass:
-          enum:
-            - Retryable
-            - OperatorActionRequired
-            - ConfigurationError
-            - ProducerError
-          type: string
-          nullable: true
-          readOnly: true
+          $ref: '#/components/schemas/PostingFailureClass'
       additionalProperties: false
     PostingExecutionDtoCollectionQueryParameters:
       type: object
@@ -34058,6 +34000,50 @@ components:
             $ref: '#/components/schemas/PostingExecutionDto'
           nullable: true
       additionalProperties: false
+    PostingExecutionStatus:
+      enum:
+        - Received
+        - Processing
+        - Posted
+        - Duplicate
+        - PendingMapping
+        - PendingPeriod
+        - PendingRate
+        - Rejected
+      type: string
+    PostingFailureClass:
+      enum:
+        - Retryable
+        - OperatorActionRequired
+        - ConfigurationError
+        - ProducerError
+      type: string
+    PostingFailureKind:
+      enum:
+        - UnknownOperation
+        - UnknownRole
+        - AmbiguousPolicy
+        - MissingAccountMapping
+        - MissingFinancialBook
+        - MissingJournal
+        - ClosedPeriod
+        - MissingFxRate
+        - InvalidFxEvidence
+        - UnbalancedPlan
+        - DuplicateIntent
+        - DuplicateBookPosting
+        - InvalidPartyReference
+        - InvalidCustodyContext
+        - PolicyConfigurationError
+      type: string
+    PrincipalKind:
+      enum:
+        - Human
+        - Agent
+        - Application
+        - Service
+        - System
+      type: string
     ReceiptCreateDto:
       type: object
       properties:
@@ -34199,15 +34185,9 @@ components:
           type: string
           nullable: true
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         paymentId:
           type: string
           nullable: true
@@ -34221,10 +34201,7 @@ components:
           type: string
           nullable: true
         receiptType:
-          enum:
-            - PaymentReceipt
-            - PurchaseReceipt
-          type: string
+          $ref: '#/components/schemas/ReceiptType'
         orderId:
           type: string
           nullable: true
@@ -34260,10 +34237,7 @@ components:
           type: string
           nullable: true
         receiptType:
-          enum:
-            - PaymentReceipt
-            - PurchaseReceipt
-          type: string
+          $ref: '#/components/schemas/ReceiptType'
         orderId:
           type: string
           nullable: true
@@ -34382,6 +34356,11 @@ components:
             $ref: '#/components/schemas/ReceiptDto'
           nullable: true
       additionalProperties: false
+    ReceiptType:
+      enum:
+        - PaymentReceipt
+        - PurchaseReceipt
+      type: string
     ReceiptUpdateDto:
       type: object
       properties:
@@ -34469,6 +34448,13 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
+    RunAs:
+      enum:
+        - Invoker
+        - Application
+        - System
+        - Service
+      type: string
     SeedChartOfAccountsRequest:
       type: object
       properties:
@@ -35212,6 +35198,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    TaxCalculationMethod:
+      enum:
+        - Included
+        - Excluded
+      type: string
     TaxClassCreateDto:
       type: object
       properties:
@@ -35227,10 +35218,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Tax
-            - Withholding
-          type: string
+          $ref: '#/components/schemas/TaxClassType'
         fiscalAuthorityId:
           maxLength: 36
           minLength: 0
@@ -35254,10 +35242,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Tax
-            - Withholding
-          type: string
+          $ref: '#/components/schemas/TaxClassType'
         enrollmentId:
           type: string
           nullable: true
@@ -35376,6 +35361,11 @@ components:
             $ref: '#/components/schemas/TaxClassDto'
           nullable: true
       additionalProperties: false
+    TaxClassType:
+      enum:
+        - Tax
+        - Withholding
+      type: string
     TaxClassUpdateDto:
       type: object
       properties:
@@ -35385,16 +35375,18 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Tax
-            - Withholding
-          type: string
+          $ref: '#/components/schemas/TaxClassType'
         fiscalAuthorityId:
           maxLength: 36
           minLength: 0
           type: string
           nullable: true
       additionalProperties: false
+    TaxPayerType:
+      enum:
+        - Individual
+        - Business
+      type: string
     TaxPolicyCreateDto:
       type: object
       properties:
@@ -36605,10 +36597,7 @@ components:
           type: string
           nullable: true
         normalBalance:
-          enum:
-            - Debit
-            - Credit
-          type: string
+          $ref: '#/components/schemas/AccountBalanceCriteria'
         debit:
           type: number
           format: double

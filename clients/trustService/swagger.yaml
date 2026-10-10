@@ -2503,6 +2503,142 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/PlatformSigningKeyDtoEnvelope'
+  /api/v2/TrustService/SigningKeys:
+    post:
+      tags:
+        - SigningKeys
+      summary: Generate a tenant signing key in custody
+      description: 'Generates a signing key owned by the acting tenant inside the configured signing custody and records its descriptor. The key''s authority is always the acting tenant''s own id. The key id must be lowercase letters and digits, then ''.'', ''_'' or ''-''. The private key never leaves custody; the response carries public data only.'
+      operationId: SigningKeys_GenerateTenantSigningKey
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantSigningKeyGenerateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TenantSigningKeyGenerateDto'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSigningKeyDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantSigningKeyDtoEnvelope'
+  '/api/v2/TrustService/SigningKeys/Platform/{authorityId}/{keyId}':
+    get:
+      tags:
+        - SigningKeys
+      summary: Read the recorded state of a platform authority signing key
+      description: 'Read-only recovery for an interrupted key ceremony: returns the key''s descriptor (public data) and its generation attempt, with a status of provisioned, attempt-open (the attempt needs reconciliation under its custody reference) or attempt-closed-without-key. Only the instance root tenant may call it, and only for a configured platform authority. Answers 404 when neither a descriptor nor an attempt exists.'
+      operationId: SigningKeys_GetPlatformSigningKeyRecord
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: authorityId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: keyId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformSigningKeyRecordDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PlatformSigningKeyRecordDtoEnvelope'
   /api/v2/TrustService/SigningLogs:
     get:
       tags:
@@ -4051,10 +4187,7 @@ paths:
                 contactId:
                   type: string
                 routingMode:
-                  enum:
-                    - Parallel
-                    - Sequential
-                  type: string
+                  $ref: '#/components/schemas/SigningRoutingMode'
                 expiresAtUtc:
                   type: string
                   format: date-time
@@ -4097,10 +4230,7 @@ paths:
                 contactId:
                   type: string
                 routingMode:
-                  enum:
-                    - Parallel
-                    - Sequential
-                  type: string
+                  $ref: '#/components/schemas/SigningRoutingMode'
                 expiresAtUtc:
                   type: string
                   format: date-time
@@ -4143,10 +4273,7 @@ paths:
                 contactId:
                   type: string
                 routingMode:
-                  enum:
-                    - Parallel
-                    - Sequential
-                  type: string
+                  $ref: '#/components/schemas/SigningRoutingMode'
                 expiresAtUtc:
                   type: string
                   format: date-time
@@ -4529,6 +4656,21 @@ components:
         result:
           type: boolean
       additionalProperties: false
+    CertificateStatus:
+      enum:
+        - Unknown
+        - Active
+        - Expiring
+        - Expired
+        - Revoked
+        - Disabled
+      type: string
+    CertificateType:
+      enum:
+        - AuthSignedCertificate
+        - SelfSignedCertificate
+        - AllianceSignedCertificate
+      type: string
     ContactCreateDto:
       required:
         - email
@@ -4543,10 +4685,7 @@ components:
           type: string
           format: date-time
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         firstName:
           maxLength: 50
           minLength: 1
@@ -4700,10 +4839,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -4881,6 +5017,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
+          type: string
+          format: date-time
+          nullable: true
         tikTokUsername:
           type: string
           nullable: true
@@ -4888,6 +5032,25 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
     CreateSigningParticipantDto:
       required:
         - contactId
@@ -4897,14 +5060,7 @@ components:
           minLength: 1
           type: string
         role:
-          enum:
-            - Signer
-            - Approver
-            - Viewer
-            - Witness
-            - CarbonCopy
-            - System
-          type: string
+          $ref: '#/components/schemas/SigningParticipantRole'
         routingOrder:
           type: integer
           format: int32
@@ -4916,10 +5072,7 @@ components:
       type: object
       properties:
         routingMode:
-          enum:
-            - Parallel
-            - Sequential
-          type: string
+          $ref: '#/components/schemas/SigningRoutingMode'
         expiresAtUtc:
           type: string
           format: date-time
@@ -4934,6 +5087,16 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    DocumentStandard:
+      enum:
+        - None
+        - Ubl
+        - Pdf
+        - Xml
+        - Email
+        - Json
+        - Other
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -5054,6 +5217,70 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    HttpStatusCode:
+      enum:
+        - Continue
+        - SwitchingProtocols
+        - Processing
+        - EarlyHints
+        - OK
+        - Created
+        - Accepted
+        - NonAuthoritativeInformation
+        - NoContent
+        - ResetContent
+        - PartialContent
+        - MultiStatus
+        - AlreadyReported
+        - IMUsed
+        - MultipleChoices
+        - MovedPermanently
+        - Found
+        - SeeOther
+        - NotModified
+        - UseProxy
+        - Unused
+        - TemporaryRedirect
+        - PermanentRedirect
+        - BadRequest
+        - Unauthorized
+        - PaymentRequired
+        - Forbidden
+        - NotFound
+        - MethodNotAllowed
+        - NotAcceptable
+        - ProxyAuthenticationRequired
+        - RequestTimeout
+        - Conflict
+        - Gone
+        - LengthRequired
+        - PreconditionFailed
+        - RequestEntityTooLarge
+        - RequestUriTooLong
+        - UnsupportedMediaType
+        - RequestedRangeNotSatisfiable
+        - ExpectationFailed
+        - MisdirectedRequest
+        - UnprocessableEntity
+        - Locked
+        - FailedDependency
+        - UpgradeRequired
+        - PreconditionRequired
+        - TooManyRequests
+        - RequestHeaderFieldsTooLarge
+        - UnavailableForLegalReasons
+        - InternalServerError
+        - NotImplemented
+        - BadGateway
+        - ServiceUnavailable
+        - GatewayTimeout
+        - HttpVersionNotSupported
+        - VariantAlsoNegotiates
+        - InsufficientStorage
+        - LoopDetected
+        - NotExtended
+        - NetworkAuthenticationRequired
+      type: string
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -5178,6 +5405,32 @@ components:
           nullable: true
         value: { }
       additionalProperties: false
+    PlatformSigningKeyAttemptDto:
+      type: object
+      properties:
+        attemptId:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        knownOutcome:
+          type: string
+          nullable: true
+        unknownOutcome:
+          type: string
+          nullable: true
+        custodyKeyRef:
+          type: string
+          nullable: true
+        createdAtUtc:
+          type: string
+          format: date-time
+        resolvedAtUtc:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
     PlatformSigningKeyDto:
       type: object
       properties:
@@ -5257,6 +5510,83 @@ components:
         keyId:
           type: string
           nullable: true
+        validUntilUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PlatformSigningKeyRecordDto:
+      type: object
+      properties:
+        authorityId:
+          type: string
+          nullable: true
+        keyId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        key:
+          $ref: '#/components/schemas/PlatformSigningKeyRecordKeyDto'
+        attempt:
+          $ref: '#/components/schemas/PlatformSigningKeyAttemptDto'
+      additionalProperties: false
+    PlatformSigningKeyRecordDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/PlatformSigningKeyRecordDto'
+      additionalProperties: false
+    PlatformSigningKeyRecordKeyDto:
+      type: object
+      properties:
+        descriptorId:
+          type: string
+          nullable: true
+        algorithm:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        custodyKeyRef:
+          type: string
+          nullable: true
+        validFromUtc:
+          type: string
+          format: date-time
         validUntilUtc:
           type: string
           format: date-time
@@ -5363,17 +5693,7 @@ components:
       type: object
       properties:
         outcome:
-          enum:
-            - Pending
-            - Sent
-            - Viewed
-            - Signed
-            - Approved
-            - Declined
-            - Skipped
-            - Expired
-            - Failed
-          type: string
+          $ref: '#/components/schemas/SigningParticipantStatus'
         outcomeAtUtc:
           type: string
           format: date-time
@@ -5491,35 +5811,11 @@ components:
           format: date-time
           nullable: true
         signingStatus:
-          enum:
-            - Unknown
-            - Draft
-            - Signed
-            - Failed
-            - Revoked
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SigningStatus'
         verificationStatus:
-          enum:
-            - Unknown
-            - NotVerified
-            - Valid
-            - Invalid
-            - Expired
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/VerificationStatus'
         signatureFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         digestAlgorithm:
           type: string
           nullable: true
@@ -5627,6 +5923,28 @@ components:
             $ref: '#/components/schemas/SignatureDto'
           nullable: true
       additionalProperties: false
+    SignatureFormat:
+      enum:
+        - Unknown
+        - XAdES
+        - PAdES
+        - CAdES
+        - SMIME
+        - DetachedXmlDSig
+        - Enveloped
+        - Other
+      type: string
+    SignaturePurpose:
+      enum:
+        - Unknown
+        - RegulatorySubmission
+        - ContractExecution
+        - EmailSigning
+        - InternalApproval
+        - EvidenceSealing
+        - AgentCredential
+        - Other
+      type: string
     SignatureVerificationDto:
       type: object
       properties:
@@ -5647,6 +5965,17 @@ components:
             type: string
           nullable: true
       additionalProperties: false
+    SignedArtifactRole:
+      enum:
+        - Unknown
+        - Source
+        - SupportingEvidence
+        - AuthorityResponse
+        - HumanReadablePdf
+        - XmlPayload
+        - ValidationReport
+        - Other
+      type: string
     SignedDocumentAttachmentCreateDto:
       required:
         - signedDocumentId
@@ -5688,17 +6017,7 @@ components:
           type: string
           nullable: true
         attachmentRole:
-          enum:
-            - Unknown
-            - Source
-            - SupportingEvidence
-            - AuthorityResponse
-            - HumanReadablePdf
-            - XmlPayload
-            - ValidationReport
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignedArtifactRole'
       additionalProperties: false
     SignedDocumentAttachmentDto:
       type: object
@@ -5738,32 +6057,11 @@ components:
           type: string
           nullable: true
         scanStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Clean
-            - Infected
-            - Failed
-            - Quarantined
-          type: string
+          $ref: '#/components/schemas/StorageScanStatus'
         mutability:
-          enum:
-            - Editable
-            - Managed
-            - SealedEvidence
-          type: string
+          $ref: '#/components/schemas/StorageObjectMutability'
         attachmentRole:
-          enum:
-            - Unknown
-            - Source
-            - SupportingEvidence
-            - AuthorityResponse
-            - HumanReadablePdf
-            - XmlPayload
-            - ValidationReport
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignedArtifactRole'
         tenantId:
           type: string
           nullable: true
@@ -5859,17 +6157,7 @@ components:
           minLength: 1
           type: string
         attachmentRole:
-          enum:
-            - Unknown
-            - Source
-            - SupportingEvidence
-            - AuthorityResponse
-            - HumanReadablePdf
-            - XmlPayload
-            - ValidationReport
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignedArtifactRole'
       additionalProperties: false
     SignedDocumentCreateDto:
       required:
@@ -5899,29 +6187,9 @@ components:
           minLength: 1
           type: string
         documentStandard:
-          enum:
-            - None
-            - Ubl
-            - Pdf
-            - Xml
-            - Email
-            - Json
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DocumentStandard'
         trustDocumentType:
-          enum:
-            - Unknown
-            - Invoice
-            - CreditNote
-            - DebitNote
-            - Contract
-            - Certificate
-            - Email
-            - AuthorityResponse
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/TrustDocumentType'
         correlationId:
           type: string
           nullable: true
@@ -5969,47 +6237,13 @@ components:
           type: string
           nullable: true
         documentStandard:
-          enum:
-            - None
-            - Ubl
-            - Pdf
-            - Xml
-            - Email
-            - Json
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DocumentStandard'
         trustDocumentType:
-          enum:
-            - Unknown
-            - Invoice
-            - CreditNote
-            - DebitNote
-            - Contract
-            - Certificate
-            - Email
-            - AuthorityResponse
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/TrustDocumentType'
         signingStatus:
-          enum:
-            - Unknown
-            - Draft
-            - Signed
-            - Failed
-            - Revoked
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SigningStatus'
         verificationStatus:
-          enum:
-            - Unknown
-            - NotVerified
-            - Valid
-            - Invalid
-            - Expired
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/VerificationStatus'
         signedAtUtc:
           type: string
           format: date-time
@@ -6051,16 +6285,7 @@ components:
           type: string
           nullable: true
         lockState:
-          enum:
-            - Draft
-            - Editable
-            - FrozenForSignature
-            - SigningInProgress
-            - Sealed
-            - Voided
-            - Superseded
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignedDocumentLockState'
         graphicalRepresentationFileUploadId:
           type: string
           nullable: true
@@ -6154,6 +6379,16 @@ components:
             $ref: '#/components/schemas/SignedDocumentDto'
           nullable: true
       additionalProperties: false
+    SignedDocumentLockState:
+      enum:
+        - Draft
+        - Editable
+        - FrozenForSignature
+        - SigningInProgress
+        - Sealed
+        - Voided
+        - Superseded
+      type: string
     SignedDocumentUpdateDto:
       required:
         - contactId
@@ -6176,29 +6411,9 @@ components:
           minLength: 1
           type: string
         documentStandard:
-          enum:
-            - None
-            - Ubl
-            - Pdf
-            - Xml
-            - Email
-            - Json
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DocumentStandard'
         trustDocumentType:
-          enum:
-            - Unknown
-            - Invoice
-            - CreditNote
-            - DebitNote
-            - Contract
-            - Certificate
-            - Email
-            - AuthorityResponse
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/TrustDocumentType'
         correlationId:
           type: string
           nullable: true
@@ -6234,11 +6449,7 @@ components:
           type: string
           nullable: true
         certificateType:
-          enum:
-            - AuthSignedCertificate
-            - SelfSignedCertificate
-            - AllianceSignedCertificate
-          type: string
+          $ref: '#/components/schemas/CertificateType'
         contactId:
           minLength: 1
           type: string
@@ -6278,11 +6489,7 @@ components:
           type: integer
           format: int64
         certificateType:
-          enum:
-            - AuthSignedCertificate
-            - SelfSignedCertificate
-            - AllianceSignedCertificate
-          type: string
+          $ref: '#/components/schemas/CertificateType'
         contactId:
           type: string
           nullable: true
@@ -6299,15 +6506,7 @@ components:
           type: string
           nullable: true
         certificateStatus:
-          enum:
-            - Unknown
-            - Active
-            - Expiring
-            - Expired
-            - Revoked
-            - Disabled
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CertificateStatus'
         thumbprint:
           type: string
           nullable: true
@@ -6427,11 +6626,7 @@ components:
           type: string
           nullable: true
         certificateType:
-          enum:
-            - AuthSignedCertificate
-            - SelfSignedCertificate
-            - AllianceSignedCertificate
-          type: string
+          $ref: '#/components/schemas/CertificateType'
         contactId:
           minLength: 1
           type: string
@@ -6439,6 +6634,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SigningExecutionBindingReadiness:
+      enum:
+        - Unbound
+        - Ready
+        - NotReady
+      type: string
     SigningLogDto:
       type: object
       properties:
@@ -6456,69 +6657,7 @@ components:
           type: string
           nullable: true
         logType:
-          enum:
-            - Continue
-            - SwitchingProtocols
-            - Processing
-            - EarlyHints
-            - OK
-            - Created
-            - Accepted
-            - NonAuthoritativeInformation
-            - NoContent
-            - ResetContent
-            - PartialContent
-            - MultiStatus
-            - AlreadyReported
-            - IMUsed
-            - MultipleChoices
-            - MovedPermanently
-            - Found
-            - SeeOther
-            - NotModified
-            - UseProxy
-            - Unused
-            - TemporaryRedirect
-            - PermanentRedirect
-            - BadRequest
-            - Unauthorized
-            - PaymentRequired
-            - Forbidden
-            - NotFound
-            - MethodNotAllowed
-            - NotAcceptable
-            - ProxyAuthenticationRequired
-            - RequestTimeout
-            - Conflict
-            - Gone
-            - LengthRequired
-            - PreconditionFailed
-            - RequestEntityTooLarge
-            - RequestUriTooLong
-            - UnsupportedMediaType
-            - RequestedRangeNotSatisfiable
-            - ExpectationFailed
-            - MisdirectedRequest
-            - UnprocessableEntity
-            - Locked
-            - FailedDependency
-            - UpgradeRequired
-            - PreconditionRequired
-            - TooManyRequests
-            - RequestHeaderFieldsTooLarge
-            - UnavailableForLegalReasons
-            - InternalServerError
-            - NotImplemented
-            - BadGateway
-            - ServiceUnavailable
-            - GatewayTimeout
-            - HttpVersionNotSupported
-            - VariantAlsoNegotiates
-            - InsufficientStorage
-            - LoopDetected
-            - NotExtended
-            - NetworkAuthenticationRequired
-          type: string
+          $ref: '#/components/schemas/HttpStatusCode'
         securityEvent:
           type: string
           nullable: true
@@ -6546,19 +6685,7 @@ components:
           type: string
           nullable: true
         operationType:
-          enum:
-            - Unknown
-            - Sign
-            - Verify
-            - Seal
-            - RotateCredential
-            - ResolveCredential
-            - SubmitToAuthority
-            - ReceiveAuthorityResponse
-            - Freeze
-            - ConfigureSigningBinding
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/TrustOperationType'
         correlationId:
           type: string
           nullable: true
@@ -6676,26 +6803,9 @@ components:
           type: string
           nullable: true
         role:
-          enum:
-            - Signer
-            - Approver
-            - Viewer
-            - Witness
-            - CarbonCopy
-            - System
-          type: string
+          $ref: '#/components/schemas/SigningParticipantRole'
         status:
-          enum:
-            - Pending
-            - Sent
-            - Viewed
-            - Signed
-            - Approved
-            - Declined
-            - Skipped
-            - Expired
-            - Failed
-          type: string
+          $ref: '#/components/schemas/SigningParticipantStatus'
         routingOrder:
           type: integer
           format: int32
@@ -6809,6 +6919,27 @@ components:
             $ref: '#/components/schemas/SigningParticipantDto'
           nullable: true
       additionalProperties: false
+    SigningParticipantRole:
+      enum:
+        - Signer
+        - Approver
+        - Viewer
+        - Witness
+        - CarbonCopy
+        - System
+      type: string
+    SigningParticipantStatus:
+      enum:
+        - Pending
+        - Sent
+        - Viewed
+        - Signed
+        - Approved
+        - Declined
+        - Skipped
+        - Expired
+        - Failed
+      type: string
     SigningProfileCreateDto:
       type: object
       properties:
@@ -6893,29 +7024,9 @@ components:
           type: string
           nullable: true
         signatureFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         signaturePurpose:
-          enum:
-            - Unknown
-            - RegulatorySubmission
-            - ContractExecution
-            - EmailSigning
-            - InternalApproval
-            - EvidenceSealing
-            - AgentCredential
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignaturePurpose'
         digestAlgorithm:
           type: string
           nullable: true
@@ -7047,29 +7158,9 @@ components:
           type: string
           nullable: true
         signatureFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         signaturePurpose:
-          enum:
-            - Unknown
-            - RegulatorySubmission
-            - ContractExecution
-            - EmailSigning
-            - InternalApproval
-            - EvidenceSealing
-            - AgentCredential
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignaturePurpose'
         digestAlgorithm:
           type: string
           nullable: true
@@ -7184,11 +7275,7 @@ components:
         isBound:
           type: boolean
         custodyReadiness:
-          enum:
-            - Unbound
-            - Ready
-            - NotReady
-          type: string
+          $ref: '#/components/schemas/SigningExecutionBindingReadiness'
         readinessDetail:
           type: string
           nullable: true
@@ -7247,14 +7334,7 @@ components:
           minLength: 1
           type: string
         kind:
-          enum:
-            - Drawn
-            - UploadedImage
-            - Typed
-            - Initials
-            - Seal
-            - Stamp
-          type: string
+          $ref: '#/components/schemas/SigningProfileGraphicalRepresentationKind'
         displayName:
           type: string
           nullable: true
@@ -7292,14 +7372,7 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - Drawn
-            - UploadedImage
-            - Typed
-            - Initials
-            - Seal
-            - Stamp
-          type: string
+          $ref: '#/components/schemas/SigningProfileGraphicalRepresentationKind'
         displayName:
           type: string
           nullable: true
@@ -7411,18 +7484,20 @@ components:
             $ref: '#/components/schemas/SigningProfileGraphicalRepresentationDto'
           nullable: true
       additionalProperties: false
+    SigningProfileGraphicalRepresentationKind:
+      enum:
+        - Drawn
+        - UploadedImage
+        - Typed
+        - Initials
+        - Seal
+        - Stamp
+      type: string
     SigningProfileGraphicalRepresentationUpdateDto:
       type: object
       properties:
         kind:
-          enum:
-            - Drawn
-            - UploadedImage
-            - Typed
-            - Initials
-            - Seal
-            - Stamp
-          type: string
+          $ref: '#/components/schemas/SigningProfileGraphicalRepresentationKind'
         displayName:
           type: string
           nullable: true
@@ -7522,29 +7597,9 @@ components:
           type: string
           nullable: true
         signatureFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         signaturePurpose:
-          enum:
-            - Unknown
-            - RegulatorySubmission
-            - ContractExecution
-            - EmailSigning
-            - InternalApproval
-            - EvidenceSealing
-            - AgentCredential
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignaturePurpose'
         digestAlgorithm:
           type: string
           nullable: true
@@ -7592,22 +7647,9 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Draft
-            - Ready
-            - Sent
-            - InProgress
-            - Completed
-            - Declined
-            - Voided
-            - Expired
-            - Failed
-          type: string
+          $ref: '#/components/schemas/SigningRequestStatus'
         routingMode:
-          enum:
-            - Parallel
-            - Sequential
-          type: string
+          $ref: '#/components/schemas/SigningRoutingMode'
         createdAtUtc:
           type: string
           format: date-time
@@ -7713,6 +7755,126 @@ components:
             $ref: '#/components/schemas/SigningRequestDto'
           nullable: true
       additionalProperties: false
+    SigningRequestStatus:
+      enum:
+        - Draft
+        - Ready
+        - Sent
+        - InProgress
+        - Completed
+        - Declined
+        - Voided
+        - Expired
+        - Failed
+      type: string
+    SigningRoutingMode:
+      enum:
+        - Parallel
+        - Sequential
+      type: string
+    SigningStatus:
+      enum:
+        - Unknown
+        - Draft
+        - Signed
+        - Failed
+        - Revoked
+      type: string
+    StorageObjectMutability:
+      enum:
+        - Editable
+        - Managed
+        - SealedEvidence
+      type: string
+    StorageScanStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Clean
+        - Infected
+        - Failed
+        - Quarantined
+      type: string
+    TenantSigningKeyDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        authorityId:
+          type: string
+          nullable: true
+        keyId:
+          type: string
+          nullable: true
+        algorithm:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        custodyKeyRef:
+          type: string
+          nullable: true
+        validFromUtc:
+          type: string
+          format: date-time
+        validUntilUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    TenantSigningKeyDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/TenantSigningKeyDto'
+      additionalProperties: false
+    TenantSigningKeyGenerateDto:
+      type: object
+      properties:
+        keyId:
+          type: string
+          nullable: true
+        validUntilUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
     TrustArtifactReferenceDto:
       type: object
       properties:
@@ -7777,6 +7939,31 @@ components:
         result:
           $ref: '#/components/schemas/TrustArtifactReferenceDto'
       additionalProperties: false
+    TrustDocumentType:
+      enum:
+        - Unknown
+        - Invoice
+        - CreditNote
+        - DebitNote
+        - Contract
+        - Certificate
+        - Email
+        - AuthorityResponse
+        - Other
+      type: string
+    TrustOperationType:
+      enum:
+        - Unknown
+        - Sign
+        - Verify
+        - Seal
+        - RotateCredential
+        - ResolveCredential
+        - SubmitToAuthority
+        - ReceiveAuthorityResponse
+        - Freeze
+        - ConfigureSigningBinding
+      type: string
     TrustSigningProviderDescriptorDto:
       type: object
       properties:
@@ -7893,29 +8080,9 @@ components:
           type: string
           nullable: true
         expectedSignatureFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         expectedSignaturePurpose:
-          enum:
-            - Unknown
-            - RegulatorySubmission
-            - ContractExecution
-            - EmailSigning
-            - InternalApproval
-            - EvidenceSealing
-            - AgentCredential
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignaturePurpose'
         expectedDigestAlgorithm:
           type: string
           nullable: true
@@ -7995,29 +8162,9 @@ components:
           type: string
           nullable: true
         requestedFormat:
-          enum:
-            - Unknown
-            - XAdES
-            - PAdES
-            - CAdES
-            - SMIME
-            - DetachedXmlDSig
-            - Enveloped
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignatureFormat'
         requestedPurpose:
-          enum:
-            - Unknown
-            - RegulatorySubmission
-            - ContractExecution
-            - EmailSigning
-            - InternalApproval
-            - EvidenceSealing
-            - AgentCredential
-            - Other
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SignaturePurpose'
         correlationId:
           type: string
           nullable: true
@@ -8073,6 +8220,14 @@ components:
         isMachineRemembered:
           type: boolean
       additionalProperties: false
+    VerificationStatus:
+      enum:
+        - Unknown
+        - NotVerified
+        - Valid
+        - Invalid
+        - Expired
+      type: string
     VoidSigningRequestDto:
       type: object
       properties:

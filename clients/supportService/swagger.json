@@ -10750,6 +10750,15 @@
         },
         "additionalProperties": false
       },
+      "EntitlementStatus": {
+        "enum": [
+          "Active",
+          "GracePeriod",
+          "Disabled",
+          "Deleted"
+        ],
+        "type": "string"
+      },
       "ErrorEnvelope": {
         "type": "object",
         "properties": {
@@ -10797,6 +10806,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "FileUploadPublicAccessType": {
+        "enum": [
+          "Off",
+          "Container",
+          "Blob",
+          "Unknown"
+        ],
+        "type": "string"
       },
       "ForgotPasswordRequest": {
         "required": [
@@ -13253,13 +13271,7 @@
             "nullable": true
           },
           "socialProfileType": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           }
         },
         "additionalProperties": false
@@ -13956,6 +13968,35 @@
         },
         "additionalProperties": false
       },
+      "SocialProfileType": {
+        "enum": [
+          "User",
+          "Tenant",
+          "Contact"
+        ],
+        "type": "string"
+      },
+      "StorageScanStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Clean",
+          "Infected",
+          "Failed",
+          "Quarantined"
+        ],
+        "type": "string"
+      },
+      "StorageThumbnailStatus": {
+        "enum": [
+          "NotRequired",
+          "Pending",
+          "Ready",
+          "Failed",
+          "Unsupported"
+        ],
+        "type": "string"
+      },
       "SupportEntitlementCreateDto": {
         "type": "object",
         "properties": {
@@ -14170,13 +14211,7 @@
             "nullable": true
           },
           "status": {
-            "enum": [
-              "Active",
-              "GracePeriod",
-              "Disabled",
-              "Deleted"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/EntitlementStatus"
           },
           "startDateTime": {
             "type": "string",
@@ -14736,13 +14771,7 @@
             "nullable": true
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "metadata": {
             "type": "string",
@@ -14854,25 +14883,10 @@
             "nullable": true
           },
           "scanStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Clean",
-              "Infected",
-              "Failed",
-              "Quarantined"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageScanStatus"
           },
           "thumbnailStatus": {
-            "enum": [
-              "NotRequired",
-              "Pending",
-              "Ready",
-              "Failed",
-              "Unsupported"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/StorageThumbnailStatus"
           },
           "hasThumbnail": {
             "type": "boolean",
@@ -14895,13 +14909,7 @@
             "format": "int32"
           },
           "publicAccessType": {
-            "enum": [
-              "Off",
-              "Container",
-              "Blob",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/FileUploadPublicAccessType"
           },
           "supportRequestId": {
             "type": "string",
@@ -15620,13 +15628,7 @@
             "nullable": true
           },
           "supportTicketStatus": {
-            "enum": [
-              "New",
-              "OpenAndWaitingForAgent",
-              "OpenAndWaitingForCustomer",
-              "Closed"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SupportTicketStatus"
           },
           "contactId": {
             "maxLength": 36,
@@ -15676,13 +15678,7 @@
             "nullable": true
           },
           "supportTicketStatus": {
-            "enum": [
-              "New",
-              "OpenAndWaitingForAgent",
-              "OpenAndWaitingForCustomer",
-              "Closed"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SupportTicketStatus"
           },
           "userId": {
             "type": "string",
@@ -16094,6 +16090,15 @@
         },
         "additionalProperties": false
       },
+      "SupportTicketStatus": {
+        "enum": [
+          "New",
+          "OpenAndWaitingForAgent",
+          "OpenAndWaitingForCustomer",
+          "Closed"
+        ],
+        "type": "string"
+      },
       "SupportTicketTypeCreateDto": {
         "type": "object",
         "properties": {
@@ -16335,13 +16340,7 @@
             "nullable": true
           },
           "supportTicketStatus": {
-            "enum": [
-              "New",
-              "OpenAndWaitingForAgent",
-              "OpenAndWaitingForCustomer",
-              "Closed"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/SupportTicketStatus"
           },
           "contactId": {
             "type": "string",

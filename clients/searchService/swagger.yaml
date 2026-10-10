@@ -1,0 +1,1329 @@
+openapi: 3.0.4
+info:
+  title: SearchService
+  termsOfService: https://absuite.net/eula
+  contact:
+    name: Fenix Alliance Inc.
+    url: https://fenixalliance.com.co/Support
+    email: support@fenix-alliance.com
+  license:
+    name: Fenix Alliance Inc.
+    url: https://fenix-alliance.com.co/Legal/Policies/eula
+  version: 2.0.0.0
+servers:
+  - url: '{server}'
+    description: Alliance Business Suite API
+    variables:
+      server:
+        default: https://absuite.net
+        description: ABS instance base URL
+        enum:
+          - https://absuite.net
+          - https://test.absuite.net
+          - https://dev.absuite.net
+          - https://localhost:44388
+paths:
+  /version:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetVersion
+      responses:
+        '200':
+          description: OK
+  /health:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetHealth
+      responses:
+        '200':
+          description: OK
+  /hello:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetHello
+      responses:
+        '200':
+          description: OK
+  /register:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostRegister
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /login:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostLogin
+      parameters:
+        - name: useCookies
+          in: query
+          schema:
+            type: boolean
+        - name: useSessionCookies
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /refresh:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostRefresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+  /confirmEmail:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_MapIdentityApiConfirmEmail
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: changedEmail
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /resendConfirmationEmail:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostResendConfirmationEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendConfirmationEmailRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /forgotPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostForgotPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /resetPassword:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostResetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /manage/2fa:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostManage2fa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /manage/info:
+    get:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_GetManageInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostManageInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+  /Account/PerformExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountPerformExternalLogin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                returnUrl:
+                  type: string
+            encoding:
+              provider:
+                style: form
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Logout:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountLogout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+            encoding:
+              returnUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/LinkExternalLogin:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageLinkExternalLogin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+            encoding:
+              provider:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /Account/Manage/DownloadPersonalData:
+    post:
+      tags:
+        - FenixAlliance.ABS.Web
+      operationId: Platform_PostAccountManageDownloadPersonalData
+      responses:
+        '200':
+          description: OK
+  /api/v2/SearchService/Query:
+    get:
+      tags:
+        - Search
+      summary: Run a simple text search
+      description: 'Runs a free-text query against one logical index for the acting tenant and returns one page of hits. The acting identity is resolved server-side from the authenticated caller; tenantId selects which tenant is being navigated and never confers authority over it. Results are already revalidated against the caller''s CURRENT authority, so TotalIsEstimate may be set when stale index candidates were dropped. Gated on studio_access inside the use case.'
+      operationId: Search_Search
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: indexKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: continuationToken
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoEnvelope'
+    post:
+      tags:
+        - Search
+      summary: Run a structured search
+      description: 'Runs a structured query — typed filters, sort directives, facet requests and required/preferred capability negotiation — against one logical index for the acting tenant. Naming fields in Facets is the only way to receive facet buckets: an empty or absent facet request returns none, and never every facetable field. A REQUIRED capability the resolved provider cannot satisfy fails the request closed; a PREFERRED one that is missing returns hits plus a populated Degradations collection, so a caller always learns what it did not get. The body carries no tenant and no query-language fragment: scope is server-resolved and the request is structured throughout. Gated on studio_access inside the use case.'
+      operationId: Search_SearchStructured
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQueryDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SearchQueryDto'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoEnvelope'
+  /api/v2/SearchService/Availability:
+    get:
+      tags:
+        - Search
+      summary: Read search availability
+      description: 'Reports what the Search engine can do for the acting tenant right now: which providers are registered, what each advertises, and which of the three availability axes (provider registered, credential configured, active generation) each one satisfies. This is a DERIVED PROJECTION — it pings nothing, resolves no credential and reveals no secret, so the answer cannot go stale the way a stored health flag does. Gated on studio_access inside the use case.'
+      operationId: Search_GetAvailability
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAvailabilityDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SearchAvailabilityDtoEnvelope'
+  /api/v2/SearchService/Index/Provision:
+    post:
+      tags:
+        - Search
+      summary: Provision the tenant's logical search index
+      description: 'Idempotently stands the acting tenant''s logical search index up: an instance-managed, uncredentialed connection on the platform floor provider, the tenant''s own SearchIndex row, and its first SearchIndexGeneration. PROVISIONING IS NOT ACTIVATION. The generation is left in a pre-Active lifecycle state and ActiveGenerationId stays unset, so a query against the provisioned key still fails closed with a 503 readiness error until a generation has been backfilled, certified and activated. That is deliberate: the tenant already holds real business data, so an unbuilt corpus answering 200 OK with an empty page would be indistinguishable from ''nothing matched''. Running it twice returns the same ids with every Created flag false. Gated on tenants_manage inside the use case.'
+      operationId: Search_ProvisionIndex
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: indexKey
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndexProvisioningResultDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SearchIndexProvisioningResultDtoEnvelope'
+components:
+  schemas:
+    AccessTokenResponse:
+      required:
+        - accessToken
+        - expiresIn
+        - refreshToken
+      type: object
+      properties:
+        tokenType:
+          type: string
+          nullable: true
+          readOnly: true
+        accessToken:
+          type: string
+          nullable: true
+        expiresIn:
+          type: integer
+          format: int64
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ForgotPasswordRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: { }
+    InfoRequest:
+      type: object
+      properties:
+        newEmail:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+        oldPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InfoResponse:
+      required:
+        - email
+        - isEmailConfirmed
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        isEmailConfirmed:
+          type: boolean
+      additionalProperties: false
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        twoFactorRecoveryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RefreshRequest:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResendConfirmationEmailRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResetPasswordRequest:
+      required:
+        - email
+        - newPassword
+        - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        resetCode:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SearchAvailabilityDto:
+      type: object
+      properties:
+        isAvailable:
+          type: boolean
+        isEngineComposed:
+          type: boolean
+        unavailableReason:
+          type: string
+          nullable: true
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchProviderAvailabilityDto'
+          nullable: true
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchIndexAvailabilityDto'
+          nullable: true
+        sourceKinds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        compositionDefects:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SearchAvailabilityDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SearchAvailabilityDto'
+      additionalProperties: false
+    SearchDegradationDto:
+      type: object
+      properties:
+        kind:
+          type: string
+          nullable: true
+        capabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SearchFacetDto:
+      type: object
+      properties:
+        field:
+          type: string
+          nullable: true
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFacetValueDto'
+          nullable: true
+      additionalProperties: false
+    SearchFacetRequestDto:
+      type: object
+      properties:
+        field:
+          type: string
+          nullable: true
+        limit:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    SearchFacetValueDto:
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          format: int64
+      additionalProperties: false
+    SearchFieldValueDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        valueKind:
+          type: string
+          nullable: true
+        stringValue:
+          type: string
+          nullable: true
+        numberValue:
+          type: number
+          format: double
+          nullable: true
+        dateValue:
+          type: string
+          format: date-time
+          nullable: true
+        booleanValue:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    SearchFilterDto:
+      type: object
+      properties:
+        field:
+          type: string
+          nullable: true
+        operator:
+          type: string
+          nullable: true
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFieldValueDto'
+          nullable: true
+      additionalProperties: false
+    SearchHighlightDto:
+      type: object
+      properties:
+        field:
+          type: string
+          nullable: true
+        fragments:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SearchHitDto:
+      type: object
+      properties:
+        sourceKind:
+          type: string
+          nullable: true
+        sourceId:
+          type: string
+          nullable: true
+        parentSourceId:
+          type: string
+          nullable: true
+        score:
+          type: number
+          format: double
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFieldValueDto'
+          nullable: true
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchHighlightDto'
+          nullable: true
+        sourceUpdatedAt:
+          type: string
+          format: date-time
+        location:
+          $ref: '#/components/schemas/SearchSourceLocationDto'
+      additionalProperties: false
+    SearchIndexAvailabilityDto:
+      type: object
+      properties:
+        indexKey:
+          type: string
+          nullable: true
+        providerKey:
+          type: string
+          nullable: true
+        activeGenerationId:
+          type: string
+          nullable: true
+        isAvailable:
+          type: boolean
+        unavailableReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SearchIndexProvisioningResultDto:
+      type: object
+      properties:
+        indexKey:
+          type: string
+          nullable: true
+        searchIndexId:
+          type: string
+          nullable: true
+        connectionId:
+          type: string
+          nullable: true
+        generationId:
+          type: string
+          nullable: true
+        providerKey:
+          type: string
+          nullable: true
+        generationState:
+          type: string
+          nullable: true
+        activeGenerationId:
+          type: string
+          nullable: true
+        projectionSetIdentity:
+          type: string
+          nullable: true
+        sourceKinds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        connectionCreated:
+          type: boolean
+        indexCreated:
+          type: boolean
+        generationCreated:
+          type: boolean
+        isQueryable:
+          type: boolean
+        notQueryableReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SearchIndexProvisioningResultDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SearchIndexProvisioningResultDto'
+      additionalProperties: false
+    SearchProviderAvailabilityDto:
+      type: object
+      properties:
+        providerKey:
+          type: string
+          nullable: true
+        isRegistered:
+          type: boolean
+        requiresCredential:
+          type: boolean
+        isCredentialConfigured:
+          type: boolean
+        hasActiveGeneration:
+          type: boolean
+        isAvailable:
+          type: boolean
+        unavailableReason:
+          type: string
+          nullable: true
+        capabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        characteristics:
+          type: array
+          items:
+            type: string
+          nullable: true
+        maxPageSize:
+          type: integer
+          format: int32
+        supportsAtomicRevisionFence:
+          type: boolean
+      additionalProperties: false
+    SearchQueryDto:
+      type: object
+      properties:
+        indexKey:
+          type: string
+          nullable: true
+        query:
+          type: string
+          nullable: true
+        pageSize:
+          type: integer
+          format: int32
+        continuationToken:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFilterDto'
+          nullable: true
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSortDto'
+          nullable: true
+        requiredCapabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        preferredCapabilities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        facets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFacetRequestDto'
+          nullable: true
+      additionalProperties: false
+    SearchResultDto:
+      type: object
+      properties:
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchHitDto'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+        totalIsEstimate:
+          type: boolean
+        facets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFacetDto'
+          nullable: true
+        degradations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchDegradationDto'
+          nullable: true
+        continuationToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SearchResultDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/SearchResultDto'
+      additionalProperties: false
+    SearchSortDto:
+      type: object
+      properties:
+        field:
+          type: string
+          nullable: true
+        descending:
+          type: boolean
+      additionalProperties: false
+    SearchSourceLocationDto:
+      type: object
+      properties:
+        relativeUrl:
+          type: string
+          nullable: true
+        moduleKey:
+          type: string
+          nullable: true
+        displayPath:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TwoFactorRequest:
+      type: object
+      properties:
+        enable:
+          type: boolean
+          nullable: true
+        twoFactorCode:
+          type: string
+          nullable: true
+        resetSharedKey:
+          type: boolean
+        resetRecoveryCodes:
+          type: boolean
+        forgetMachine:
+          type: boolean
+      additionalProperties: false
+    TwoFactorResponse:
+      required:
+        - isMachineRemembered
+        - isTwoFactorEnabled
+        - recoveryCodesLeft
+        - sharedKey
+      type: object
+      properties:
+        sharedKey:
+          type: string
+          nullable: true
+        recoveryCodesLeft:
+          type: integer
+          format: int32
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isTwoFactorEnabled:
+          type: boolean
+        isMachineRemembered:
+          type: boolean
+      additionalProperties: false
+tags:
+  - name: FenixAlliance.ABS.Web
+  - name: Search

@@ -9465,6 +9465,13 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "saleChannel": {
+            "$ref": "#/components/schemas/SaleChannel"
+          },
+          "directSellerTenantId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9537,11 +9544,7 @@
             "format": "date-time"
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "firstName": {
             "maxLength": 50,
@@ -9741,11 +9744,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -9974,6 +9973,17 @@
             "deprecated": true
           },
           "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -11334,6 +11344,31 @@
         },
         "additionalProperties": false
       },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
+      },
       "ContactUpdateDto": {
         "required": [
           "email",
@@ -11343,11 +11378,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "birthday": {
             "type": "string",
@@ -11702,6 +11733,18 @@
         },
         "additionalProperties": false
       },
+      "EmailAlertType": {
+        "enum": [
+          "None",
+          "Info",
+          "Error",
+          "Warning",
+          "Success",
+          "Action",
+          "Alert"
+        ],
+        "type": "string"
+      },
       "EmailDispatchRequest": {
         "required": [
           "culture",
@@ -11737,16 +11780,7 @@
             "nullable": true
           },
           "alertType": {
-            "enum": [
-              "None",
-              "Info",
-              "Error",
-              "Warning",
-              "Success",
-              "Action",
-              "Alert"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/EmailAlertType"
           },
           "culture": {
             "minLength": 1,
@@ -11968,11 +12002,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -12201,6 +12231,17 @@
             "deprecated": true
           },
           "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -12892,6 +12933,14 @@
         },
         "additionalProperties": false
       },
+      "SaleChannel": {
+        "enum": [
+          "Unset",
+          "Marketplace",
+          "Direct"
+        ],
+        "type": "string"
+      },
       "SimpleContactDto": {
         "type": "object",
         "properties": {
@@ -12914,11 +12963,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -13103,13 +13148,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "User",
-              "Tenant",
-              "Contact"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/SocialProfileType"
           },
           "socialFeedId": {
             "type": "string",
@@ -13204,6 +13243,14 @@
           }
         },
         "additionalProperties": false
+      },
+      "SocialProfileType": {
+        "enum": [
+          "User",
+          "Tenant",
+          "Contact"
+        ],
+        "type": "string"
       },
       "TwoFactorRequest": {
         "type": "object",

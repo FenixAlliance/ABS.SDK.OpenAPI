@@ -1521,27 +1521,9 @@ paths:
                 filePath:
                   type: string
                 publicAccessType:
-                  enum:
-                    - Off
-                    - Container
-                    - Blob
-                    - Unknown
-                  type: string
+                  $ref: '#/components/schemas/FileUploadPublicAccessType'
                 purpose:
-                  enum:
-                    - Unknown
-                    - IdentityAvatar
-                    - IdentityBanner
-                    - ProfileAsset
-                    - EngagementInline
-                    - EngagementAttachment
-                    - MessageAttachment
-                    - SocialPost
-                    - RecordAttachment
-                    - AiGenerated
-                    - SystemArtifact
-                    - Temporary
-                  type: string
+                  $ref: '#/components/schemas/StoragePurpose'
                 socialProfileId.value:
                   type: string
                   format: uuid
@@ -1563,14 +1545,7 @@ paths:
                   type: string
                   format: uuid
                 appFile.source:
-                  enum:
-                    - Unknown
-                    - HttpUpload
-                    - Integration
-                    - InternalProcess
-                    - ApiClient
-                    - WorkflowEngine
-                  type: string
+                  $ref: '#/components/schemas/FileSource'
                 appFile.length:
                   type: integer
                   format: int64
@@ -1878,14 +1853,7 @@ paths:
                   type: string
                   format: uuid
                 appFile.source:
-                  enum:
-                    - Unknown
-                    - HttpUpload
-                    - Integration
-                    - InternalProcess
-                    - ApiClient
-                    - WorkflowEngine
-                  type: string
+                  $ref: '#/components/schemas/FileSource'
                 appFile.length:
                   type: integer
                   format: int64
@@ -2559,27 +2527,9 @@ paths:
                 filePath:
                   type: string
                 publicAccessType:
-                  enum:
-                    - Off
-                    - Container
-                    - Blob
-                    - Unknown
-                  type: string
+                  $ref: '#/components/schemas/FileUploadPublicAccessType'
                 purpose:
-                  enum:
-                    - Unknown
-                    - IdentityAvatar
-                    - IdentityBanner
-                    - ProfileAsset
-                    - EngagementInline
-                    - EngagementAttachment
-                    - MessageAttachment
-                    - SocialPost
-                    - RecordAttachment
-                    - AiGenerated
-                    - SystemArtifact
-                    - Temporary
-                  type: string
+                  $ref: '#/components/schemas/StoragePurpose'
                 socialProfileId.value:
                   type: string
                   format: uuid
@@ -2601,14 +2551,7 @@ paths:
                   type: string
                   format: uuid
                 appFile.source:
-                  enum:
-                    - Unknown
-                    - HttpUpload
-                    - Integration
-                    - InternalProcess
-                    - ApiClient
-                    - WorkflowEngine
-                  type: string
+                  $ref: '#/components/schemas/FileSource'
                 appFile.length:
                   type: integer
                   format: int64
@@ -2754,10 +2697,7 @@ components:
       type: object
       properties:
         kind:
-          enum:
-            - File
-            - Folder
-          type: string
+          $ref: '#/components/schemas/BlobItemKind'
         isFolder:
           type: boolean
           readOnly: true
@@ -2844,6 +2784,11 @@ components:
         result:
           $ref: '#/components/schemas/Blob'
       additionalProperties: false
+    BlobItemKind:
+      enum:
+        - File
+        - Folder
+      type: string
     EmptyEnvelope:
       type: object
       properties:
@@ -2916,6 +2861,15 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
+    FileSource:
+      enum:
+        - Unknown
+        - HttpUpload
+        - Integration
+        - InternalProcess
+        - ApiClient
+        - WorkflowEngine
+      type: string
     FileUploadDto:
       type: object
       properties:
@@ -2991,22 +2945,9 @@ components:
           type: string
           nullable: true
         scanStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Clean
-            - Infected
-            - Failed
-            - Quarantined
-          type: string
+          $ref: '#/components/schemas/StorageScanStatus'
         thumbnailStatus:
-          enum:
-            - NotRequired
-            - Pending
-            - Ready
-            - Failed
-            - Unsupported
-          type: string
+          $ref: '#/components/schemas/StorageThumbnailStatus'
         hasThumbnail:
           type: boolean
           readOnly: true
@@ -3023,12 +2964,7 @@ components:
           type: integer
           format: int32
         publicAccessType:
-          enum:
-            - Off
-            - Container
-            - Blob
-            - Unknown
-          type: string
+          $ref: '#/components/schemas/FileUploadPublicAccessType'
       additionalProperties: false
     FileUploadDtoCollectionQueryParameters:
       type: object
@@ -3100,6 +3036,13 @@ components:
         result:
           $ref: '#/components/schemas/FileUploadDto'
       additionalProperties: false
+    FileUploadPublicAccessType:
+      enum:
+        - Off
+        - Container
+        - Blob
+        - Unknown
+      type: string
     ForgotPasswordRequest:
       required:
         - email
@@ -3261,6 +3204,38 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    StoragePurpose:
+      enum:
+        - Unknown
+        - IdentityAvatar
+        - IdentityBanner
+        - ProfileAsset
+        - EngagementInline
+        - EngagementAttachment
+        - MessageAttachment
+        - SocialPost
+        - RecordAttachment
+        - AiGenerated
+        - SystemArtifact
+        - Temporary
+      type: string
+    StorageScanStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Clean
+        - Infected
+        - Failed
+        - Quarantined
+      type: string
+    StorageThumbnailStatus:
+      enum:
+        - NotRequired
+        - Pending
+        - Ready
+        - Failed
+        - Unsupported
+      type: string
     TwoFactorRequest:
       type: object
       properties:

@@ -12293,10 +12293,7 @@ components:
           type: string
           format: date-time
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         firstName:
           maxLength: 50
           minLength: 1
@@ -12450,10 +12447,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -12631,6 +12625,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
+          type: string
+          format: date-time
+          nullable: true
         tikTokUsername:
           type: string
           nullable: true
@@ -12638,6 +12640,25 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
     DeliveryNoteCreateDto:
       type: object
       properties:

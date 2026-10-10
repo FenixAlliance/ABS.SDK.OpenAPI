@@ -11254,19 +11254,9 @@ components:
           type: string
           nullable: true
         principalKind:
-          enum:
-            - Human
-            - Agent
-            - Application
-            - Service
-            - System
-          type: string
+          $ref: '#/components/schemas/PrincipalKind'
         principalStatus:
-          enum:
-            - Active
-            - Suspended
-            - Disabled
-          type: string
+          $ref: '#/components/schemas/PrincipalStatus'
         businessApplicationId:
           type: string
           nullable: true
@@ -11346,19 +11336,9 @@ components:
           type: string
           nullable: true
         principalKind:
-          enum:
-            - Human
-            - Agent
-            - Application
-            - Service
-            - System
-          type: string
+          $ref: '#/components/schemas/PrincipalKind'
         principalStatus:
-          enum:
-            - Active
-            - Suspended
-            - Disabled
-          type: string
+          $ref: '#/components/schemas/PrincipalStatus'
         businessApplicationId:
           type: string
           nullable: true
@@ -11696,6 +11676,11 @@ components:
             $ref: '#/components/schemas/BusinessDomainDto'
           nullable: true
       additionalProperties: false
+    BusinessEntityKind:
+      enum:
+        - Organization
+        - Individual
+      type: string
     CartDto:
       type: object
       properties:
@@ -11737,6 +11722,11 @@ components:
         itemToCompareRecordsCount:
           type: integer
           format: int32
+          nullable: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
+        directSellerTenantId:
+          type: string
           nullable: true
       additionalProperties: false
     CartDtoCollectionQueryParameters:
@@ -11850,6 +11840,16 @@ components:
             $ref: '#/components/schemas/CartDto'
           nullable: true
       additionalProperties: false
+    EmailAlertType:
+      enum:
+        - None
+        - Info
+        - Error
+        - Warning
+        - Success
+        - Action
+        - Alert
+      type: string
     EmailDispatchRequest:
       required:
         - culture
@@ -11879,15 +11879,7 @@ components:
           type: string
           nullable: true
         alertType:
-          enum:
-            - None
-            - Info
-            - Error
-            - Warning
-            - Success
-            - Action
-            - Alert
-          type: string
+          $ref: '#/components/schemas/EmailAlertType'
         culture:
           minLength: 1
           pattern: '^[a-z]{2}(-[A-Z]{2})?$'
@@ -12050,10 +12042,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -12316,13 +12305,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Gender'
         cityId:
           type: string
           nullable: true
@@ -12376,14 +12359,7 @@ components:
         emailConfirmed:
           type: boolean
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/UserAvailability'
         lockoutEnabled:
           type: boolean
         lockoutEnd:
@@ -12395,12 +12371,7 @@ components:
           format: int32
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SiteTheme'
         cart:
           $ref: '#/components/schemas/CartDto'
         wallet:
@@ -12532,6 +12503,13 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Gender:
+      enum:
+        - Unknown
+        - Male
+        - Female
+        - PreferNotToSay
+      type: string
     GuestCartPurgeResultDto:
       type: object
       properties:
@@ -13002,18 +12980,7 @@ components:
           type: string
           nullable: true
         status:
-          enum:
-            - Received
-            - AuthenticityPending
-            - Accepted
-            - Processing
-            - Succeeded
-            - RetryScheduled
-            - Rejected
-            - Quarantined
-            - DeadLettered
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/InboxMessageStatus'
         attempts:
           type: integer
           format: int32
@@ -13021,13 +12988,7 @@ components:
           type: integer
           format: int32
         verificationStatus:
-          enum:
-            - Unverified
-            - Verified
-            - Failed
-            - Untrusted
-            - NotRequired
-          type: string
+          $ref: '#/components/schemas/InboxVerificationStatus'
         verificationProfile:
           type: string
           nullable: true
@@ -13199,6 +13160,19 @@ components:
             $ref: '#/components/schemas/InboxMessageDto'
           nullable: true
       additionalProperties: false
+    InboxMessageStatus:
+      enum:
+        - Received
+        - AuthenticityPending
+        - Accepted
+        - Processing
+        - Succeeded
+        - RetryScheduled
+        - Rejected
+        - Quarantined
+        - DeadLettered
+        - Cancelled
+      type: string
     InboxReplayResultDto:
       type: object
       properties:
@@ -13250,6 +13224,14 @@ components:
         result:
           $ref: '#/components/schemas/InboxReplayResultDto'
       additionalProperties: false
+    InboxVerificationStatus:
+      enum:
+        - Unverified
+        - Verified
+        - Failed
+        - Untrusted
+        - NotRequired
+      type: string
     InfoRequest:
       type: object
       properties:
@@ -13343,6 +13325,26 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ModuleCategory:
+      enum:
+        - Other
+        - FinanceAndAccounting
+        - SalesAndCommerce
+        - MarketingAndEngagement
+        - CustomerRelations
+        - OperationsAndSupplyChain
+        - ProjectsAndProductivity
+        - PeopleAndWorkforce
+        - LearningAndEducation
+        - ContentAndWeb
+        - DataAndAnalytics
+        - ArtificialIntelligence
+        - SecurityAndIdentity
+        - TrustAndCompliance
+        - Communication
+        - DeveloperAndPlatform
+        - IndustrySolutions
+      type: string
     ModuleGrantDto:
       type: object
       properties:
@@ -13404,6 +13406,15 @@ components:
             $ref: '#/components/schemas/ModuleGrantDto'
           nullable: true
       additionalProperties: false
+    ModuleType:
+      enum:
+        - Module
+        - Integration
+        - StudioModule
+        - StudioIntegration
+        - WasmModule
+        - WasmIntegration
+      type: string
     ObjectEmailDispatchRequest:
       required:
         - culture
@@ -13433,15 +13444,7 @@ components:
           type: string
           nullable: true
         alertType:
-          enum:
-            - None
-            - Info
-            - Error
-            - Warning
-            - Success
-            - Action
-            - Alert
-          type: string
+          $ref: '#/components/schemas/EmailAlertType'
         culture:
           minLength: 1
           pattern: '^[a-z]{2}(-[A-Z]{2})?$'
@@ -13672,6 +13675,24 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    OrderStatus:
+      enum:
+        - New
+        - Processing
+        - Accepted
+        - Declined
+        - Shipped
+        - Delivered
+        - OnHold
+        - Failed
+        - Fulfilled
+        - Cancelled
+      type: string
+    OrderType:
+      enum:
+        - SalesOrder
+        - PurchaseOrder
+      type: string
     OutboxAdminReasonDto:
       required:
         - reason
@@ -13766,22 +13787,12 @@ components:
           type: string
           nullable: true
         kind:
-          enum:
-            - Event
-            - Command
-          type: string
+          $ref: '#/components/schemas/OutboxMessageKind'
         messageType:
           type: string
           nullable: true
         status:
-          enum:
-            - Pending
-            - Processing
-            - Succeeded
-            - Failed
-            - DeadLettered
-            - Cancelled
-          type: string
+          $ref: '#/components/schemas/OutboxMessageStatus'
         attempts:
           type: integer
           format: int32
@@ -13937,6 +13948,20 @@ components:
             $ref: '#/components/schemas/OutboxMessageDto'
           nullable: true
       additionalProperties: false
+    OutboxMessageKind:
+      enum:
+        - Event
+        - Command
+      type: string
+    OutboxMessageStatus:
+      enum:
+        - Pending
+        - Processing
+        - Succeeded
+        - Failed
+        - DeadLettered
+        - Cancelled
+      type: string
     OutboxPoisonPositionDto:
       type: object
       properties:
@@ -14017,6 +14042,11 @@ components:
             $ref: '#/components/schemas/OutboxPoisonPositionDto'
           nullable: true
       additionalProperties: false
+    OutboxPoisonResolutionKind:
+      enum:
+        - Replayed
+        - Superseded
+      type: string
     PatchOperation:
       type: object
       properties:
@@ -14031,6 +14061,20 @@ components:
           nullable: true
         value: { }
       additionalProperties: false
+    PrincipalKind:
+      enum:
+        - Human
+        - Agent
+        - Application
+        - Service
+        - System
+      type: string
+    PrincipalStatus:
+      enum:
+        - Active
+        - Suspended
+        - Disabled
+      type: string
     RefreshRequest:
       required:
         - refreshToken
@@ -14101,10 +14145,7 @@ components:
           type: integer
           format: int64
         kind:
-          enum:
-            - Replayed
-            - Superseded
-          type: string
+          $ref: '#/components/schemas/OutboxPoisonResolutionKind'
         reason:
           maxLength: 1024
           minLength: 1
@@ -14116,6 +14157,12 @@ components:
           format: int64
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
     SecurityPermissionDto:
       type: object
       properties:
@@ -14172,6 +14219,12 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
+    SiteTheme:
+      enum:
+        - System
+        - Light
+        - Dark
+      type: string
     SocialProfileDto:
       type: object
       properties:
@@ -14228,12 +14281,7 @@ components:
           format: int32
           nullable: true
         type:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialFeedId:
           type: string
           nullable: true
@@ -14265,6 +14313,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SocialProfileType:
+      enum:
+        - User
+        - Tenant
+        - Contact
+      type: string
     StringListEnvelope:
       type: object
       properties:
@@ -14580,34 +14634,9 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Module
-            - Integration
-            - StudioModule
-            - StudioIntegration
-            - WasmModule
-            - WasmIntegration
-          type: string
+          $ref: '#/components/schemas/ModuleType'
         category:
-          enum:
-            - Other
-            - FinanceAndAccounting
-            - SalesAndCommerce
-            - MarketingAndEngagement
-            - CustomerRelations
-            - OperationsAndSupplyChain
-            - ProjectsAndProductivity
-            - PeopleAndWorkforce
-            - LearningAndEducation
-            - ContentAndWeb
-            - DataAndAnalytics
-            - ArtificialIntelligence
-            - SecurityAndIdentity
-            - TrustAndCompliance
-            - Communication
-            - DeveloperAndPlatform
-            - IndustrySolutions
-          type: string
+          $ref: '#/components/schemas/ModuleCategory'
         configuration:
           type: string
           nullable: true
@@ -14824,10 +14853,7 @@ components:
           type: string
           format: date-time
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         name:
           maxLength: 100
           minLength: 1
@@ -14922,10 +14948,7 @@ components:
           nullable: true
           readOnly: true
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
+          $ref: '#/components/schemas/BusinessEntityKind'
         taxId:
           type: string
           nullable: true
@@ -15178,11 +15201,7 @@ components:
       type: object
       properties:
         kind:
-          enum:
-            - Organization
-            - Individual
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/BusinessEntityKind'
         name:
           maxLength: 100
           minLength: 1
@@ -15426,6 +15445,14 @@ components:
           format: date-time
           nullable: true
       additionalProperties: false
+    UserAvailability:
+      enum:
+        - DND
+        - Busy
+        - Away
+        - Offline
+        - Available
+      type: string
     UserCreateDto:
       type: object
       properties:
@@ -15454,12 +15481,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
+          $ref: '#/components/schemas/Gender'
         email:
           type: string
           nullable: true
@@ -15591,13 +15613,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Gender'
         cityId:
           type: string
           nullable: true
@@ -15651,14 +15667,7 @@ components:
         emailConfirmed:
           type: boolean
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/UserAvailability'
         lockoutEnabled:
           type: boolean
         lockoutEnd:
@@ -15670,12 +15679,7 @@ components:
           format: int32
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SiteTheme'
       additionalProperties: false
     UserDtoCollectionQueryParameters:
       type: object
@@ -15808,23 +15812,17 @@ components:
           type: string
           nullable: true
         orderType:
-          enum:
-            - SalesOrder
-            - PurchaseOrder
-          type: string
+          $ref: '#/components/schemas/OrderType'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
         tenantId:
           type: string
           nullable: true
@@ -15864,11 +15862,7 @@ components:
           type: string
           nullable: true
         siteTheme:
-          enum:
-            - System
-            - Light
-            - Dark
-          type: string
+          $ref: '#/components/schemas/SiteTheme'
       additionalProperties: false
     UserUpdateDto:
       type: object
@@ -15893,12 +15887,7 @@ components:
           type: string
           nullable: true
         gender:
-          enum:
-            - Unknown
-            - Male
-            - Female
-            - PreferNotToSay
-          type: string
+          $ref: '#/components/schemas/Gender'
         email:
           type: string
           nullable: true
@@ -15954,13 +15943,7 @@ components:
           type: string
           nullable: true
         availability:
-          enum:
-            - DND
-            - Busy
-            - Away
-            - Offline
-            - Available
-          type: string
+          $ref: '#/components/schemas/UserAvailability'
       additionalProperties: false
     WalletDto:
       type: object

@@ -5813,6 +5813,11 @@ components:
           type: integer
           format: int32
           nullable: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
+        directSellerTenantId:
+          type: string
+          nullable: true
       additionalProperties: false
     CartDtoEnvelope:
       type: object
@@ -5866,10 +5871,7 @@ components:
           type: string
           format: date-time
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         firstName:
           maxLength: 50
           minLength: 1
@@ -6023,10 +6025,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -6201,6 +6200,14 @@ components:
           nullable: true
           deprecated: true
         birthday:
+          type: string
+          format: date-time
+          nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
           type: string
           format: date-time
           nullable: true
@@ -7212,6 +7219,25 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ContactStage:
+      enum:
+        - Lead
+        - Prospect
+        - Customer
+        - Opportunity
+      type: string
+    ContactStatus:
+      enum:
+        - New
+        - Active
+        - Qualified
+        - Unqualified
+      type: string
+    ContactType:
+      enum:
+        - Individual
+        - Organization
+      type: string
     ContactUpdateDto:
       required:
         - email
@@ -7220,10 +7246,7 @@ components:
       type: object
       properties:
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         birthday:
           type: string
           format: date-time
@@ -7491,6 +7514,16 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    EmailAlertType:
+      enum:
+        - None
+        - Info
+        - Error
+        - Warning
+        - Success
+        - Action
+        - Alert
+      type: string
     EmailDispatchRequest:
       required:
         - culture
@@ -7520,15 +7553,7 @@ components:
           type: string
           nullable: true
         alertType:
-          enum:
-            - None
-            - Info
-            - Error
-            - Warning
-            - Success
-            - Action
-            - Alert
-          type: string
+          $ref: '#/components/schemas/EmailAlertType'
         culture:
           minLength: 1
           pattern: '^[a-z]{2}(-[A-Z]{2})?$'
@@ -7694,10 +7719,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -7872,6 +7894,14 @@ components:
           nullable: true
           deprecated: true
         birthday:
+          type: string
+          format: date-time
+          nullable: true
+        contactStage:
+          $ref: '#/components/schemas/ContactStage'
+        contactStatus:
+          $ref: '#/components/schemas/ContactStatus'
+        lastContactDate:
           type: string
           format: date-time
           nullable: true
@@ -8377,6 +8407,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
     SimpleContactDto:
       type: object
       properties:
@@ -8395,10 +8431,7 @@ components:
           type: string
           nullable: true
         type:
-          enum:
-            - Individual
-            - Organization
-          type: string
+          $ref: '#/components/schemas/ContactType'
         email:
           type: string
           format: email
@@ -8541,12 +8574,7 @@ components:
           format: int32
           nullable: true
         type:
-          enum:
-            - User
-            - Tenant
-            - Contact
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/SocialProfileType'
         socialFeedId:
           type: string
           nullable: true
@@ -8616,6 +8644,12 @@ components:
         result:
           $ref: '#/components/schemas/SocialProfileDto'
       additionalProperties: false
+    SocialProfileType:
+      enum:
+        - User
+        - Tenant
+        - Contact
+      type: string
     TwoFactorRequest:
       type: object
       properties:

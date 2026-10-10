@@ -18803,6 +18803,73 @@
         }
       }
     },
+    "/api/v2/LearningService/Me/Courses/{courseId}/Enrollment": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Get whether the current user is enrolled in a course",
+        "description": "Answers whether the CURRENT USER holds an enrollment in the course. Scoped by the caller's own identity, not by tenant. A course the caller is not enrolled in and an id that addresses nothing both answer false.",
+        "operationId": "Me_GetMyCourseEnrollmentStatus",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MyCourseEnrollmentStatusDtoEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/MyCourseEnrollmentStatusDtoEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/LearningService/Me/InstructorCourses": {
       "get": {
         "tags": [
@@ -20277,11 +20344,7 @@
             "format": "date-time"
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "firstName": {
             "maxLength": 50,
@@ -20481,11 +20544,7 @@
             "nullable": true
           },
           "type": {
-            "enum": [
-              "Individual",
-              "Organization"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ContactType"
           },
           "email": {
             "type": "string",
@@ -20718,6 +20777,17 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactStage": {
+            "$ref": "#/components/schemas/ContactStage"
+          },
+          "contactStatus": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "lastContactDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "tikTokUsername": {
             "type": "string",
             "nullable": true
@@ -20728,6 +20798,31 @@
           }
         },
         "additionalProperties": false
+      },
+      "ContactStage": {
+        "enum": [
+          "Lead",
+          "Prospect",
+          "Customer",
+          "Opportunity"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "New",
+          "Active",
+          "Qualified",
+          "Unqualified"
+        ],
+        "type": "string"
+      },
+      "ContactType": {
+        "enum": [
+          "Individual",
+          "Organization"
+        ],
+        "type": "string"
       },
       "CountDto": {
         "type": "object",
@@ -21997,6 +22092,10 @@
             "nullable": true
           },
           "businessID": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
             "type": "string",
             "nullable": true
           }
@@ -23461,6 +23560,19 @@
           "courseCompletionCertificateId": {
             "type": "string",
             "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CourseEnrollmentStatus"
+          },
+          "completedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "revokedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -23562,6 +23674,14 @@
           }
         },
         "additionalProperties": false
+      },
+      "CourseEnrollmentStatus": {
+        "enum": [
+          "Active",
+          "Completed",
+          "Revoked"
+        ],
+        "type": "string"
       },
       "CourseEnrollmentUpdateDto": {
         "type": "object",
@@ -24998,11 +25118,7 @@
             "type": "string"
           },
           "courseTeamMembershipType": {
-            "enum": [
-              "Admin",
-              "Staff"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CourseTeamMembershipType"
           }
         },
         "additionalProperties": false
@@ -25028,11 +25144,7 @@
             "nullable": true
           },
           "courseTeamMembershipType": {
-            "enum": [
-              "Admin",
-              "Staff"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/CourseTeamMembershipType"
           },
           "tenantId": {
             "type": "string",
@@ -25088,6 +25200,13 @@
         },
         "additionalProperties": false
       },
+      "CourseTeamMembershipType": {
+        "enum": [
+          "Admin",
+          "Staff"
+        ],
+        "type": "string"
+      },
       "CourseTeamMembershipUpdateDto": {
         "type": "object",
         "properties": {
@@ -25096,12 +25215,7 @@
             "nullable": true
           },
           "courseTeamMembershipType": {
-            "enum": [
-              "Admin",
-              "Staff"
-            ],
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CourseTeamMembershipType"
           }
         },
         "additionalProperties": false
@@ -26357,6 +26471,79 @@
           "twoFactorRecoveryCode": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MyCourseEnrollmentStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnrolled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MyCourseEnrollmentStatusDtoEnvelope": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "activityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/MyCourseEnrollmentStatusDto"
           }
         },
         "additionalProperties": false

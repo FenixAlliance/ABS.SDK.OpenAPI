@@ -23,6 +23,1781 @@ servers:
           - https://dev.absuite.net
           - https://localhost:44388
 paths:
+  '/api/v2/MarketingService/BannerCreatives/Public/{bannerCreativeId}/Click':
+    get:
+      tags:
+        - BannerCreatives
+      summary: Follow a banner click
+      description: 'Redirects to the creative''s stored target URL, or to the portal''s home page for an unknown or inactive creative. Anonymous.'
+      operationId: BannerCreatives_GetPublicBannerClick
+      parameters:
+        - name: bannerCreativeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portalId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: placementKey
+          in: query
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Found
+        '400':
+          description: Bad Request
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=minimal;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=full;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.metadata=none;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=true;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;odata.streaming=false;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=false:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/json;IEEE754Compatible=true:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/v2/MarketingService/BannerPlacementAssignments:
+    get:
+      tags:
+        - BannerPlacementAssignments
+      summary: Get banner placement assignments
+      description: Retrieves the tenant's banner placement assignments using OData query options.
+      operationId: BannerPlacementAssignments_GetBannerPlacementAssignments
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementAssignmentDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementAssignmentDtoListEnvelope'
+    post:
+      tags:
+        - BannerPlacementAssignments
+      summary: Create a banner placement assignment
+      description: 'Assigns a banner set to a placement key on one portal, or on every portal when no portal is given. One assignment per key and portal scope.'
+      operationId: BannerPlacementAssignments_CreateBannerPlacementAssignment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentCreateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/MarketingService/BannerPlacementAssignments/Count:
+    get:
+      tags:
+        - BannerPlacementAssignments
+      summary: Get banner placement assignments count
+      description: Returns the count of the tenant's banner placement assignments using OData query options.
+      operationId: BannerPlacementAssignments_GetBannerPlacementAssignmentsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/MarketingService/BannerPlacementAssignments/{bannerPlacementAssignmentId}':
+    get:
+      tags:
+        - BannerPlacementAssignments
+      summary: Get banner placement assignment by ID
+      description: Retrieves one of the tenant's banner placement assignments by its ID.
+      operationId: BannerPlacementAssignments_GetBannerPlacementAssignmentById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerPlacementAssignmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementAssignmentDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementAssignmentDtoEnvelope'
+    put:
+      tags:
+        - BannerPlacementAssignments
+      summary: Update a banner placement assignment
+      description: Points the assignment at another banner set of the tenant with a new priority. The key and portal are not editable.
+      operationId: BannerPlacementAssignments_UpdateBannerPlacementAssignment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerPlacementAssignmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerPlacementAssignmentUpdateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - BannerPlacementAssignments
+      summary: Delete a banner placement assignment
+      description: Deletes one of the tenant's banner placement assignments.
+      operationId: BannerPlacementAssignments_DeleteBannerPlacementAssignment
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerPlacementAssignmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/MarketingService/BannerPlacementKeys:
+    get:
+      tags:
+        - BannerPlacementKeys
+      summary: Get banner placement keys
+      description: 'Returns the placement-key catalog: each key with its display name, binding aspect ratio and recommended upload size.'
+      operationId: BannerPlacementKeys_GetBannerPlacementKeys
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementKeyDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerPlacementKeyDtoListEnvelope'
+  '/api/v2/MarketingService/BannerPlacements/Public/{placementKey}':
+    get:
+      tags:
+        - BannerPlacements
+      summary: Get the banners of a placement
+      description: 'Returns up to ''count'' (1 to 4) banners for a placement key on a portal, sampled by weight and localized for ''culture''. Anonymous; no-store.'
+      operationId: BannerPlacements_GetPublicBannerPlacement
+      parameters:
+        - name: placementKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portalId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: culture
+          in: query
+          schema:
+            type: string
+        - name: bannerSetId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: count
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: countImpression
+          in: query
+          schema:
+            type: boolean
+            default: true
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicBannerDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PublicBannerDtoListEnvelope'
+  /api/v2/MarketingService/BannerSets:
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner sets
+      description: Retrieves the tenant's banner sets using OData query options.
+      operationId: BannerSets_GetBannerSets
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerSetDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerSetDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerSetDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerSetDtoListEnvelope'
+    post:
+      tags:
+        - BannerSets
+      summary: Create a banner set
+      description: Creates a banner set for the specified tenant.
+      operationId: BannerSets_CreateBannerSet
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerSetCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerSetCreateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  /api/v2/MarketingService/BannerSets/Count:
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner sets count
+      description: Returns the count of the tenant's banner sets using OData query options.
+      operationId: BannerSets_GetBannerSetsCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerSetDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerSetDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/MarketingService/BannerSets/{bannerSetId}':
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner set by ID
+      description: Retrieves one of the tenant's banner sets by its ID.
+      operationId: BannerSets_GetBannerSetById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerSetDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerSetDtoEnvelope'
+    put:
+      tags:
+        - BannerSets
+      summary: Update a banner set
+      description: Replaces the editable fields of one of the tenant's banner sets.
+      operationId: BannerSets_UpdateBannerSet
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerSetUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerSetUpdateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - BannerSets
+      summary: Delete a banner set
+      description: 'Deletes one of the tenant''s banner sets with its creatives, and the placement assignments that point at it. Daily counts are kept.'
+      operationId: BannerSets_DeleteBannerSet
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/MarketingService/BannerSets/{bannerSetId}/Performance':
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner set performance
+      description: 'Returns the daily counts (served in page renders, recorded clicks) of the set''s creatives for UTC days from ''from'' to ''to''. A missing day is unavailable, not zero.'
+      operationId: BannerSets_GetBannerSetPerformance
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerPerformanceDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerPerformanceDtoListEnvelope'
+  '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives':
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner creatives
+      description: Retrieves the creatives of one of the tenant's banner sets using OData query options.
+      operationId: BannerSets_GetBannerCreatives
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerCreativeDtoListEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerCreativeDtoListEnvelope'
+    post:
+      tags:
+        - BannerSets
+      summary: Add a banner creative
+      description: 'Adds a creative, with its localizations, to one of the tenant''s banner sets.'
+      operationId: BannerSets_CreateBannerCreative
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeCreateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeCreateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+  '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/Count':
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner creatives count
+      description: Returns the count of the creatives of one of the tenant's banner sets using OData query options.
+      operationId: BannerSets_GetBannerCreativesCount
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeDtoCollectionQueryParameters'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeDtoCollectionQueryParameters'
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Int32Envelope'
+  '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/{bannerCreativeId}':
+    get:
+      tags:
+        - BannerSets
+      summary: Get banner creative by ID
+      description: Retrieves one creative of one of the tenant's banner sets by its ID.
+      operationId: BannerSets_GetBannerCreativeById
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerCreativeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannerCreativeDtoEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BannerCreativeDtoEnvelope'
+    put:
+      tags:
+        - BannerSets
+      summary: Update a banner creative
+      description: Replaces every field of a creative; its localizations become exactly the list given.
+      operationId: BannerSets_UpdateBannerCreative
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerCreativeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeUpdateDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BannerCreativeUpdateDto'
+        required: true
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+    delete:
+      tags:
+        - BannerSets
+      summary: Remove a banner creative
+      description: Removes a creative and its localizations from one of the tenant's banner sets. Its daily counts are kept.
+      operationId: BannerSets_DeleteBannerCreative
+      parameters:
+        - name: tenantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerSetId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: bannerCreativeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: api-version
+          in: query
+          schema:
+            type: string
+        - name: x-api-version
+          in: header
+          schema:
+            type: string
+      responses:
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmptyEnvelope'
   /api/v2/MarketingService/EmailGroups:
     get:
       tags:
@@ -5250,6 +7025,849 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BannerCreativeCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        name:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        defaultCulture:
+          type: string
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        headline:
+          type: string
+          nullable: true
+        ctaText:
+          type: string
+          nullable: true
+        targetUrl:
+          type: string
+          nullable: true
+        weight:
+          type: integer
+          format: int32
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        localizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerCreativeLocalizationDto'
+          nullable: true
+      additionalProperties: false
+    BannerCreativeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        bannerSetId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        defaultCulture:
+          type: string
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        headline:
+          type: string
+          nullable: true
+        ctaText:
+          type: string
+          nullable: true
+        targetUrl:
+          type: string
+          nullable: true
+        weight:
+          type: integer
+          format: int32
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        localizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerCreativeLocalizationDto'
+          nullable: true
+      additionalProperties: false
+    BannerCreativeDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BannerCreativeDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/BannerCreativeDto'
+      additionalProperties: false
+    BannerCreativeDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerCreativeDto'
+          nullable: true
+      additionalProperties: false
+    BannerCreativeLocalizationDto:
+      type: object
+      properties:
+        culture:
+          type: string
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        headline:
+          type: string
+          nullable: true
+        ctaText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BannerCreativeUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        defaultCulture:
+          type: string
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        headline:
+          type: string
+          nullable: true
+        ctaText:
+          type: string
+          nullable: true
+        targetUrl:
+          type: string
+          nullable: true
+        weight:
+          type: integer
+          format: int32
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        localizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerCreativeLocalizationDto'
+          nullable: true
+      additionalProperties: false
+    BannerPerformanceDto:
+      type: object
+      properties:
+        day:
+          type: string
+          format: date-time
+        bannerCreativeId:
+          type: string
+          nullable: true
+        placementKey:
+          type: string
+          nullable: true
+        webPortalId:
+          type: string
+          nullable: true
+        impressions:
+          type: integer
+          format: int64
+        clicks:
+          type: integer
+          format: int64
+      additionalProperties: false
+    BannerPerformanceDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerPerformanceDto'
+          nullable: true
+      additionalProperties: false
+    BannerPlacementAssignmentCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        placementKey:
+          type: string
+          nullable: true
+        webPortalId:
+          type: string
+          nullable: true
+        bannerSetId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BannerPlacementAssignmentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        placementKey:
+          type: string
+          nullable: true
+        webPortalId:
+          type: string
+          nullable: true
+        bannerSetId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        lastModifiedUtc:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BannerPlacementAssignmentDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BannerPlacementAssignmentDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/BannerPlacementAssignmentDto'
+      additionalProperties: false
+    BannerPlacementAssignmentDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerPlacementAssignmentDto'
+          nullable: true
+      additionalProperties: false
+    BannerPlacementAssignmentUpdateDto:
+      type: object
+      properties:
+        bannerSetId:
+          type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BannerPlacementKeyDto:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        ratioWidth:
+          type: integer
+          format: int32
+        ratioHeight:
+          type: integer
+          format: int32
+        recommendedWidth:
+          type: integer
+          format: int32
+        recommendedHeight:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BannerPlacementKeyDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerPlacementKeyDto'
+          nullable: true
+      additionalProperties: false
+    BannerSetCreateDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        allPortals:
+          type: boolean
+        webPortalIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        marketingCampaignId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BannerSetDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        allPortals:
+          type: boolean
+        webPortalIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        marketingCampaignId:
+          type: string
+          nullable: true
+        creativesCount:
+          type: integer
+          format: int32
+        lastModifiedUtc:
+          type: string
+          format: date-time
+          nullable: true
+        tenantId:
+          type: string
+          nullable: true
+        enrollmentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BannerSetDtoCollectionQueryParameters:
+      type: object
+      properties:
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          format: int32
+          nullable: true
+        count:
+          type: boolean
+        filter:
+          type: string
+          nullable: true
+        orderBy:
+          type: string
+          nullable: true
+        search:
+          type: string
+          nullable: true
+        select:
+          type: string
+          nullable: true
+        expand:
+          type: string
+          nullable: true
+        isEmpty:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BannerSetDtoEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/BannerSetDto'
+      additionalProperties: false
+    BannerSetDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannerSetDto'
+          nullable: true
+      additionalProperties: false
+    BannerSetUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        allPortals:
+          type: boolean
+        webPortalIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        marketingCampaignId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CodeFileType:
+      enum:
+        - Razor
+        - CSharp
+        - CSHtml
+        - Liquid
+        - Html5
+        - Markdown
+        - Markup
+      type: string
+    CostCalculationMethod:
+      enum:
+        - Automatic
+        - Custom
+      type: string
     EmailGroupCreateDto:
       type: object
       properties:
@@ -5446,16 +8064,7 @@ components:
           type: string
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
       additionalProperties: false
     EmailSignatureDto:
       type: object
@@ -5468,16 +8077,7 @@ components:
           format: date-time
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
         order:
           type: integer
           format: int32
@@ -5828,16 +8428,7 @@ components:
           type: string
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
         cSharpContent:
           type: string
           nullable: true
@@ -5934,16 +8525,7 @@ components:
           type: string
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
         marketingCampaignId:
           maxLength: 36
           minLength: 0
@@ -5961,16 +8543,7 @@ components:
           format: date-time
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
         order:
           type: integer
           format: int32
@@ -6327,16 +8900,7 @@ components:
           type: string
           nullable: true
         codeType:
-          enum:
-            - Razor
-            - CSharp
-            - CSHtml
-            - Liquid
-            - Html5
-            - Markdown
-            - Markup
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CodeFileType'
         cSharpContent:
           type: string
           nullable: true
@@ -6489,6 +9053,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    FreightTerms:
+      enum:
+        - FOB
+        - NoCharge
+      type: string
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -7250,16 +9819,9 @@ components:
           type: string
           nullable: true
         marketingListType:
-          enum:
-            - Static
-            - Dynamic
-          type: string
+          $ref: '#/components/schemas/MarketingListType'
         marketingListTarget:
-          enum:
-            - Individual
-            - Organization
-            - Lead
-          type: string
+          $ref: '#/components/schemas/MarketingListTarget'
       additionalProperties: false
     MarketingListDto:
       type: object
@@ -7304,16 +9866,9 @@ components:
           type: string
           nullable: true
         marketingListType:
-          enum:
-            - Static
-            - Dynamic
-          type: string
+          $ref: '#/components/schemas/MarketingListType'
         marketingListTarget:
-          enum:
-            - Individual
-            - Organization
-            - Lead
-          type: string
+          $ref: '#/components/schemas/MarketingListTarget'
       additionalProperties: false
     MarketingListDtoCollectionQueryParameters:
       type: object
@@ -7426,6 +9981,17 @@ components:
             $ref: '#/components/schemas/MarketingListDto'
           nullable: true
       additionalProperties: false
+    MarketingListTarget:
+      enum:
+        - Individual
+        - Organization
+        - Lead
+      type: string
+    MarketingListType:
+      enum:
+        - Static
+        - Dynamic
+      type: string
     MarketingListUpdateDto:
       type: object
       properties:
@@ -7456,16 +10022,9 @@ components:
           type: string
           nullable: true
         marketingListType:
-          enum:
-            - Static
-            - Dynamic
-          type: string
+          $ref: '#/components/schemas/MarketingListType'
         marketingListTarget:
-          enum:
-            - Individual
-            - Organization
-            - Lead
-          type: string
+          $ref: '#/components/schemas/MarketingListTarget'
       additionalProperties: false
     NewsletterCreateDto:
       type: object
@@ -7849,15 +10408,9 @@ components:
           type: string
           nullable: true
         taxCalculationMethod:
-          enum:
-            - Included
-            - Excluded
-          type: string
+          $ref: '#/components/schemas/TaxCalculationMethod'
         costCalculationMethod:
-          enum:
-            - Automatic
-            - Custom
-          type: string
+          $ref: '#/components/schemas/CostCalculationMethod'
         forexRate:
           type: number
           format: double
@@ -8009,23 +10562,19 @@ components:
           type: string
           nullable: true
         freightTerms:
-          enum:
-            - FOB
-            - NoCharge
-          type: string
+          $ref: '#/components/schemas/FreightTerms'
         orderStatus:
-          enum:
-            - New
-            - Processing
-            - Accepted
-            - Declined
-            - Shipped
-            - Delivered
-            - OnHold
-            - Failed
-            - Fulfilled
-            - Cancelled
+          $ref: '#/components/schemas/OrderStatus'
+        number:
+          type: integer
+          format: int64
+          nullable: true
+        numberLabel:
           type: string
+          nullable: true
+          readOnly: true
+        saleChannel:
+          $ref: '#/components/schemas/SaleChannel'
         requestedDeliveryDate:
           type: string
           format: date-time
@@ -8095,6 +10644,19 @@ components:
         result:
           $ref: '#/components/schemas/OrderDto'
       additionalProperties: false
+    OrderStatus:
+      enum:
+        - New
+        - Processing
+        - Accepted
+        - Declined
+        - Shipped
+        - Delivered
+        - OnHold
+        - Failed
+        - Fulfilled
+        - Cancelled
+      type: string
     PatchOperation:
       type: object
       properties:
@@ -8108,6 +10670,88 @@ components:
           type: string
           nullable: true
         value: { }
+      additionalProperties: false
+    PublicBannerDto:
+      type: object
+      properties:
+        bannerSetId:
+          type: string
+          nullable: true
+        bannerCreativeId:
+          type: string
+          nullable: true
+        placementKey:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        showUntil:
+          type: string
+          format: date-time
+          nullable: true
+        culture:
+          type: string
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        headline:
+          type: string
+          nullable: true
+        ctaText:
+          type: string
+          nullable: true
+        clickUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PublicBannerDtoListEnvelope:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorMessage:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        httpStatus:
+          type: integer
+          format: int32
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        validationDetails:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+        activityId:
+          type: string
+          nullable: true
+          readOnly: true
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicBannerDto'
+          nullable: true
       additionalProperties: false
     RefreshRequest:
       required:
@@ -8157,6 +10801,12 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    SaleChannel:
+      enum:
+        - Unset
+        - Marketplace
+        - Direct
+      type: string
     SocialMediaPostCreateDto:
       type: object
       properties:
@@ -8500,6 +11150,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    TaxCalculationMethod:
+      enum:
+        - Included
+        - Excluded
+      type: string
     TwoFactorRequest:
       type: object
       properties:
@@ -8541,6 +11196,11 @@ components:
           type: boolean
       additionalProperties: false
 tags:
+  - name: BannerCreatives
+  - name: BannerPlacementAssignments
+  - name: BannerPlacementKeys
+  - name: BannerPlacements
+  - name: BannerSets
   - name: EmailGroups
   - name: EmailSignatures
   - name: EmailTemplates
